@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Ecosystem - UX Pacific</title>
+    <link href="img/Final.png" rel="shortcut icon" type="image/x-icon" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <!-- Google Fonts (Inter) -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Font Awesome for icons -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="main.css" />
+    <style>
+      .eco-accordion-container {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        max-width: 1000px;
+        margin: 4rem auto;
+        padding: 0 1rem;
+      }
+      
+      .eco-acc-item {
+        background: #141416;
+        border: 1px solid #1c1c1f;
+        border-radius: 8px;
+        overflow: hidden;
+        transition: border-color 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .eco-acc-item:hover {
+        border-color: #3f3f46;
+        background: #18181b;
+      }
+
+      .eco-acc-header {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 24px;
+        background: transparent;
+        border: none;
+        color: white;
+        font-family: 'DM Sans', sans-serif;
+        font-size: 1.35rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background 0.3s;
+      }
+
+      .eco-acc-header:hover {
+        background: rgba(255, 255, 255, 0.02);
+      }
+
+      .drop-icon {
+        transition: transform 0.3s ease;
+        color: #fff;
+        font-size: 1.2rem;
+      }
+
+      .eco-acc-header[aria-expanded="true"] .drop-icon {
+        transform: rotate(180deg);
+        color: #a78bfa;
+      }
+
+      .eco-acc-body {
+        padding: 0 24px 24px;
+        margin-top: 12px;
+      }
+
+      .eco-btn {
+        display: inline-flex;
+        align-items: center;
+        margin-top: auto;
+        padding: 0.8rem 2rem;
+        background: linear-gradient(90deg, #6e54bb, #845ef7);
+        border-radius: 999px;
+        color: white;
+        font-weight: 600;
+        text-decoration: none;
+        transition: all 0.3s;
+        border: none;
+      }
+
+      .eco-btn:hover {
+        background: linear-gradient(90deg, #845ef7, #6e54bb);
+        box-shadow: 0 4px 15px rgba(132, 94, 247, 0.4);
+        color: white;
+      }
+    </style>
+  </head>
+  <body class="about-page"> <!-- Using about-page class for inherited styles -->
+    <nav class="navbar navbar-expand-lg" style="background-color: #111111">
+      <div class="container">
+        <a href="index.html">
+          <img alt="Logo" id="myImage" class="nav-logo" src="img/LOGO.png" />
+        </a>
+        <button
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+          class="navbar-toggler collapsed"
+          data-bs-target="#navbarNav"
+          data-bs-toggle="collapse"
+          type="button"
+        >
+          <span class="toggler-icon top-bar"> </span>
+          <span class="toggler-icon middle-bar"> </span>
+          <span class="toggler-icon bottom-bar"> </span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link" href="index.html">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="about.html">About Us</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="services.html">Services</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="project.html">Work</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="ecosystem.html">Ecosystem</a>
+            </li>
+          </ul>
+          <section class="hero11 d-lg-none text-center mt-3">
+             <h1>Start your UI/UX Journey</h1>
+             <p>with creativity, innovation, and modern design.</p>
+          </section>
+          <form class="d-flex">
+            <a
+              class="cta-button"
+              href="contact.html"
+              style="width: 155px; height: 42px; text-decoration: none"
+            >
+              Contact Us
+              <span class="arrow"> </span>
+            </a>
+          </form>
+        </div>
+      </div>
+    </nav>
+
+    <section class="about-header">
+      <div class="gallery-container">
+        <img src="img/bg_ani.gif" class="img1" id="" alt="Image 1" />
+      </div>
+      <h1>Our Ecosystem</h1>
+      <div class="innovation-badge-exact">
+        Building a <span>Community</span> of Innovation
+      </div>
+    </section>
+
+    <!-- <div class="about-desc mt-4 mb-5 shadow" style="text-align: center">
+      <p style="margin: 0; color: #E0E0E0; font-size: 1.25rem; font-weight: 300;">
+        Explore our interconnected platforms designed to empower designers, businesses, and learners.
+      </p>
+    </div> -->
+
+    <section class="eco-accordion-container">
+      <!-- Item 1: UX Pacific Shop -->
+      <div class="eco-acc-item">
+        <button class="eco-acc-header" type="button" data-bs-toggle="collapse" data-bs-target="#eco-shop" aria-expanded="false">
+          UX Pacific Shop
+          <i class="fas fa-chevron-down drop-icon"></i>
+        </button>
+        <div id="eco-shop" class="collapse">
+          <div class="eco-acc-body">
+            <h6 style="color: #f5f5f5; font-size: 0.85rem; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 10px;">Platform Overview</h6>
+            <p style="color: #b2bad6; line-height: 1.6; margin-bottom: 24px;">
+              Access premium UI kits, design systems, and templates crafted by industry experts to speed up your workflow and elevate your final products.
+            </p>
+            <h6 style="color: #f5f5f5; font-size: 0.95rem; font-weight: 600; margin-bottom: 12px;">Key Benefits</h6>
+            <div class="row mb-4" style="color: #a0aec0; font-size: 0.95rem;">
+              <div class="col-md-6 mb-2"><span style="color: #6366f1; margin-right: 8px;">•</span> High-quality UI Kits</div>
+              <div class="col-md-6 mb-2"><span style="color: #6366f1; margin-right: 8px;">•</span> Verified Design Systems</div>
+              <div class="col-md-6 mb-2"><span style="color: #6366f1; margin-right: 8px;">•</span> Export-ready Assets</div>
+              <div class="col-md-6 mb-2"><span style="color: #6366f1; margin-right: 8px;">•</span> Time-saving Templates</div>
+            </div>
+            <a href="#" target="_blank" class="eco-btn">Visit Shop</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Item 2: UX Academy -->
+      <div class="eco-acc-item">
+        <button class="eco-acc-header" type="button" data-bs-toggle="collapse" data-bs-target="#eco-academy" aria-expanded="false">
+          UX Academy
+          <i class="fas fa-chevron-down drop-icon"></i>
+        </button>
+        <div id="eco-academy" class="collapse">
+          <div class="eco-acc-body">
+            <h6 style="color: #f5f5f5; font-size: 0.85rem; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 10px;">Platform Overview</h6>
+            <p style="color: #b2bad6; line-height: 1.6; margin-bottom: 24px;">
+              Level up your skills with our hands-on workshops, courses, and mentorship programs specifically tailored and designed for future design leaders.
+            </p>
+            <h6 style="color: #f5f5f5; font-size: 0.95rem; font-weight: 600; margin-bottom: 12px;">Key Benefits</h6>
+            <div class="row mb-4" style="color: #a0aec0; font-size: 0.95rem;">
+              <div class="col-md-6 mb-2"><span style="color: #6366f1; margin-right: 8px;">•</span> Interactive Workshops</div>
+              <div class="col-md-6 mb-2"><span style="color: #6366f1; margin-right: 8px;">•</span> Certified Courses</div>
+              <div class="col-md-6 mb-2"><span style="color: #6366f1; margin-right: 8px;">•</span> Curated Learning Booklets</div>
+              <div class="col-md-6 mb-2"><span style="color: #6366f1; margin-right: 8px;">•</span> 1:1 Expert Mentorship</div>
+            </div>
+            <a href="https://academy.uxpacific.com/" target="_blank" class="eco-btn">Join Academy</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Item 3: Ambassador Club -->
+      <!-- <div class="eco-acc-item">
+        <button class="eco-acc-header" type="button" data-bs-toggle="collapse" data-bs-target="#eco-club" aria-expanded="false">
+          Ambassador Club
+          <i class="fas fa-chevron-down drop-icon"></i>
+        </button>
+        <div id="eco-club" class="collapse">
+          <div class="eco-acc-body">
+            <h6 style="color: #a78bfa; font-size: 0.85rem; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 10px;">Platform Overview</h6>
+            <p style="color: #b2bad6; line-height: 1.6; margin-bottom: 24px;">
+              Connect with like-minded designers, share knowledge, and grow together in our exclusive community of design advocates.
+            </p>
+            <h6 style="color: #f5f5f5; font-size: 0.95rem; font-weight: 600; margin-bottom: 12px;">Key Benefits</h6>
+            <div class="row mb-4" style="color: #a0aec0; font-size: 0.95rem;">
+              <div class="col-md-6 mb-2"><span style="color: #6366f1; margin-right: 8px;">•</span> Peer-to-Peer Learning</div>
+              <div class="col-md-6 mb-2"><span style="color: #6366f1; margin-right: 8px;">•</span> Early Content Access</div>
+              <div class="col-md-6 mb-2"><span style="color: #6366f1; margin-right: 8px;">•</span> Exclusive Networking Events</div>
+              <div class="col-md-6 mb-2"><span style="color: #6366f1; margin-right: 8px;">•</span> VIP Access Resources</div>
+            </div>
+            <a href="https://club.uxpacific.com/" target="_blank" class="eco-btn">Join Club </a>
+          </div>
+        </div>
+      </div> -->
+
+      <!-- Item 4: UX Community -->
+      <div class="eco-acc-item">
+        <button class="eco-acc-header" type="button" data-bs-toggle="collapse" data-bs-target="#eco-community" aria-expanded="false">
+          UX Community
+          <i class="fas fa-chevron-down drop-icon"></i>
+        </button>
+        <div id="eco-community" class="collapse">
+          <div class="eco-acc-body">
+            <h6 style="color: #f5f5f5; font-size: 0.85rem; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 10px;">Platform Overview</h6>
+            <p style="color: #b2bad6; line-height: 1.6; margin-bottom: 24px;">
+              Be part of a thriving network where ideas turn into reality. Join our broader UX Pacific ecosystem community to connect and grow.
+            </p>
+            <h6 style="color: #f5f5f5; font-size: 0.95rem; font-weight: 600; margin-bottom: 12px;">Key Benefits</h6>
+            <div class="row mb-4" style="color: #a0aec0; font-size: 0.95rem;">
+              <div class="col-md-6 mb-2"><span style="color: #6366f1; margin-right: 8px;">•</span> Ideas & Inspiration</div>
+              <div class="col-md-6 mb-2"><span style="color: #6366f1; margin-right: 8px;">•</span>  Network Reach</div>
+              <div class="col-md-6 mb-2"><span style="color: #6366f1; margin-right: 8px;">•</span> Job & Career Opportunities</div>
+              <div class="col-md-6 mb-2"><span style="color: #6366f1; margin-right: 8px;">•</span> Monthly Virtual Meetups</div>
+            </div>
+            <a href="https://community.uxpacific.com/" target="_blank" class="eco-btn">Join Community </a>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- Footer from index.html (slightly simplified structure or copied logic) -->
+    <div class="desktop-only-footer">
+      <div class="container" style="border: 2px solid black">
+        <div class="row">
+          <div class="col-md-5">
+            <div class="footer-logo">
+              <img alt="UX PACIFIC Logo" src="img/LOGO.png" />
+            </div>
+            <div class="social-icons">
+              <a href="https://www.linkedin.com/company/uxpacific/?viewAsMember=true" target="_blank">
+                <img src="img/in.png" />
+              </a>
+              <a href="https://www.behance.net/uxpacific" target="_blank">
+                <img src="img/be.png" />
+              </a>
+              <a href="https://www.instagram.com/official_uxpacific/" target="_blank">
+                <img src="img/inst.png" />
+              </a>
+            </div>
+          </div>
+          <div class="col-md-2 col-3">
+            <h4 class="ft_link">Quick Links</h4>
+            <ul class="q_link">
+              <li><a href="index.html"> Home </a></li>
+              <li><a href="about.html"> About Us </a></li>
+              <li><a href="services.html"> Services </a></li>
+              <li><a href="project.html"> Project </a></li>
+              <li>
+                <a href="ecosystem.html"> Ecosystem </a>
+              </li>
+            </ul>
+          </div>
+          <div class="col-md-2 col-3">
+            <h4 class="ft_link">Support</h4>
+            <ul class="q_link">
+              <li><a href="contact.html"> Contact us </a></li>
+              <li><a href="faq.html"> FAQs </a></li>
+            </ul>
+          </div>
+          <div class="col-md-2 col-6">
+            <h4 class="ft_link">Contact Details</h4>
+            <p class="f_cnt">
+              <a href="https://www.google.com/maps?q=404,+Capstone+Building,+Kalgi+Cross+Road,+Ahmedabad" style="text-decoration: none; color: inherit" target="_blank">
+                <i class="fas fa-map-marker-alt"> </i>
+                404, Capstone Building, Kalgi Cross Road, Ahmedabad
+              </a>
+            </p>
+            <p class="f_cnt">
+              <i class="fas fa-phone"> </i>
+              92740-61063
+            </p>
+            <p class="f_cnt">
+              <a href="mailto:hello@uxpacific.com" style="text-decoration: none; color: inherit" target="_blank">
+                <i class="fas fa-envelope"> </i>
+                hello@uxpacific.com
+              </a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mobile-only-footer">
+       <div class="container" style="border: 2px solid black">
+        <div class="row">
+          <div class="col-md-5">
+            <div class="footer-logo">
+              <img alt="UX PACIFIC Logo" src="img/LOGO.png" />
+            </div>
+            <div class="social-icons">
+              <a href="https://www.linkedin.com/company/uxpacific/?viewAsMember=true" target="_blank"><img src="img/in.png" /></a>
+              <a href="https://www.behance.net/uxpacific" target="_blank"><img src="img/be.png" /></a>
+              <a href="https://www.instagram.com/official_uxpacific/" target="_blank"><img src="img/inst.png" /></a>
+            </div>
+          </div>
+           <div class="col-md-2 col-12">
+            <h4 class="ft_link" style="margin-top: 20px">Quick Links</h4>
+            <ul class="q_link">
+              <li><a href="index.html"> Home </a></li>
+              <li><a href="about.html"> About Us </a></li>
+              <li><a href="services.html"> Services </a></li>
+              <li><a href="project.html"> Project </a></li>
+              <li>
+                <a href="ecosystem.html"> Ecosystem </a>
+              </li>
+            </ul>
+          </div>
+           <div class="col-md-2 col-12">
+            <h4 class="ft_link">Support</h4>
+             <ul class="q_link">
+              <li><a href="contact.html"> Contact us </a></li>
+              <li><a href="faq.html"> FAQs </a></li>
+            </ul>
+          </div>
+           <div class="col-md-2 col-6">
+             <h4 class="ft_link">Contact Details</h4>
+             <p class="f_cnt">
+                <a href="https://www.google.com/maps?q=404,+Capstone+Building,+Kalgi+Cross+Road,+Ahmedabad" target="_blank" style="text-decoration: none; color: inherit">
+                 <i class="fas fa-map-marker-alt"> </i> 404, Capstone...
+                </a>
+             </p>
+             <p class="f_cnt"><i class="fas fa-phone"> </i> 92740-61063</p>
+              <p class="f_cnt">
+              <a href="mailto:hello@uxpacific.com" style="text-decoration: none; color: inherit">
+                <i class="fas fa-envelope"> </i> hello@uxpacific.com
+              </a>
+             </p>
+           </div>
+        </div>
+       </div>
+    </div>
+
+    <footer class="footer">
+      <div class="container pt-4 pb-3" style="border-top: 1px solid rgb(245 245 245 / 40%)">
+        <div class="row">
+          <div class="col-md-6 text-center text-md-start">
+            <p style="color: #e0e0e0">© 2025 Uxpacific. All rights reserved.</p>
+          </div>
+          <div class="col-md-6 footer-policies mb-0 mt-0 text-center text-md-end">
+            <a href="privacy-policy.html">Privacy Policy</a> |
+            <a href="cookies-privacy.html">Cookie Policy</a> |
+            <a href="term-condition.html">Terms & Conditions</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="main.js"></script>
+  </body>
+</html>

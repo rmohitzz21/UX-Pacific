@@ -1,0 +1,1242 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Home</title>
+    <link href="img/Final.png" rel="shortcut icon" type="image/x-icon" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <!-- Google Fonts (Inter) -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Font Awesome for icons -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="main.css" />
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg" style="background-color: #111111">
+      <div class="container">
+        <a href="index.html">
+          <img alt="Logo" id="myImage" class="nav-logo" src="img/LOGO.png" />
+        </a>
+        <button
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+          class="navbar-toggler collapsed"
+          data-bs-target="#navbarNav"
+          data-bs-toggle="collapse"
+          type="button"
+        >
+          <span class="toggler-icon top-bar"> </span>
+          <span class="toggler-icon middle-bar"> </span>
+          <span class="toggler-icon bottom-bar"> </span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+  <li class="nav-item">
+    <a class="nav-link active" href="index.html">Home</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="about.html">About Us</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="services.html">Services</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="project.html">Work</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="ecosystem.html">Ecosystem</a>
+  </li>
+
+  <!-- MOBILE ONLY -->
+  <li class="nav-item d-lg-none">
+    <a class="nav-link" href="contact.html">Contact Us</a>
+  </li>
+  <li class="nav-item d-lg-none">
+    <a class="nav-link" href="faq.html">FAQ</a>
+  </li>
+          </ul>
+<section class="hero11 d-lg-none text-center mt-3">
+            <h1>Start your UI/UX Journey</h1>
+            <p>with creativity, innovation, and modern design.</p>
+          </section>
+          <form class="d-flex">
+            <a
+              class="cta-button"
+              href="contact.html"
+              style="width: 155px; height: 42px; text-decoration: none"
+            >
+              Contact Us
+              <span class="arrow"> </span>
+            </a>
+          </form>
+        </div>
+      </div>
+    </nav>
+    <div class="hero-wrapper" style="position: relative; overflow: hidden">
+      <canvas
+        id="interactive-canvas"
+        style="
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          z-index: 0;
+        "
+      >
+      </canvas>
+      <div class="custom-cursor"></div>
+      <section class="hero">
+        <h1 id="heading">
+          WE CRAFT UX THAT MAKES THEM
+          <br />
+          <span style="font-weight: 200">
+            STAY, ENGAGE,
+            <span style="font-weight: 800"> AND </span>
+            CONVERT.
+          </span>
+        </h1>
+        <p class="subtext">Designing Experiences, Not Just Interfaces</p>
+        <br />
+        <a
+          class="cta-button"
+          href="#"
+          data-bs-toggle="modal"
+          data-bs-target="#auditModal"
+          style="
+            width: 210px;
+            height: 42px;
+            margin-top: 0px;
+            padding-left: 27px;
+          "
+        >
+          Book a UX Audit
+          <span class="arrow"> </span>
+        </a>
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <div class="ux-header">
+          <span class="ux-badg"> </span>
+          <div class="scroller">
+            <ul class="scroller__inner">
+              <li class="scroller__item">SIMPLE</li>
+              <li class="scroller__item">INTENTIONAL</li>
+              <li class="scroller__item">HUMAN</li>
+              <li class="scroller__item">SCALABLE</li>
+              <li class="scroller__item">SMART</li>
+              <li class="scroller__item">EMPATHETIC</li>
+              <li class="scroller__item">MEASURED</li>
+              <li class="scroller__item">IMPACTFUL</li>
+              <li class="scroller__item">ACCESSIBLE</li>
+            </ul>
+          </div>
+          <span class="ux-end"> </span>
+        </div>
+      </section>
+    </div>
+    <div class="ux-content mt-5 mb-5">
+      <h3 class="ux-subtitle" style="margin-top: 50px">
+        About Us
+        <span class="ux-line"> </span>
+      </h3>
+      <h2 class="ux-title">
+        Where Strategy Meets
+        <span class="highlight"> Stunning </span>
+        Design
+      </h2>
+      <p class="ux-description">
+        We're a creative UX/UI design studio passionate about building
+        human-centered digital products that inspire, engage, and perform.
+      </p>
+      <a class="view-more" href="about.html"> View More &rarr; </a>
+      <br />
+    </div>
+    <div class="ux-image-container" style="margin-top: 80px">
+      <img alt="UX Strategy" class="ux-image" id="ii1" src="img/b.webp" />
+      <div
+        class="floating-tag"
+        id="d1"
+        style="
+          top: 15%;
+          left: 5%;
+          width: 119px;
+          font-size: 16px;
+          transform: rotate(-13.19deg);
+        "
+      >
+        Accessibility
+      </div>
+      <span
+        class="tag-image"
+        id="d66"
+        style="top: 20%; left: 14%; background-image: url('img/shruti.png')"
+      >
+      </span>
+      <div
+        class="floating-tag"
+        id="d3"
+        style="
+          top: 22.5%;
+          left: 22%;
+          width: 75px;
+          font-size: 16px;
+          transform: rotate(15.19deg);
+        "
+      >
+        UI/UX
+      </div>
+      <div
+        class="floating-tag"
+        id="d1"
+        style="
+          top: 60%;
+          left: 15%;
+          width: 119px;
+          font-size: 16px;
+          transform: rotate(19.19deg);
+        "
+      >
+        Wireframing
+      </div>
+      <span
+        class="tag-image"
+        id="d55"
+        style="top: 70%; left: 24%; background-image: url('img/aradhya.png')"
+      >
+      </span>
+      <div
+        class="floating-tag transform-sm rotate-90"
+        id="d2"
+        style="
+          top: 77%;
+          left: 3%;
+          width: 119px;
+          font-size: 16px;
+          transform: rotate(25deg);
+        "
+      >
+        Navigation
+      </div>
+      <div id="fixitBtn" style="top: 0%; left: 52%; font-size: 16px">
+        <div class="main-container">
+          <div class="brush-strokes" id="brush">
+            <img alt="Brush Strokes" id="emoj" src="img/emojisad.png" />
+          </div>
+          <div class="puppet" id="puppet">
+            <img alt="Finger Puppet" src="img/hand.png" />
+          </div>
+          <button class="fixit-btn">Fix It</button>
+        </div>
+      </div>
+      <span
+        class="tag-image"
+        id="d33"
+        style="top: 20%; left: 60%; background-image: url('img/you.png')"
+      >
+      </span>
+      <div
+        class="floating-tag"
+        id="d4"
+        style="
+          top: 15%;
+          left: 85%;
+          width: 138px;
+          font-size: 16px;
+          transform: rotate(-20deg);
+        "
+      >
+        Simplification
+      </div>
+      <span
+        class="tag-image"
+        id="d44"
+        style="top: 25%; left: 90%; background-image: url('img/zulla.png')"
+      >
+      </span>
+      <div
+        class="floating-tag"
+        id="d5"
+        style="
+          top: 30%;
+          left: 70%;
+          width: 140.96px;
+          font-size: 16px;
+          transform: rotate(12.19deg);
+        "
+      >
+        Design System
+      </div>
+      <div
+        class="floating-tag"
+        id="d6"
+        style="
+          top: 50%;
+          left: 87%;
+          width: 119px;
+          font-size: 16px;
+          transform: rotate(18.19deg);
+        "
+      >
+        Interaction
+      </div>
+      <div
+        class="floating-tag"
+        id="d1"
+        style="
+          top: 73%;
+          left: 70%;
+          width: 119px;
+          height: 40px;
+          font-size: 16px;
+          transform: rotate(-13.19deg);
+        "
+      >
+        Functionality
+      </div>
+      <span
+        class="tag-image"
+        id="d1"
+        style="top: 80%; left: 80%; background-image: url('img/vedant.png')"
+      >
+      </span>
+    </div>
+
+    <section class="services-section1">
+      <h5>Our Services</h5>
+      <span class="ux-line"> </span>
+      <h1>
+        Design Solutions That
+        <br />
+        Put
+        <span> Users </span>
+        First
+      </h1>
+      <p class="ux-description">
+        We're a creative UX/UI design studio passionate about building
+        human-centered digital products that inspire, engage, and perform.
+      </p>
+      <div class="services-container1" id="slider" style="margin-top: 100px">
+        <!-- Card 1 -->
+        <div class="service-card1">
+          <img alt="Interface" src="img/f1.jpeg" />
+          <h3>Interface</h3>
+        </div>
+        <!-- Card 2 -->
+        <div class="service-card1">
+          <img alt="UX Audit" src="img/f2.jpeg" />
+          <h3>UX Audit</h3>
+        </div>
+        <!-- Card 3 -->
+        <div class="service-card1">
+          <img alt="User Flow" src="img/f3.jpeg" />
+          <h3>User Flow</h3>
+        </div>
+      </div>
+    </section>
+
+    <div class="section-title" style="margin-top: 50px">
+      <h3 class="ux-subtitle">
+        Our Services
+        <span class="ux-line"> </span>
+      </h3>
+      <h2>
+        Design Solutions That Put
+        <span> User </span>
+        First
+      </h2>
+      <p class="ux-description">
+        From sleek interfaces to seamless user flows, our portfolio reflects our
+        commitment to crafting digital experiences that work beautifully.
+      </p>
+    </div>
+    <div class="services">
+      <!-- Service 1 -->
+      <div class="service-card">
+        <div class="service-icon">
+          <img alt="UI" src="img/service1.png" />
+        </div>
+        <h3>UI Design</h3>
+        <p>
+          We design visually engaging UIs that reflect your brand, ensure
+          accessibility, and enhance usability across all devices.
+        </p>
+        <a href="services.html"> View Details &rarr; </a>
+      </div>
+      <!-- Service 2 -->
+      <div class="service-card">
+        <div class="service-icon">
+          <img alt="Audit" src="img/Frame 1618872818.png" />
+        </div>
+        <h3>UX Audit</h3>
+        <p>
+          Through expert analysis, we uncover usability issues, improve user
+          flows, and help optimize your product for better.
+        </p>
+        <a href="services.html"> View Details &rarr; </a>
+      </div>
+      <!-- Service 3 -->
+      <div class="service-card">
+        <div class="service-icon">
+          <img alt="Strategy" src="img/Frame 1618872815 (1).png" />
+        </div>
+        <h3>UX Strategy</h3>
+        <p>
+          Defining effective user journeys and aligning business goals with user
+          needs for impactful digital experiences.
+        </p>
+        <a href="services.html"> View Details &rarr; </a>
+      </div>
+    </div>
+
+
+
+
+    
+    <!-- Section Title -->
+    <div class="section-title" style="margin-top: 120px">
+      <h3 class="ux-subtitle">
+        Our Project
+        <span class="ux-line"> </span>
+      </h3>
+      <center>
+        <h2>
+          A Glimpse Into Our
+          <span> Design Thinking </span>
+        </h2>
+        <p>
+          From sleek interfaces to seamless user flows, our portfolio reflects
+          our commitment to crafting digital experiences that work beautifully.
+        </p>
+      </center>
+    </div>
+
+
+
+    <!-- Project Section -->
+    <div class="project-container">
+      <!-- Left Text -->
+      <div class="project-text">
+        <h3 id="project-title">Case Study of Survey Pacific</h3>
+        <p class="mb-0" id="project-desc">
+          We revamped the website UI/UX through deep heuristic evaluation and
+          competitive benchmarking.
+        </p>
+        <a
+          class="cta-button"
+          href="project.html"
+          style="
+            width: 175px;
+            height: 42px;
+            text-decoration: none;
+            margin-top: 25px;
+          "
+        >
+          View Details
+          <span class="arrow"> </span>
+        </a>
+      </div>
+      <!-- Right Image Slider -->
+      <div class="project-slider">
+        <div class="main-slide">
+          <img
+            alt="Project 1"
+            class="active"
+            height="362px"
+            src="img/ux.webp"
+          />
+          <img alt="Project 2" height="362px" src="img/cedar.webp" />
+          <img alt="Project 3" height="362px" src="img/dist.webp" />
+          <div class="next-btn"></div>
+        </div>
+        <div class="preview-slide" style="width: 300px">
+          <img alt="Preview" id="preview-img" src="img/dist.webp" />
+        </div>
+      </div>
+    </div>
+    <!-- our Ecosystem -->
+    <section class="ecosystem" id="ecosystem" style="margin-top: 100px">
+      <h3 class="ux-subtitle">
+        Our Ecosystem
+        <span class="ux-line"> </span>
+      </h3>
+      <h2>
+        Expand Your Experience With
+        <span> UX Pacific </span>
+      </h2>
+      <p class="description">
+        Unlock exclusive networking and learning opportunities across our
+        Ambassador Club and Academy.Take the next step in your UX career with a
+        supportive community and hands-on resources.
+      </p>
+      <div class="cards">
+        <!-- Card 1 -->
+        <a
+          href="https://club.uxpacific.com/"
+          style="text-decoration: none"
+          target="_blank"
+        >
+          <div class="card">
+            <h1 class="text-white" style="font-size: 1.7rem">Ambassador Club</h1>
+            <span class="ux-line"> </span>
+            <p>
+              Connect, share, and grow with peers in our exclusive ambassador
+              community.
+            </p>
+            <span class="arrow"> </span>
+          </div>
+        </a>
+        <!-- Card 2 -->
+        <a
+          href="https://academy.uxpacific.com/"
+          style="text-decoration: none"
+          target="_blank"
+        >
+          <div class="card">
+            <h1 class="text-white" style="font-size: 1.7rem">UX Academy</h1>
+            <span class="ux-line"> </span>
+            <p>
+              Advance your skills through curated booklets and hands-on learning
+              experiences through our workshops.
+            </p>
+            <span class="arrow"> </span>
+          </div>
+        </a>
+        <!-- Card 3 -->
+        <a
+          href="https://community.uxpacific.com/"
+          style="text-decoration: none"
+          target="_blank"
+        >
+          <div class="card">
+            <h1 class="text-white" style="font-size: 1.7rem">UX Community</h1>
+            <span class="ux-line"> </span>
+            <p>
+              Be part of a thriving network where ideas turn into reality. Join our community to connect and grow.
+            </p>
+            <span class="arrow"> </span>
+          </div>
+        </a>
+      </div>
+    </section>
+    <!-- our value reviews -->
+    <section class="reviews-section">
+      <h3 class="ux-subtitle" style="margin-top: 50px">
+        Our Valued Reviews
+        <span class="ux-line"> </span>
+      </h3>
+      <h2>
+        Feedback That Fuels
+        <span> Growth </span>
+      </h2>
+      <p>
+        Explore experiences from our clients and workshop participants. Each
+        review offers valuable insight into how we support growth, learning, and
+        meaningful results across every project and event.
+      </p>
+
+      <div class="reviews-grid-container">
+        <div class="reviews-grid">
+          <!-- This is the original set of cards that will be duplicated by JS -->
+          <div class="review-card-set" id="original-cards">
+            <!-- Card 1 -->
+            <div class="testimonial-card" style="background-color: #312e81">
+              <div class="card-header">
+                <div class="stars">
+                  <svg fill="#ffd166" viewbox="0 0 24 24">
+                    <path
+                      d="M12 .587l3.668 7.431L24 9.748l-6 5.847L19.335 24 12 20.201 4.665 24 6 15.595 0 9.748l8.332-1.73L12 .587z"
+                    ></path>
+                  </svg>
+                  <svg fill="#ffd166" viewbox="0 0 24 24">
+                    <path
+                      d="M12 .587l3.668 7.431L24 9.748l-6 5.847L19.335 24 12 20.201 4.665 24 6 15.595 0 9.748l8.332-1.73L12 .587z"
+                    ></path>
+                  </svg>
+                  <svg fill="#ffd166" viewbox="0 0 24 24">
+                    <path
+                      d="M12 .587l3.668 7.431L24 9.748l-6 5.847L19.335 24 12 20.201 4.665 24 6 15.595 0 9.748l8.332-1.73L12 .587z"
+                    ></path>
+                  </svg>
+                  <svg fill="#ffd166" viewbox="0 0 24 24">
+                    <path
+                      d="M12 .587l3.668 7.431L24 9.748l-6 5.847L19.335 24 12 20.201 4.665 24 6 15.595 0 9.748l8.332-1.73L12 .587z"
+                    ></path>
+                  </svg>
+                  <svg fill="#ffd166" viewbox="0 0 24 24">
+                    <path
+                      d="M12 .587l3.668 7.431L24 9.748l-6 5.847L19.335 24 12 20.201 4.665 24 6 15.595 0 9.748l8.332-1.73L12 .587z"
+                    ></path>
+                  </svg>
+                </div>
+                <div class="pill">Project Experience</div>
+              </div>
+              <div class="quote">
+                We appreciate the professionalism and clarity UX Pacific brought
+                to the process and would gladly collaborate again.
+              </div>
+              <div class="author">
+                <div class="avatar">
+                  <img alt="Andrew Ajai Singh" src="img/Oval (1).png" />
+                </div>
+                <div class="author-info">
+                  <div class="name">Andrew Ajai Singh</div>
+                  <div class="title">Distinct Buzz</div>
+                </div>
+              </div>
+            </div>
+            <!-- Card 2 -->
+            <div class="testimonial-card" style="background-color: #4338ca">
+              <div class="card-header">
+                <div class="stars">
+                  <svg fill="#ffd166" viewbox="0 0 24 24">
+                    <path
+                      d="M12 .587l3.668 7.431L24 9.748l-6 5.847L19.335 24 12 20.201 4.665 24 6 15.595 0 9.748l8.332-1.73L12 .587z"
+                    ></path>
+                  </svg>
+                  <svg fill="#ffd166" viewbox="0 0 24 24">
+                    <path
+                      d="M12 .587l3.668 7.431L24 9.748l-6 5.847L19.335 24 12 20.201 4.665 24 6 15.595 0 9.748l8.332-1.73L12 .587z"
+                    ></path>
+                  </svg>
+                  <svg fill="#ffd166" viewbox="0 0 24 24">
+                    <path
+                      d="M12 .587l3.668 7.431L24 9.748l-6 5.847L19.335 24 12 20.201 4.665 24 6 15.595 0 9.748l8.332-1.73L12 .587z"
+                    ></path>
+                  </svg>
+                  <svg fill="#ffd166" viewbox="0 0 24 24">
+                    <path
+                      d="M12 .587l3.668 7.431L24 9.748l-6 5.847L19.335 24 12 20.201 4.665 24 6 15.595 0 9.748l8.332-1.73L12 .587z"
+                    ></path>
+                  </svg>
+                  <svg fill="#ffd166" viewbox="0 0 24 24">
+                    <path
+                      d="M12 .587l3.668 7.431L24 9.748l-6 5.847L19.335 24 12 20.201 4.665 24 6 15.595 0 9.748l8.332-1.73L12 .587z"
+                    ></path>
+                  </svg>
+                </div>
+                <div class="pill">Workshop Experience</div>
+              </div>
+              <div class="quote">
+                Use engaging activities and mix up groups to boost interaction,
+                cut distractions, and make the workshop more effective.
+              </div>
+              <div class="author">
+                <div class="avatar">
+                  <img alt="Dharmik Bhavsar" src="img/Oval (2).png" />
+                </div>
+                <div class="author-info">
+                  <div class="name">Dharmik Bhavsar</div>
+                  <div class="title">Student</div>
+                </div>
+              </div>
+            </div>
+            <!-- Card 3 -->
+            <div class="testimonial-card" style="background-color: #4f46e5">
+              <div class="card-header">
+                <div class="stars">
+                  <svg fill="#ffd166" viewbox="0 0 24 24">
+                    <path
+                      d="M12 .587l3.668 7.431L24 9.748l-6 5.847L19.335 24 12 20.201 4.665 24 6 15.595 0 9.748l8.332-1.73L12 .587z"
+                    ></path>
+                  </svg>
+                  <svg fill="#ffd166" viewbox="0 0 24 24">
+                    <path
+                      d="M12 .587l3.668 7.431L24 9.748l-6 5.847L19.335 24 12 20.201 4.665 24 6 15.595 0 9.748l8.332-1.73L12 .587z"
+                    ></path>
+                  </svg>
+                  <svg fill="#ffd166" viewbox="0 0 24 24">
+                    <path
+                      d="M12 .587l3.668 7.431L24 9.748l-6 5.847L19.335 24 12 20.201 4.665 24 6 15.595 0 9.748l8.332-1.73L12 .587z"
+                    ></path>
+                  </svg>
+                  <svg fill="#ffd166" viewbox="0 0 24 24">
+                    <path
+                      d="M12 .587l3.668 7.431L24 9.748l-6 5.847L19.335 24 12 20.201 4.665 24 6 15.595 0 9.748l8.332-1.73L12 .587z"
+                    ></path>
+                  </svg>
+                  <svg fill="#ffd166" viewbox="0 0 24 24">
+                    <path
+                      d="M12 .587l3.668 7.431L24 9.748l-6 5.847L19.335 24 12 20.201 4.665 24 6 15.595 0 9.748l8.332-1.73L12 .587z"
+                    ></path>
+                  </svg>
+                </div>
+                <div class="pill">Workshop Experience</div>
+              </div>
+              <div class="quote">
+                Got to explore fresh and engaging activities throughout the
+                session. They added a fun and creative touch to the overall
+                learning experience!
+              </div>
+              <div class="author">
+                <div class="avatar">
+                  <img alt="Diya Mehta" src="./img/DMDM.png" />
+                </div>
+                <div class="author-info">
+                  <div class="name">Diya Mehta</div>
+                  <div class="title">Student</div>
+                </div>
+              </div>
+            </div>
+            <!-- Card 4 -->
+            <div class="testimonial-card" style="background-color: #312e81">
+              <div class="card-header">
+                <div class="stars">
+                  <svg fill="#ffd166" viewbox="0 0 24 24">
+                    <path
+                      d="M12 .587l3.668 7.431L24 9.748l-6 5.847L19.335 24 12 20.201 4.665 24 6 15.595 0 9.748l8.332-1.73L12 .587z"
+                    ></path>
+                  </svg>
+                  <svg fill="#ffd166" viewbox="0 0 24 24">
+                    <path
+                      d="M12 .587l3.668 7.431L24 9.748l-6 5.847L19.335 24 12 20.201 4.665 24 6 15.595 0 9.748l8.332-1.73L12 .587z"
+                    ></path>
+                  </svg>
+                  <svg fill="#ffd166" viewbox="0 0 24 24">
+                    <path
+                      d="M12 .587l3.668 7.431L24 9.748l-6 5.847L19.335 24 12 20.201 4.665 24 6 15.595 0 9.748l8.332-1.73L12 .587z"
+                    ></path>
+                  </svg>
+                  <svg fill="#ffd166" viewbox="0 0 24 24">
+                    <path
+                      d="M12 .587l3.668 7.431L24 9.748l-6 5.847L19.335 24 12 20.201 4.665 24 6 15.595 0 9.748l8.332-1.73L12 .587z"
+                    ></path>
+                  </svg>
+                  <svg fill="#ffd166" viewbox="0 0 24 24">
+                    <path
+                      d="M12 .587l3.668 7.431L24 9.748l-6 5.847L19.335 24 12 20.201 4.665 24 6 15.595 0 9.748l8.332-1.73L12 .587z"
+                    ></path>
+                  </svg>
+                </div>
+                <div class="pill">Project Experience</div>
+              </div>
+              <div class="quote">
+                Working with UXPacific for the UX draft was an insightful
+                experience. The team's approach was structured, detailed, and
+                highly actionable.
+              </div>
+              <div class="author">
+                <div class="avatar">
+                  <img alt="Dr. Vishal Singh" src="img/Oval.png" />
+                </div>
+                <div class="author-info">
+                  <div class="name">Dr. Vishal Singh</div>
+                  <div class="title">CEDAR Himalaya</div>
+                </div>
+              </div>
+            </div>
+            <!-- Card 5 -->
+            <div class="testimonial-card" style="background-color: #312e81">
+              <div class="card-header">
+                <div class="stars">
+                  <svg fill="#ffd166" viewbox="0 0 24 24">
+                    <path
+                      d="M12 .587l3.668 7.431L24 9.748l-6 5.847L19.335 24 12 20.201 4.665 24 6 15.595 0 9.748l8.332-1.73L12 .587z"
+                    ></path>
+                  </svg>
+                  <svg fill="#ffd166" viewbox="0 0 24 24">
+                    <path
+                      d="M12 .587l3.668 7.431L24 9.748l-6 5.847L19.335 24 12 20.201 4.665 24 6 15.595 0 9.748l8.332-1.73L12 .587z"
+                    ></path>
+                  </svg>
+                  <svg fill="#ffd166" viewbox="0 0 24 24">
+                    <path
+                      d="M12 .587l3.668 7.431L24 9.748l-6 5.847L19.335 24 12 20.201 4.665 24 6 15.595 0 9.748l8.332-1.73L12 .587z"
+                    ></path>
+                  </svg>
+                  <svg fill="#ffd166" viewbox="0 0 24 24">
+                    <path
+                      d="M12 .587l3.668 7.431L24 9.748l-6 5.847L19.335 24 12 20.201 4.665 24 6 15.595 0 9.748l8.332-1.73L12 .587z"
+                    ></path>
+                  </svg>
+                  <svg fill="#ffd166" viewbox="0 0 24 24">
+                    <path
+                      d="M12 .587l3.668 7.431L24 9.748l-6 5.847L19.335 24 12 20.201 4.665 24 6 15.595 0 9.748l8.332-1.73L12 .587z"
+                    ></path>
+                  </svg>
+                </div>
+                <div class="pill">Workshop Experience</div>
+              </div>
+              <div class="quote">
+                Loved the hands-on activities and feedback they really clarified
+                the concepts.Great experience connecting with the team
+                and participants!
+              </div>
+              <div class="author">
+                <div class="avatar">
+                  <img alt="Andrew Ajai Singh" src="img/YUGAAn.png" />
+                </div>
+                <div class="author-info">
+                  <div class="name">Yugaan Parmar</div>
+                  <div class="title">UI/UX & Graphic Designer</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Card 6 -->
+            <div class="testimonial-card" style="background-color: #312e81">
+              <div class="card-header">
+                <div class="stars">
+                  <svg fill="#ffd166" viewbox="0 0 24 24">
+                    <path
+                      d="M12 .587l3.668 7.431L24 9.748l-6 5.847L19.335 24 12 20.201 4.665 24 6 15.595 0 9.748l8.332-1.73L12 .587z"
+                    ></path>
+                  </svg>
+                  <svg fill="#ffd166" viewbox="0 0 24 24">
+                    <path
+                      d="M12 .587l3.668 7.431L24 9.748l-6 5.847L19.335 24 12 20.201 4.665 24 6 15.595 0 9.748l8.332-1.73L12 .587z"
+                    ></path>
+                  </svg>
+                  <svg fill="#ffd166" viewbox="0 0 24 24">
+                    <path
+                      d="M12 .587l3.668 7.431L24 9.748l-6 5.847L19.335 24 12 20.201 4.665 24 6 15.595 0 9.748l8.332-1.73L12 .587z"
+                    ></path>
+                  </svg>
+                  <svg fill="#ffd166" viewbox="0 0 24 24">
+                    <path
+                      d="M12 .587l3.668 7.431L24 9.748l-6 5.847L19.335 24 12 20.201 4.665 24 6 15.595 0 9.748l8.332-1.73L12 .587z"
+                    ></path>
+                  </svg>
+                  <svg fill="#ffd166" viewbox="0 0 24 24">
+                    <path
+                      d="M12 .587l3.668 7.431L24 9.748l-6 5.847L19.335 24 12 20.201 4.665 24 6 15.595 0 9.748l8.332-1.73L12 .587z"
+                    ></path>
+                  </svg>
+                </div>
+                <div class="pill">Workshop Experience</div>
+              </div>
+              <div class="quote">
+               Gained deeper knowledge, especially through the process of creating the hero and i understood how structure and design come together !
+              </div>
+              <div class="author">
+                <div class="avatar">
+                  <img alt="Andrew Ajai Singh" src="img/Devanshi.png" />
+                </div>
+                <div class="author-info">
+                  <div class="name">Devanshi Akhja</div>
+                  <div class="title">Student</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Card 7  -->
+        
+         </div>
+      </div>
+     </div> 
+    </section>
+    <section class="cta-section">
+      <!-- Dots Background (desktop only) -->
+      <div class="dots-bg desktop-only">
+        <canvas id="dots-canvas"> </canvas>
+      </div>
+      <div class="cta-container">
+        <!-- Left Content -->
+        <div class="cta-text" style="padding: 20px">
+          <h1>
+            Start your
+            <span> UI/UX </span>
+            journey with
+            <br />
+            <span class="highlight"> UXPacific Team </span>
+          </h1>
+          <p class="mt-4 mb-4" style="font-size: 14px">
+            Build your site effortlessly and showcase your work with confidence.
+            <br />
+            Ready to stand out? Get started today!
+          </p>
+          <a
+            class="cta-button"
+            href="contact.html"
+            style="width: 165px; height: 42px; text-decoration: none"
+          >
+            Get in touch
+            <span class="arrow"> </span>
+          </a>
+        </div>
+        <div class="cta-blur-overlay"></div>
+        <!-- Right Image -->
+        <div class="cta-image">
+          <img alt="UX Design" src="img/Rectangle 5192.webp" />
+        </div>
+      </div>
+    </section>
+    <!-- FAQ Items -->
+    <section class="faq-section">
+      <div class="faq-container">
+        <div class="faq-main-container">
+          <!-- FAQ Left Side -->
+          <div class="faq-left">
+            <div
+              class="accordion accordion-flush col-lg-12 mx-auto"
+              id="faqAccordion"
+            >
+              <div class="accordion-item" style="border-radius: 8px">
+                <div class="accordion-header">
+                  <h3>What services does UXPacific offer?</h3>
+                  <div class="accordion-icon">
+                    <span> </span>
+                  </div>
+                </div>
+                <div class="accordion-content">
+                  <p>
+                    We specialize in UI/UX design, UX audits, design systems,
+                    landing pages, and strategy consulting. Whether you're
+                    launching an MVP or scaling an enterprise platform, we craft
+                    human-first digital experiences that perform.
+                  </p>
+                </div>
+              </div>
+              <div class="accordion-item" style="border-radius: 8px">
+                <div class="accordion-header">
+                  <h3>Can I pay you in pizza and good vibes?</h3>
+                  <div class="accordion-icon">
+                    <span> </span>
+                  </div>
+                </div>
+                <div class="accordion-content">
+                  <p>
+                    Tempting. But we prefer clean invoices and coffee. Good
+                    vibes are always welcome though.
+                  </p>
+                </div>
+              </div>
+              <div class="accordion-item" style="border-radius: 8px">
+                <div class="accordion-header">
+                  <h3>What tools do you use?</h3>
+                  <div class="accordion-icon">
+                    <span> </span>
+                  </div>
+                </div>
+                <div class="accordion-content">
+                  <p>
+                    At UXPacific, we use Figma, Sketch, and Framer for designing
+                    and prototyping, Notion for organisation, Slack for
+                    communication, and Google Workspace for files
+                    and&nbsp;presentations.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- FAQ Right Side -->
+          <div class="faq-right">
+            <h2>
+              Frequently Asked
+              <span> Questions? </span>
+            </h2>
+            <p>
+              Have questions? We&rsquo;ve gathered answers to questions people
+              ask us all the time (yes, even the weird ones!). Still stumped?
+              Drop us a line. We love a good question!
+            </p>
+            <div>
+              <a class="faq-link" href="faq.html"> View Details &rarr; </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tilted Images -->
+      <div class="images-row">
+        <img
+          alt="workshop"
+          class="img1"
+          src="img/1.webp"
+          style="transform: rotate(-9.89deg); z-index: 1"
+        />
+        <img
+          alt="workshop"
+          src="img/2.webp"
+          style="transform: rotate(1.82deg)"
+        />
+        <img
+          alt="workshop"
+          src="img/3.webp"
+          style="transform: rotate(14.67deg); left: -30px; z-index: 1"
+        />
+        <img
+          alt="workshop"
+          src="img/4.webp"
+          style="transform: rotate(-5.34deg); left: -50px"
+        />
+        <img
+          alt="workshop"
+          src="img/5.webp"
+          style="transform: rotate(15.98deg); left: -100px"
+        />
+      </div>
+    </section>
+    <div
+      class="container pt-4 pb-3 d-none d-md-block"
+      style="border-top: 1px solid rgb(245 245 245 / 40%)"
+    ></div>
+
+
+    <div class="desktop-only-footer">
+    <div class="container" style="border: 2px solid black; ">
+      <div class="row">
+        <div class="col-md-5">
+          <div class="footer-logo">
+            <img alt="UX PACIFIC Logo" src="img/LOGO.png" />
+          </div>
+          <div class="social-icons">
+            <a
+              href="https://www.linkedin.com/company/uxpacific/?viewAsMember=true"
+              target="_blank"
+            >
+              <img src="img/in.png" />
+            </a>
+            <a href="https://www.behance.net/uxpacific" target="_blank">
+              <img src="img/be.png" />
+            </a>
+            <a
+              href="https://www.instagram.com/official_uxpacific/"
+              target="_blank"
+            >
+              <img src="img/inst.png" />
+            </a>
+          </div>
+        </div>
+        <div class="col-md-2 col-3">
+          <h4 class="ft_link">Quick Links</h4>
+          <ul class="q_link">
+            <li>
+              <a href="index.html"> Home </a>
+            </li>
+            <li>
+              <a href="about.html"> About Us </a>
+            </li>
+            <li>
+              <a href="services.html"> Services </a>
+            </li>
+            <li>
+              <a href="project.html"> Project </a>
+            </li>
+            <li>
+              <a href="ecosystem.html"> Ecosystem </a>
+            </li>
+          </ul>
+        </div>
+        <div class="col-md-2 col-3">
+          <h4 class="ft_link">Support</h4>
+          <ul class="q_link">
+            <li>
+              <a href="contact.html"> Contact us </a>
+            </li>
+            <li>
+              <a href="faq.html"> FAQs </a>
+            </li>
+          </ul>
+        </div>
+        <div class="col-md-2 col-6">
+          <h4 class="ft_link">Contact Details</h4>
+          <p class="f_cnt">
+            <a
+              href="https://www.google.com/maps?q=404,+Capstone+Building,+Kalgi+Cross+Road,+Ahmedabad"
+              style="text-decoration: none; color: inherit"
+              target="_blank"
+            >
+              <i class="fas fa-map-marker-alt"> </i>
+              404, Capstone Building, Kalgi Cross Road, Ahmedabad
+            </a>
+          </p>
+          <p class="f_cnt">
+            <i class="fas fa-phone"> </i>
+            92740-61063
+          </p>
+          <p class="f_cnt">
+            <a
+              href="https://mail.google.com/mail/?view=cm&fs=1&to=hello@uxpacific.com"
+              style="text-decoration: none; color: inherit"
+              target="_blank"
+            >
+              <i class="fas fa-envelope"> </i>
+              hello@uxpacific.com
+            </a>
+          </p>
+        </div>
+      </div>
+    </div>
+    </div>
+
+    <div class="mobile-only-footer">
+    <div class="container" style="border: 2px solid black; ">
+      <div class="row">
+        <div class="col-md-5">
+          <div class="footer-logo">
+            <img alt="UX PACIFIC Logo" src="img/LOGO.png" />
+          </div>
+          <div class="social-icons">
+            <a
+              href="https://www.linkedin.com/company/uxpacific/?viewAsMember=true"
+              target="_blank"
+            >
+              <img src="img/in.png" />
+            </a>
+            <a href="https://www.behance.net/uxpacific" target="_blank">
+              <img src="img/be.png" />
+            </a>
+            <a
+              href="https://www.instagram.com/official_uxpacific/"
+              target="_blank"
+            >
+              <img src="img/inst.png" />
+            </a>
+          </div>
+        </div>
+        <div class="col-md-2 col-12">
+          <h4 class="ft_link" style="margin-top: 20px;">Quick Links</h4>
+          <ul class="q_link">
+            <li>
+              <a href="index.html"> Home </a>
+            </li>
+            <li>
+              <a href="about.html"> About Us </a>
+            </li>
+            <li>
+              <a href="services.html"> Services </a>
+            </li>
+            <li>
+              <a href="project.html"> Project </a>
+            </li>
+             <li>
+              <a href="ecosystem.html"> Ecosystem </a>
+            </li>
+          </ul>
+        </div>
+        <div class="col-md-2 col-12">
+          <h4 class="ft_link">Support</h4>
+          <ul class="q_link">
+            <li>
+              <a href="contact.html"> Contact us </a>
+            </li>
+            <li>
+              <a href="faq.html"> FAQs </a>
+            </li>
+          </ul>
+        </div>
+        <div class="col-md-2 col-6">
+          <h4 class="ft_link">Contact Details</h4>
+          <p class="f_cnt">
+            <a
+              href="https://www.google.com/maps?q=404,+Capstone+Building,+Kalgi+Cross+Road,+Ahmedabad"
+              style="text-decoration: none; color: inherit"
+              target="_blank"
+            >
+              <i class="fas fa-map-marker-alt"> </i>
+              404, Capstone Building, Kalgi Cross Road, Ahmedabad
+            </a>
+          </p>
+          <p class="f_cnt">
+            <i class="fas fa-phone"> </i>
+            92740-61063
+          </p>
+          <p class="f_cnt">
+            <a
+              href="https://mail.google.com/mail/?view=cm&fs=1&to=hello@uxpacific.com"
+              style="text-decoration: none; color: inherit"
+              target="_blank"
+            >
+              <i class="fas fa-envelope"> </i>
+              hello@uxpacific.com
+            </a>
+          </p>
+        </div>
+      </div>
+    </div>
+    </div>
+
+    <footer class="footer">
+      <div
+        class="container pt-4 pb-3 d-none d-md-block"
+        style="border-top: 1px solid rgb(245 245 245 / 40%)"
+      >
+        <div class="row">
+          <div class="col col-md-6">
+            <p class="" style="color: #e0e0e0">
+              &copy; 2025 UXPacific. All rights reserved.
+            </p>
+          </div>
+          <div
+            class="col col-md-6 footer-policies mb-0 mt-0"
+            style="text-align: right"
+          >
+            <a href="privacy-policy.html"> Privacy Policy </a>
+            |
+            <a href="cookies-privacy.html"> Cookie Policy </a>
+            |
+            <a href="term-condition.html"> Terms & Conditions </a>
+          </div>
+        </div>
+      </div>
+      <div class="boot1" style="border-top: 1px solid rgb(245 245 245 / 40%)">
+        <div class="row align-items-center"></div>
+      </div>
+    </footer>
+
+    <!-- <script src="js/home.js"></script> -->
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Link to the new combined JS file -->
+    <!-- <script src="js/script.js"></script> -->
+
+    <script src="main.js"></script>
+
+    <!-- ========= SCROLL TO TOP BUTTON START ========= -->
+    <!-- UX Audit Modal -->
+    <div class="modal fade" id="auditModal" tabindex="-1" aria-hidden="true" style="backdrop-filter: blur(8px); background-color: rgba(0,0,0,0.6);" data-bs-backdrop="true">
+      <div class="modal-dialog modal-dialog-centered" style="max-width: 500px;">
+        <div class="modal-content" style="background: rgba(17, 17, 17, 0.95); border: 1px solid #2e2e3e; border-radius: 20px; overflow: hidden; box-shadow: 0 24px 80px rgba(0, 0, 0, 0.8);">
+          <div class="modal-header border-0 pb-0 d-flex justify-content-between align-items-center" style="padding: 24px 32px 0;">
+            <h4 class="modal-title" style="color: #fff; font-weight: 700; font-size: 24px;">Book a UX Audit</h4>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close" style="opacity: 0.5;"></button>
+          </div>
+          <div class="modal-body" style="padding: 24px 32px 36px;">
+            <p style="color: #b2bad6; font-size: 14px; margin-bottom: 24px;">Fill out the details below and we will get back to you shortly.</p>
+            <form class="contact-form" action="#" method="post">
+              <div class="contact-row d-flex flex-column" style="gap: 16px;">
+                  <div class="contact-field" style="display: flex; flex-direction: column; gap: 6px;">
+                      <label for="auditName" style="font-size: 15px; color: #b2bad6;">Name</label>
+                      <input id="auditName" name="name" type="text" placeholder="Enter your name here" style="height: 56px; width: 100%; background: #151515; border: 1px solid #2e2e3e; border-radius: 6px; color: #eee; padding: 16px 20px; font-size: 1rem; outline: none; transition: border-color 0.2s;" onfocus="this.style.borderColor='#6147bd'; this.style.boxShadow=''" onblur="this.style.borderColor='#2e2e3e'">
+                  </div>
+                  <div class="contact-field" style="display: flex; flex-direction: column; gap: 6px;">
+                      <label for="auditEmail" style="font-size: 15px; color: #b2bad6;">Email</label>
+                      <input id="auditEmail" name="email" type="email" placeholder="Enter your email address" style="height: 56px; width: 100%; background: #151515; border: 1px solid #2e2e3e; border-radius: 6px; color: #eee; padding: 16px 20px; font-size: 1rem; outline: none; transition: border-color 0.2s;" onfocus="this.style.borderColor='#6147bd'" onblur="this.style.borderColor='#2e2e3e'">
+                  </div>
+                  <div class="contact-field" style="display: flex; flex-direction: column; gap: 6px;">
+                      <label for="auditPhone" style="font-size: 15px; color: #b2bad6;">Phone Number</label>
+                      <input id="auditPhone" name="phone" type="tel" placeholder="+91 xxxxx- xxxxx" style="height: 56px; width: 100%; background: #151515; border: 1px solid #2e2e3e; border-radius: 6px; color: #eee; padding: 16px 20px; font-size: 1rem; outline: none; transition: border-color 0.2s;" onfocus="this.style.borderColor='#6147bd'" onblur="this.style.borderColor='#2e2e3e'">
+                  </div>
+                  <div class="contact-field" style="display: flex; flex-direction: column; gap: 6px;">
+                      <label for="auditUrl" style="font-size: 15px; color: #b2bad6;">Website URL</label>
+                      <input id="auditUrl" name="url" type="text" placeholder="https://yourwebsite.com" style="height: 56px; width: 100%; background: #151515; border: 1px solid #2e2e3e; border-radius: 6px; color: #eee; padding: 16px 20px; font-size: 1rem; outline: none; transition: border-color 0.2s;" onfocus="this.style.borderColor='#6147bd'" onblur="this.style.borderColor='#2e2e3e'">
+                  </div>
+              </div>
+              <div class="contact-submit text-center mt-4 pt-2">
+                  <button type="submit" style="background-color: #6147bd; border: none; padding: 12px 40px; border-radius: 50px; color: #ffffff; font-weight: 500; font-size: 16px; width: 100%; height: 50px; cursor: pointer; box-shadow: 0 6px 20px rgba(97, 71, 189, 0.4); transition: transform 0.2s, box-shadow 0.2s;" onmouseover="this.style.transform='translateY(-2px)';" onmouseout="this.style.transform='translateY(0)';">Submit Request</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

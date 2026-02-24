@@ -1,0 +1,1145 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Service</title>
+    <link rel="shortcut icon" href="img/LOGO 2.png" type="image/x-icon" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+    />
+    <!-- Google Fonts (Inter) -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Font Awesome for icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <!-- <link rel="stylesheet" href="css/home.css"> -->
+    <!-- <link rel="stylesheet" href="css/about.css"> -->
+    <!-- <link rel="stylesheet" href="css/services.css"> -->
+    <!-- <link rel="stylesheet" href="css/header.css"> -->
+    <!-- Link to new page-specific CSS -->
+    <!-- <link rel="stylesheet" href="css/services-styles.css"> -->
+    <link rel="stylesheet" href="main.css" />
+  </head>
+
+  <body class="services-page">
+    <nav class="navbar navbar-expand-lg">
+      <div class="container">
+        <a href="index.html">
+          <img src="img/LOGO.png" class="nav-logo" id="myImage" alt="Logo" />
+        </a>
+
+        <button
+          class="navbar-toggler collapsed"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="toggler-icon top-bar"></span>
+          <span class="toggler-icon middle-bar"></span>
+          <span class="toggler-icon bottom-bar"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+  <li class="nav-item">
+    <a class="nav-link active" href="index.html">Home</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="about.html">About Us</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="services.html">Services</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="project.html"> Work </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="ecosystem.html">Ecosystem</a>
+  </li>
+
+  <!-- MOBILE ONLY -->
+  <li class="nav-item d-lg-none">
+    <a class="nav-link" href="contact.html">Contact Us</a>
+  </li>
+  <li class="nav-item d-lg-none">
+    <a class="nav-link" href="faq.html">FAQ</a>
+  </li>
+          </ul>
+          <section class="hero11 d-lg-none text-center mt-3">
+            <h1>Start your UI/UX Journey</h1>
+            <p>with creativity, innovation, and modern design.</p>
+          </section>
+
+          <form class="d-flex">
+            <a
+              href="contact.html"
+              style="width: 155px; height: 42px; text-decoration: none"
+              class="cta-button"
+            >
+              Contact Us <span class="arrow"></span>
+            </a>
+          </form>
+        </div>
+      </div>
+    </nav>
+
+    <section class="about-header">
+     
+      <div class="gallery-container">
+        <img src="img/bg_ani.gif" class="img1" id="" alt="Image 1" />
+         <!-- <img src="img/Property 1=Group 79.png" class="animated-img active" id="img1" alt="Image 1">
+      <img src="img/Property 1=Group 81.png" class="animated-img" id="img2" alt="Image 2"> 
+      <img src="img/Property 1=Group 83 (1).png" class="animated-img" id="img3" alt="Image 3"> -->
+      </div>
+
+      <h1>Services</h1>
+      <div class="innovation-badge-exact">
+        Design-Led <span>Solutions</span> That-Put <span>Users First</span>
+      </div>
+    </section>
+
+    <main>
+      <section class="services-grid-section mb-5 mt-5">
+        <div class="container text-center">
+          <!-- <h2 class="mb-2" style="font-size: 40px; font-weight: 700; color: #fff;">Our UX Services</h2>
+          <p class="mb-5" style="color: #b2bad6; font-size: 16px;">12 focused capabilities. One strategic partner.</p> -->
+          
+          <div class="row g-4 justify-content-center" id="services-grid-container" style="max-width: 1200px; margin: 0 auto;">
+            <!-- Cards will be populated dynamically by JS -->
+          </div>
+        </div>
+      </section>
+
+      <!-- <div class="container mb-5" style="max-width: 1000px;">
+        <div class="p-5 text-center" style="border: 1px solid #33334d; border-radius: 12px; background: #111111;">
+          <h2 class="mb-3" style="font-size: 28px; font-weight: 600;">
+            Need Something <span style="color: #a78bfa; font-style: italic;">Tailored?</span>
+          </h2>
+          <p class="mb-2" style="color: #b2bad6; font-size: 15px;">
+            You bring the idea we'll build the blueprint with thoughtful timelines, transparent pricing, and purposeful outcomes.
+          </p>
+          <p class="mb-4" style="color: #b2bad6; font-size: 15px;">
+            Not sure what you need? <a href="contact.html" style="color: #a78bfa; text-decoration: underline;">Contact Us</a>
+          </p>
+          <a href="contact.html" class="cta-button" style="width: 230px; margin: 0 auto; display: inline-flex;">
+            Get Your Quote Now <span class="arrow"></span>
+          </a>
+        </div>
+      </div> -->
+    </main>
+
+    <section class="cta-section">
+      <!-- Dots Background (desktop only) -->
+      <div class="dots-bg desktop-only">
+        <canvas id="dots-canvas"></canvas>
+      </div>
+
+      <div class="cta-container">
+        <!-- Left Content -->
+        <div class="cta-text" style="padding: 20px">
+          <h1>
+            Start your <span>UI/UX</span> journey with <br />
+            <span class="highlight">UXPacific Team</span>
+          </h1>
+          <p class="mt-4 mb-4" style="font-size: 14px">
+            Build your site effortlessly and showcase your work with confidence.
+            <br />
+            Ready to stand out? Get started today!
+          </p>
+          <a
+            href="contact.html"
+            style="width: 165px; height: 42px; text-decoration: none"
+            class="cta-button"
+          >
+            Get in touch <span class="arrow"></span>
+          </a>
+        </div>
+        <div class="cta-blur-overlay"></div>
+        <!-- Right Image -->
+        <div class="cta-image">
+          <img src="img/Rectangle 5192.webp" alt="UX Design" />
+        </div>
+      </div>
+    </section>
+
+    <div class="desktop-only-footer">
+    <div class="container" style="border: 2px solid black; ">
+      <div class="row">
+        <div class="col-md-5">
+          <div class="footer-logo">
+            <img alt="UX PACIFIC Logo" src="img/LOGO.png" />
+          </div>
+          <div class="social-icons">
+            <a
+              href="https://www.linkedin.com/company/uxpacific/?viewAsMember=true"
+              target="_blank"
+            >
+              <img src="img/in.png" />
+            </a>
+            <a href="https://www.behance.net/uxpacific" target="_blank">
+              <img src="img/be.png" />
+            </a>
+            <a
+              href="https://www.instagram.com/official_uxpacific/"
+              target="_blank"
+            >
+              <img src="img/inst.png" />
+            </a>
+          </div>
+        </div>
+        <div class="col-md-2 col-3">
+          <h4 class="ft_link">Quick Links</h4>
+          <ul class="q_link">
+            <li>
+              <a href="index.html"> Home </a>
+            </li>
+            <li>
+              <a href="about.html"> About Us </a>
+            </li>
+            <li>
+              <a href="services.html"> Services </a>
+            </li>
+            <li>
+              <a href="project.html"> Project </a>
+            </li>
+            <li>
+              <a href="ecosystem.html"> Ecosystem </a>
+            </li>
+          </ul>
+        </div>
+        <div class="col-md-2 col-3">
+          <h4 class="ft_link">Support</h4>
+          <ul class="q_link">
+            <li>
+              <a href="contact.html"> Contact us </a>
+            </li>
+            <li>
+              <a href="faq.html"> FAQs </a>
+            </li>
+          </ul>
+        </div>
+        <div class="col-md-2 col-6">
+          <h4 class="ft_link">Contact Details</h4>
+          <p class="f_cnt">
+            <a
+              href="https://www.google.com/maps?q=404,+Capstone+Building,+Kalgi+Cross+Road,+Ahmedabad"
+              style="text-decoration: none; color: inherit"
+              target="_blank"
+            >
+              <i class="fas fa-map-marker-alt"> </i>
+              404, Capstone Building, Kalgi Cross Road, Ahmedabad
+            </a>
+          </p>
+          <p class="f_cnt">
+            <i class="fas fa-phone"> </i>
+            92740-61063
+          </p>
+          <p class="f_cnt">
+            <a
+              href="https://mail.google.com/mail/?view=cm&fs=1&to=hello@uxpacific.com"
+              style="text-decoration: none; color: inherit"
+              target="_blank"
+            >
+              <i class="fas fa-envelope"> </i>
+              hello@uxpacific.com
+            </a>
+          </p>
+        </div>
+      </div>
+    </div>
+    </div>
+
+    <div class="mobile-only-footer">
+    <div class="container" style="border: 2px solid black; ">
+      <div class="row">
+        <div class="col-md-5">
+          <div class="footer-logo">
+            <img alt="UX PACIFIC Logo" src="img/LOGO.png" />
+          </div>
+          <div class="social-icons">
+            <a
+              href="https://www.linkedin.com/company/uxpacific/?viewAsMember=true"
+              target="_blank"
+            >
+              <img src="img/in.png" />
+            </a>
+            <a href="https://www.behance.net/uxpacific" target="_blank">
+              <img src="img/be.png" />
+            </a>
+            <a
+              href="https://www.instagram.com/official_uxpacific/"
+              target="_blank"
+            >
+              <img src="img/inst.png" />
+            </a>
+          </div>
+        </div>
+        <div class="col-md-2 col-12">
+          <h4 class="ft_link" style="margin-top: 20px;">Quick Links</h4>
+          <ul class="q_link">
+            <li>
+              <a href="index.html"> Home </a>
+            </li>
+            <li>
+              <a href="about.html"> About Us </a>
+            </li>
+            <li>
+              <a href="services.html"> Services </a>
+            </li>
+            <li>
+              <a href="project.html"> Project </a>
+            </li>
+            <li>
+              <a href="ecosystem.html"> Ecosystem </a>
+            </li>
+          </ul>
+        </div>
+        <div class="col-md-2 col-12">
+          <h4 class="ft_link">Support</h4>
+          <ul class="q_link">
+            <li>
+              <a href="contact.html"> Contact us </a>
+            </li>
+            <li>
+              <a href="faq.html"> FAQs </a>
+            </li>
+          </ul>
+        </div>
+        <div class="col-md-2 col-6">
+          <h4 class="ft_link">Contact Details</h4>
+          <p class="f_cnt">
+            <a
+              href="https://www.google.com/maps?q=404,+Capstone+Building,+Kalgi+Cross+Road,+Ahmedabad"
+              style="text-decoration: none; color: inherit"
+              target="_blank"
+            >
+              <i class="fas fa-map-marker-alt"> </i>
+              404, Capstone Building, Kalgi Cross Road, Ahmedabad
+            </a>
+          </p>
+          <p class="f_cnt">
+            <i class="fas fa-phone"> </i>
+            92740-61063
+          </p>
+          <p class="f_cnt">
+            <a
+              href="https://mail.google.com/mail/?view=cm&fs=1&to=hello@uxpacific.com"
+              style="text-decoration: none; color: inherit"
+              target="_blank"
+            >
+              <i class="fas fa-envelope"> </i>
+              hello@uxpacific.com
+            </a>
+          </p>
+        </div>
+      </div>
+    </div>
+    </div>
+
+    <footer class="footer">
+      <!-- Bottom Bar -->
+      <!-- desktop screen -->
+      <div
+        class="container pt-4 pb-3 d-none d-md-block"
+        style="border-top: 1px solid rgb(245 245 245 / 40%)"
+      >
+        <div class="row">
+          <div class="col col-md-6">
+            <p class="" style="color: #e0e0e0">
+              © 2025 UXPacific. All rights reserved.
+            </p>
+          </div>
+          <div
+            class="col col-md-6 footer-policies mb-0 mt-0"
+            style="text-align: right"
+          >
+            <a href="privacy-policy.html">Privacy Policy</a>|
+            <a href="cookies-privacy.html">Cookie Policy</a>|
+            <a href="term-condition.html">Terms & Conditions</a>
+          </div>
+        </div>
+      </div>
+      <!-- mobile screen -->
+      <div
+        class="container pt-4 pb-3 d-block d-md-none"
+        style="border-top: 1px solid rgb(245 245 245 / 40%)"
+        class="boot1"
+      >
+        <div class="row align-items-center">
+          <!-- © Text: Mobile me niche, Desktop me left -->
+          <div
+            class="col-12 col-md-6 order-2 order-md-1 text-center text-md-start"
+          >
+            <p style="color: #e0e0e0">© 2025 UXPacific. All rights reserved.</p>
+          </div>
+
+          <!-- Policies: Mobile me upar, Desktop me right -->
+          <div
+            class="col-12 col-md-6 footer-policies mb-0 mt-0 order-1 order-md-2 text-center text-md-end"
+          >
+            <a href="privacy-policy.html">Privacy Policy</a> |
+            <a href="cookies-privacy.html">Cookie Policy</a> |
+            <a href="term-condition.html">Terms & Conditions</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- <script src="js/home.js"></script> -->
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Link to new page-specific JS -->
+    <!-- <script src="js/services-scripts.js"></script> -->
+    <script src="main.js"></script>
+
+    <!-- Offcanvas for Service Details -->
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="serviceOffcanvas" aria-labelledby="serviceOffcanvasLabel" style="width: 650px; background-color: #111111; color: #fff; max-width: 100vw; border-left: 1px solid #2e2e3e;">
+      <div class="offcanvas-header pb-0 border-0" style="padding: 24px 32px;">
+        <div class="d-flex w-100 justify-content-between align-items-start">
+          <div id="oc-icon" style="width: 48px; height: 48px; background: rgba(255,255,255,0.05); border: 1px solid #2e2e3e; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 20px; color: #fff;">
+            <i class="fas fa-palette"></i>
+          </div>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close" style="font-size: 12px; opacity: 0.5;"></button>
+        </div>
+      </div>
+      <div class="offcanvas-body" style="padding: 16px 32px 32px 32px;">
+        <h3 id="oc-title" style="font-size: 24px; font-weight: 700; margin-bottom: 24px; color: #fff;">UI Design & Prototyping</h3>
+        <p id="oc-desc" style="color: #b2bad6; font-size: 15px; margin-bottom: 32px; line-height: 1.6;">
+          We craft pixel-perfect interfaces that look beautiful and feel effortless. Every interaction is intentional.
+        </p>
+        
+        <h6 style="font-size: 12px; font-weight: 700; color: #a78bfa; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 16px;">What This Solves</h6>
+        <div class="row g-2 mb-4" id="oc-solves" style="color: #e0e0e0; font-size: 14px;">
+          <!-- Managed by JS -->
+        </div>
+
+        <h6 style="font-size: 12px; font-weight: 700; color: #a78bfa; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 16px;">How We Work</h6>
+        <div id="oc-steps" class="mb-4">
+          <!-- Steps will be generated here -->
+        </div>
+
+        <h6 style="font-size: 12px; font-weight: 700; color: #a78bfa; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 16px;">What Changes After This</h6>
+        <div class="row g-2 mb-4" id="oc-changes" style="color: #e0e0e0; font-size: 14px;">
+          <!-- Managed by JS -->
+        </div>
+
+        <div class="accordion mb-4 border-0" id="deliverablesAccordion" style="--bs-accordion-border-width: 0; --bs-accordion-bg: transparent;">
+          <div class="accordion-item border-0" style="background: rgba(255,255,255,0.05); border: 1px solid #2e2e3e; border-radius: 8px; overflow: hidden;">
+            <h2 class="accordion-header" id="headingDeliverables">
+              <button class="accordion-button collapsed shadow-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#collapseDeliverables" aria-expanded="false" aria-controls="collapseDeliverables" style="background: transparent; color: #fff; font-weight: 600; font-size: 14px; padding: 16px;">
+                See Deliverables
+              </button>
+            </h2>
+            <div id="collapseDeliverables" class="accordion-collapse collapse" aria-labelledby="headingDeliverables">
+              <div class="accordion-body" style="padding: 0 16px 16px 16px;">
+                <ul id="oc-deliverables" style="list-style: none; padding: 0; margin: 0; color: #b2bad6; font-size: 14px; line-height: 2;">
+                  <!-- Managed by JS -->
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-auto pt-3 pb-4">
+          <div class="text-center">
+            <a href="contact.html" class="custom-discuss-btn" style="background-color: #6147bd; color: #ffffff; padding: 14px 40px; border-radius: 50px; text-decoration: none; font-weight: 500; font-size: 18px; display: inline-block; box-shadow: 0 10px 30px rgba(97, 71, 189, 0.5); transition: transform 0.2s, box-shadow 0.2s, background-color 0.2s; min-width: 250px;">
+              Discuss This Service
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Styles for new Cards -->
+    <style>
+      .ux-card {
+        background: #111111;
+        border-radius: 12px;
+        padding: 32px 24px;
+        text-align: left;
+        color: #fff;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        cursor: pointer;
+        transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+        border: 1px solid #2e2e3e;
+        text-decoration: none !important;
+      }
+      .ux-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5), 0 4px 6px -2px rgba(0, 0, 0, 0.3);
+        border-color: #a78bfa;
+      }
+      .ux-card-icon {
+        width: 48px;
+        height: 48px;
+        background: rgba(255,255,255,0.05);
+        border: 1px solid #2e2e3e;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 20px;
+        color: #fff;
+        margin-bottom: 24px;
+      }
+      .ux-card-title {
+        font-size: 18px;
+        font-weight: 600;
+        margin-bottom: 12px;
+        color: #fff;
+      }
+      .ux-card-desc {
+        font-size: 14px;
+        color: #b2bad6;
+        margin-bottom: 24px;
+        flex-grow: 1;
+        line-height: 1.5;
+      }
+      .ux-card-link {
+        font-size: 14px;
+        color: #a78bfa;
+        font-weight: 500;
+      }
+      .ux-card:hover .ux-card-link {
+        color: #d8b4fe;
+      }
+      
+      .oc-step {
+        background: rgba(255,255,255,0.05);
+        border: 1px solid #2e2e3e;
+        border-radius: 8px;
+        padding: 12px 16px;
+        margin-bottom: 8px;
+        display: flex;
+        align-items: center;
+        font-size: 14px;
+        color: #e0e0e0;
+      }
+      .oc-step-num {
+        color: #a78bfa;
+        margin-right: 16px;
+        font-size: 13px;
+        font-weight: 600;
+      }
+      .accordion-button::after {
+        filter: invert(1) grayscale(100%) brightness(200%);
+      }
+    </style>
+
+    <script>
+      const servicesData = [
+        {
+          id: 1,
+            title: "UX Research & Testing",
+  desc: "Turning user insights into exceptional digital experiences",
+  icon: "fa-search",
+  fullDesc: "At UXPACIFIC, our UX Research & Testing services help organizations make confident, data-driven design decisions by uncovering real user behaviors, motivations, and expectations. Using a mix of qualitative and quantitative research methods, we validate assumptions, reduce product risks, and optimize usability before and after launch. Our research-driven approach ensures every design decision is supported by evidence, enabling businesses to create meaningful, high-performing digital experiences.",
+  
+  solves: [
+    "Unclear understanding of user needs",
+    "High product failure risk",
+    "Low usability and poor engagement",
+    "Inefficient user journeys",
+    "Low conversion rates",
+    "Design decisions based on assumptions",
+    "Difficulty achieving product-market fit"
+  ],
+
+  steps: [
+    "Research Planning & Objectives Definition",
+    "Participant Recruitment & Screening",
+    "Data Collection (Interviews, Surveys, Testing)",
+    "Behavior Analysis & Insight Synthesis",
+    "Reporting & Strategic Recommendations",
+    "Design Validation & Optimization"
+  ],
+
+  changes: [
+    "Data-driven product decisions",
+    "Improved usability and accessibility",
+    "Higher customer satisfaction",
+    "Faster product-market fit",
+    "Reduced development risks",
+    "Increased conversions and engagement",
+    "Clear understanding of user behavior"
+  ],
+
+  deliverables: [
+    "Research Strategy Plan",
+    "User Personas",
+    "Usability Testing Reports",
+    "UX Insight Dashboards",
+    "Design Recommendations",
+    "Recorded Testing Sessions",
+    "Stakeholder Presentation Decks"
+  ]
+        },
+        {
+          id: 2,
+          title: "UI Design & Prototyping",
+  desc: "Designing beautiful, intuitive & high-performance digital interfaces",
+  icon: "fa-palette",
+  fullDesc: "At UXPACIFIC, we create visually compelling and highly intuitive UI Design & Prototyping solutions that blend creativity with usability. Our approach focuses on clarity, accessibility, scalability, and conversion optimization across websites, mobile apps, SaaS platforms, and enterprise dashboards. Through high-fidelity UI design and interactive prototyping, we transform ideas into validated digital products, enabling faster decision-making, better stakeholder alignment, and smoother development execution.",
+  
+  solves: [
+    "Poor visual consistency across platforms",
+    "Low user engagement and retention",
+    "Unclear navigation and interface confusion",
+    "Slow product validation cycles",
+    "Design-development communication gaps",
+    "Lack of scalable UI systems",
+    "Weak brand experience in digital products"
+  ],
+
+  steps: [
+    "Understanding Business Goals & Users",
+    "UX Flow & Wireframe Creation",
+    "Visual Style Exploration",
+    "High-Fidelity UI Design",
+    "Interactive Prototyping",
+    "Client Feedback & Iteration",
+    "Developer Handoff & Support"
+  ],
+
+  changes: [
+    "Stronger first impressions",
+    "Improved usability and engagement",
+    "Higher conversion rates",
+    "Faster product validation",
+    "Better collaboration between design and development",
+    "Consistent and scalable visual systems",
+    "Enhanced brand credibility"
+  ],
+
+  deliverables: [
+    "High-Fidelity UI Screens",
+    "Interactive Clickable Prototypes",
+    "Responsive UI Layouts",
+    "UI Style Guide",
+    "Design System Components",
+    "Developer Handoff Files",
+    "Animations & Micro-interaction Assets"
+  ]
+        },
+        {
+          id: 3,
+          title: "Design Systems",
+            title: "Design Systems & Accessibility",
+  desc: "Building scalable, consistent & inclusive digital experiences",
+  icon: "fa-layer-group",
+  fullDesc: "At UXPACIFIC, we create robust Design Systems and Accessibility frameworks that help global organizations scale digital products with consistency, efficiency, and inclusivity. Our approach aligns interfaces, components, and interactions with brand identity while ensuring compliance with international accessibility standards. From startups building their first UI libraries to enterprises managing complex multi-product ecosystems, we enable faster design workflows, improved collaboration, and high-quality user experiences across all platforms. Accessibility remains central to our philosophy, ensuring products are usable by everyone regardless of ability, region, or device.",
+  
+  solves: [
+    "Inconsistent UI across products and platforms",
+    "Slow design and development workflows",
+    "Lack of reusable components and standards",
+    "Accessibility compliance challenges",
+    "Poor cross-team collaboration",
+    "Scaling issues in growing digital ecosystems",
+    "High maintenance cost of fragmented UI systems"
+  ],
+
+  steps: [
+    "Audit & Accessibility Assessment",
+    "Design System Architecture Definition",
+    "Component & Token Creation",
+    "Figma Component System Development",
+    "Accessibility Integration (WCAG Standards)",
+    "Documentation & Usage Guidelines",
+    "Team Training & Enablement",
+    "Governance Setup & Version Control",
+    "Continuous Improvement & Compliance Monitoring"
+  ],
+
+  changes: [
+    "Faster product development cycles",
+    "Consistent user experiences across platforms",
+    "Reduced design and development costs",
+    "Improved collaboration between design and engineering teams",
+    "Accessible and inclusive digital products",
+    "Scalable UI systems for long-term growth",
+    "Stronger brand consistency",
+    "Simplified maintenance and updates"
+  ],
+
+  deliverables: [
+    "Full Design System Library",
+    "Reusable UI Component Framework",
+    "Design Tokens & Variables",
+    "Accessibility Compliance Report (WCAG A, AA, AAA)",
+    "Documentation Portal & Usage Guidelines",
+    "Figma Component System",
+    "Governance & Version Control Model",
+    "Design QA & Consistency Audit Reports",
+    "Training Sessions & Adoption Support"
+  ]
+        },
+        {
+          id: 4,
+           title: "UX Content & Microinteractions",
+  desc: "Enhancing digital experiences through meaningful words and delightful interactions",
+  icon: "fa-comment-dots",
+  fullDesc: "At UXPACIFIC, we craft impactful UX content and microinteractions that transform digital products into intuitive, engaging, and emotionally connected experiences. By combining clear UX writing with thoughtful interaction and motion design, we guide users through seamless journeys, improve comprehension, and create moments of delight that enhance usability, engagement, and conversions across global digital platforms.",
+  
+  solves: [
+    "Confusing interface messaging",
+    "Poor onboarding and user guidance",
+    "Low engagement and retention",
+    "Lack of feedback during user actions",
+    "Inconsistent product tone and voice",
+    "Weak emotional connection with users"
+  ],
+
+  steps: [
+    "Content Audit & UX Evaluation",
+    "User Flow & Communication Analysis",
+    "UX Writing Strategy Development",
+    "Microinteraction Design Planning",
+    "Implementation & Interactive Prototyping",
+    "Testing & Refinement",
+    "Engagement Optimization"
+  ],
+
+  changes: [
+    "Improved user comprehension",
+    "Reduced friction and confusion",
+    "Higher engagement and retention",
+    "Stronger brand personality",
+    "Better task completion rates",
+    "Increased conversions through clear messaging"
+  ],
+
+  deliverables: [
+    "UX Content Guidelines",
+    "Interface Copywriting",
+    "Onboarding & Guidance Content Flows",
+    "Microinteraction Prototypes",
+    "Motion UX Elements",
+    "Content Optimization Reports"
+  ]
+        },
+        {
+          id: 5,
+           title: "UX Analytics",
+  desc: "Understanding user behavior through data-driven insights",
+  icon: "fa-chart-line",
+  fullDesc: "At UXPACIFIC, our UX Analytics services help businesses understand how users interact with digital products through advanced data tracking and behavioral analysis. By studying engagement patterns, conversion funnels, and performance metrics, we uncover usability issues and hidden opportunities that guide smarter product and design decisions across websites, mobile apps, SaaS platforms, and enterprise systems.",
+  
+  solves: [
+    "Lack of visibility into user behavior",
+    "Unknown drop-off points in user journeys",
+    "Poor conversion performance",
+    "Decisions based on assumptions instead of data",
+    "Difficulty measuring UX success",
+    "Limited understanding of engagement patterns"
+  ],
+
+  steps: [
+    "UX Data Collection & Analytics Setup",
+    "User Behavior Tracking",
+    "Conversion Funnel Analysis",
+    "Session Flow & Interaction Analysis",
+    "Insight Generation & Reporting",
+    "KPI Dashboard Creation"
+  ],
+
+  changes: [
+    "Clear understanding of user behavior",
+    "Data-backed product decisions",
+    "Improved performance visibility",
+    "Better measurement of UX success",
+    "Identification of growth opportunities"
+  ],
+
+  deliverables: [
+    "UX Analytics Dashboard",
+    "User Behavior Reports",
+    "Conversion Funnel Analysis",
+    "Heatmap & Session Insights",
+    "UX Performance Metrics",
+    "Business KPI Reports"
+  ]
+        },
+        {
+          id: 6,
+         title: "Conversion Optimization",
+  desc: "Increasing conversions through data-driven UX improvements",
+  icon: "fa-arrow-trend-up",
+  fullDesc: "At UXPACIFIC, our Conversion Optimization services focus on improving digital performance by turning more visitors into customers through data-driven UX enhancements. We analyze user behavior, identify conversion barriers, and optimize key journeys using A/B testing, funnel analysis, and continuous experimentation to maximize engagement, sales, and business growth across digital platforms.",
+  
+  solves: [
+    "Low conversion rates",
+    "High cart or funnel abandonment",
+    "Poor call-to-action performance",
+    "User hesitation during critical journeys",
+    "Inefficient checkout or signup flows",
+    "Revenue loss due to UX friction"
+  ],
+
+  steps: [
+    "Conversion Funnel Analysis",
+    "User Behavior & Friction Identification",
+    "Hypothesis Creation & Strategy Planning",
+    "A/B Testing & Experimentation",
+    "Landing Page & Flow Optimization",
+    "Continuous Monitoring & Iteration"
+  ],
+
+  changes: [
+    "Higher conversion rates",
+    "Improved customer acquisition",
+    "Reduced drop-offs in funnels",
+    "Better engagement with key actions",
+    "Increased revenue per user",
+    "Data-backed growth decisions"
+  ],
+
+  deliverables: [
+    "Conversion Optimization Reports",
+    "A/B Testing Results & Insights",
+    "Optimized User Flows & Landing Pages",
+    "Conversion Improvement Roadmap",
+    "Performance Tracking Dashboards",
+    "Growth & Optimization Recommendations"
+  ]
+        },
+        {
+          id: 7,
+           title: "Mobile UX",
+  desc: "Designing fast, intuitive, and performance-driven mobile experiences",
+  icon: "fa-mobile-screen",
+  fullDesc: "At UXPACIFIC, we design mobile-first user experiences that prioritize speed, simplicity, and seamless interaction. Our Mobile UX solutions focus on intuitive navigation, gesture-based interactions, and optimized onboarding to ensure engaging and frictionless experiences across iOS and Android devices while improving adoption and retention.",
+  
+  solves: [
+    "Poor mobile usability",
+    "Low app engagement and retention",
+    "Complex mobile navigation",
+    "High app abandonment rates",
+    "Inefficient onboarding experiences",
+    "Performance-related user frustration"
+  ],
+
+  steps: [
+    "Mobile User Research",
+    "User Flow Optimization",
+    "Gesture & Interaction Design",
+    "Wireframing & UI Design",
+    "Prototype Testing",
+    "Performance Optimization"
+  ],
+
+  changes: [
+    "Improved app engagement",
+    "Faster task completion",
+    "Higher user retention",
+    "Better onboarding success",
+    "Enhanced mobile usability"
+  ],
+
+  deliverables: [
+    "Mobile UX Strategy",
+    "App User Flow Diagrams",
+    "Responsive UX Layouts",
+    "Interactive App Prototypes",
+    "Usability Testing Reports",
+    "Optimization Recommendations"
+  ]
+        },
+        {
+          id: 8,
+          title: "SaaS UX",
+  desc: "Creating scalable and efficient experiences for SaaS platforms",
+  icon: "fa-cloud",
+  fullDesc: "UXPACIFIC designs SaaS UX solutions that simplify complex workflows and improve product adoption. We create role-based dashboards, intuitive onboarding flows, and scalable platform architectures that help users quickly understand features, improve productivity, and increase long-term retention.",
+  
+  solves: [
+    "Complex workflows causing confusion",
+    "Low feature adoption",
+    "High churn rates",
+    "Steep learning curves",
+    "Inefficient dashboards",
+    "Poor feature discoverability"
+  ],
+
+  steps: [
+    "Platform Research & User Analysis",
+    "Information Architecture Planning",
+    "Workflow Optimization",
+    "Dashboard & Interface Design",
+    "Prototyping & Testing",
+    "Iteration & Optimization"
+  ],
+
+  changes: [
+    "Faster user onboarding",
+    "Improved product adoption",
+    "Higher retention rates",
+    "Simplified workflows",
+    "Better productivity for users"
+  ],
+
+  deliverables: [
+    "SaaS UX Architecture",
+    "User Onboarding Flows",
+    "Role-Based Dashboard Designs",
+    "Wireframes & Prototypes",
+    "Usability Testing Reports",
+    "UX Optimization Plan"
+  ]        },
+        {
+          id: 9,
+          title: "eCommerce UX",
+  desc: "Designing conversion-focused shopping experiences that drive revenue",
+  icon: "fa-cart-shopping",
+  fullDesc: "At UXPACIFIC, we create high-converting eCommerce UX experiences that optimize product discovery, navigation, and checkout journeys. Our approach reduces friction, minimizes cart abandonment, and enhances customer trust to improve conversions and overall shopping satisfaction across web and mobile commerce platforms.",
+  
+  solves: [
+    "High cart abandonment",
+    "Poor product discovery",
+    "Complex checkout processes",
+    "Low conversion rates",
+    "Weak mobile shopping experience",
+    "Confusing navigation structures"
+  ],
+
+  steps: [
+    "Customer Journey Analysis",
+    "Product Discovery Optimization",
+    "Checkout Flow Design",
+    "Conversion-Focused UI Design",
+    "Usability Testing",
+    "Continuous Conversion Optimization"
+  ],
+
+  changes: [
+    "Higher conversion rates",
+    "Reduced cart abandonment",
+    "Improved shopping experience",
+    "Increased average order value",
+    "Stronger customer trust"
+  ],
+
+  deliverables: [
+    "eCommerce UX Strategy",
+    "Optimized User Journeys",
+    "Checkout Flow Designs",
+    "High-Fidelity Commerce Interfaces",
+    "Conversion Testing Reports",
+    "Optimization Recommendations"
+  ]
+        },
+        {
+          id: 10,
+         title: "Emerging Tech UX",
+  desc: "Designing the future of digital experiences through innovation and human-centered design",
+  icon: "fa-robot",
+  fullDesc: "At UXPACIFIC, we specialize in Emerging Technology UX that bridges advanced innovation with human usability. As technologies like Artificial Intelligence, AR/VR, IoT, Voice Interfaces, and Web3 reshape industries, we design intuitive experiences that transform complex systems into accessible, user-friendly digital products. Our approach focuses on trust, adoption, and long-term success by making next-generation technologies understandable, efficient, and impactful for real users across global markets.",
+  
+  solves: [
+    "Low adoption of emerging technologies",
+    "Complex and difficult-to-understand interfaces",
+    "Lack of user trust in AI and automation systems",
+    "Poor usability in immersive and spatial environments",
+    "Disconnected experiences across smart devices",
+    "High learning curve for advanced platforms",
+    "Inefficient interaction design in Web3 and blockchain products"
+  ],
+
+  steps: [
+    "Technology Understanding & Research",
+    "User Behavior Analysis",
+    "UX Strategy & Experience Mapping",
+    "Immersive Prototyping & Concept Validation",
+    "Usability Testing for Emerging Technologies",
+    "Iteration & Experience Refinement",
+    "Deployment Support & Continuous Optimization"
+  ],
+
+  changes: [
+    "Improved user trust in new technologies",
+    "Faster adoption and onboarding",
+    "Reduced complexity in advanced systems",
+    "Higher engagement in immersive experiences",
+    "Future-ready scalable digital products",
+    "Enhanced innovation usability",
+    "Competitive technological advantage"
+  ],
+
+  deliverables: [
+    "Emerging Tech UX Strategy",
+    "AI & Machine Learning Interface Designs",
+    "AR/VR Immersive Experience Prototypes",
+    "Voice UX Flow Diagrams",
+    "IoT Control Dashboards",
+    "Blockchain & Web3 UX Frameworks",
+    "UX Research & Testing Reports",
+    "Optimization & Adoption Recommendations"
+  ]
+        },
+        {
+          id: 11,
+          title: "Live Design Sessions & Events",
+  desc: "Real-time collaboration, learning, and design innovation",
+  icon: "fa-users",
+  fullDesc: "At UXPACIFIC, our Live Design Sessions & Events bring businesses, designers, and product teams together through real-time collaboration and hands-on problem solving. From live UX workshops and product design sprints to expert-led webinars and community events, we create interactive learning experiences that deliver practical outcomes, faster innovation, and immediate UX improvements.",
+  
+  solves: [
+    "Slow UX problem-solving cycles",
+    "Lack of hands-on design learning",
+    "Limited collaboration between teams",
+    "Unclear UX improvement direction",
+    "Difficulty applying UX best practices",
+    "Delayed product decision-making"
+  ],
+
+  steps: [
+    "Session Planning & Objective Definition",
+    "Participant Onboarding",
+    "Live Design Collaboration",
+    "Real-Time Prototyping & Analysis",
+    "Feedback & Iteration",
+    "Post-Session Documentation",
+    "Implementation Support"
+  ],
+
+  changes: [
+    "Immediate UX insights and feedback",
+    "Faster innovation and decision-making",
+    "Improved team collaboration",
+    "Practical UX learning and skill growth",
+    "Accelerated product improvements",
+    "Actionable design outcomes"
+  ],
+
+  deliverables: [
+    "Workshop Summary Reports",
+    "UX Strategy Outputs",
+    "Prototypes & UX Flow Designs",
+    "Actionable UX Recommendations",
+    "Recorded Sessions",
+    "Learning Materials & Resources"
+  ]
+        },
+        {
+          id: 12,
+          title: "Full-Service UX Retainers",
+  desc: "Your dedicated UX partner for continuous product growth",
+  icon: "fa-handshake",
+  fullDesc: "At UXPACIFIC, our Full-Service UX Retainer programs provide organizations with ongoing access to a dedicated team of UX strategists, designers, researchers, and optimization specialists. Instead of managing multiple vendors, businesses gain a scalable UX partner that continuously improves digital products through strategy, design, research, and performance optimization. Our retainer model enables rapid iteration, consistent innovation, and long-term experience excellence with predictable monthly engagement.",
+  
+  solves: [
+    "Fragmented UX workflows across teams",
+    "Slow product improvements and releases",
+    "Lack of in-house UX expertise",
+    "Inconsistent user experience updates",
+    "Difficulty scaling design operations",
+    "High hiring and operational costs"
+  ],
+
+  steps: [
+    "Initial UX Assessment & Goal Definition",
+    "Dedicated Team Allocation & Onboarding",
+    "Monthly UX Roadmap Planning",
+    "Continuous Design & Optimization Sprints",
+    "User Testing & Performance Analysis",
+    "Reporting, Iteration & Scaling"
+  ],
+
+  changes: [
+    "Consistent UX improvement",
+    "Faster product iterations",
+    "Reduced operational costs",
+    "Access to multidisciplinary UX experts",
+    "Scalable long-term design support",
+    "Improved product performance and user loyalty"
+  ],
+
+  deliverables: [
+    "Monthly UX Strategy Roadmap",
+    "Continuous UI/UX Design Updates",
+    "Interactive Prototypes & Testing Reports",
+    "UX Performance Dashboards",
+    "Optimization & Growth Recommendations",
+    "Dedicated UX Team Support"
+  ]
+        }
+      ];
+
+      document.addEventListener("DOMContentLoaded", function() {
+        const gridContainer = document.getElementById("services-grid-container");
+        
+        // Render Cards
+        servicesData.forEach(service => {
+          const cardHtml = `
+            <div class="col-lg-3 col-md-4 col-sm-6 d-flex">
+              <a href="#" class="ux-card w-100" data-bs-toggle="offcanvas" data-bs-target="#serviceOffcanvas" data-id="${service.id}">
+                <div class="ux-card-icon">
+                  <i class="fas ${service.icon}"></i>
+                </div>
+                <div class="ux-card-title">${service.title}</div>
+                <div class="ux-card-desc">${service.desc}</div>
+                <div class="ux-card-link">Learn more &gt;</div>
+              </a>
+            </div>
+          `;
+          gridContainer.insertAdjacentHTML('beforeend', cardHtml);
+        });
+
+        // Handle Offcanvas Data Population
+        const offcanvasEl = document.getElementById('serviceOffcanvas');
+        offcanvasEl.addEventListener('show.bs.offcanvas', function (event) {
+          const button = event.relatedTarget;
+          const serviceId = parseInt(button.getAttribute('data-id'));
+          const service = servicesData.find(s => s.id === serviceId);
+
+          if(service) {
+            document.getElementById('oc-icon').innerHTML = `<i class="fas ${service.icon}"></i>`;
+            document.getElementById('oc-title').innerText = service.title;
+            document.getElementById('oc-desc').innerText = service.fullDesc;
+
+            // Solves
+            const solvesHtml = service.solves.map(s => `
+              <div class="col-6"><div style="background: rgba(255,255,255,0.05); border: 1px solid #2e2e3e; color: #e0e0e0; padding: 12px; border-radius: 8px; font-size: 13px; height: 100%; display: flex; align-items: start;"><span style="color: #a78bfa; margin-right: 8px;">•</span> ${s}</div></div>
+            `).join('');
+            document.getElementById('oc-solves').innerHTML = solvesHtml;
+
+            // Steps
+            const stepsHtml = service.steps.map((s, i) => `
+              <div class="oc-step">
+                <div class="oc-step-num">${i + 1}</div>
+                <div>${s}</div>
+              </div>
+            `).join('');
+            document.getElementById('oc-steps').innerHTML = stepsHtml;
+
+            // Changes
+            const changesHtml = service.changes.map(c => `
+              <div class="col-6"><div style="background: rgba(255,255,255,0.05); border: 1px solid #2e2e3e; color: #e0e0e0; padding: 12px; border-radius: 8px; font-size: 13px;">${c}</div></div>
+            `).join('');
+            document.getElementById('oc-changes').innerHTML = changesHtml;
+
+            // Deliverables
+            const deliverablesHtml = service.deliverables.map(d => `<li>${d}</li>`).join('');
+            document.getElementById('oc-deliverables').innerHTML = deliverablesHtml;
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

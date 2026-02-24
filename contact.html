@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact Us</title>
+     <link href="img/Final.png" rel="shortcut icon" type="image/x-icon" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <!-- <link rel="stylesheet" href="css/collaborations.css" /> -->
+    <!-- Bootstrap 5 CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+    />
+    <!-- Google Fonts (Inter) -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Font Awesome for icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <!-- <link rel="stylesheet" href="css/about.css"> -->
+    <!-- <link rel="stylesheet" href="css/home.css"> -->
+    <!-- <link rel="stylesheet" href="css/header.css"> -->
+    <!-- Link to new page-specific CSS -->
+    <!-- <link rel="stylesheet" href="css/contact-styles.css"> -->
+    <link rel="stylesheet" href="main.css" />
+  </head>
+  <style>
+    
+                  .main {
+                    flex: 1;
+                  }
+
+                  .contact-section {
+                    max-width: 1200px;
+                    margin: 0 auto;
+                    padding: 35px 16px 80px;
+                  }
+
+                  .contact-title {
+                    font-size: 40px;
+                    font-weight: 700;
+                    text-align: center;
+                    margin: 16px 0 15px;
+                  }
+
+                  .contact-subtitle {
+                    max-width: 640px;
+                    text-align: center;
+                    /* color: var(--text-muted); */
+                    font-size: 14px;
+                    /* max-width: 600px; */
+                    margin: 0 auto 50px;
+                  }
+
+                  /* GRID: image + form */
+                  .contact-grid {
+                    margin-top: 40px;
+                    display: flex;
+                    flex-direction: column;
+                    gap: 28px;
+                  }
+
+                  /* LEFT IMAGE CARD */
+                  .contact-image {
+                    flex: 1;
+                    border-radius: 28px;
+                    overflow: hidden;
+                    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.7);
+                  }
+
+                  .contact-image img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                  }
+
+                  /* RIGHT FORM – sits directly on page background */
+                  .contact-form {
+                    flex: 1.15;
+                    display: flex;
+                    flex-direction: column;
+                    gap: 18px;
+                    padding: 4px 0;
+                    /* just a little spacing */
+                    background: transparent;
+                    border: none;
+                  }
+
+                  /* two-column rows (desktop) */
+                  .contact-row {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 14px;
+                  }
+
+                  /* labels + fields */
+                  .contact-field {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 6px;
+                  }
+
+                  .contact-field label {
+                    font-size: 16px;
+                    color: var(--text-muted);
+                  }
+
+                  .contact-field input,
+                  .contact-field textarea,
+                  .contact-field select {
+                    height: 64px;
+                    width: 100%;
+                    background: #151515;
+                    border: 1px solid #2e2e3e;
+                    border-radius: 6px;
+                    color: #eee;
+                    padding: 16px 20px;
+                    font-size: 1.1rem;
+                    outline: none;
+                    appearance: none;
+                    -webkit-appearance: none;
+                    -moz-appearance: none;
+                  }
+
+                  .contact-field select option {
+                    background-color: #121212;
+                    color: #eee;
+                    padding: 16px;
+                  }
+
+                  .contact-field select option:checked,
+                  .contact-field select option:hover {
+                    background-color: #6147bd !important;
+                    color: #fff !important;
+                  }
+
+                  .contact-field input::placeholder,
+                  .contact-field textarea::placeholder {
+                    color: rgba(148, 163, 184, 0.7);
+                  }
+
+                  .contact-field input:focus,
+                  .contact-field textarea:focus {
+                    border-color: var(--accent);
+                  }
+
+                  /* make message big like screenshot */
+                  .contact-field textarea {
+                    min-height: 180px;
+                    resize: vertical;
+                  }
+
+                  /* checkbox row */
+                  .contact-footer {
+                    margin-top: 4px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: flex-start;
+                  }
+
+                  .contact-checkbox {
+                    display: inline-flex;
+                    align-items: center;
+                    gap: 8px;
+                    font-size: 16px;
+                    color: var(--text-muted);
+                  }
+
+                  .contact-checkbox input {
+                    width: 14px;
+                    height: 14px;
+                    accent-color: var(--accent);
+                  }
+
+                  .contact-link {
+                    color: var(--accent-soft);
+                    text-decoration: none;
+                  }
+
+                  .contact-link:hover {
+                    text-decoration: underline;
+                  }
+
+                  /* submit button – centered under form */
+                  .contact-submit {
+                    margin-top: 24px;
+                    align-self: center;
+                    padding-inline: 64px;
+                    padding: 8px 30px;
+                    border-radius: 999px;
+                    font-size: 16px;
+                    font-weight: 600;
+                    text-decoration: none;
+                    align-items: center;
+                    /* background-color: var(--accent); */
+                    color: #ffffff;
+                    /* white-space: nowrap; */
+                    /* transition: background-color 0.2s ease; */
+                    width: 150px;
+                    height: 40px;
+                    align-items: center;
+                    justify-content: center;
+                  }
+
+                  /* custom dropdown styling */
+                  .custom-dropdown {
+                    position: relative;
+                    width: 100%;
+                  }
+
+                  .custom-dropdown-btn {
+                    height: 64px;
+                    width: 100%;
+                    background: #151515;
+                    border: 1px solid #2e2e3e;
+                    border-radius: 6px;
+                    color: rgba(148, 163, 184, 0.7);
+                    padding: 16px 20px;
+                    font-size: 1.1rem;
+                    text-align: left;
+                    cursor: pointer;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    transition: border-color 0.3s ease;
+                  }
+
+                  .custom-dropdown-btn.selected {
+                    color: #eee;
+                  }
+
+                  .custom-dropdown-btn:focus,
+                  .custom-dropdown.open .custom-dropdown-btn {
+                    border-color: var(--accent, #6147bd);
+                  }
+
+                  .custom-dropdown-list {
+                    position: absolute;
+                    top: calc(100% + 8px);
+                    left: 0;
+                    right: 0;
+                    background: #121212;
+                    border: 1px solid #2e2e3e;
+                    border-radius: 6px;
+                    max-height: 250px;
+                    overflow-y: auto;
+                    z-index: 1000;
+                    display: none;
+                    flex-direction: column;
+                    box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+                  }
+
+                  .custom-dropdown.open .custom-dropdown-list {
+                    display: flex;
+                  }
+
+                  .custom-dropdown-option {
+                    padding: 14px 20px;
+                    color: #eee;
+                    cursor: pointer;
+                    font-size: 1rem;
+                    transition: background-color 0.2s, color 0.2s;
+                  }
+
+                  .custom-dropdown-option:hover {
+                    background-color: var(--accent, #6147bd);
+                    color: #fff;
+                  }
+
+                  /* ---------- RESPONSIVE ------------ */
+
+                  /* tablet / desktop: two columns */
+                  @media (min-width: 900px) {
+                    .contact-grid {
+                      flex-direction: row;
+                      align-items: flex-start;
+                      gap: 40px;
+                    }
+
+                    .contact-row {
+                      flex-direction: row;
+                    }
+
+                    .contact-field {
+                      flex: 1;
+                    }
+                  }
+
+                  /* small screens tweaks */
+                  @media (max-width: 480px) {
+                    .contact-title {
+                      font-size: 32px;
+                    }
+
+                    .contact-submit {
+                      width: 156px;
+                      justify-content: center;
+                    }
+
+                    .contact-form {
+                      gap: 16px;
+                    }
+
+                  }
+  </style>
+
+  <body class="contact-page">
+    <nav class="navbar navbar-expand-lg">
+      <div class="container">
+        <a href="index.html">
+          <img src="img/LOGO.png" class="nav-logo" id="myImage" alt="Logo" />
+        </a>
+
+        <button
+          class="navbar-toggler collapsed"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="toggler-icon top-bar"></span>
+          <span class="toggler-icon middle-bar"></span>
+          <span class="toggler-icon bottom-bar"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active" href="index.html">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="about.html">About Us</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="services.html">Services</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="project.html">Work</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="ecosystem.html">Ecosystem</a>
+            </li>
+
+            <!-- MOBILE ONLY -->
+            <li class="nav-item d-lg-none">
+              <a class="nav-link" href="contact.html">Contact Us</a>
+            </li>
+            <li class="nav-item d-lg-none">
+              <a class="nav-link" href="faq.html">FAQ</a>
+            </li>
+          </ul>
+
+          <section class="hero11 d-lg-none text-center mt-3">
+            <h1>Start your UI/UX Journey</h1>
+            <p>with creativity, innovation, and modern design.</p>
+          </section>
+
+          <form class="d-flex">
+            <a
+              href="#"
+              style="width: 155px; height: 42px; text-decoration: none"
+              class="cta-button"
+            >
+              Contact Us <span class="arrow"></span>
+            </a>
+          </form>
+        </div>
+      </div>
+    </nav>
+    <section class="about-header">
+      <div class="gallery-container">
+        <img src="img/bg_ani.gif" class="img1" id="" alt="Image 1" />
+        <!--<img src="img/Property 1=Group 79.png" class="animated-img active" id="img1" alt="Image 1">
+      <img src="img/Property 1=Group 81.png" class="animated-img" id="img2" alt="Image 2">
+      <img src="img/Property 1=Group 83 (1).png" class="animated-img" id="img3" alt="Image 3"> -->
+      </div>
+      
+      <h1>Contact Us</h1>
+      <div class="innovation-badge-exact">
+        Connect with <span>Us</span> for <span>Better Future</span>
+      </div>
+    </section>
+
+    <!-- <div class="about-desc mt-4 mb-5 shadow" style="text-align: center">
+      Let’s create something meaningful together.<br />
+      Have an idea to share, want to collaborate, join our team, or want to say
+      hello?? <br />
+      Fill out the form we’d love to hear from you!.
+    </div> -->
+
+    <main>
+      <div class="modal-overlay" id="modal-overlay">
+        <div class="modal-box">
+          <button class="close-modal" title="Close">&times;</button>
+          <div class="modal-icon-wrapper">
+            <i class="fas fa-check-circle"></i>
+          </div>
+          <h2>Success!</h2>
+          <p class="modal-desc">
+            Your message has been sent successfully. <br />
+            Our team will get back to you shortly.
+          </p>
+        </div>
+      </div>
+
+       <section id="contact" class="contact-section">
+            <!-- <h2 class="section-title contact-title">Contact Us</h2>
+            <p class="section-subtitle contact-subtitle">
+                Have a question or want to learn more about UX Pacific Community? We’d love to hear from you.
+                Send us a message and we’ll respond as soon as possible.
+            </p> -->
+
+            <div class="contact-grid">
+                <!-- LEFT: Image card -->
+                <div class="contact-image">
+                    <img src="img/ct.png" alt="Contact screen mockup">
+                </div>
+
+                <!-- RIGHT: Form (no card background) -->
+                <form class="contact-form" action="#" method="post">
+                    <div class="contact-row">
+                        <div class="contact-field">
+                            <label for="name">Name</label>
+                            <input id="name" name="name" type="text" placeholder="Enter your name here">
+                        </div>
+                        <div class="contact-field">
+                            <label for="email">Email</label>
+                            <input id="email" name="email" type="email" placeholder="Enter your email address">
+                        </div>
+                    </div>
+
+                    <div class="contact-row">
+                        <div class="contact-field">
+                            <label for="phone">Phone Number</label>
+                            <input id="phone" name="phone" type="tel" placeholder="+91 xxxxx- xxxxx">
+                        </div>
+                        <div class="contact-field">
+                            <label for="industry">Industry</label>
+                            <div class="custom-dropdown" id="customDropdown">
+                                <button type="button" class="custom-dropdown-btn" id="dropdownBtn">
+                                    <span>Select your Industry</span>
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: #eee;"><path d="M6 9l6 6 6-6"/></svg>
+                                </button>
+                                <div class="custom-dropdown-list">
+                                    <div class="custom-dropdown-option" data-value="E-commerce">E-commerce</div>
+                                    <div class="custom-dropdown-option" data-value="Healthcare services">Healthcare services</div>
+                                    <div class="custom-dropdown-option" data-value="Financial Service">Financial services</div>
+                                    <div class="custom-dropdown-option" data-value="SaaS">SaaS</div>
+                                    <div class="custom-dropdown-option" data-value="Education & Elearning">Education & Elearning</div>
+                                    <div class="custom-dropdown-option" data-value="Media & Entertainment">Media & Entertainment</div>
+                                    <div class="custom-dropdown-option" data-value="Travel & Hospitality">Travel & Hospitality</div>
+                                    <div class="custom-dropdown-option" data-value="Real estate">Real estate</div>
+                                    <div class="custom-dropdown-option" data-value="Government services">Government services</div>
+                                    <div class="custom-dropdown-option" data-value="Public services">Public services</div>
+                                    <div class="custom-dropdown-option" data-value="Telecommunication">Telecommunication</div>
+                                    <div class="custom-dropdown-option" data-value="IT Services">IT Services</div>
+                                    <div class="custom-dropdown-option" data-value="Design & Communication">Design & Communication</div>
+                                    <div class="custom-dropdown-option" data-value="Automotive">Automotive</div>
+                                    <div class="custom-dropdown-option" data-value="Other">Other</div>
+                                </div>
+                                <input type="hidden" name="industry" id="industry" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="contact-field">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" rows="5"
+                            placeholder="Enter your message here...."></textarea>
+                    </div>
+
+                    <div class="contact-footer">
+                        <label class="contact-checkbox">
+                            <input type="checkbox">
+                            <span>
+                                I Agree to
+                                <a href="#" class="contact-link">Terms &amp; Condition</a>
+                                of UXPacific
+                            </span>
+                        </label>
+                    </div>
+
+                    <button type="submit" class="btn-primary contact-submit" style="background-color: #6147bd;">Submit</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <div class="desktop-only-footer">
+      <div class="container" style="border: 2px solid black">
+        <div class="row">
+          <div class="col-md-5">
+            <div class="footer-logo">
+              <img alt="UX PACIFIC Logo" src="img/LOGO.png" />
+            </div>
+            <div class="social-icons">
+              <a
+                href="https://www.linkedin.com/company/uxpacific/?viewAsMember=true"
+                target="_blank"
+              >
+                <img src="img/in.png" />
+              </a>
+              <a href="https://www.behance.net/uxpacific" target="_blank">
+                <img src="img/be.png" />
+              </a>
+              <a
+                href="https://www.instagram.com/official_uxpacific/"
+                target="_blank"
+              >
+                <img src="img/inst.png" />
+              </a>
+            </div>
+          </div>
+          <div class="col-md-2 col-3">
+            <h4 class="ft_link">Quick Links</h4>
+            <ul class="q_link">
+              <li>
+                <a href="index.html"> Home </a>
+              </li>
+              <li>
+                <a href="about.html"> About Us </a>
+              </li>
+              <li>
+                <a href="services.html"> Services </a>
+              </li>
+              <li>
+                <a href="project.html"> Project </a>
+              </li>
+              <li>
+                <a href="ecosystem.html"> Ecosystem </a>
+              </li>
+            </ul>
+          </div>
+          <div class="col-md-2 col-3">
+            <h4 class="ft_link">Support</h4>
+            <ul class="q_link">
+              <li>
+                <a href="contact.html"> Contact us </a>
+              </li>
+              <li>
+                <a href="faq.html"> FAQs </a>
+              </li>
+            </ul>
+          </div>
+          <div class="col-md-2 col-6">
+            <h4 class="ft_link">Contact Details</h4>
+            <p class="f_cnt">
+              <a
+                href="https://www.google.com/maps?q=404,+Capstone+Building,+Kalgi+Cross+Road,+Ahmedabad"
+                style="text-decoration: none; color: inherit"
+                target="_blank"
+              >
+                <i class="fas fa-map-marker-alt"> </i>
+                404, Capstone Building, Kalgi Cross Road, Ahmedabad
+              </a>
+            </p>
+            <p class="f_cnt">
+              <i class="fas fa-phone"> </i>
+              92740-61063
+            </p>
+            <p class="f_cnt">
+              <a
+                href="https://mail.google.com/mail/?view=cm&fs=1&to=hello@uxpacific.com"
+                style="text-decoration: none; color: inherit"
+                target="_blank"
+              >
+                <i class="fas fa-envelope"> </i>
+                hello@uxpacific.com
+              </a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mobile-only-footer">
+      <div class="container" style="border: 2px solid black">
+        <div class="row">
+          <div class="col-md-5">
+            <div class="footer-logo">
+              <img alt="UX PACIFIC Logo" src="img/LOGO.png" />
+            </div>
+            <div class="social-icons">
+              <a
+                href="https://www.linkedin.com/company/uxpacific/?viewAsMember=true"
+                target="_blank"
+              >
+                <img src="img/in.png" />
+              </a>
+              <a href="https://www.behance.net/uxpacific" target="_blank">
+                <img src="img/be.png" />
+              </a>
+              <a
+                href="https://www.instagram.com/official_uxpacific/"
+                target="_blank"
+              >
+                <img src="img/inst.png" />
+              </a>
+            </div>
+          </div>
+          <div class="col-md-2 col-12">
+            <h4 class="ft_link" style="margin-top: 20px">Quick Links</h4>
+            <ul class="q_link">
+              <li>
+                <a href="index.html"> Home </a>
+              </li>
+              <li>
+                <a href="about.html"> About Us </a>
+              </li>
+              <li>
+                <a href="services.html"> Services </a>
+              </li>
+              <li>
+                <a href="project.html"> Project </a>
+              </li>
+              <li>
+                <a href="ecosystem.html"> Ecosystem </a>
+              </li>
+            </ul>
+          </div>
+          <div class="col-md-2 col-12">
+            <h4 class="ft_link">Support</h4>
+            <ul class="q_link">
+              <li>
+                <a href="contact.html"> Contact us </a>
+              </li>
+              <li>
+                <a href="faq.html"> FAQs </a>
+              </li>
+            </ul>
+          </div>
+          <div class="col-md-2 col-6">
+            <h4 class="ft_link">Contact Details</h4>
+            <p class="f_cnt">
+              <a
+                href="https://www.google.com/maps?q=404,+Capstone+Building,+Kalgi+Cross+Road,+Ahmedabad"
+                style="text-decoration: none; color: inherit"
+                target="_blank"
+              >
+                <i class="fas fa-map-marker-alt"> </i>
+                404, Capstone Building, Kalgi Cross Road, Ahmedabad
+              </a>
+            </p>
+            <p class="f_cnt">
+              <i class="fas fa-phone"> </i>
+              92740-61063
+            </p>
+            <p class="f_cnt">
+              <a
+                href="https://mail.google.com/mail/?view=cm&fs=1&to=hello@uxpacific.com"
+                style="text-decoration: none; color: inherit"
+                target="_blank"
+              >
+                <i class="fas fa-envelope"> </i>
+                hello@uxpacific.com
+              </a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer class="footer">
+      <!-- Bottom Bar -->
+      <!-- desktop screen -->
+      <div
+        class="container pt-4 pb-3 d-none d-md-block"
+        style="border-top: 1px solid rgb(245 245 245 / 40%)"
+      >
+        <div class="row">
+          <div class="col col-md-6">
+            <p class="" style="color: #e0e0e0">
+              © 2025 UXPacific. All rights reserved.
+            </p>
+          </div>
+          <div
+            class="col col-md-6 footer-policies mb-0 mt-0"
+            style="text-align: right"
+          >
+            <a href="privacy-policy.html">Privacy Policy</a>|
+            <a href="cookies-privacy.html">Cookie Policy</a>|
+            <a href="term-condition.html">Terms & Conditions</a>
+          </div>
+        </div>
+      </div>
+      <!-- mobile screen -->
+      <div
+        class="container pt-4 pb-3 d-block d-md-none"
+        style="border-top: 1px solid rgb(245 245 245 / 40%)"
+        class="boot1"
+      >
+        <div class="row align-items-center">
+          <!-- © Text: Mobile me niche, Desktop me left -->
+          <div
+            class="col-12 col-md-6 order-2 order-md-1 text-center text-md-start"
+          >
+            <p style="color: #e0e0e0">© 2025 Uxpacific. All rights reserved.</p>
+          </div>
+
+          <!-- Policies: Mobile me upar, Desktop me right -->
+          <div
+            class="col-12 col-md-6 footer-policies mb-0 mt-0 order-1 order-md-2 text-center text-md-end"
+          >
+            <a href="privacy-policy.html">Privacy Policy</a> |
+            <a href="cookies-privacy.html">Cookie Policy</a> |
+            <a href="term-condition.html">Terms & Conditions</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const dropdown = document.getElementById('customDropdown');
+            const dropdownBtn = document.getElementById('dropdownBtn');
+            const btnText = dropdownBtn.querySelector('span');
+            const hiddenInput = document.getElementById('industry');
+            const options = document.querySelectorAll('.custom-dropdown-option');
+
+            dropdownBtn.addEventListener('click', () => {
+                dropdown.classList.toggle('open');
+            });
+
+            options.forEach(option => {
+                option.addEventListener('click', () => {
+                    const value = option.getAttribute('data-value');
+                    const text = option.textContent;
+                    
+                    btnText.textContent = text;
+                    hiddenInput.value = value;
+                    dropdownBtn.classList.add('selected');
+                    dropdown.classList.remove('open');
+                });
+            });
+
+            // Close on outside click
+            document.addEventListener('click', (e) => {
+                if (!dropdown.contains(e.target)) {
+                    dropdown.classList.remove('open');
+                }
+            });
+        });
+    </script>
+    <!-- Confetti script for success animation -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
+    <script src="main.js"></script>
+  </body>
+</html>
