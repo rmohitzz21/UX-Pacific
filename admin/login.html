@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Login | UX Pacific</title>
+    <meta name="robots" content="noindex, nofollow" />
+    <link rel="shortcut icon" href="../img/Final.png" type="image/x-icon" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="admin.css" />
+  </head>
+  <body class="login-body">
+
+    <main class="login-wrapper" role="main">
+      <div class="login-card">
+
+        <!-- Logo -->
+        <div class="login-logo">
+          <img src="../img/LOGO.png" alt="UX Pacific Logo" />
+        </div>
+
+        <div class="login-header">
+          <h1 class="login-title">Welcome back</h1>
+          <p class="login-subtitle">Sign in to the UX Pacific admin panel</p>
+        </div>
+
+        <!-- Login Form -->
+        <form id="loginForm" class="login-form" novalidate>
+          <div class="form-group">
+            <label for="email" class="form-label">Email address</label>
+            <div class="input-wrapper">
+              <span class="input-icon"><i class="fas fa-envelope"></i></span>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                class="admin-input"
+                placeholder="admin@uxpacific.com"
+                required
+                autocomplete="email"
+              />
+            </div>
+            <p class="field-error" id="emailError" role="alert"></p>
+          </div>
+
+          <div class="form-group">
+            <label for="password" class="form-label">Password</label>
+            <div class="input-wrapper">
+              <span class="input-icon"><i class="fas fa-lock"></i></span>
+              <input
+                type="password"
+                id="password"
+                name="password"
+                class="admin-input"
+                placeholder="Enter your password"
+                required
+                autocomplete="current-password"
+              />
+              <button type="button" class="toggle-password" id="togglePassword" aria-label="Toggle password visibility">
+                <i class="fas fa-eye" id="eyeIcon"></i>
+              </button>
+            </div>
+            <p class="field-error" id="passwordError" role="alert"></p>
+          </div>
+
+          <div class="login-options">
+            <label class="remember-label">
+              <input type="checkbox" id="remember" name="remember" />
+              <span>Remember me</span>
+            </label>
+            <a href="#" class="forgot-link">Forgot password?</a>
+          </div>
+
+          <button type="submit" class="btn-login" id="loginBtn">
+            <span id="loginBtnText">Sign In</span>
+            <span id="loginSpinner" class="btn-spinner d-none"><i class="fas fa-spinner fa-spin"></i></span>
+          </button>
+
+          <p class="login-error" id="loginError" role="alert"></p>
+        </form>
+
+      </div>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+      /* Demo credentials: admin@uxpacific.com / admin123 */
+      const DEMO_EMAIL    = 'admin@uxpacific.com';
+      const DEMO_PASSWORD = 'admin123';
+
+      /* Password toggle */
+      document.getElementById('togglePassword').addEventListener('click', function () {
+        const pwd  = document.getElementById('password');
+        const icon = document.getElementById('eyeIcon');
+        if (pwd.type === 'password') {
+          pwd.type = 'text';
+          icon.classList.replace('fa-eye', 'fa-eye-slash');
+          this.setAttribute('aria-label', 'Hide password');
+        } else {
+          pwd.type = 'password';
+          icon.classList.replace('fa-eye-slash', 'fa-eye');
+          this.setAttribute('aria-label', 'Show password');
+        }
+      });
+
+      /* Form submission */
+      document.getElementById('loginForm').addEventListener('submit', function (e) {
+        e.preventDefault();
+        const email    = document.getElementById('email').value.trim();
+        const password = document.getElementById('password').value;
+        const emailErr = document.getElementById('emailError');
+        const pwdErr   = document.getElementById('passwordError');
+        const loginErr = document.getElementById('loginError');
+        const btn      = document.getElementById('loginBtn');
+        const btnText  = document.getElementById('loginBtnText');
+        const spinner  = document.getElementById('loginSpinner');
+
+        emailErr.textContent  = '';
+        pwdErr.textContent    = '';
+        loginErr.textContent  = '';
+
+        let valid = true;
+        if (!email) { emailErr.textContent  = 'Email is required.'; valid = false; }
+        else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { emailErr.textContent = 'Enter a valid email.'; valid = false; }
+        if (!password) { pwdErr.textContent = 'Password is required.'; valid = false; }
+
+        if (!valid) return;
+
+        btn.disabled = true;
+        btnText.classList.add('d-none');
+        spinner.classList.remove('d-none');
+
+        setTimeout(() => {
+          if (email === DEMO_EMAIL && password === DEMO_PASSWORD) {
+            sessionStorage.setItem('uxp_admin_auth', '1');
+            window.location.href = 'dashboard.html';
+          } else {
+            loginErr.textContent = 'Invalid email or password. Try admin@uxpacific.com / admin123';
+            btn.disabled = false;
+            btnText.classList.remove('d-none');
+            spinner.classList.add('d-none');
+          }
+        }, 800);
+      });
+    </script>
+  </body>
+</html>

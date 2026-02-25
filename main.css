@@ -1,6 +1,72 @@
-/*---- home.css ----*/
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,100..1000&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+/*---- main.css ----*/
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,100..1000&display=swap&font-display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap&font-display=swap');
+
+/* ---- Production utility classes (replaces inline styles) ---- */
+.contact-submit--accent {
+  background-color: #6147bd;
+}
+
+.navbar--dark {
+  background-color: #111111;
+}
+
+.nav-cta-btn {
+  width: 155px;
+  height: 42px;
+  text-decoration: none;
+}
+
+.cta-button--wide {
+  width: 165px;
+  height: 42px;
+  text-decoration: none;
+}
+
+.cta-text--padded {
+  padding: 20px;
+}
+
+.cta-desc {
+  font-size: 14px;
+}
+
+.footer-inner {
+  border: 2px solid #000;
+}
+
+.footer-contact-link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.footer-copy {
+  color: #e0e0e0;
+}
+
+.footer-bottom {
+  border-top: 1px solid rgba(245, 245, 245, 0.4);
+}
+
+.ft_link--top-margin {
+  margin-top: 20px;
+}
+
+.project-content--flex {
+  margin-top: 1rem;
+}
+
+.project-tags {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.btn-arrow-icon {
+  width: 1rem;
+  height: 1rem;
+  transition: transform 0.3s ease-in-out;
+}
 
 * {
   margin: 0;
@@ -446,16 +512,17 @@ nav>.container>a {
   position: relative;
   text-align: center;
   margin: 50px auto;
-  width: 755px;
-  height: 145px;
+  width: 100%;
+  max-width: 755px;
+  height: auto;
   padding: 20px;
   background: transparent;
-  /* agar background chahiye to add kar lena */
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 16px;
+  box-sizing: border-box;
 }
 
 /* Subtitle */
@@ -524,11 +591,11 @@ nav>.container>a {
 /* ✅ Mobile Responsive */
 @media (max-width: 768px) {
   .ux-content {
-    width: 349px;
-    height: 231px;
+    width: 100%;
+    max-width: 349px;
+    height: auto;
     padding: 15px;
     gap: 24px;
-    /* as you mentioned */
   }
 
   .ux-subtitle {
@@ -981,7 +1048,7 @@ nav>.container>a {
 .service-card:nth-child(3):hover .service-icon img {
   width: 90px;
   height: 90px;
-  content: url("../img/icone2.png");
+  content: url("../img/shop2.png");
 }
 
 .service-card {
@@ -989,8 +1056,10 @@ nav>.container>a {
   background: linear-gradient(135deg, #6349C0, #0E0238);
   border-radius: 15px;
   padding: 30px 20px;
-  width: 400px;
-  height: 360px;
+  width: 100%;
+  max-width: 400px;
+  min-height: 360px;
+  height: auto;
   text-align: center;
   transition: all 0.4s ease;
   border: 1px solid rgba(255, 255, 255, 0.1);
@@ -1168,14 +1237,13 @@ nav>.container>a {
 
 @media (max-width: 768px) {
   .project-container {
-    width: 390px;
-    height: 675px;
+    width: 100%;
+    height: auto;
     flex-direction: column;
-    /* Column layout */
     text-align: center;
-    gap: 0px;
+    gap: 0;
     margin: 0 auto;
-    overflow: hidden;
+    overflow: visible;
   }
 
   /* Text नीचे आए */
@@ -1286,8 +1354,9 @@ nav>.container>a {
 
 /* Desktop Styles */
 .cta-section {
-  width: 1240px;
-  height: 463.45px;
+  width: 100%;
+  max-width: 1240px;
+  height: auto;
   background: #0d0d1a;
   border-radius: 20px;
   overflow: hidden;
@@ -1297,7 +1366,7 @@ nav>.container>a {
   margin: 40px auto;
   position: relative;
   margin-bottom: 100px;
-  /* dots bg ke liye */
+  padding: 2rem;
 }
 
 .dots-bg {
@@ -1335,9 +1404,9 @@ nav>.container>a {
 /* 📱 Mobile Styles */
 @media (max-width: 768px) {
   .cta-section {
-    width: 390px;
-    height: 568px;
-    padding: 1px;
+    width: 100%;
+    height: auto;
+    padding: 1.5rem 1rem;
   }
 
   .cta-container {
@@ -1886,9 +1955,11 @@ body {
   }
 
   .images-row {
-    width: 418px;
+    width: 100%;
+    max-width: 418px;
     height: 148px;
-    margin-left: 20px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
   }
 
   .img1 {
@@ -2136,10 +2207,11 @@ body {
 /* Mobile Screen */
 @media (max-width: 768px) {
   .about-header {
-    min-width: 430px;
-    height: 126px;
+    min-width: 0;
+    width: 100%;
+    height: auto;
+    padding: 3rem 1rem;
     left: 0;
-    /* mobile me left align better rahega */
     background-image: url("../img/about.jpg");
     background-size: cover;
     background-position-y: -399px;
@@ -2667,8 +2739,8 @@ body {
   /* let height grow naturally */
   overflow: visible;
   font-family: "Inter", sans-serif;
-  white-space: nowrap;
-  /* optional: keeps it on one line */
+  white-space: normal;
+  word-break: break-word;
 }
 
 .innovation-badge-exact span {
@@ -2691,14 +2763,15 @@ body {
 /* 📱 Mobile styles */
 @media (max-width: 576px) {
   .innovation-badge-exact {
-    width: 315px;
-    height: 36px;
+    width: 100%;
+    max-width: 100%;
+    height: auto;
     font-size: 13px;
     font-weight: 400;
-    line-height: 21px;
+    line-height: 1.5;
     letter-spacing: 0;
     border-radius: 4px;
-    padding: 0.4rem 1rem;
+    padding: 0.5rem 1rem;
     text-align: center;
   }
 
@@ -3435,7 +3508,7 @@ body {
   flex-wrap: nowrap;
   overflow: hidden;
   /* keeps them in one line */
-  margin-bottom:100px;
+  margin-bottom: 100px;
 }
 
 .service-card {
@@ -4152,19 +4225,19 @@ body {
 }
 
 .service-card:nth-child(1):hover .service-icon img {
-  content: url("img/icone3.png") !important;
+  content: url("img/shop2.png") !important;
   width: 90px !important;
   height: 90px !important;
 }
 
 .service-card:nth-child(2):hover .service-icon img {
-  content: url("img/icone1.png") !important;
+  content: url("img/acedmy-2.png") !important;
   width: 90px !important;
   height: 90px !important;
 }
 
 .service-card:nth-child(3):hover .service-icon img {
-  content: url("img/icone2.png") !important;
+  content: url("img/community-w.png") !important;
   width: 90px !important;
   height: 90px !important;
 }
@@ -5023,9 +5096,9 @@ body {
 
     /* --- CTA SECTION --- */
     .cta-section {
-      width: 390px !important;
-      height: 550px !important;
-      padding: 0px !important;
+      width: 100% !important;
+      height: auto !important;
+      padding: 1.5rem 1rem !important;
       border-radius: 15px;
     }
 
@@ -6929,52 +7002,42 @@ body {
   /* --- START: VIEW MORE/LESS CSS --- */
   /* Animation styles for extra cards */
   .extra-card {
-    /* This is the default, hidden state of the cards */
     max-height: 0;
-    /* Collapses the card vertically */
     opacity: 0;
-    /* Makes it fully transparent */
-    transform: translateY(-1rem);
-    /* Moves it up slightly for the animation */
+    transform: translateY(30px) scale(0.98);
     overflow: hidden;
-    /* Hides the content that overflows the 0-height */
     margin-top: 0;
     margin-bottom: 0;
     pointer-events: none;
-    /* Prevents clicking or interacting with the hidden card */
-    transition: all 0.5s ease-in-out;
-    /* The master transition for all animated properties */
+    transition: max-height 0.5s cubic-bezier(0.25, 1, 0.5, 1),
+      opacity 0.4s cubic-bezier(0.25, 1, 0.5, 1),
+      transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
   }
 
   .extra-card.is-visible {
-    /* This class is added by JavaScript to show the cards */
-    max-height: 600px;
-    /* A safe, large value to allow the card to expand fully */
+    max-height: 800px;
     opacity: 1;
-    /* Makes the card fully visible */
-    transform: translateY(0);
-    /* Returns it to its original position */
+    transform: translateY(0) scale(1);
     pointer-events: auto;
-    /* Allows interaction again */
   }
 
   /* Staggered delay for animations to make them appear one by one */
   /* Delay when showing the cards */
   #project-grid>.extra-card.is-visible:nth-of-type(5) {
-    transition-delay: 100ms;
+    transition-delay: 50ms;
   }
 
   #project-grid>.extra-card.is-visible:nth-of-type(6) {
-    transition-delay: 200ms;
+    transition-delay: 100ms;
   }
 
   /* Delay when hiding the cards (in reverse order for a nice effect) */
   #project-grid>.extra-card:nth-of-type(6) {
-    transition-delay: 100ms;
+    transition-delay: 0ms;
   }
 
   #project-grid>.extra-card:nth-of-type(5) {
-    transition-delay: 200ms;
+    transition-delay: 50ms;
   }
 
   /* --- END: VIEW MORE/LESS CSS --- */
@@ -7874,7 +7937,7 @@ body {
 
   @media (max-width: 600px) {
     main {
-      width: 367px;
+      width: 100%;
     }
 
     .privacy-container {
@@ -8016,7 +8079,7 @@ body {
 
   @media (max-width: 600px) {
     main {
-      width: 367px;
+      width: 100%;
       margin: 0 auto;
     }
 
@@ -8878,4 +8941,493 @@ body {
   box-shadow: 0 0 20px rgba(167, 139, 250, 0.1);
   transform: translateY(-2px);
   color: #fff;
+}
+
+/* Global Responsiveness Fixes */
+@media (max-width: 768px) {
+  .about-header {
+    height: auto;
+    padding: 80px 20px;
+  }
+
+  .about-header h1 {
+    font-size: 36px !important;
+    line-height: 1.2;
+    margin-bottom: 15px;
+  }
+
+  .innovation-badge-exact {
+    font-size: 14px !important;
+    line-height: 24px !important;
+    padding: 0 10px;
+  }
+
+  .service-card {
+    width: 100%;
+    min-height: auto;
+  }
+
+  .services {
+    padding: 30px 15px;
+    gap: 30px;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  /* Universal Mobile Text and Section fixes */
+  section {
+    padding-left: 15px !important;
+    padding-right: 15px !important;
+  }
+
+  h1,
+  .hero h1,
+  .hero11 h1 {
+    font-size: 36px !important;
+    line-height: 1.2 !important;
+  }
+
+  h2,
+  .section-title,
+  .ux-title {
+    font-size: 28px !important;
+    line-height: 1.3 !important;
+  }
+
+  h3,
+  .ux-subtitle {
+    font-size: 20px !important;
+    line-height: 1.4 !important;
+  }
+
+  p,
+  .ux-description,
+  .project-text,
+  .service-card p,
+  .cta-desc {
+    font-size: 15px !important;
+    line-height: 1.6 !important;
+  }
+
+  /* Specific Section Spacing Adjustments for Mobile */
+  .section-title {
+    margin-top: 50px !important;
+    margin-bottom: 30px !important;
+  }
+
+  .ux-content,
+  .cta-section,
+  .projects-section,
+  .about-section,
+  .eco-accordion-container {
+    margin-top: 50px !important;
+    margin-bottom: 50px !important;
+  }
+
+  .projects-container,
+  .cards-container,
+  .contact-section,
+  .about-desc {
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+  }
+
+  .logo-slider {
+    margin-top: 50px !important;
+    margin-bottom: 50px !important;
+  }
+}
+
+/* ================================================================
+   RESPONSIVE FOUNDATION — appended 2026-02-25
+   Fixes: fixed-px containers, horizontal overflow, fluid images,
+   about-header min-width, cta-section fixed dims, ux-content width,
+   innovation-badge nowrap, work filter bar, nav CTA button overflow.
+   DOES NOT alter design — only makes existing layout fluid.
+   ================================================================ */
+
+/* 1 ── Global overflow guard & fluid images */
+html {
+  overflow-x: hidden;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* 2 ── CTA section: remove fixed pixel width/height */
+.cta-section {
+  width: 100% !important;
+  max-width: 1240px !important;
+  height: auto !important;
+  box-sizing: border-box;
+}
+
+/* 3 ── .about-header: remove min-width that causes overflow on 320–430 px */
+.about-header {
+  min-width: 0 !important;
+  width: 100% !important;
+  box-sizing: border-box;
+}
+
+/* 4 ── .ux-content: replace fixed 755 px with fluid */
+.ux-content {
+  width: 100% !important;
+  max-width: 755px !important;
+  box-sizing: border-box;
+}
+
+/* 5 ── .innovation-badge-exact: allow wrapping, prevent overflow */
+.innovation-badge-exact {
+  white-space: normal !important;
+  width: auto !important;
+  max-width: 100% !important;
+  box-sizing: border-box;
+}
+
+/* 6 ── Work page: category filter bar */
+.work-categories {
+  text-align: center;
+  margin: 1.5rem 0 2.5rem;
+  padding: 0 1rem;
+}
+
+.work-category-list {
+  display: inline-flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.25rem 0.75rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.work-filter-btn {
+  cursor: pointer;
+  font-size: 1.05rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.5);
+  transition: color 0.25s ease, font-weight 0.25s ease;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  user-select: none;
+}
+
+.work-filter-btn:hover {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.work-filter-btn.active {
+  color: #fff;
+  font-weight: 700;
+}
+
+.work-filter-sep {
+  color: rgba(255, 255, 255, 0.3);
+  pointer-events: none;
+  user-select: none;
+  padding: 0 0.1rem;
+}
+
+/* 7 ── Nav CTA button: prevent overflow on narrow nav */
+.nav-cta-btn,
+.cta-button--wide {
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+/* ── 320 px – 576 px  (small mobile) ── */
+@media (max-width: 576px) {
+  .cta-section {
+    padding: 1.5rem 1rem !important;
+    margin: 1.5rem auto !important;
+    border-radius: 12px !important;
+  }
+
+  .cta-container {
+    flex-direction: column !important;
+    gap: 1.25rem !important;
+    text-align: center !important;
+    padding: 0 !important;
+  }
+
+  .cta-text h1,
+  .cta-text h2 {
+    font-size: clamp(1.25rem, 5vw, 1.75rem) !important;
+    line-height: 1.3 !important;
+  }
+
+  .cta-image {
+    order: -1;
+    width: 100%;
+  }
+
+  .cta-image img {
+    width: 100%;
+    max-width: 340px;
+    margin: 0 auto;
+    display: block;
+    border-radius: 10px;
+  }
+
+  .innovation-badge-exact {
+    font-size: 12px !important;
+    line-height: 1.5 !important;
+    padding: 0.5rem 0.85rem !important;
+    height: auto !important;
+  }
+
+  .about-header h1 {
+    font-size: clamp(1.5rem, 7vw, 2.25rem) !important;
+  }
+
+  .ux-content {
+    height: auto !important;
+    padding: 1rem !important;
+    gap: 1rem !important;
+  }
+
+  .ux-image-container {
+    max-width: 100% !important;
+    height: auto !important;
+  }
+
+  /* project-container on index.html hero */
+  .project-container {
+    width: 100% !important;
+    height: auto !important;
+    overflow: visible !important;
+  }
+
+  /* Hero headings */
+  .hero h1 {
+    font-size: clamp(1.75rem, 8vw, 2.5rem) !important;
+    line-height: 1.2 !important;
+  }
+
+  /* Section headings */
+  .section-title {
+    max-width: 100% !important;
+    font-size: clamp(1.25rem, 6vw, 1.75rem) !important;
+  }
+
+  /* Stat card */
+  .cards-container {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* ── 576 px – 768 px  (large mobile / small tablet) ── */
+@media (min-width: 576px) and (max-width: 768px) {
+  .cta-section {
+    padding: 2rem 1.5rem !important;
+    border-radius: 14px !important;
+  }
+
+  .innovation-badge-exact {
+    font-size: 14px !important;
+    padding: 0.6rem 1.2rem !important;
+    height: auto !important;
+  }
+
+  .about-header h1 {
+    font-size: clamp(1.75rem, 5vw, 2.5rem) !important;
+  }
+
+  .ux-content {
+    height: auto !important;
+  }
+
+  .project-container {
+    width: 100% !important;
+    height: auto !important;
+  }
+}
+
+/* ── 768 px – 992 px  (tablet) ── */
+@media (min-width: 768px) and (max-width: 992px) {
+  .cta-section {
+    padding: 2rem !important;
+  }
+
+  .ux-content {
+    max-width: 100% !important;
+    height: auto !important;
+  }
+}
+
+/* ── Tables: horizontal scroll on all screen widths < 768 px ── */
+@media (max-width: 768px) {
+  .table-responsive-x {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .table-responsive-x table {
+    min-width: 480px;
+  }
+}
+
+/* ── Work page filter buttons: touch-friendly on mobile ── */
+@media (max-width: 576px) {
+  .work-category-list {
+    justify-content: center !important;
+  }
+
+  .work-category-list .filter-btn {
+    font-size: 0.9rem !important;
+  }
+}
+
+/* ── Footer: ensure no horizontal overflow ── */
+.desktop-only-footer,
+.mobile-only-footer {
+  overflow-x: hidden;
+  box-sizing: border-box;
+}
+
+.footer-inner {
+  box-sizing: border-box;
+  width: 100%;
+}
+
+/* ── Contact form: full-width inputs on all screens ── */
+@media (max-width: 576px) {
+  .contact-form .contact-row {
+    flex-direction: column !important;
+    gap: 0 !important;
+  }
+
+  .contact-form .contact-field {
+    width: 100% !important;
+    flex: none !important;
+  }
+
+  .contact-submit {
+    width: 100% !important;
+  }
+}
+
+/* ── Ecosystem service cards: stack on mobile ── */
+@media (max-width: 768px) {
+  .services {
+    flex-direction: column !important;
+    align-items: stretch !important;
+  }
+
+  .service-card {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+}
+
+/* ── Logo slider: prevent overflow ── */
+.logo-slider {
+  overflow: hidden;
+  width: 100%;
+}
+
+/* ── Review / testimonial grid: prevent x-overflow ── */
+.reviews-grid,
+.testimonial-card {
+  box-sizing: border-box;
+}
+
+/* ── Scroller: prevent x-overflow ── */
+.scroller {
+  overflow: hidden;
+  max-width: 100%;
+}
+
+/* ── Nav logo: never exceeds container ── */
+.nav-logo {
+  max-width: 200px;
+  height: auto;
+}
+
+/* ── Fluid max-width containers: ensure no wider than viewport ── */
+.projects-container,
+.contact-section,
+.cta-container {
+  box-sizing: border-box;
+  max-width: 100%;
+}
+
+/* ── #project-grid single column on mobile ── */
+@media (max-width: 575px) {
+  #project-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* ================================================================
+   FLUID TYPOGRAPHY — clamp() scales between breakpoints.
+   Falls back gracefully in older browsers via the hard mobile
+   overrides already in this file.
+   ================================================================ */
+.hero h1,
+.hero11 h1 {
+  font-size: clamp(1.75rem, 5vw + 0.5rem, 4rem);
+  line-height: 1.2;
+}
+
+.about-header h1 {
+  font-size: clamp(2rem, 6vw, 4rem);
+}
+
+.ux-title,
+.section-title {
+  font-size: clamp(1.5rem, 4vw, 2.5rem);
+  line-height: 1.3;
+}
+
+.ux-subtitle {
+  font-size: clamp(0.875rem, 2vw, 1rem);
+}
+
+.ux-description,
+.project-text p,
+.cta-text p {
+  font-size: clamp(0.875rem, 1.5vw, 1rem);
+}
+
+/* ── CTA button: min tap target 44 × 44 on all screen sizes ── */
+.cta-button,
+.btn-primary,
+.btn-login {
+  min-height: 44px;
+  min-width: 44px;
+}
+
+/* ── Prevent text overflow on all heading levels ── */
+h1, h2, h3, h4, h5 {
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+
+/* ── Fluid max-width for all section containers ── */
+.container,
+.projects-container,
+.contact-section,
+.faq-main-container {
+  width: 100%;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: clamp(1rem, 4vw, 2rem);
+  padding-right: clamp(1rem, 4vw, 2rem);
+  box-sizing: border-box;
+}
+
+/* ── ux-image-container: clip #d2–#d55 hard-margin elements on narrow screens ── */
+@media (max-width: 380px) {
+  .ux-image-container {
+    overflow: hidden !important;
+  }
 }

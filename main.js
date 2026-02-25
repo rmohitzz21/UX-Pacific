@@ -361,13 +361,6 @@ document.addEventListener('DOMContentLoaded', function () {
 // --- END: VIEW MORE/LESS JAVASCRIPT ---
 
 
-// Tilted images click logic
-// document.querySelectorAll('.images-row img').forEach(img => {
-//   img.addEventListener('click', () => {
-//     document.querySelectorAll('.images-row img').forEach(i => i.classList.remove('active'));
-//     img.classList.add('active');
-//   });
-// });
 
 
 
@@ -571,9 +564,9 @@ document.addEventListener('DOMContentLoaded', () => {
       };
 
       try {
-          const response = await fetch('http://localhost:5000/api/contact', {
+          const response = await fetch('https://formspree.io/f/REPLACE_WITH_YOUR_FORM_ID', {
               method: 'POST',
-              headers: { 'Content-Type': 'application/json' },
+              headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
               body: JSON.stringify(formData)
           });
 
@@ -608,206 +601,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
-// Logo 
-
-document.addEventListener("DOMContentLoaded", function () {
-  const mediaQuery = window.matchMedia("(max-width: 900px)");
-  const img = document.getElementById("myImage");
-
-  function checkScreenSize(e) {
-    if (e.matches) {
-      // Screen 900px or less
-      img.src = "img/LOGO 3.png";
-      img.style.width="50px"
-    } else {
-      // Screen larger than 900px
-      img.src = "img/LOGO.png";
-      img.style.width="200px";
-    }
-  }
-
-  // Check on page load
-  checkScreenSize(mediaQuery);
-
-  // Check on resize
-  mediaQuery.addEventListener("change", checkScreenSize);
-});
-
-
-
-// 👉 Disable animation and show plain black background on mobiles
-
-
-
-// Interactive background canvas animation
-
-// const canvas = document.getElementById('interactive-canvas');
-
-// if (canvas) {
-  
-//     const ctx = canvas.getContext('2d');
-//     const cursor = document.querySelector('.custom-cursor');
-
-//     let width, height, grid;
-//     let mouse = { x: 0, y: 0, radius: 100 };
-//     let targetMouseRadius = 100;
-
-//     const settings = {
-//         gridGap: 35,
-//         spring: 0.1,
-//         friction: 0.8
-//     };
-
-//     class Point {
-//         constructor(x, y) {
-//             this.x = x;
-//             this.y = y;
-//             this.originalX = x;
-//             this.originalY = y;
-//             this.vx = 0;
-//             this.vy = 0;
-//             this.color = 'rgba(255, 255, 255, 0.3)';
-//             this.size = 2;
-//         }
-
-//         update() {
-//             const dx = this.x - mouse.x;
-//             const dy = this.y - mouse.y;
-//             const dist = Math.sqrt(dx * dx + dy * dy);
-            
-//             if (dist < mouse.radius) {
-//                 const angle = Math.atan2(dy, dx);
-//                 const force = (mouse.radius - dist) * 0.1;
-//                 this.vx += Math.cos(angle) * force;
-//                 this.vy += Math.sin(angle) * force;
-//             }
-
-//             this.vx += (this.originalX - this.x) * settings.spring;
-//             this.vy += (this.originalY - this.y) * settings.spring;
-//             this.vx *= settings.friction;
-//             this.vy *= settings.friction;
-//             this.x += this.vx;
-//             this.y += this.vy;
-//         }
-
-//         draw() {
-//             const dx = this.x - mouse.x;
-//             const dy = this.y - mouse.y;
-//             const dist = Math.sqrt(dx * dx + dy * dy);
-
-//             let size = this.size;
-//             let color = this.color;
-            
-//             if (dist < mouse.radius) {
-//                 const proximity = 1 - (dist / mouse.radius);
-//                 size = 2 + proximity * 3;
-//                 color = `hsl(253, 50%, ${51 + proximity * 30}%)`;
-//             }
-            
-//             ctx.fillStyle = color;
-//             ctx.beginPath();
-//             ctx.arc(this.x, this.y, size, 0, Math.PI * 2);
-//             ctx.fill();
-//         }
-//     }
-
-//     function init() {
-//         width = canvas.width = window.innerWidth;
-//         height = canvas.height = window.innerHeight;
-//         grid = [];
-//         for (let x = 0; x < width + settings.gridGap; x += settings.gridGap) {
-//             for (let y = 0; y < height + settings.gridGap; y += settings.gridGap) {
-//                 grid.push(new Point(x, y));
-//             }
-//         }
-//     }
-
-//     function animate() {
-//         mouse.radius += (targetMouseRadius - mouse.radius) * 0.1;
-
-//         ctx.clearRect(0, 0, width, height);
-
-//         for (let i = 0; i < grid.length; i++) {
-//             for (let j = i + 1; j < grid.length; j++) {
-//                 const p1 = grid[i];
-//                 const p2 = grid[j];
-//                 const dx = p1.x - p2.x;
-//                 const dy = p1.y - p2.y;
-//                 const dist = Math.sqrt(dx * dx + dy * dy);
-
-//                 if (dist < settings.gridGap * 1.5) {
-//                     const mouseDist = Math.sqrt(Math.pow(p1.x - mouse.x, 2) + Math.pow(p1.y - mouse.y, 2));
-//                     let opacity = 0.1;
-//                     let color = `rgba(255, 255, 255, ${opacity})`;
-
-//                     if (mouseDist < mouse.radius) {
-//                        const proximity = 1 - (mouseDist / mouse.radius);
-//                        opacity = 0.1 + proximity * 0.5;
-//                        color = `hsla(253, 50%, 70%, ${opacity})`;
-//                     }
-                    
-//                     ctx.strokeStyle = color;
-//                     ctx.lineWidth = 1;
-//                     ctx.beginPath();
-//                     ctx.moveTo(p1.x, p1.y);
-//                     ctx.lineTo(p2.x, p2.y);
-//                     ctx.stroke();
-//                 }
-//             }
-//         }
-
-//         grid.forEach(point => {
-//             point.update();
-//             point.draw();
-//         });
-
-//         requestAnimationFrame(animate);
-//     }
-
-//     window.addEventListener('resize', init);
-//     window.addEventListener('mousemove', e => {
-//         mouse.x = e.clientX;
-//         mouse.y = e.clientY;
-//         if(cursor) {
-//             cursor.style.left = e.clientX + 'px';
-//             cursor.style.top = e.clientY + 'px';
-//         }
-//     });
-    
-//     window.addEventListener('mousedown', () => {
-//          targetMouseRadius = 150;
-//          if(cursor) {
-//              cursor.style.transform = 'translate(-50%, -50%) scale(0.8)';
-//              cursor.style.backgroundColor = 'rgba(97, 71, 189, 0.2)';
-//          }
-//     });
-    
-//     window.addEventListener('mouseup', () => {
-//         targetMouseRadius = 100;
-//         if(cursor) {
-//             cursor.style.transform = 'translate(-50%, -50%) scale(1)';
-//             cursor.style.backgroundColor = 'transparent';
-//         }
-//     });
-    
-//     const interactiveElements = document.querySelectorAll('a, button, .logo-container');
-//     interactiveElements.forEach(el => {
-//         el.addEventListener('mouseenter', () => {
-//             targetMouseRadius = 180; 
-//             if(cursor) cursor.style.opacity = '0';
-//         });
-//         el.addEventListener('mouseleave', () => {
-//             targetMouseRadius = 100; 
-//             if(cursor) cursor.style.opacity = '1';
-//         });
-//     });
-
-//     init();
-//     animate();
-// }
-
-
-// main.js - updated: robust mobile detection for iPhone 14 Pro Max (<= 430px)
+// Mobile detection for iPhone 14 Pro Max (<= 430px)
 
 (function () {
   // --- Robust mobile test (covers iPhone 14 Pro Max portrait and similar phones) ---

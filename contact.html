@@ -3,37 +3,29 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Contact Us</title>
+    <title>Contact Us | UX Pacific</title>
+    <meta name="description" content="Get in touch with UX Pacific. Share your project idea, ask about our UX design services, or request a collaboration — we'd love to hear from you." />
+    <link rel="canonical" href="https://www.uxpacific.com/contact.html" />
+    <meta property="og:title" content="Contact Us | UX Pacific" />
+    <meta property="og:description" content="Reach out to UX Pacific for design services, collaborations, or any queries. Our team is ready to help." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://www.uxpacific.com/contact.html" />
+    <meta property="og:image" content="https://www.uxpacific.com/img/LOGO.png" />
      <link href="img/Final.png" rel="shortcut icon" type="image/x-icon" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
       rel="stylesheet"
     />
     <link
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-      rel="stylesheet"
-    />
-    <!-- <link rel="stylesheet" href="css/collaborations.css" /> -->
-    <!-- Bootstrap 5 CSS -->
-    <link
-      rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
-    />
-    <!-- Google Fonts (Inter) -->
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap"
       rel="stylesheet"
     />
-    <!-- Font Awesome for icons -->
     <link
-      rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      rel="stylesheet"
     />
-    <!-- <link rel="stylesheet" href="css/about.css"> -->
-    <!-- <link rel="stylesheet" href="css/home.css"> -->
-    <!-- <link rel="stylesheet" href="css/header.css"> -->
-    <!-- Link to new page-specific CSS -->
-    <!-- <link rel="stylesheet" href="css/contact-styles.css"> -->
     <link rel="stylesheet" href="main.css" />
   </head>
   <style>
@@ -301,11 +293,11 @@
                   /* small screens tweaks */
                   @media (max-width: 480px) {
                     .contact-title {
-                      font-size: 32px;
+                      font-size: clamp(1.5rem, 6vw, 2rem);
                     }
 
                     .contact-submit {
-                      width: 156px;
+                      width: 100%;
                       justify-content: center;
                     }
 
@@ -313,6 +305,18 @@
                       gap: 16px;
                     }
 
+                    .contact-section {
+                      padding: 20px 12px 60px;
+                    }
+                  }
+
+                  /* Extra small (320 px) */
+                  @media (max-width: 360px) {
+                    .contact-field input,
+                    .contact-field textarea {
+                      font-size: 0.95rem;
+                      padding: 12px 14px;
+                    }
                   }
   </style>
 
@@ -348,7 +352,7 @@
               <a class="nav-link" href="services.html">Services</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="project.html">Work</a>
+              <a class="nav-link" href="work.html">Work</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="ecosystem.html">Ecosystem</a>
@@ -430,22 +434,22 @@
                 </div>
 
                 <!-- RIGHT: Form (no card background) -->
-                <form class="contact-form" action="#" method="post">
+                <form class="contact-form" id="contactForm" action="https://formspree.io/f/REPLACE_WITH_YOUR_FORM_ID" method="post" novalidate>
                     <div class="contact-row">
                         <div class="contact-field">
                             <label for="name">Name</label>
-                            <input id="name" name="name" type="text" placeholder="Enter your name here">
+                            <input id="name" name="name" type="text" placeholder="Enter your name here" required minlength="2" maxlength="50" autocomplete="name">
                         </div>
                         <div class="contact-field">
                             <label for="email">Email</label>
-                            <input id="email" name="email" type="email" placeholder="Enter your email address">
+                            <input id="email" name="email" type="email" placeholder="Enter your email address" required autocomplete="email">
                         </div>
                     </div>
 
                     <div class="contact-row">
                         <div class="contact-field">
                             <label for="phone">Phone Number</label>
-                            <input id="phone" name="phone" type="tel" placeholder="+91 xxxxx- xxxxx">
+                            <input id="phone" name="phone" type="tel" placeholder="+91 xxxxx-xxxxx" required autocomplete="tel">
                         </div>
                         <div class="contact-field">
                             <label for="industry">Industry</label>
@@ -479,12 +483,12 @@
                     <div class="contact-field">
                         <label for="message">Message</label>
                         <textarea id="message" name="message" rows="5"
-                            placeholder="Enter your message here...."></textarea>
+                            placeholder="Enter your message here...." required minlength="10"></textarea>
                     </div>
 
                     <div class="contact-footer">
                         <label class="contact-checkbox">
-                            <input type="checkbox">
+                            <input type="checkbox" id="terms" name="terms" required>
                             <span>
                                 I Agree to
                                 <a href="#" class="contact-link">Terms &amp; Condition</a>
@@ -493,7 +497,7 @@
                         </label>
                     </div>
 
-                    <button type="submit" class="btn-primary contact-submit" style="background-color: #6147bd;">Submit</button>
+                    <button type="submit" class="btn-primary contact-submit contact-submit--accent">Submit</button>
                 </form>
             </div>
         </section>
@@ -507,20 +511,14 @@
               <img alt="UX PACIFIC Logo" src="img/LOGO.png" />
             </div>
             <div class="social-icons">
-              <a
-                href="https://www.linkedin.com/company/uxpacific/?viewAsMember=true"
-                target="_blank"
-              >
-                <img src="img/in.png" />
+              <a href="https://www.linkedin.com/company/uxpacific/?viewAsMember=true" target="_blank" rel="noopener noreferrer" aria-label="UX Pacific on LinkedIn">
+                <img src="img/in.png" alt="LinkedIn" />
               </a>
-              <a href="https://www.behance.net/uxpacific" target="_blank">
-                <img src="img/be.png" />
+              <a href="https://www.behance.net/uxpacific" target="_blank" rel="noopener noreferrer" aria-label="UX Pacific on Behance">
+                <img src="img/be.png" alt="Behance" />
               </a>
-              <a
-                href="https://www.instagram.com/official_uxpacific/"
-                target="_blank"
-              >
-                <img src="img/inst.png" />
+              <a href="https://www.instagram.com/official_uxpacific/" target="_blank" rel="noopener noreferrer" aria-label="UX Pacific on Instagram">
+                <img src="img/inst.png" alt="Instagram" />
               </a>
             </div>
           </div>
@@ -537,7 +535,7 @@
                 <a href="services.html"> Services </a>
               </li>
               <li>
-                <a href="project.html"> Project </a>
+                <a href="work.html"> Work </a>
               </li>
               <li>
                 <a href="ecosystem.html"> Ecosystem </a>
@@ -594,20 +592,14 @@
               <img alt="UX PACIFIC Logo" src="img/LOGO.png" />
             </div>
             <div class="social-icons">
-              <a
-                href="https://www.linkedin.com/company/uxpacific/?viewAsMember=true"
-                target="_blank"
-              >
-                <img src="img/in.png" />
+              <a href="https://www.linkedin.com/company/uxpacific/?viewAsMember=true" target="_blank" rel="noopener noreferrer" aria-label="UX Pacific on LinkedIn">
+                <img src="img/in.png" alt="LinkedIn" />
               </a>
-              <a href="https://www.behance.net/uxpacific" target="_blank">
-                <img src="img/be.png" />
+              <a href="https://www.behance.net/uxpacific" target="_blank" rel="noopener noreferrer" aria-label="UX Pacific on Behance">
+                <img src="img/be.png" alt="Behance" />
               </a>
-              <a
-                href="https://www.instagram.com/official_uxpacific/"
-                target="_blank"
-              >
-                <img src="img/inst.png" />
+              <a href="https://www.instagram.com/official_uxpacific/" target="_blank" rel="noopener noreferrer" aria-label="UX Pacific on Instagram">
+                <img src="img/inst.png" alt="Instagram" />
               </a>
             </div>
           </div>
@@ -624,7 +616,7 @@
                 <a href="services.html"> Services </a>
               </li>
               <li>
-                <a href="project.html"> Project </a>
+                <a href="work.html"> Work </a>
               </li>
               <li>
                 <a href="ecosystem.html"> Ecosystem </a>
