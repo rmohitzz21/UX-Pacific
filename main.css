@@ -513,6 +513,7 @@ nav>.container>a {
   transition: 0.3s;
   width: 114px;
   height: 30px;
+  margin-bottom: 20px;
 }
 
 .view-more:hover {
@@ -1295,6 +1296,7 @@ nav>.container>a {
   align-items: center;
   margin: 40px auto;
   position: relative;
+  margin-bottom: 100px;
   /* dots bg ke liye */
 }
 
@@ -3433,6 +3435,7 @@ body {
   flex-wrap: nowrap;
   overflow: hidden;
   /* keeps them in one line */
+  margin-bottom:100px;
 }
 
 .service-card {
@@ -5208,7 +5211,7 @@ body {
     font-family: 'Inter';
     font-style: normal;
     font-weight: 400;
-    font-size: 24px;
+    font-size: 15px;
     line-height: 32px;
     /* identical to box height, or 133% */
     text-align: center;
@@ -6121,7 +6124,7 @@ body {
     font-family: 'Inter';
     font-style: normal;
     font-weight: 400;
-    font-size: 24px;
+    font-size: 15px;
     line-height: 32px;
     /* identical to box height, or 133% */
     text-align: center;
@@ -6582,7 +6585,7 @@ body {
     font-family: 'Inter';
     font-style: normal;
     font-weight: 400;
-    font-size: 24px;
+    font-size: 15px;
     line-height: 32px;
     /* identical to box height, or 133% */
     text-align: center;
