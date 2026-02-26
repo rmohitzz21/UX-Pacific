@@ -9360,7 +9360,7 @@ img {
 }
 
 /* ── #project-grid single column on mobile ── */
-@media (max-width: 575px) {
+@media (max-width: 768px) {
   #project-grid {
     grid-template-columns: 1fr !important;
   }
@@ -9406,7 +9406,11 @@ img {
 }
 
 /* ── Prevent text overflow on all heading levels ── */
-h1, h2, h3, h4, h5 {
+h1,
+h2,
+h3,
+h4,
+h5 {
   overflow-wrap: break-word;
   word-break: break-word;
 }
