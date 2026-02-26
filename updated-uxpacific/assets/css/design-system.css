@@ -1,0 +1,371 @@
+/* ============================================================
+   UX PACIFIC — DESIGN SYSTEM v2.0
+   Design tokens, CSS custom properties, and base resets.
+   ============================================================ */
+
+/* ---- Google Fonts ---- */
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap');
+
+/* ============================================================
+   1. DESIGN TOKENS
+   ============================================================ */
+:root {
+
+  /* --- Color System --- */
+  --clr-bg:          #07071a;
+  --clr-bg-raised:   #0b0b1e;
+  --clr-surface:     #101028;
+  --clr-surface-2:   #14143a;
+  --clr-surface-3:   #1a1a48;
+
+  --clr-border:          rgba(255, 255, 255, 0.06);
+  --clr-border-hover:    rgba(124, 95, 230, 0.35);
+  --clr-border-strong:   rgba(255, 255, 255, 0.12);
+
+  --clr-accent:          #7c5fe6;
+  --clr-accent-hover:    #9575f0;
+  --clr-accent-2:        #a78bfa;
+  --clr-accent-3:        #c084fc;
+  --clr-accent-light:    rgba(124, 95, 230, 0.12);
+  --clr-accent-glow:     rgba(124, 95, 230, 0.22);
+  --clr-accent-glow-lg:  rgba(124, 95, 230, 0.45);
+
+  --clr-text:        #e8e8f4;
+  --clr-text-muted:  #8888b0;
+  --clr-text-subtle: #55556e;
+  --clr-white:       #ffffff;
+
+  --clr-success: #34d399;
+  --clr-error:   #f87171;
+
+  /* --- Gradients --- */
+  --grad-accent:      linear-gradient(135deg, #6147bd 0%, #a78bfa 50%, #c084fc 100%);
+  --grad-accent-h:    linear-gradient(90deg,  #6147bd, #a78bfa);
+  --grad-text:        linear-gradient(135deg, #e8e8f4 0%, #a78bfa 100%);
+  --grad-card:        linear-gradient(135deg, rgba(255,255,255,0.04) 0%, rgba(255,255,255,0) 100%);
+  --grad-hero-orb:    radial-gradient(ellipse at 60% 40%, rgba(124, 95, 230, 0.28) 0%, transparent 65%);
+  --grad-hero-orb-2:  radial-gradient(ellipse at 20% 80%, rgba(192, 132, 252, 0.12) 0%, transparent 55%);
+  --grad-section:     radial-gradient(ellipse at 50% 0%,  rgba(124, 95, 230, 0.10) 0%, transparent 60%);
+  --grad-footer:      linear-gradient(to top, rgba(124, 95, 230, 0.06) 0%, transparent 100%);
+
+  /* --- Typography Scale --- */
+  --font-display: 'Plus Jakarta Sans', 'Inter', system-ui, sans-serif;
+  --font-body:    'Inter', system-ui, sans-serif;
+
+  --fs-xs:      0.75rem;    /* 12px */
+  --fs-sm:      0.875rem;   /* 14px */
+  --fs-base:    1rem;       /* 16px */
+  --fs-md:      1.125rem;   /* 18px */
+  --fs-lg:      1.25rem;    /* 20px */
+  --fs-xl:      1.5rem;     /* 24px */
+  --fs-2xl:     clamp(1.6rem, 3vw, 2rem);
+  --fs-3xl:     clamp(2rem,   4vw, 2.75rem);
+  --fs-4xl:     clamp(2.5rem, 5vw, 3.5rem);
+  --fs-5xl:     clamp(3rem,   6vw, 4.5rem);
+  --fs-display: clamp(3.2rem, 7.5vw, 6rem);
+
+  --fw-light:   300;
+  --fw-regular: 400;
+  --fw-medium:  500;
+  --fw-semi:    600;
+  --fw-bold:    700;
+  --fw-black:   800;
+
+  --lh-tight:   1.1;
+  --lh-snug:    1.25;
+  --lh-normal:  1.5;
+  --lh-relaxed: 1.7;
+  --lh-loose:   2;
+
+  --ls-tight:   -0.04em;
+  --ls-snug:    -0.02em;
+  --ls-normal:  0;
+  --ls-wide:    0.04em;
+  --ls-wider:   0.08em;
+  --ls-widest:  0.16em;
+
+  /* --- Spacing (8px base) --- */
+  --sp-1:   4px;
+  --sp-2:   8px;
+  --sp-3:   12px;
+  --sp-4:   16px;
+  --sp-5:   24px;
+  --sp-6:   32px;
+  --sp-7:   48px;
+  --sp-8:   64px;
+  --sp-9:   96px;
+  --sp-10:  128px;
+  --sp-11:  160px;
+
+  /* --- Border Radius --- */
+  --r-xs:   4px;
+  --r-sm:   8px;
+  --r-md:   12px;
+  --r-lg:   16px;
+  --r-xl:   24px;
+  --r-2xl:  32px;
+  --r-full: 9999px;
+
+  /* --- Elevation (Shadow Tiers) --- */
+  --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.5);
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.6);
+  --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.7);
+  --shadow-xl: 0 16px 64px rgba(0, 0, 0, 0.85);
+  --shadow-glow:    0 0 30px rgba(124, 95, 230, 0.25);
+  --shadow-glow-lg: 0 0 60px rgba(124, 95, 230, 0.35);
+  --shadow-glow-btn:0 4px 24px rgba(124, 95, 230, 0.45);
+
+  /* --- Transitions --- */
+  --t-fast:   150ms ease;
+  --t-base:   250ms ease;
+  --t-slow:   400ms ease;
+  --t-spring: 400ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  --t-bounce: 500ms cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  /* --- Z-index Scale --- */
+  --z-base:    1;
+  --z-raised:  10;
+  --z-dropdown:100;
+  --z-fixed:   200;
+  --z-overlay: 300;
+  --z-modal:   400;
+  --z-toast:   500;
+
+  /* --- Layout --- */
+  --container: 1200px;
+  --container-wide: 1440px;
+  --nav-height: 72px;
+}
+
+/* ============================================================
+   2. BASE RESET
+   ============================================================ */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+  overflow-x: hidden;
+}
+
+body {
+  background-color: var(--clr-bg);
+  color: var(--clr-text);
+  font-family: var(--font-body);
+  font-size: var(--fs-base);
+  line-height: var(--lh-relaxed);
+  font-weight: var(--fw-regular);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+img, video {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+  font-family: inherit;
+}
+
+ul, ol {
+  list-style: none;
+}
+
+/* ============================================================
+   3. TYPOGRAPHY UTILITIES
+   ============================================================ */
+.font-display  { font-family: var(--font-display); }
+.font-body     { font-family: var(--font-body); }
+
+.text-xs     { font-size: var(--fs-xs); }
+.text-sm     { font-size: var(--fs-sm); }
+.text-base   { font-size: var(--fs-base); }
+.text-md     { font-size: var(--fs-md); }
+.text-lg     { font-size: var(--fs-lg); }
+.text-xl     { font-size: var(--fs-xl); }
+.text-2xl    { font-size: var(--fs-2xl); }
+.text-3xl    { font-size: var(--fs-3xl); }
+.text-4xl    { font-size: var(--fs-4xl); }
+
+.fw-light    { font-weight: var(--fw-light); }
+.fw-regular  { font-weight: var(--fw-regular); }
+.fw-medium   { font-weight: var(--fw-medium); }
+.fw-semi     { font-weight: var(--fw-semi); }
+.fw-bold     { font-weight: var(--fw-bold); }
+.fw-black    { font-weight: var(--fw-black); }
+
+.text-muted  { color: var(--clr-text-muted); }
+.text-subtle { color: var(--clr-text-subtle); }
+.text-accent { color: var(--clr-accent-2); }
+.text-center { text-align: center; }
+.text-left   { text-align: left; }
+
+.heading {
+  font-family: var(--font-display);
+  font-weight: var(--fw-bold);
+  letter-spacing: var(--ls-snug);
+  line-height: var(--lh-tight);
+  color: var(--clr-white);
+  overflow-wrap: break-word;
+}
+
+.gradient-text {
+  background: var(--grad-accent);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.label {
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-semi);
+  letter-spacing: var(--ls-widest);
+  text-transform: uppercase;
+  color: var(--clr-accent-2);
+}
+
+/* ============================================================
+   4. LAYOUT UTILITIES
+   ============================================================ */
+.container {
+  width: 100%;
+  max-width: var(--container);
+  margin-inline: auto;
+  padding-inline: clamp(1rem, 4vw, 3rem);
+}
+
+.container--wide {
+  max-width: var(--container-wide);
+}
+
+.section {
+  padding-block: clamp(4rem, 8vw, 8rem);
+  position: relative;
+  overflow: hidden;
+}
+
+.section--sm {
+  padding-block: clamp(2.5rem, 5vw, 5rem);
+}
+
+.section--lg {
+  padding-block: clamp(5rem, 10vw, 10rem);
+}
+
+.grid {
+  display: grid;
+  gap: var(--sp-5);
+}
+
+.grid--2 { grid-template-columns: repeat(2, 1fr); }
+.grid--3 { grid-template-columns: repeat(3, 1fr); }
+.grid--4 { grid-template-columns: repeat(4, 1fr); }
+
+.flex     { display: flex; }
+.flex-col { display: flex; flex-direction: column; }
+.items-center { align-items: center; }
+.justify-center { justify-content: center; }
+.justify-between { justify-content: space-between; }
+.gap-1 { gap: var(--sp-1); }
+.gap-2 { gap: var(--sp-2); }
+.gap-3 { gap: var(--sp-3); }
+.gap-4 { gap: var(--sp-4); }
+.gap-5 { gap: var(--sp-5); }
+.gap-6 { gap: var(--sp-6); }
+
+/* ============================================================
+   5. COMPONENT TOKENS (Glass, Cards, etc.)
+   ============================================================ */
+.glass {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--clr-border);
+  border-radius: var(--r-xl);
+}
+
+.glass--hover {
+  transition: background var(--t-base), border-color var(--t-base), box-shadow var(--t-base);
+}
+.glass--hover:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: var(--clr-border-hover);
+  box-shadow: var(--shadow-glow);
+}
+
+.card {
+  background: var(--clr-surface);
+  border: 1px solid var(--clr-border);
+  border-radius: var(--r-xl);
+  overflow: hidden;
+  transition: transform var(--t-base), box-shadow var(--t-base), border-color var(--t-base);
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg), var(--shadow-glow);
+  border-color: var(--clr-border-hover);
+}
+
+/* ============================================================
+   6. ANIMATION UTILITIES
+   ============================================================ */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal--up    { transform: translateY(32px); }
+.reveal--left  { transform: translateX(-32px); }
+.reveal--right { transform: translateX(32px); }
+.reveal--scale { transform: scale(0.92); }
+
+.reveal.is-visible.reveal--up,
+.reveal.is-visible.reveal--left,
+.reveal.is-visible.reveal--right,
+.reveal.is-visible.reveal--scale {
+  transform: none;
+}
+
+.stagger-1 { transition-delay: 0.1s; }
+.stagger-2 { transition-delay: 0.2s; }
+.stagger-3 { transition-delay: 0.3s; }
+.stagger-4 { transition-delay: 0.4s; }
+.stagger-5 { transition-delay: 0.5s; }
+.stagger-6 { transition-delay: 0.6s; }
+
+/* ============================================================
+   7. RESPONSIVE BREAKPOINTS
+   ============================================================ */
+@media (max-width: 1024px) {
+  .grid--4 { grid-template-columns: repeat(2, 1fr); }
+  .grid--3 { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 768px) {
+  .grid--4,
+  .grid--3,
+  .grid--2 { grid-template-columns: 1fr; }
+}

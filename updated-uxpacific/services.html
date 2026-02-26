@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Services | UX Pacific</title>
+  <meta name="description" content="Explore UX Pacific's full range of design services — UI/UX design, UX audits, product design, user research, and design systems for startups and enterprises." />
+  <link rel="canonical" href="https://www.uxpacific.com/services.html" />
+  <meta property="og:title" content="Services | UX Pacific" />
+  <meta property="og:description" content="From UX audits to full product design, UX Pacific offers tailored design services for every stage of your digital product journey." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.uxpacific.com/services.html" />
+  <meta property="og:image" content="https://www.uxpacific.com/img/LOGO.png" />
+  <link rel="shortcut icon" href="../img/Final.png" type="image/x-icon" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/design-system.css" />
+  <link rel="stylesheet" href="assets/css/main.css" />
+  <style>
+    /* Services page extended card */
+    .service-card--full {
+      padding: clamp(2rem, 3vw, 3rem);
+    }
+    .service-card__tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: auto;
+      padding-top: var(--sp-4);
+    }
+    .service-tag {
+      font-size: var(--fs-xs);
+      color: var(--clr-accent-2);
+      background: var(--clr-accent-light);
+      border: 1px solid rgba(124,95,230,0.15);
+      padding: 4px 12px;
+      border-radius: var(--r-full);
+    }
+    .why-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--sp-5);
+    }
+    .why-item {
+      display: flex;
+      align-items: flex-start;
+      gap: var(--sp-4);
+    }
+    .why-item__icon {
+      width: 48px; height: 48px;
+      border-radius: var(--r-md);
+      background: var(--clr-accent-light);
+      border: 1px solid rgba(124,95,230,0.2);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.25rem;
+      flex-shrink: 0;
+    }
+    .why-item__title {
+      font-family: var(--font-display);
+      font-size: var(--fs-base);
+      font-weight: var(--fw-semi);
+      color: var(--clr-white);
+      margin-bottom: 4px;
+    }
+    .why-item__desc {
+      font-size: var(--fs-sm);
+      color: var(--clr-text-muted);
+      line-height: var(--lh-relaxed);
+    }
+    @media (max-width: 640px) { .why-grid { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+
+  <!-- ====== NAVBAR ====== -->
+  <header class="nav" role="banner">
+    <div class="nav__inner">
+      <a href="index.html" aria-label="UX Pacific Home">
+        <img src="../img/LOGO.png" alt="UX Pacific" class="nav__logo" />
+      </a>
+      <nav class="nav__menu" aria-label="Main navigation">
+        <a href="index.html"     class="nav__link">Home</a>
+        <a href="about.html"     class="nav__link">About</a>
+        <a href="services.html"  class="nav__link active">Services</a>
+        <a href="work.html"      class="nav__link">Work</a>
+        <a href="ecosystem.html" class="nav__link">Ecosystem</a>
+      </nav>
+      <a href="contact.html" class="nav__cta">
+        Let's Talk
+        <svg class="btn__arrow" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M3 9h12M9 3l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <button class="nav__hamburger" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+  <div class="nav__drawer" role="dialog" aria-label="Mobile navigation">
+    <a href="index.html"     class="nav__link">Home</a>
+    <a href="about.html"     class="nav__link">About</a>
+    <a href="services.html"  class="nav__link active">Services</a>
+    <a href="work.html"      class="nav__link">Work</a>
+    <a href="ecosystem.html" class="nav__link">Ecosystem</a>
+    <a href="faq.html"       class="nav__link">FAQ</a>
+    <a href="contact.html"   class="nav__cta">Let's Talk &rarr;</a>
+  </div>
+
+  <main>
+
+    <!-- ====== PAGE HEADER ====== -->
+    <section class="page-header">
+      <div class="page-header__bg" aria-hidden="true"></div>
+      <div class="container">
+        <div class="page-header__label reveal">Services</div>
+        <h1 class="page-header__title reveal stagger-2">
+          Design Services Built<br />for <span class="gradient-text">Real Impact</span>
+        </h1>
+        <p class="page-header__desc reveal stagger-3">
+          From UX audits to full product design — every service is crafted with precision, backed by research, and delivered with craft.
+        </p>
+      </div>
+    </section>
+
+    <!-- ====== SERVICES GRID ====== -->
+    <section class="section">
+      <div class="container">
+        <div class="services-grid">
+
+          <div class="service-card service-card--full reveal stagger-1">
+            <div class="service-card__icon">🎨</div>
+            <span class="service-card__number">01</span>
+            <h3 class="service-card__title">UI/UX Design</h3>
+            <p class="service-card__desc">We craft pixel-perfect interfaces backed by deep user empathy and strategic thinking. From wireframes to high-fidelity designs, every pixel has purpose. Beautiful, functional, and intuitive.</p>
+            <div class="service-card__tags">
+              <span class="service-tag">Wireframing</span>
+              <span class="service-tag">High-Fidelity Design</span>
+              <span class="service-tag">Figma</span>
+              <span class="service-tag">Prototyping</span>
+            </div>
+            <a href="contact.html" class="service-card__link" style="margin-top: var(--sp-4);">Start a project →</a>
+          </div>
+
+          <div class="service-card service-card--full reveal stagger-2">
+            <div class="service-card__icon">🔍</div>
+            <span class="service-card__number">02</span>
+            <h3 class="service-card__title">UX Audit</h3>
+            <p class="service-card__desc">We dissect your existing product to find friction points, usability gaps, and conversion killers. Delivered as an actionable report with prioritized recommendations that drive results fast.</p>
+            <div class="service-card__tags">
+              <span class="service-tag">Heuristic Evaluation</span>
+              <span class="service-tag">User Flow Analysis</span>
+              <span class="service-tag">Accessibility Audit</span>
+            </div>
+            <a href="contact.html" class="service-card__link" style="margin-top: var(--sp-4);">Get an audit →</a>
+          </div>
+
+          <div class="service-card service-card--full reveal stagger-3">
+            <div class="service-card__icon">📊</div>
+            <span class="service-card__number">03</span>
+            <h3 class="service-card__title">User Research</h3>
+            <p class="service-card__desc">Real insights from real users. We uncover what your users truly think, feel, and need — before you build. Our research eliminates guesswork and grounds every design decision in evidence.</p>
+            <div class="service-card__tags">
+              <span class="service-tag">User Interviews</span>
+              <span class="service-tag">Usability Testing</span>
+              <span class="service-tag">Surveys</span>
+              <span class="service-tag">Persona Development</span>
+            </div>
+            <a href="contact.html" class="service-card__link" style="margin-top: var(--sp-4);">Start research →</a>
+          </div>
+
+          <div class="service-card service-card--full reveal stagger-1">
+            <div class="service-card__icon">⚡</div>
+            <span class="service-card__number">04</span>
+            <h3 class="service-card__title">Product Design</h3>
+            <p class="service-card__desc">End-to-end product strategy and design. We partner with you from concept to launch — defining product vision, mapping user journeys, and designing every touchpoint with intention.</p>
+            <div class="service-card__tags">
+              <span class="service-tag">Product Strategy</span>
+              <span class="service-tag">Journey Mapping</span>
+              <span class="service-tag">Feature Prioritization</span>
+            </div>
+            <a href="contact.html" class="service-card__link" style="margin-top: var(--sp-4);">Build a product →</a>
+          </div>
+
+          <div class="service-card service-card--full reveal stagger-2">
+            <div class="service-card__icon">🧩</div>
+            <span class="service-card__number">05</span>
+            <h3 class="service-card__title">Design Systems</h3>
+            <p class="service-card__desc">Scalable, consistent component libraries that make your team ship faster and your brand look sharper. We build design systems that become the foundation for years of product growth.</p>
+            <div class="service-card__tags">
+              <span class="service-tag">Component Library</span>
+              <span class="service-tag">Design Tokens</span>
+              <span class="service-tag">Documentation</span>
+            </div>
+            <a href="contact.html" class="service-card__link" style="margin-top: var(--sp-4);">Build a system →</a>
+          </div>
+
+          <div class="service-card service-card--full reveal stagger-3">
+            <div class="service-card__icon">💡</div>
+            <span class="service-card__number">06</span>
+            <h3 class="service-card__title">UX Consultation</h3>
+            <p class="service-card__desc">Strategic design guidance for founders, PMs, and teams who want to make smarter product decisions. We review, advise, and help you build the right things — in the right way.</p>
+            <div class="service-card__tags">
+              <span class="service-tag">Design Review</span>
+              <span class="service-tag">Strategy Sessions</span>
+              <span class="service-tag">Team Workshops</span>
+            </div>
+            <a href="contact.html" class="service-card__link" style="margin-top: var(--sp-4);">Book a call →</a>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ====== WHY CHOOSE US ====== -->
+    <section class="section" style="background: var(--clr-bg-raised);">
+      <div class="container">
+        <div class="section-header--center reveal">
+          <span class="section-label">Why UX Pacific</span>
+          <h2 class="section-title">What Sets Us <em>Apart</em></h2>
+        </div>
+
+        <div class="why-grid">
+          <div class="why-item reveal stagger-1">
+            <div class="why-item__icon">🎯</div>
+            <div>
+              <h4 class="why-item__title">Research-First Always</h4>
+              <p class="why-item__desc">Every decision is backed by user research, data, and real-world testing — not assumptions or trends.</p>
+            </div>
+          </div>
+          <div class="why-item reveal stagger-2">
+            <div class="why-item__icon">🚀</div>
+            <div>
+              <h4 class="why-item__title">Fast Turnaround</h4>
+              <p class="why-item__desc">We work with agility without compromising quality. Sprint-based delivery keeps your product moving forward.</p>
+            </div>
+          </div>
+          <div class="why-item reveal stagger-3">
+            <div class="why-item__icon">🤝</div>
+            <div>
+              <h4 class="why-item__title">True Partnership</h4>
+              <p class="why-item__desc">We embed ourselves in your team, understand your business goals, and design with your success in mind.</p>
+            </div>
+          </div>
+          <div class="why-item reveal stagger-4">
+            <div class="why-item__icon">📐</div>
+            <div>
+              <h4 class="why-item__title">Precision &amp; Craft</h4>
+              <p class="why-item__desc">We obsess over the details — typography, spacing, interactions — because the difference is in the details.</p>
+            </div>
+          </div>
+          <div class="why-item reveal stagger-1">
+            <div class="why-item__icon">🌐</div>
+            <div>
+              <h4 class="why-item__title">Accessible Design</h4>
+              <p class="why-item__desc">Inclusive design is non-negotiable. We build experiences that work for everyone, everywhere.</p>
+            </div>
+          </div>
+          <div class="why-item reveal stagger-2">
+            <div class="why-item__icon">📈</div>
+            <div>
+              <h4 class="why-item__title">Outcome-Driven</h4>
+              <p class="why-item__desc">We don't just design — we measure. Success is defined by real improvements in conversion and satisfaction.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====== CTA ====== -->
+    <section class="cta-section section">
+      <div class="container">
+        <div class="cta-inner reveal">
+          <div class="cta-glow" aria-hidden="true"></div>
+          <div>
+            <p class="section-label" style="margin-bottom: 1rem;">Let's Build Together</p>
+            <h2 class="cta-title">Ready for a <em>Design Partnership</em><br />That Actually Delivers?</h2>
+            <p class="cta-desc">Tell us about your project. We'll come back with a clear plan, honest timeline, and a team you'll love working with.</p>
+          </div>
+          <div class="cta-actions">
+            <a href="contact.html" class="btn btn--primary btn--lg">Get in Touch →</a>
+            <a href="work.html" class="btn btn--ghost">See Our Work</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ====== FOOTER ====== -->
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <div class="footer__grid">
+        <div>
+          <img src="../img/LOGO.png" alt="UX Pacific" class="footer__logo" />
+          <p class="footer__tagline">A design-forward studio building experiences that feel inevitable. Research-driven. Human-centred.</p>
+          <div class="social-links">
+            <a href="https://www.linkedin.com/company/uxpacific/?viewAsMember=true" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+            <a href="https://www.behance.net/uxpacific" target="_blank" rel="noopener noreferrer" aria-label="Behance" class="social-link"><i class="fab fa-behance"></i></a>
+            <a href="https://www.instagram.com/official_uxpacific/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="social-link"><i class="fab fa-instagram"></i></a>
+          </div>
+        </div>
+        <div>
+          <h4 class="footer__col-title">Navigation</h4>
+          <ul class="footer__links">
+            <li><a href="index.html"     class="footer__link">Home</a></li>
+            <li><a href="about.html"     class="footer__link">About Us</a></li>
+            <li><a href="services.html"  class="footer__link">Services</a></li>
+            <li><a href="work.html"      class="footer__link">Work</a></li>
+            <li><a href="ecosystem.html" class="footer__link">Ecosystem</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="footer__col-title">Support</h4>
+          <ul class="footer__links">
+            <li><a href="contact.html" class="footer__link">Contact Us</a></li>
+            <li><a href="faq.html"     class="footer__link">FAQs</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="footer__col-title">Contact</h4>
+          <a href="https://www.google.com/maps?q=404,+Capstone+Building,+Kalgi+Cross+Road,+Ahmedabad" target="_blank" rel="noopener noreferrer" class="footer__contact-item">
+            <i class="fas fa-map-marker-alt"></i><span>404, Capstone Building, Kalgi Cross Road, Ahmedabad</span>
+          </a>
+          <a href="tel:+919274061063" class="footer__contact-item">
+            <i class="fas fa-phone"></i><span>92740-61063</span>
+          </a>
+          <a href="mailto:hello@uxpacific.com" class="footer__contact-item">
+            <i class="fas fa-envelope"></i><span>hello@uxpacific.com</span>
+          </a>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <p class="footer__copy">© 2025 UX Pacific. All rights reserved.</p>
+        <div class="footer__policies">
+          <a href="#" class="footer__policy-link">Privacy Policy</a>
+          <a href="#" class="footer__policy-link">Cookie Policy</a>
+          <a href="#" class="footer__policy-link">Terms &amp; Conditions</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js" defer></script>
+</body>
+</html>
