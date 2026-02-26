@@ -677,76 +677,31 @@ nav>.container>a {
 /* ✅ Mobile Responsive */
 @media (max-width: 768px) {
   .ux-image-container {
-    max-width: 380px;
-    /* ✅ mobile size */
-    height: 343px;
-    /* ✅ mobile height */
-    padding: 10px;
+    display: none !important;
   }
 
   .ux-image {
-    width: 100%;
-    /* image responsive */
+    width: 80%;
     height: auto;
     left: 0;
     bottom: 0;
-    display: none;
+    top: 0;
     margin: 0 auto;
+    display: block;
+    transform: none;
   }
 
-  #d1 {
-    display: none;
+  .floating-tag,
+  .tag-image {
+    display: none !important;
   }
 
-  #d2 {
-    margin-left: 130px;
-    margin-top: -90px;
-
-  }
-
-  #d3 {
-    margin-left: -60px;
-    margin-top: -50px;
-  }
-
-  #d4 {
-    margin-left: -100px;
-    margin-top: 190px;
-  }
-
-  #d5 {
-    margin-left: -250px;
-    margin-top: 148px;
-  }
-
-  #d6 {
-    margin-left: -100px;
-    margin-top: -120px;
-  }
-
-  #d33 {
-    margin-left: -165px;
-    margin-top: -5px;
-  }
-
-  #d44 {
-    margin-left: -50px;
-    margin-top: 185px;
-  }
-
-  #d55 {
-    margin-left: 0px;
-    margin-top: 50px;
-  }
-
-  #d66 {
-    margin-left: 210px;
-    margin-top: 18px;
-  }
-
-  .floating-tag {
-    font-size: 11px;
-    padding: 4px 8px;
+  #fixitBtn {
+    position: relative !important;
+    left: 0 !important;
+    top: 0 !important;
+    margin: 20px auto 0;
+    transform: none !important;
   }
 }
 
@@ -1255,6 +1210,12 @@ nav>.container>a {
     border-radius: 0 0 12px 12px;
   }
 
+  .project-text a.cta-button {
+    margin: 20px auto 0 !important;
+    display: flex !important;
+    justify-content: center;
+  }
+
   .project-text h3 {
     font-size: 1.2rem;
     margin-bottom: 10px;
@@ -1356,49 +1317,120 @@ nav>.container>a {
 .cta-section {
   width: 100%;
   max-width: 1240px;
-  height: auto;
-  background: #0d0d1a;
-  border-radius: 20px;
+  background: #0B0A11;
+  border-radius: 24px;
   overflow: hidden;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 40px auto;
+  margin: 60px auto 100px auto;
   position: relative;
-  margin-bottom: 100px;
-  padding: 2rem;
+  padding: 0;
+  border: 1px solid rgba(92, 110, 172, 0.15);
 }
 
 .dots-bg {
   position: absolute;
   top: 0;
   left: 0;
-  right: 0;
+  right: 50%;
   bottom: 0;
   z-index: 0;
   background: transparent;
+  pointer-events: none;
 }
 
 .dots-bg canvas {
   width: 100%;
   height: 100%;
   display: block;
-  opacity: 0.17;
+  opacity: 0.2;
 }
 
 .cta-container {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
+  align-items: stretch;
   width: 100%;
-  height: auto;
-  border-radius: 20px;
-  gap: 40px;
-  padding: 0px;
+  border-radius: 0;
+  gap: 0;
+  padding: 0;
   position: relative;
   z-index: 1;
-  border: 1px solid rgb(92 110 172 / 23%)
-    /* text/image dots ke upar dikhne ke liye */
+  border: none;
+}
+
+.cta-text {
+  flex: 1;
+  padding: 80px 60px 80px 80px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  text-align: left;
+}
+
+.cta-text h1,
+.cta-text h2 {
+  font-size: 35px;
+  line-height: 1.2;
+  margin-bottom: 20px;
+  font-weight: 600;
+  text-align: left;
+}
+
+.cta-text p {
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: #d1d1d1;
+  margin-bottom: 30px;
+  max-width: 450px;
+  text-align: left;
+}
+
+.cta-text .highlight {
+  font-style: italic;
+  color: #7b61ff;
+  font-weight: 500;
+}
+
+.cta-image {
+  flex: 1;
+  display: flex;
+  align-items: stretch;
+}
+
+.cta-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  object-position: left center;
+}
+
+.cta-section .cta-button {
+  width: auto;
+  min-width: 165px;
+  height: 48px;
+  padding: 0 24px 0 24px;
+  font-size: 16px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #6c47ff, #8a6cfc);
+  box-shadow: 0 0 20px 4px rgba(108, 71, 255, 0.4);
+  font-weight: 600;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+}
+
+.cta-section .cta-button .arrow {
+  position: static;
+  width: 32px;
+  height: 32px;
+  background-size: 24px;
+  background-position: center;
+  border-radius: 50%;
+  display: flex;
+  margin-left: 0;
+  margin-right: -22px;
 }
 
 /* 📱 Mobile Styles */
@@ -4415,7 +4447,7 @@ body {
 
     /* Logo adjustment for mobile */
     #myImage {
-      width: 100px !important;
+      width: 50px !important;
       height: auto !important;
     }
 
@@ -4997,8 +5029,9 @@ body {
     .about-header {
       height: 150px !important;
       background-position-y: -450px !important;
-      padding-top: 20px;
+      /* padding-top: 20px; */
       margin-bottom: 30px;
+      padding: 80px 20px;
     }
 
     .about-header h1 {
@@ -8325,6 +8358,14 @@ body {
   .p-20 {
     padding: 0;
   }
+
+  .gallery-container .img1 {
+    width: 100%;
+    height: auto;
+    display: none !important;
+    object-fit: cover;
+    filter: brightness(0.55) blur(1.5px);
+  }
 }
 
 
@@ -9434,4 +9475,38 @@ h5 {
   .ux-image-container {
     overflow: hidden !important;
   }
+}
+
+/* ── UNIVERSAL ABOUT-HEADER MOBILE RESPONSIVE FIX FOR ALL PAGES ── */
+@media (max-width: 768px) {
+
+  body[class] .about-header,
+  body .about-header,
+  .about-header {
+    height: 150px !important;
+    background-position-y: -450px !important;
+    margin-bottom: 30px !important;
+    padding: 80px 20px !important;
+  }
+
+  body[class] .about-header h1,
+  body .about-header h1,
+  .about-header h1 {
+    font-size: 35px !important;
+    margin-top: 10px !important;
+    margin-bottom: 10px !important;
+  }
+
+  body[class] .innovation-badge-exact,
+  body .innovation-badge-exact,
+  .innovation-badge-exact {
+    font-size: 11px !important;
+    padding: 3px 12px !important;
+    margin-top: 5px !important;
+    width: auto !important;
+    height: auto !important;
+    line-height: normal !important;
+  }
+
+
 }

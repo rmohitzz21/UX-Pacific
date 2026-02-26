@@ -143,16 +143,11 @@
              <h1>Start your UI/UX Journey</h1>
              <p>with creativity, innovation, and modern design.</p>
           </section>
-          <form class="d-flex">
-            <a
-              class="cta-button"
-              href="contact.html"
-              style="width: 155px; height: 42px; text-decoration: none"
-            >
-              Contact Us
-              <span class="arrow"> </span>
+          <div class="d-flex">
+            <a href="contact.html" class="cta-button nav-cta-btn">
+              Contact Us <span class="arrow"></span>
             </a>
-          </form>
+          </div>
         </div>
       </div>
     </nav>
@@ -161,7 +156,7 @@
       <div class="gallery-container">
         <img src="img/bg_ani.gif" class="img1" alt="Abstract background animation" />
       </div>
-      <h1>Our Ecosystem</h1>
+      <h1>Ecosystem</h1>
       <div class="innovation-badge-exact">
         Our ecosystem connects learning, resources, and community in one unified space.<br>
         From UX Shop to UX Academy and UX Community, we empower designers at every stage.
@@ -175,6 +170,49 @@
     </div> -->
 
     <!-- <section class="eco-accordion-container"> -->
+     
+        <h2 class="ux-title" style="margin-top: 50px;">
+        Expand Your Experience With
+        <span class="highlight"> UX Pacific </span>
+      </h2>
+
+    <style>
+      @media (max-width: 768px) {
+        .services {
+          flex-direction: column !important;
+          padding: 20px !important;
+          margin-bottom: 50px !important;
+          gap: 16px !important;
+          overflow: visible !important;
+          display: flex !important;
+        }
+        .service-card {
+          width: 100% !important;
+          flex: none !important;
+          margin: 0 !important;
+          padding: 25px 20px !important;
+          border: 1px solid rgba(255, 255, 255, 0.1) !important;
+          border-radius: 12px !important;
+          background: transparent !important;
+          display: flex !important;
+          justify-content: center !important;
+          align-items: center !important;
+          min-height: 100px !important;
+        }
+        .service-card .service-icon,
+        .service-card p,
+        .service-card a {
+          display: none !important;
+        }
+        .service-card h3 {
+          margin: 0 !important;
+          font-size: 18px !important;
+          font-weight: 500 !important;
+          text-align: center !important;
+          color: white !important;
+        }
+      }
+    </style>
 
     <div class="services">
       <!-- Service 1 -->
@@ -186,7 +224,7 @@
         <p>
          Access premium UI kits, design systems, and templates crafted by industry experts to speed up your workflow and elevate your final products.
         </p>
-        <a href="#" target="_blank" style="text-decoration: none; pointer-events: none;"> View Details &rarr; </a>
+        <a href="#" target="_blank" style="text-decoration: none; color: #6366f1; font-weight: 500;"> View Details &rarr; </a>
       </div>
       <!-- Service 2 -->
       <div class="service-card" onclick="window.open('https://academy.uxpacific.com/', '_blank')" style="cursor: pointer;">
@@ -195,10 +233,9 @@
         </div>
         <h3>UX Academy</h3>
         <p>
-                        Level up your skills with our hands-on workshops, courses, and mentorship programs specifically tailored and designed for future design leaders.
-
+          Level up your skills with our hands-on workshops, courses, and mentorship programs specifically tailored and designed for future design leaders.
         </p>
-        <a href="https://academy.uxpacific.com/" target="_blank" style="text-decoration: none; pointer-events: none;"> View Details &rarr; </a>
+        <a href="https://academy.uxpacific.com/" target="_blank" style="text-decoration: none; color: #6366f1; font-weight: 500;"> View Details &rarr; </a>
       </div>
       <!-- Service 3 -->
       <div class="service-card" onclick="window.open('https://community.uxpacific.com/', '_blank')" style="cursor: pointer;">
@@ -209,7 +246,7 @@
         <p>
           Be part of a thriving network where ideas turn into reality. Join our broader UX Pacific ecosystem community to connect and grow.
         </p>
-        <a href="https://community.uxpacific.com/" target="_blank" style="text-decoration: none; pointer-events: none;"> View Details &rarr; </a>
+        <a href="https://community.uxpacific.com/" target="_blank" style="text-decoration: none; color: #6366f1; font-weight: 500;"> View Details &rarr; </a>
       </div>
     </div>
 
