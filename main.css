@@ -1499,7 +1499,7 @@ nav>.container>a {
 .ecosystem {
   text-align: center;
   padding: 80px 20px;
-  background: #0d0d0d;
+  /* background: #0d0d0d; */
   color: white;
 
 }
@@ -1591,7 +1591,7 @@ nav>.container>a {
 .ecosystem {
   text-align: center;
   padding: 80px 20px;
-  background: #0d0d0d;
+  /* background: #0d0d0d; */
   color: white;
 }
 
@@ -1684,7 +1684,7 @@ nav>.container>a {
 .reviews-section {
   text-align: center;
   padding: 60px 20px;
-  background: #0d0d0d;
+  /* background: #0d0d0d; */
   color: #fff;
 }
 
@@ -9509,4 +9509,252 @@ h5 {
   }
 
 
+}
+
+/* =====================================================================
+   ABOUT PAGE — Premium Stacked 3-Card Layout (Our Story / Mission / Vision)
+   Corporate + interactive hover: border glow, lift, inner light sweep.
+   ===================================================================== */
+
+.abt-cards-section {
+  padding: clamp(2.5rem, 5vw, 4.5rem) clamp(1rem, 4vw, 3rem);
+  max-width: 1200px;
+  margin: 0 auto 2.5rem;
+}
+
+/* ── Flex row that holds the 3 cards ── */
+.abt-cards-inner {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  position: relative;
+}
+
+/* ── Base card shell ── */
+.abt-card {
+  flex: 1;
+  min-width: 0;
+  background: linear-gradient(158deg, #0f0f1e 0%, #0c0c1a 100%);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 20px;
+  padding: clamp(28px, 3.5vw, 48px) clamp(22px, 2.5vw, 36px);
+  position: relative;
+  cursor: default;
+  transition:
+    transform 0.38s cubic-bezier(0.34, 1.4, 0.64, 1),
+    border-color 0.35s ease,
+    box-shadow 0.35s ease,
+    background 0.35s ease;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.38);
+  overflow: hidden;
+}
+
+/* Top accent bar — slides in on hover */
+.abt-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #6147bd, #845ef7, transparent);
+  border-radius: 0 0 3px 3px;
+  transition: width 0.45s ease;
+}
+
+/* Inner radial glow — fades in on hover */
+.abt-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 20px;
+  background: radial-gradient(circle at 50% 0%, rgba(97, 71, 189, 0.07) 0%, transparent 65%);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.35s ease;
+}
+
+/* ── Desktop stacking: side cards drop down, center card elevated ── */
+.abt-card--story {
+  transform: translateY(22px);
+  z-index: 1;
+  margin-right: -16px;
+}
+
+.abt-card--mission {
+  transform: translateY(0);
+  z-index: 3;
+  border-color: rgba(97, 71, 189, 0.26);
+  box-shadow:
+    0 14px 44px rgba(97, 71, 189, 0.14),
+    0 6px 20px rgba(0, 0, 0, 0.4);
+}
+
+.abt-card--vision {
+  transform: translateY(22px);
+  z-index: 1;
+  margin-left: -16px;
+}
+
+/* ── Icon container ── */
+.abt-card__icon-wrap {
+  width: 50px;
+  height: 50px;
+  border-radius: 14px;
+  background: rgba(97, 71, 189, 0.10);
+  border: 1px solid rgba(97, 71, 189, 0.22);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.4rem;
+  transition: background 0.35s ease, border-color 0.35s ease, transform 0.35s ease;
+}
+
+.abt-card__icon-wrap i {
+  font-size: 1.05rem;
+  color: #845ef7;
+  transition: color 0.35s ease;
+}
+
+/* ── Title ── */
+.abt-card__title {
+  font-size: clamp(1.05rem, 1.8vw, 1.28rem);
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 0.85rem;
+  letter-spacing: -0.15px;
+  transition: color 0.3s ease;
+}
+
+/* ── Body copy ── */
+.abt-card__text {
+  font-size: clamp(0.8rem, 1.1vw, 0.88rem);
+  line-height: 1.82;
+  color: rgba(255, 255, 255, 0.46);
+  margin-bottom: 1.6rem;
+  transition: color 0.3s ease;
+}
+
+/* ── Arrow badge ── */
+.abt-card__arrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  background: rgba(97, 71, 189, 0.08);
+  border: 1px solid rgba(97, 71, 189, 0.18);
+  color: #845ef7;
+  font-size: 0.78rem;
+  transition: background 0.35s ease, transform 0.35s ease, border-color 0.35s ease;
+}
+
+/* =========================================================
+   HOVER — smooth corporate lift + border glow + inner light
+   ========================================================= */
+.abt-card:hover {
+  border-color: rgba(97, 71, 189, 0.58);
+  background: linear-gradient(158deg, #111128 0%, #0e0e22 100%);
+  box-shadow:
+    0 22px 60px rgba(97, 71, 189, 0.20),
+    0 8px 20px rgba(0, 0, 0, 0.45);
+  z-index: 10;
+}
+
+/* Each card variant lifts relative to its resting offset */
+.abt-card--story:hover {
+  transform: translateY(10px);
+}
+
+.abt-card--mission:hover {
+  transform: translateY(-14px);
+}
+
+.abt-card--vision:hover {
+  transform: translateY(10px);
+}
+
+.abt-card:hover::before {
+  width: 52%;
+}
+
+.abt-card:hover::after {
+  opacity: 1;
+}
+
+.abt-card:hover .abt-card__icon-wrap {
+  background: rgba(97, 71, 189, 0.22);
+  border-color: rgba(97, 71, 189, 0.50);
+  transform: scale(1.06);
+}
+
+.abt-card:hover .abt-card__icon-wrap i {
+  color: #b09ef5;
+}
+
+.abt-card:hover .abt-card__title {
+  color: #d8cbff;
+}
+
+.abt-card:hover .abt-card__text {
+  color: rgba(255, 255, 255, 0.70);
+}
+
+.abt-card:hover .abt-card__arrow {
+  background: rgba(97, 71, 189, 0.22);
+  border-color: rgba(97, 71, 189, 0.50);
+  transform: translateX(5px);
+}
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+/* Tablet — 2 per row, no overlap */
+@media (max-width: 992px) {
+  .abt-cards-inner {
+    flex-wrap: wrap;
+    gap: 1.25rem;
+  }
+
+  .abt-card {
+    flex: 1 1 calc(50% - 0.625rem);
+    max-width: calc(50% - 0.625rem);
+    transform: none !important;
+    margin: 0 !important;
+    z-index: 1 !important;
+  }
+
+  .abt-card--mission {
+    border-color: rgba(97, 71, 189, 0.26);
+  }
+
+  .abt-card:hover {
+    transform: translateY(-7px) !important;
+  }
+}
+
+/* Mobile — single column */
+@media (max-width: 576px) {
+  .abt-cards-section {
+    padding: 1.5rem 1rem;
+  }
+
+  .abt-cards-inner {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .abt-card {
+    flex: 1 1 100%;
+    max-width: 100%;
+    transform: none !important;
+    margin: 0 !important;
+  }
+
+  .abt-card:hover {
+    transform: translateY(-4px) !important;
+  }
 }

@@ -167,7 +167,7 @@
                   <span class="pro1">• Web</span>
                 </div>
               </div>
-              <p class="project-text mb-0">Revamped the UI/UX through deep heuristic evaluation and competitive benchmarking, delivering a streamlined, user-friendly experience for a global audience.</p>
+              <p class="project-text mb-0">Revamped the UI/UX through deep heuristic evaluation and , delivering a streamlined, user-friendly experience for a global audience.</p>
             </div>
           </div>
 
@@ -245,6 +245,103 @@
                 </div>
               </div>
               <p class="project-text mb-0">We help brands create thoughtful, user-centered digital experiences that are both beautiful and effective.</p>
+            </div>
+          </div>
+
+          <!-- New Article 1 -->
+          <div class="project-card" data-category="articles">
+            <div class="project-image-wrapper shadow-2xl">
+              <img src="img/a-1.webp" alt="Beyond Design Thinking" class="project-img" />
+              <div class="project-overlay">
+                <a href="#" class="view-details-link">Read Article</a>
+              </div>
+            </div>
+            <div class="project-content">
+              <div class="d-flex flex-wrap justify-content-between align-items-center mb-2 gap-2">
+                <h3 class="project-title mb-0">Canva Affinity</h3>
+                <div class="project-tags d-flex flex-wrap align-items-center gap-2">
+                  <span class="pro1">• Design Tools</span>
+                  <span class="pro1">• Creative Workflow</span>
+                </div>
+              </div>
+              <p class="project-text mb-0">How Canva and Affinity tools are redefining creative workflows by blending simplicity with powerful precision for designers.</p>
+            </div>
+          </div>
+
+          <!-- New Article 2 -->
+          <div class="project-card" data-category="articles">
+            <div class="project-image-wrapper shadow-2xl">
+              <img src="img/a-2.webp" alt="Mistakes in the Design Thinking" class="project-img" />
+              <div class="project-overlay">
+                <a href="#" class="view-details-link">Read Article</a>
+              </div>
+            </div>
+            <div class="project-content">
+              <div class="d-flex flex-wrap justify-content-between align-items-center mb-2 gap-2">
+                <h3 class="project-title mb-0">AI: Loyal Assistant or Silent Takeover?</h3>
+                <div class="project-tags d-flex flex-wrap align-items-center gap-2">
+                  <span class="pro1">• AI Ethics</span>
+                  <span class="pro1">• Future of Work</span>
+                </div>
+              </div>
+              <p class="project-text mb-0">Exploring whether AI acts as a supportive design partner or quietly reshapes the future of work and creativity.</p>
+            </div>
+          </div>
+
+          <!-- New Article 3 -->
+          <div class="project-card" data-category="articles">
+            <div class="project-image-wrapper shadow-2xl">
+              <img src="img/a-3.webp" alt="How Much AI Is Too Much?" class="project-img" />
+              <div class="project-overlay">
+                <a href="#" class="view-details-link">Read Article</a>
+              </div>
+            </div>
+           <div class="project-content">
+              <div class="d-flex flex-wrap justify-content-between align-items-center mb-2 gap-2">
+                <h3 class="project-title mb-0">Beyond Design Thinking</h3>
+                <div class="project-tags d-flex flex-wrap align-items-center gap-2">
+                  <span class="pro1">• Design Thinking</span>
+                  <span class="pro1">• Systems Thinking</span>
+                </div>
+              </div>
+              <p class="project-text mb-0">A deeper look at what lies beyond design thinking — blending empathy, systems thinking, and strategic creativity to solve complex problems.</p>
+            </div>
+          </div>
+
+          <div class="project-card" data-category="articles">
+            <div class="project-image-wrapper shadow-2xl">
+              <img src="img/a-4.jpeg"How Much AI Is Too Much?" class="project-img" />
+              <div class="project-overlay">
+                <a href="#" class="view-details-link">Read Article</a>
+              </div>
+            </div>
+            <div class="project-content">
+              <div class="d-flex flex-wrap justify-content-between align-items-center mb-2 gap-2">
+                <h3 class="project-title mb-0">How Much AI Is Too Much?</h3>
+                <div class="project-tags d-flex flex-wrap align-items-center gap-2">
+                  <span class="pro1">• AI Boundaries</span>
+                  <span class="pro1">• UX Balance</span>
+                </div>
+              </div>
+              <p class="project-text mb-0">An exploration of finding the right balance with AI — maximizing benefits without losing human creativity and control.</p>
+            </div>
+          </div>
+            <div class="project-card" data-category="articles">
+            <div class="project-image-wrapper shadow-2xl">
+              <img src="img/a-5.jpeg" alt="How Much AI Is Too Much?" class="project-img" />
+              <div class="project-overlay">
+                <a href="#" class="view-details-link">Read Article</a>
+              </div>
+            </div>
+            <div class="project-content">
+              <div class="d-flex flex-wrap justify-content-between align-items-center mb-2 gap-2">
+                <h3 class="project-title mb-0">Mistakes in the Design Thinking</h3>
+                <div class="project-tags d-flex flex-wrap align-items-center gap-2">
+                  <span class="pro1">• Common Pitfalls</span>
+                  <span class="pro1">• Better Design Practice</span>
+                </div>
+              </div>
+              <p class="project-text mb-0">A critical look at why design thinking can fall short in real projects and how to avoid common pitfalls.</p>
             </div>
           </div>
         </div>
@@ -471,6 +568,11 @@
               const cats = card.dataset.category || '';
               card.style.display = (filter === 'all' || cats.includes(filter)) ? '' : 'none';
             });
+            
+            // Allow View More button logic to recalculate based on newly filtered items
+            if (window.applyViewMoreLogic) {
+                window.applyViewMoreLogic();
+            }
           });
 
           btn.addEventListener('keydown', e => {

@@ -323,39 +323,73 @@ document.addEventListener('DOMContentLoaded', function () {
     const toggleBtn = document.getElementById('toggle-view-btn');
     const btnText = document.getElementById('btn-text');
     const btnArrow = document.getElementById('btn-arrow');
-    const extraCards = document.querySelectorAll('.extra-card');
     const projectGrid = document.getElementById('project-grid');
     
-    let isExpanded = false;
+    if (toggleBtn && projectGrid) {
+        const allCards = Array.from(projectGrid.querySelectorAll('.project-card'));
+        const btnContainer = toggleBtn.parentElement;
+        
+        let isExpanded = false;
+        let extraCards = [];
 
-    if (toggleBtn && btnText && btnArrow && extraCards.length > 0 && projectGrid) {
+        window.applyViewMoreLogic = function() {
+            // Reset existing state
+            isExpanded = false;
+            allCards.forEach(card => card.classList.remove('extra-card', 'is-visible'));
+
+            // Check which cards are actively supposed to be visible (not hidden by filter inline styles)
+            const visibleCards = allCards.filter(card => card.style.display !== 'none');
+
+            if (visibleCards.length > 4) {
+                // If there are more than 4 visible cards, hide the rest under "View More"
+                extraCards = visibleCards.slice(4);
+                extraCards.forEach(card => card.classList.add('extra-card'));
+                if (btnContainer) btnContainer.style.display = 'block';
+            } else {
+                extraCards = [];
+                if (btnContainer) btnContainer.style.display = 'none';
+            }
+
+            // Reset button text
+            if (btnText) btnText.textContent = 'View More';
+            if (btnArrow) btnArrow.classList.remove('arrow-rotated');
+            toggleBtn.classList.remove('btn-gray');
+            toggleBtn.classList.add('btn-purple');
+        };
+
         toggleBtn.addEventListener('click', function () {
+            if (extraCards.length === 0) return;
+
             isExpanded = !isExpanded;
 
             if (isExpanded) {
                 extraCards.forEach(card => card.classList.add('is-visible'));
                 
-                btnText.textContent = 'View Less';
-                btnArrow.classList.add('arrow-rotated');
+                if (btnText) btnText.textContent = 'View Less';
+                if (btnArrow) btnArrow.classList.add('arrow-rotated');
                 toggleBtn.classList.remove('btn-purple');
                 toggleBtn.classList.add('btn-gray');
 
             } else {
-                const firstCard = projectGrid.querySelector('.project-card:first-child');
+                const firstCard = projectGrid.querySelector('.project-card:not([style*="display: none"])');
                 extraCards.forEach(card => card.classList.remove('is-visible'));
                 
                 setTimeout(() => {
                     if (firstCard) {
+                        // Optional scroll-to-top of grid for smoother experience
                         firstCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
                     }
-                }, 500);
+                }, 400);
 
-                btnText.textContent = 'View More';
-                btnArrow.classList.remove('arrow-rotated');
+                if (btnText) btnText.textContent = 'View More';
+                if (btnArrow) btnArrow.classList.remove('arrow-rotated');
                 toggleBtn.classList.remove('btn-gray');
                 toggleBtn.classList.add('btn-purple');
             }
         });
+
+        // Initialize on load
+        window.applyViewMoreLogic();
     }
 });
 // --- END: VIEW MORE/LESS JAVASCRIPT ---
