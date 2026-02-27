@@ -18,6 +18,156 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="main.css" />
+  <style>
+    /* ── Filter Bar ── */
+    .filter-bar {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: #101028;
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 9999px;
+      padding: 4px;
+      width: fit-content;
+      margin: 0 auto 48px;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+    .filter-btn {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: #8888b0;
+      padding: 8px 20px;
+      border-radius: 9999px;
+      border: none;
+      background: transparent;
+      cursor: pointer;
+      transition: all 250ms ease;
+      white-space: nowrap;
+    }
+    .filter-btn:hover { color: #ffffff; }
+    .filter-btn.active {
+      background: linear-gradient(90deg, #6147bd, #a78bfa);
+      color: #ffffff;
+      box-shadow: 0 0 30px rgba(124,95,230,0.25);
+    }
+
+    /* ── Work Grid ── */
+    .work-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+    }
+
+    /* ── Work Cards ── */
+    .work-card {
+      background: #101028;
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 24px;
+      overflow: hidden;
+      transition: all 400ms ease;
+      cursor: pointer;
+    }
+    .work-card:hover {
+      border-color: rgba(124,95,230,0.35);
+      transform: translateY(-6px);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.7), 0 0 30px rgba(124,95,230,0.25);
+    }
+    .work-card__image {
+      position: relative;
+      overflow: hidden;
+      aspect-ratio: 16/10;
+      background: #14143a;
+    }
+    .work-card__image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .work-card:hover .work-card__image img { transform: scale(1.05); }
+    .work-card__overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(7,7,26,0.7);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 250ms ease;
+    }
+    .work-card:hover .work-card__overlay { opacity: 1; }
+    .work-card__view-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: #ffffff;
+      background: linear-gradient(90deg, #6147bd, #a78bfa);
+      padding: 10px 24px;
+      border-radius: 9999px;
+      text-decoration: none;
+      transform: translateY(8px);
+      transition: transform 400ms cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 250ms ease;
+    }
+    .work-card:hover .work-card__view-btn {
+      transform: translateY(0);
+      box-shadow: 0 4px 24px rgba(124,95,230,0.45);
+    }
+    .work-card__body { padding: clamp(1.25rem, 2.5vw, 2rem); }
+    .work-card__tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+    .work-tag {
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: #a78bfa;
+      background: rgba(124,95,230,0.12);
+      border: 1px solid rgba(124,95,230,0.18);
+      padding: 4px 10px;
+      border-radius: 9999px;
+    }
+    .work-card__title {
+      font-family: 'Inter', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #ffffff;
+      margin-bottom: 12px;
+      line-height: 1.25;
+    }
+    .work-card__desc {
+      font-size: 0.875rem;
+      color: #8888b0;
+      line-height: 1.7;
+      margin: 0;
+    }
+    .work-card--featured { grid-column: span 2; }
+    .work-card--featured .work-card__image { aspect-ratio: 16/7; }
+
+    @keyframes fadeInScale {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .hidden-card {
+      display: none !important;
+    }
+
+    .view-more-wrap { text-align: center; margin-top: 48px; }
+    .btn-arrow-icon { width: 18px; height: 18px; transition: transform 250ms ease; }
+
+    @media (max-width: 768px) {
+      .work-grid { grid-template-columns: 1fr; }
+      .work-card--featured { grid-column: span 1; }
+      .work-card--featured .work-card__image { aspect-ratio: 16/10; }
+      .filter-bar { max-width: calc(100vw - 32px); }
+    }
+  </style>
   </head>
 
   <body class="project-page">
@@ -61,7 +211,8 @@
 
             <!-- MOBILE ONLY -->
             <li class="nav-item d-lg-none">
-              <a class="nav-link" href="contact.html">Contact Us</a>
+              <a class="nav-link" href="contact.html">Let's Talk
+</a>
             </li>
             <li class="nav-item d-lg-none">
               <a class="nav-link" href="faq.html">FAQ</a>
@@ -74,7 +225,8 @@
 
           <div class="d-flex">
             <a href="contact.html" class="cta-button nav-cta-btn">
-              Contact Us <span class="arrow"></span>
+              Let's Talk
+ <span class="arrow"></span>
             </a>
           </div>
         </div>
@@ -92,269 +244,241 @@
       </div>
     </section>
 
-    <!-- Project Cards Section -->
+    <!-- Work Cards Section -->
     <section class="projects-section">
       <div class="projects-container">
-        <h2 class="section-title">
-          Where <span>Strategy</span> Meets <span>Screens</span>
-        </h2>
 
-        <div class="work-categories">
-          <ul class="work-category-list" role="tablist" aria-label="Filter projects by category">
-            <li class="work-filter-btn active" data-filter="all" role="tab" aria-selected="true" tabindex="0">All</li>
-            <li class="work-filter-sep" aria-hidden="true">|</li>
-            <li class="work-filter-btn" data-filter="projects" role="tab" aria-selected="false" tabindex="0">Projects</li>
-            <li class="work-filter-sep" aria-hidden="true">|</li>
-            <li class="work-filter-btn" data-filter="case-studies" role="tab" aria-selected="false" tabindex="0">Case Studies</li>
-            <li class="work-filter-sep" aria-hidden="true">|</li>
-            <li class="work-filter-btn" data-filter="articles" role="tab" aria-selected="false" tabindex="0">Articles</li>
-          </ul>
+        <!-- Filter Bar -->
+        <div class="filter-bar" role="tablist" aria-label="Filter work by category">
+          <button class="filter-btn active" data-filter="all" role="tab" aria-selected="true">All</button>
+          <button class="filter-btn" data-filter="projects" role="tab" aria-selected="false">Projects</button>
+          <button class="filter-btn" data-filter="case-studies" role="tab" aria-selected="false">Case Studies</button>
+          <button class="filter-btn" data-filter="articles" role="tab" aria-selected="false">Articles</button>
         </div>
 
+        <!-- Work Grid -->
+        <div class="work-grid" id="work-grid">
 
-        <div class="project-grid" id="project-grid">
-          <div class="project-card" data-category="projects">
-            <div class="project-image-wrapper shadow-2xl">
-              <img src="img/project3.webp" alt="UX Audit of Distinct Buzz website" class="project-img" />
-              <div class="project-overlay">
-                <a href="https://www.behance.net/gallery/226740155/UX-Audit-Distinct-Buzz" class="view-details-link" target="_blank" rel="noopener noreferrer">View Details</a>
+          <div class="work-card " data-category="projects">
+            <div class="work-card__image">
+              <img src="img/project3.webp" alt="UX Audit of Distinct Buzz website" loading="lazy" />
+              <div class="work-card__overlay">
+                <a href="https://www.behance.net/gallery/226740155/UX-Audit-Distinct-Buzz" class="work-card__view-btn" target="_blank" rel="noopener noreferrer">View Details →</a>
               </div>
             </div>
-            <div class="project-content">
-              <div class="d-flex flex-wrap justify-content-between align-items-center mb-2 gap-2">
-                <h3 class="project-title mb-0">Distinct Buzz</h3>
-                <div class="project-tags d-flex flex-wrap align-items-center gap-2">
-                  <span class="pro1">• UX Audit</span>
-                  <span class="pro1">• Web</span>
-                </div>
+            <div class="work-card__body">
+              <div class="work-card__tags">
+                <span class="work-tag">UX Audit</span>
+                <span class="work-tag">Web</span>
+                <span class="work-tag">Featured</span>
               </div>
-              <p class="project-text mb-0">Audited for Impact — we uncovered usability gaps and friction points, resulting in smoother navigation and higher engagement for Distinct Buzz.</p>
-            </div>
-          </div>
-
-          <div class="project-card" data-category="projects">
-            <div class="project-image-wrapper shadow-2xl">
-              <img src="img/project2.webp" alt="UX Audit of CEDAR Himalaya platform" class="project-img" />
-              <div class="project-overlay">
-                <a href="https://www.behance.net/gallery/226741471/UX-Audit-CEDAR-Himalaya" class="view-details-link" target="_blank" rel="noopener noreferrer">View Details</a>
-              </div>
-            </div>
-            <div class="project-content">
-              <div class="d-flex flex-wrap justify-content-between align-items-center mb-2 gap-2">
-                <h3 class="project-title mb-0">CEDAR Himalaya</h3>
-                <div class="project-tags d-flex flex-wrap align-items-center gap-2">
-                  <span class="pro1">• UI/UX</span>
-                  <span class="pro1">• UX Audit</span>
-                  <span class="pro1">• Web</span>
-                </div>
-              </div>
-              <p class="project-text mb-0">Designing for Change — we aligned their digital experience with their sustainable mountain development mission, improving accessibility and user trust.</p>
+              <h3 class="work-card__title">Distinct Buzz</h3>
+              <p class="work-card__desc">Audited for Impact — we uncovered usability gaps and friction points, resulting in smoother navigation and higher engagement. A comprehensive UX review that transformed the platform's core user flows.</p>
             </div>
           </div>
 
-          <div class="project-card" data-category="case-studies">
-            <div class="project-image-wrapper shadow-2xl">
-              <img src="img/project1.webp" alt="Case study: Survey Pacific website redesign" class="project-img" />
-              <div class="project-overlay">
-                <a href="https://www.behance.net/gallery/207413041/Case-Study-on-Market-Research-FirmSurvey-Pacific" class="view-details-link" target="_blank" rel="noopener noreferrer">View Details</a>
+          <div class="work-card" data-category="projects">
+            <div class="work-card__image">
+              <img src="img/project2.webp" alt="UX Audit of CEDAR Himalaya" loading="lazy" />
+              <div class="work-card__overlay">
+                <a href="https://www.behance.net/gallery/226741471/UX-Audit-CEDAR-Himalaya" class="work-card__view-btn" target="_blank" rel="noopener noreferrer">View Details →</a>
               </div>
             </div>
-            <div class="project-content">
-              <div class="d-flex flex-wrap justify-content-between align-items-center mb-2 gap-2">
-                <h3 class="project-title mb-0">Survey Pacific</h3>
-                <div class="project-tags d-flex flex-wrap align-items-center gap-2">
-                  <span class="pro1">• Case Study</span>
-                  <span class="pro1">• Web</span>
-                </div>
+            <div class="work-card__body">
+              <div class="work-card__tags">
+                <span class="work-tag">UI/UX</span>
+                <span class="work-tag">UX Audit</span>
+                <span class="work-tag">Web</span>
               </div>
-              <p class="project-text mb-0">Revamped the UI/UX through deep heuristic evaluation and , delivering a streamlined, user-friendly experience for a global audience.</p>
-            </div>
-          </div>
-
-          <div class="project-card" data-category="case-studies projects">
-            <div class="project-image-wrapper shadow-2xl">
-              <img src="img/milan.webp" alt="Detailed UX Audit for Milan Pipe" class="project-img" />
-              <div class="project-overlay">
-                <a href="https://www.behance.net/gallery/235343557/Detailed-UX-Audit-for-Milan-Pipe" class="view-details-link" target="_blank" rel="noopener noreferrer">View Details</a>
-              </div>
-            </div>
-            <div class="project-content">
-              <div class="d-flex flex-wrap justify-content-between align-items-center mb-2 gap-2">
-                <h3 class="project-title mb-0">Milan Pipe</h3>
-                <div class="project-tags d-flex flex-wrap align-items-center gap-2">
-                  <span class="pro1">• Case Study</span>
-                  <span class="pro1">• Web</span>
-                </div>
-              </div>
-              <p class="project-text mb-0">We help brands create thoughtful, user-centered digital experiences that are both beautiful and effective.</p>
+              <h3 class="work-card__title">CEDAR Himalaya</h3>
+              <p class="work-card__desc">Designing for Change — aligning their digital experience with a sustainable mountain development mission, improving accessibility and user trust.</p>
             </div>
           </div>
 
-          <!-- Extra cards (toggled via View More) -->
-          <div class="project-card extra-card" data-category="projects">
-            <div class="project-image-wrapper">
-              <img src="img/Radhe-Krishna.webp" alt="Radhe Krishna dashboard UI design" class="project-img" />
-              <div class="project-overlay">
-                <a href="https://www.behance.net/uxpacific" class="view-details-link" target="_blank" rel="noopener noreferrer">View Details</a>
+          <div class="work-card" data-category="case-studies">
+            <div class="work-card__image">
+              <img src="img/project1.webp" alt="Survey Pacific Case Study" loading="lazy" />
+              <div class="work-card__overlay">
+                <a href="https://www.behance.net/gallery/207413041/Case-Study-on-Market-Research-FirmSurvey-Pacific" class="work-card__view-btn" target="_blank" rel="noopener noreferrer">View Case Study →</a>
               </div>
             </div>
-            <div class="project-content">
-              <div class="d-flex flex-wrap justify-content-between align-items-center mb-2 gap-2">
-                <h3 class="project-title mb-0">Radhe Krishna</h3>
-                <div class="project-tags d-flex flex-wrap align-items-center gap-2">
-                  <span class="pro1">• Dashboard</span>
-                  <span class="pro1">• Web App</span>
-                </div>
+            <div class="work-card__body">
+              <div class="work-card__tags">
+                <span class="work-tag">Case Study</span>
+                <span class="work-tag">Web</span>
               </div>
-              <p class="project-text mb-0">We help brands create thoughtful, user-centered digital experiences that are both beautiful and effective.</p>
+              <h3 class="work-card__title">Survey Pacific</h3>
+              <p class="work-card__desc">Revamped the UI/UX through deep heuristic evaluation, delivering a streamlined, user-friendly experience for a global research audience.</p>
             </div>
           </div>
 
-          <div class="project-card extra-card" data-category="projects">
-            <div class="project-image-wrapper">
-              <img src="img/Icard.webp" alt="UX Audit for ICard India mobile app" class="project-img" />
-              <div class="project-overlay">
-                <a href="https://www.behance.net/gallery/233248725/UX-Audit-for-Icard-India" class="view-details-link" target="_blank" rel="noopener noreferrer">View Details</a>
+          <div class="work-card" data-category="case-studies projects">
+            <div class="work-card__image">
+              <img src="img/milan.webp" alt="Detailed UX Audit for Milan Pipe" loading="lazy" />
+              <div class="work-card__overlay">
+                <a href="https://www.behance.net/gallery/235343557/Detailed-UX-Audit-for-Milan-Pipe" class="work-card__view-btn" target="_blank" rel="noopener noreferrer">View Details →</a>
               </div>
             </div>
-            <div class="project-content">
-              <div class="d-flex flex-wrap justify-content-between align-items-center mb-2 gap-2">
-                <h3 class="project-title mb-0">ICard</h3>
-                <div class="project-tags d-flex flex-wrap align-items-center gap-2">
-                  <span class="pro1">• Mobile</span>
-                  <span class="pro1">• UI/UX</span>
-                </div>
+            <div class="work-card__body">
+              <div class="work-card__tags">
+                <span class="work-tag">Case Study</span>
+                <span class="work-tag">Web</span>
               </div>
-              <p class="project-text mb-0">We help brands create thoughtful, user-centered digital experiences that are both beautiful and effective.</p>
+              <h3 class="work-card__title">Milan Pipe</h3>
+              <p class="work-card__desc">A thorough UX audit revealing key friction points and opportunities, helping Milan Pipe achieve a more intuitive B2B digital experience.</p>
             </div>
           </div>
 
-          <div class="project-card extra-card" data-category="projects">
-            <div class="project-image-wrapper">
-              <img src="img/God-Incorporation.webp" alt="God Incorporation mobile UI/UX design" class="project-img" />
-              <div class="project-overlay">
-                <a href="https://www.behance.net/uxpacific" class="view-details-link" target="_blank" rel="noopener noreferrer">View Details</a>
+          <!-- Extra cards (View More) -->
+          <div class="work-card" data-category="projects">
+            <div class="work-card__image">
+              <img src="img/Radhe-Krishna.webp" alt="Radhe Krishna Dashboard Design" loading="lazy" />
+              <div class="work-card__overlay">
+                <a href="https://www.behance.net/uxpacific" class="work-card__view-btn" target="_blank" rel="noopener noreferrer">View Details →</a>
               </div>
             </div>
-            <div class="project-content">
-              <div class="d-flex flex-wrap justify-content-between align-items-center mb-2 gap-2">
-                <h3 class="project-title mb-0">God Incorporation</h3>
-                <div class="project-tags d-flex flex-wrap align-items-center gap-2">
-                  <span class="pro1">• Mobile</span>
-                  <span class="pro1">• UI/UX</span>
-                </div>
+            <div class="work-card__body">
+              <div class="work-card__tags">
+                <span class="work-tag">Dashboard</span>
+                <span class="work-tag">Web App</span>
               </div>
-              <p class="project-text mb-0">We help brands create thoughtful, user-centered digital experiences that are both beautiful and effective.</p>
-            </div>
-          </div>
-
-          <!-- New Article 1 -->
-          <div class="project-card" data-category="articles">
-            <div class="project-image-wrapper shadow-2xl">
-              <img src="img/a-1.webp" alt="Beyond Design Thinking" class="project-img" />
-              <div class="project-overlay">
-                <a href="#" class="view-details-link">Read Article</a>
-              </div>
-            </div>
-            <div class="project-content">
-              <div class="d-flex flex-wrap justify-content-between align-items-center mb-2 gap-2">
-                <h3 class="project-title mb-0">Canva Affinity</h3>
-                <div class="project-tags d-flex flex-wrap align-items-center gap-2">
-                  <span class="pro1">• Design Tools</span>
-                  <span class="pro1">• Creative Workflow</span>
-                </div>
-              </div>
-              <p class="project-text mb-0">How Canva and Affinity tools are redefining creative workflows by blending simplicity with powerful precision for designers.</p>
+              <h3 class="work-card__title">Radhe Krishna</h3>
+              <p class="work-card__desc">Thoughtful, user-centered dashboard design that delivers complex data in a clear, actionable, and visually refined interface.</p>
             </div>
           </div>
 
-          <!-- New Article 2 -->
-          <div class="project-card" data-category="articles">
-            <div class="project-image-wrapper shadow-2xl">
-              <img src="img/a-2.webp" alt="Mistakes in the Design Thinking" class="project-img" />
-              <div class="project-overlay">
-                <a href="#" class="view-details-link">Read Article</a>
+          <div class="work-card" data-category="projects">
+            <div class="work-card__image">
+              <img src="img/Icard.webp" alt="ICard India Mobile UX Audit" loading="lazy" />
+              <div class="work-card__overlay">
+                <a href="https://www.behance.net/gallery/233248725/UX-Audit-for-Icard-India" class="work-card__view-btn" target="_blank" rel="noopener noreferrer">View Details →</a>
               </div>
             </div>
-            <div class="project-content">
-              <div class="d-flex flex-wrap justify-content-between align-items-center mb-2 gap-2">
-                <h3 class="project-title mb-0">AI: Loyal Assistant or Silent Takeover?</h3>
-                <div class="project-tags d-flex flex-wrap align-items-center gap-2">
-                  <span class="pro1">• AI Ethics</span>
-                  <span class="pro1">• Future of Work</span>
-                </div>
+            <div class="work-card__body">
+              <div class="work-card__tags">
+                <span class="work-tag">Mobile</span>
+                <span class="work-tag">UI/UX</span>
               </div>
-              <p class="project-text mb-0">Exploring whether AI acts as a supportive design partner or quietly reshapes the future of work and creativity.</p>
+              <h3 class="work-card__title">ICard India</h3>
+              <p class="work-card__desc">Mobile UX audit uncovering usability barriers in the ICard experience, with a clear roadmap to improve onboarding and retention.</p>
             </div>
           </div>
 
-          <!-- New Article 3 -->
-          <div class="project-card" data-category="articles">
-            <div class="project-image-wrapper shadow-2xl">
-              <img src="img/a-3.webp" alt="How Much AI Is Too Much?" class="project-img" />
-              <div class="project-overlay">
-                <a href="#" class="view-details-link">Read Article</a>
+          <div class="work-card" data-category="projects">
+            <div class="work-card__image">
+              <img src="img/God-Incorporation.webp" alt="God Incorporation Mobile UI/UX Design" loading="lazy" />
+              <div class="work-card__overlay">
+                <a href="https://www.behance.net/uxpacific" class="work-card__view-btn" target="_blank" rel="noopener noreferrer">View Details →</a>
               </div>
             </div>
-           <div class="project-content">
-              <div class="d-flex flex-wrap justify-content-between align-items-center mb-2 gap-2">
-                <h3 class="project-title mb-0">Beyond Design Thinking</h3>
-                <div class="project-tags d-flex flex-wrap align-items-center gap-2">
-                  <span class="pro1">• Design Thinking</span>
-                  <span class="pro1">• Systems Thinking</span>
-                </div>
+            <div class="work-card__body">
+              <div class="work-card__tags">
+                <span class="work-tag">Mobile</span>
+                <span class="work-tag">UI/UX</span>
               </div>
-              <p class="project-text mb-0">A deeper look at what lies beyond design thinking — blending empathy, systems thinking, and strategic creativity to solve complex problems.</p>
+              <h3 class="work-card__title">God Incorporation</h3>
+              <p class="work-card__desc">Thoughtful, user-centered mobile design delivering engaging and intuitive experiences that connect brands with their audience.</p>
             </div>
           </div>
 
-          <div class="project-card" data-category="articles">
-            <div class="project-image-wrapper shadow-2xl">
-              <img src="img/a-4.jpeg"How Much AI Is Too Much?" class="project-img" />
-              <div class="project-overlay">
-                <a href="#" class="view-details-link">Read Article</a>
+          <!-- Articles -->
+          <div class="work-card" data-category="articles">
+            <div class="work-card__image">
+              <img src="img/a-1.webp" alt="Canva vs Affinity Article" loading="lazy" />
+              <div class="work-card__overlay">
+                <a href="#" class="work-card__view-btn">Read Article →</a>
               </div>
             </div>
-            <div class="project-content">
-              <div class="d-flex flex-wrap justify-content-between align-items-center mb-2 gap-2">
-                <h3 class="project-title mb-0">How Much AI Is Too Much?</h3>
-                <div class="project-tags d-flex flex-wrap align-items-center gap-2">
-                  <span class="pro1">• AI Boundaries</span>
-                  <span class="pro1">• UX Balance</span>
-                </div>
+            <div class="work-card__body">
+              <div class="work-card__tags">
+                <span class="work-tag">Design Tools</span>
+                <span class="work-tag">Creative Workflow</span>
               </div>
-              <p class="project-text mb-0">An exploration of finding the right balance with AI — maximizing benefits without losing human creativity and control.</p>
-            </div>
-          </div>
-            <div class="project-card" data-category="articles">
-            <div class="project-image-wrapper shadow-2xl">
-              <img src="img/a-5.jpeg" alt="How Much AI Is Too Much?" class="project-img" />
-              <div class="project-overlay">
-                <a href="#" class="view-details-link">Read Article</a>
-              </div>
-            </div>
-            <div class="project-content">
-              <div class="d-flex flex-wrap justify-content-between align-items-center mb-2 gap-2">
-                <h3 class="project-title mb-0">Mistakes in the Design Thinking</h3>
-                <div class="project-tags d-flex flex-wrap align-items-center gap-2">
-                  <span class="pro1">• Common Pitfalls</span>
-                  <span class="pro1">• Better Design Practice</span>
-                </div>
-              </div>
-              <p class="project-text mb-0">A critical look at why design thinking can fall short in real projects and how to avoid common pitfalls.</p>
+              <h3 class="work-card__title">Canva vs Affinity</h3>
+              <p class="work-card__desc">How Canva and Affinity tools are redefining creative workflows by blending simplicity with powerful precision for designers.</p>
             </div>
           </div>
+
+          <div class="work-card" data-category="articles">
+            <div class="work-card__image">
+              <img src="img/a-2.webp" alt="AI Loyal Assistant Article" loading="lazy" />
+              <div class="work-card__overlay">
+                <a href="#" class="work-card__view-btn">Read Article →</a>
+              </div>
+            </div>
+            <div class="work-card__body">
+              <div class="work-card__tags">
+                <span class="work-tag">AI Ethics</span>
+                <span class="work-tag">Future of Work</span>
+              </div>
+              <h3 class="work-card__title">AI: Loyal Assistant or Silent Takeover?</h3>
+              <p class="work-card__desc">Exploring whether AI acts as a supportive design partner or quietly reshapes the future of work and creativity.</p>
+            </div>
+          </div>
+
+          <div class="work-card" data-category="articles">
+            <div class="work-card__image">
+              <img src="img/a-3.webp" alt="Beyond Design Thinking Article" loading="lazy" />
+              <div class="work-card__overlay">
+                <a href="#" class="work-card__view-btn">Read Article →</a>
+              </div>
+            </div>
+            <div class="work-card__body">
+              <div class="work-card__tags">
+                <span class="work-tag">Design Thinking</span>
+                <span class="work-tag">Systems Thinking</span>
+              </div>
+              <h3 class="work-card__title">Beyond Design Thinking</h3>
+              <p class="work-card__desc">A deeper look at what lies beyond design thinking — blending empathy, systems thinking, and strategic creativity to solve complex problems.</p>
+            </div>
+          </div>
+
+          <div class="work-card" data-category="articles">
+            <div class="work-card__image">
+              <img src="img/a-4.jpeg" alt="How Much AI Is Too Much?" loading="lazy" />
+              <div class="work-card__overlay">
+                <a href="#" class="work-card__view-btn">Read Article →</a>
+              </div>
+            </div>
+            <div class="work-card__body">
+              <div class="work-card__tags">
+                <span class="work-tag">AI Boundaries</span>
+                <span class="work-tag">UX Balance</span>
+              </div>
+              <h3 class="work-card__title">How Much AI Is Too Much?</h3>
+              <p class="work-card__desc">An exploration of finding the right balance with AI — maximizing benefits without losing human creativity and control.</p>
+            </div>
+          </div>
+
+          <div class="work-card" data-category="articles">
+            <div class="work-card__image">
+              <img src="img/a-5.jpeg" alt="Mistakes in Design Thinking" loading="lazy" />
+              <div class="work-card__overlay">
+                <a href="#" class="work-card__view-btn">Read Article →</a>
+              </div>
+            </div>
+            <div class="work-card__body">
+              <div class="work-card__tags">
+                <span class="work-tag">Common Pitfalls</span>
+                <span class="work-tag">Better Practice</span>
+              </div>
+              <h3 class="work-card__title">Mistakes in Design Thinking</h3>
+              <p class="work-card__desc">A critical look at why design thinking can fall short in real projects and how to avoid the most common pitfalls.</p>
+            </div>
+          </div>
+
         </div>
 
-        <!-- View More Button -->
-        <div class="text-center mt-4">
-          <button id="toggle-view-btn" class="view-more-btn btn-purple">
-            <span id="btn-text">View More</span>
-            <svg id="btn-arrow" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3" stroke="currentColor" class="btn-arrow-icon" aria-hidden="true">
+        <!-- View More -->
+        <div class="view-more-wrap">
+          <button id="view-more-btn" class="view-more-btn btn-purple" style="gap: 10px;">
+            <span class="btn-text">View More</span>
+            <svg class="btn-arrow-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" aria-hidden="true">
               <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
             </svg>
           </button>
         </div>
+
       </div>
     </section>
 
@@ -438,7 +562,8 @@
           <div class="col-md-2 col-3">
             <h4 class="ft_link">Support</h4>
             <ul class="q_link">
-              <li><a href="contact.html">Contact us</a></li>
+              <li><a href="contact.html">Let's Talk
+</a></li>
               <li><a href="faq.html">FAQs</a></li>
             </ul>
           </div>
@@ -494,7 +619,8 @@
           <div class="col-md-2 col-12">
             <h4 class="ft_link">Support</h4>
             <ul class="q_link">
-              <li><a href="contact.html">Contact us</a></li>
+              <li><a href="contact.html">Let's Talk
+</a></li>
               <li><a href="faq.html">FAQs</a></li>
             </ul>
           </div>
@@ -547,38 +673,89 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="main.js"></script>
     <script>
-      document.addEventListener("DOMContentLoaded", () => {
-        const filterBtns = document.querySelectorAll('.work-filter-btn');
-        const cards      = document.querySelectorAll('.project-card');
+      document.addEventListener('DOMContentLoaded', () => {
+        const filterBtns  = document.querySelectorAll('.filter-btn');
+        const workCards   = Array.from(document.querySelectorAll('.work-card[data-category]'));
+        const viewMoreBtn = document.getElementById('view-more-btn');
+        const viewMoreWrap = document.querySelector('.view-more-wrap');
+        let expanded = false;
 
-        function activate(btn) {
-          filterBtns.forEach(b => {
-            b.classList.remove('active');
-            b.setAttribute('aria-selected', 'false');
-          });
-          btn.classList.add('active');
-          btn.setAttribute('aria-selected', 'true');
+        function renderCards() {
+            const activeFilter = document.querySelector('.filter-btn.active')?.dataset.filter || 'all';
+            let matchingCards = [];
+
+            // Determine matching cards based on filter
+            workCards.forEach(card => {
+                const cats = card.dataset.category || '';
+                const matches = activeFilter === 'all' || cats.includes(activeFilter);
+                
+                // Reset animation by triggering reflow
+                card.style.animation = 'none';
+                
+                if (matches) {
+                    matchingCards.push(card);
+                } else {
+                    card.classList.add('hidden-card');
+                }
+            });
+
+            // Limit to 4 if not expanded, and animate shown cards
+            matchingCards.forEach((card, index) => {
+                if (index < 4 || expanded) {
+                    card.classList.remove('hidden-card');
+                    // Add smooth staggered fadeIn animation
+                    setTimeout(() => {
+                        card.style.animation = `fadeInScale 0.5s ease forwards`;
+                    }, index * 40); // 40ms stagger
+                } else {
+                    card.classList.add('hidden-card');
+                }
+            });
+
+            // Show or hide View More button based on count
+            if (viewMoreWrap && viewMoreBtn) {
+                if (matchingCards.length > 4) {
+                    viewMoreWrap.style.display = 'block';
+                    const textEl  = viewMoreBtn.querySelector('.btn-text');
+                    const arrowEl = viewMoreBtn.querySelector('.btn-arrow-icon');
+                    if (textEl)  textEl.textContent = expanded ? 'View Less' : 'View More';
+                    if (arrowEl) arrowEl.style.transform = expanded ? 'rotate(180deg)' : '';
+                } else {
+                    viewMoreWrap.style.display = 'none';
+                }
+            }
         }
 
+        // Filter functionality
         filterBtns.forEach(btn => {
           btn.addEventListener('click', () => {
-            activate(btn);
-            const filter = btn.dataset.filter;
-            cards.forEach(card => {
-              const cats = card.dataset.category || '';
-              card.style.display = (filter === 'all' || cats.includes(filter)) ? '' : 'none';
+            filterBtns.forEach(b => {
+              b.classList.remove('active');
+              b.setAttribute('aria-selected', 'false');
             });
+            btn.classList.add('active');
+            btn.setAttribute('aria-selected', 'true');
             
-            // Allow View More button logic to recalculate based on newly filtered items
-            if (window.applyViewMoreLogic) {
-                window.applyViewMoreLogic();
-            }
+            // Reset to collapsed view when switching filters
+            expanded = false;
+            renderCards();
           });
 
           btn.addEventListener('keydown', e => {
             if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); btn.click(); }
           });
         });
+
+        // View More functionality
+        if (viewMoreBtn) {
+          viewMoreBtn.addEventListener('click', () => {
+             expanded = !expanded;
+             renderCards();
+          });
+        }
+        
+        // Initial render logic
+        renderCards();
       });
     </script>
   </body>
