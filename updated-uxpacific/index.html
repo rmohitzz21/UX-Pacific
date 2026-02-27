@@ -60,37 +60,122 @@
   <main>
 
     <!-- ====== HERO ====== -->
-    <section class="hero" aria-label="Hero">
-      <div class="hero__orb hero__orb--1" aria-hidden="true"></div>
-      <div class="hero__orb hero__orb--2" aria-hidden="true"></div>
-      <div class="hero__orb hero__orb--3" aria-hidden="true"></div>
-      <div class="hero__grid" aria-hidden="true"></div>
+    <section class="hero" aria-label="Hero section" id="hero">
 
-      <div class="hero__content">
-        <div class="hero__eyebrow reveal stagger-1">
-          Design-forward Studio — Est. 2025
+      <!-- Background layers -->
+      <div class="hero__grid"                 aria-hidden="true"></div>
+      <div class="hero__orb hero__orb--main"  aria-hidden="true" id="orbMain"></div>
+      <div class="hero__orb hero__orb--left"  aria-hidden="true" id="orbLeft"></div>
+      <div class="hero__orb hero__orb--right" aria-hidden="true" id="orbRight"></div>
+      <div class="hero__spotlight"            aria-hidden="true"></div>
+
+      <!-- Floating UI Card 1 — Design Score -->
+      <div class="hero-card hero-card--score" aria-hidden="true">
+        <div class="card-header">
+          <div class="card-dot card-dot--red"></div>
+          <div class="card-dot card-dot--yellow"></div>
+          <div class="card-dot card-dot--green"></div>
+          <span class="card-title">Design Score</span>
         </div>
-        <h1 class="hero__headline reveal stagger-2">
-          We Transform Complex<br />
-          Products Into <em>Intuitive</em><br />
-          Experiences
+        <div class="score-main">98</div>
+        <div class="score-label">/ 100 overall</div>
+        <div class="score-bar-group">
+          <div class="score-bar-item">
+            <span class="score-bar-label">UX</span>
+            <div class="score-bar-track"><div class="score-bar-fill" style="width:96%"></div></div>
+            <span class="score-bar-num">96</span>
+          </div>
+          <div class="score-bar-item">
+            <span class="score-bar-label">UI</span>
+            <div class="score-bar-track"><div class="score-bar-fill" style="width:98%"></div></div>
+            <span class="score-bar-num">98</span>
+          </div>
+          <div class="score-bar-item">
+            <span class="score-bar-label">A11y</span>
+            <div class="score-bar-track"><div class="score-bar-fill" style="width:94%"></div></div>
+            <span class="score-bar-num">94</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Floating UI Card 2 — Active Project -->
+      <div class="hero-card hero-card--projects" aria-hidden="true">
+        <div class="card-header">
+          <div class="card-dot card-dot--red"></div>
+          <div class="card-dot card-dot--yellow"></div>
+          <div class="card-dot card-dot--green"></div>
+          <span class="card-title">Live Project</span>
+        </div>
+        <div class="proj-avatars">
+          <div class="proj-avatar">RK</div>
+          <div class="proj-avatar">AB</div>
+          <div class="proj-avatar">NP</div>
+        </div>
+        <div class="proj-name">Distinct Buzz</div>
+        <div class="proj-status">In Progress</div>
+        <div class="proj-divider"></div>
+        <div class="proj-stat"><strong>+14</strong> issues resolved this sprint</div>
+      </div>
+
+      <!-- Hero Content -->
+      <div class="hero__content">
+
+        <!-- Eyebrow pill -->
+        <div class="hero__eyebrow">
+          UX Pacific &mdash; Est. 2025
+        </div>
+
+        <!-- Headline — word-by-word staggered reveal -->
+        <h1 class="hero__headline" aria-label="We design digital experiences that feel inevitable.">
+          <span class="hero__word" style="animation-delay:.40s">We</span><span class="hero__word-space"></span>
+          <span class="hero__word" style="animation-delay:.50s">Design</span>
+          <span class="hero__break"></span>
+          <span class="hero__word" style="animation-delay:.60s">Digital</span><span class="hero__word-space"></span>
+          <span class="hero__word" style="animation-delay:.70s">Experiences</span>
+          <span class="hero__break"></span>
+          <span class="hero__word" style="animation-delay:.80s">That</span><span class="hero__word-space"></span>
+          <span class="hero__word" style="animation-delay:.90s">Feel</span><span class="hero__word-space"></span>
+          <span class="hero__word hero__word--gradient" style="animation-delay:1.0s">Inevitable.</span>
         </h1>
-        <p class="hero__sub reveal stagger-3">
-          UX Pacific is a strategic design partner blending research, empathy, and craft to build digital products that feel inevitable.
+
+        <!-- Sub paragraph -->
+        <p class="hero__sub">
+          UX Pacific partners with <strong>ambitious teams</strong> to build digital products that users love, investors notice, and <strong>competitors study</strong>.
         </p>
-        <div class="hero__actions reveal stagger-4">
+
+        <!-- CTAs -->
+        <div class="hero__ctas">
           <a href="work.html" class="btn btn--primary btn--lg">
             View Our Work
             <svg class="btn__arrow" viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M3 9h12M9 3l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </a>
           <a href="contact.html" class="btn btn--ghost btn--lg">Start a Project</a>
         </div>
+
+        <!-- Social proof strip -->
+        <div class="hero__proof">
+          <div class="proof-avatars" aria-label="Team avatars">
+            <div class="proof-avatar">RK</div>
+            <div class="proof-avatar">AB</div>
+            <div class="proof-avatar">NP</div>
+            <div class="proof-avatar">SM</div>
+            <div class="proof-avatar proof-avatar--more">+26</div>
+          </div>
+          <div class="proof-sep" aria-hidden="true"></div>
+          <div class="proof-stars" aria-label="5 star rating">★★★★★</div>
+          <div class="proof-text">Trusted by <strong>30+ design-forward teams</strong></div>
+        </div>
+
       </div>
 
+      <!-- Scroll indicator -->
       <div class="hero__scroll" aria-hidden="true">
-        <div class="hero__scroll-line"></div>
-        <span>Scroll</span>
+        <span class="scroll-label">Scroll</span>
+        <div class="scroll-track">
+          <div class="scroll-fill"></div>
+        </div>
       </div>
+
     </section>
 
     <!-- ====== MARQUEE ====== -->

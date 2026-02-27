@@ -354,20 +354,38 @@ function initCustomDropdown() {
    9. SUBTLE PARALLAX (Hero orbs on mouse)
    ============================================================ */
 function initParallax() {
-  const orbs = document.querySelectorAll('.hero__orb');
+  const orbDefs = [
+    { id: 'orbMain',  depth: 0.018 },
+    { id: 'orbLeft',  depth: 0.028 },
+    { id: 'orbRight', depth: 0.022 },
+  ];
+  const orbs = orbDefs.map(o => ({ el: document.getElementById(o.id), depth: o.depth }))
+                      .filter(o => o.el);
+
   if (!orbs.length || window.matchMedia('(pointer: coarse)').matches) return;
 
-  document.addEventListener('mousemove', (e) => {
-    const cx = window.innerWidth / 2;
-    const cy = window.innerHeight / 2;
-    const dx = (e.clientX - cx) / cx; // -1 to 1
-    const dy = (e.clientY - cy) / cy;
+  let mx = window.innerWidth / 2;
+  let my = window.innerHeight / 2;
+  const targX = orbs.map(() => 0);
+  const targY = orbs.map(() => 0);
+  const curX  = orbs.map(() => 0);
+  const curY  = orbs.map(() => 0);
 
-    orbs.forEach((orb, i) => {
-      const depth = (i + 1) * 8;
-      orb.style.transform = `translate(${dx * depth}px, ${dy * depth}px)`;
+  document.addEventListener('mousemove', (e) => { mx = e.clientX; my = e.clientY; }, { passive: true });
+
+  function tick() {
+    const cx = window.innerWidth  / 2;
+    const cy = window.innerHeight / 2;
+    orbs.forEach((o, i) => {
+      targX[i] = (mx - cx) * o.depth;
+      targY[i] = (my - cy) * o.depth;
+      curX[i] += (targX[i] - curX[i]) * 0.06;
+      curY[i] += (targY[i] - curY[i]) * 0.06;
+      o.el.style.transform = `translate(${curX[i]}px, ${curY[i]}px)`;
     });
-  });
+    requestAnimationFrame(tick);
+  }
+  tick();
 }
 
 /* ============================================================
@@ -445,6 +463,33 @@ function initMagneticBtns() {
 }
 
 /* ============================================================
+   14. HERO CARD TILT (desktop only)
+   ============================================================ */
+function initHeroCardTilt() {
+  if (window.matchMedia('(pointer: coarse)').matches) return;
+
+  document.querySelectorAll('.hero-card').forEach(card => {
+    const isScore = card.classList.contains('hero-card--score');
+    const baseRot = isScore ? '-4deg' : '5deg';
+
+    card.style.pointerEvents = 'auto';
+
+    card.addEventListener('mousemove', (e) => {
+      const r  = card.getBoundingClientRect();
+      const dx = ((e.clientX - r.left) / r.width  - 0.5) * 12;
+      const dy = ((e.clientY - r.top)  / r.height - 0.5) * -12;
+      card.style.transition = 'none';
+      card.style.transform  = `translateY(-50%) rotate(${baseRot}) perspective(500px) rotateY(${dx}deg) rotateX(${dy}deg)`;
+    });
+
+    card.addEventListener('mouseleave', () => {
+      card.style.transition = 'transform 0.6s cubic-bezier(0.22,1,0.36,1)';
+      card.style.transform  = `translateY(-50%) rotate(${baseRot})`;
+    });
+  });
+}
+
+/* ============================================================
    INIT — Run everything on DOMContentLoaded
    ============================================================ */
 document.addEventListener('DOMContentLoaded', () => {
@@ -461,4 +506,5 @@ document.addEventListener('DOMContentLoaded', () => {
   initLazyImages();
   initSmoothScroll();
   initMagneticBtns();
+  initHeroCardTilt();
 });
