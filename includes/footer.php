@@ -1,0 +1,145 @@
+<!-- Desktop Footer -->
+<div class="desktop-only-footer">
+  <div class="container footer-inner">
+    <div class="row" style="margin-top: 100px;">
+      <div class="col-md-5">
+        <div class="footer-logo">
+          <a href="index.php">
+            <img src="img/LOGO.png" width="200" alt="UX Pacific Logo" />
+          </a>
+        </div>
+        <div class="social-icons">
+          <a href="https://www.linkedin.com/company/uxpacific/?viewAsMember=true" target="_blank" rel="noopener noreferrer" aria-label="UX Pacific on LinkedIn">
+            <img src="img/in.png" alt="LinkedIn" />
+          </a>
+          <a href="https://www.behance.net/uxpacific" target="_blank" rel="noopener noreferrer" aria-label="UX Pacific on Behance">
+            <img src="img/be.png" alt="Behance" />
+          </a>
+          <a href="https://www.instagram.com/official_uxpacific/" target="_blank" rel="noopener noreferrer" aria-label="UX Pacific on Instagram">
+            <img src="img/inst.png" alt="Instagram" />
+          </a>
+        </div>
+      </div>
+      <div class="col-md-2 col-3">
+        <h4 class="ft_link">Quick Links</h4>
+        <ul class="q_link">
+          <li><a href="index.php">Home</a></li>
+          <li><a href="about.php">About Us</a></li>
+          <li><a href="services.php">Services</a></li>
+          <li><a href="work.php">Work</a></li>
+          <li><a href="ecosystem.php">Ecosystem</a></li>
+        </ul>
+      </div>
+      <div class="col-md-2 col-3">
+        <h4 class="ft_link">Support</h4>
+        <ul class="q_link">
+          <li><a href="contact.php">Let's Talk</a></li>
+          <li><a href="faq.php">FAQs</a></li>
+        </ul>
+      </div>
+      <div class="col-md-3">
+        <h4 class="ft_link">Contact Details</h4>
+        <p class="f_cnt">
+          <a href="https://www.google.com/maps?q=404,+Capstone+Building,+Kalgi+Cross+Road,+Ahmedabad" target="_blank" rel="noopener noreferrer" style="text-decoration:none;color:inherit;">
+            <i class="fas fa-map-marker-alt"></i>
+            404, Capstone Building, Kalgi Cross Road, Ahmedabad
+          </a>
+        </p>
+        <p class="f_cnt"><i class="fas fa-phone"></i> 92740-61063</p>
+        <p class="f_cnt">
+          <a href="https://mail.google.com/mail/?view=cm&fs=1&to=hello@uxpacific.com" target="_blank" rel="noopener noreferrer" style="text-decoration:none;color:inherit;">
+            <i class="fas fa-envelope"></i> hello@uxpacific.com
+          </a>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Mobile Footer -->
+<div class="mobile-only-footer">
+  <div class="container footer-inner">
+    <div class="row">
+      <div class="col-md-5">
+        <div class="footer-logo">
+          <a href="index.php">
+            <img src="img/LOGO.png" alt="UX Pacific Logo" />
+          </a>
+        </div>
+        <div class="social-icons">
+          <a href="https://www.linkedin.com/company/uxpacific/?viewAsMember=true" target="_blank" rel="noopener noreferrer" aria-label="UX Pacific on LinkedIn">
+            <img src="img/in.png" alt="LinkedIn" />
+          </a>
+          <a href="https://www.behance.net/uxpacific" target="_blank" rel="noopener noreferrer" aria-label="UX Pacific on Behance">
+            <img src="img/be.png" alt="Behance" />
+          </a>
+          <a href="https://www.instagram.com/official_uxpacific/" target="_blank" rel="noopener noreferrer" aria-label="UX Pacific on Instagram">
+            <img src="img/inst.png" alt="Instagram" />
+          </a>
+        </div>
+      </div>
+      <div class="col-md-2 col-12">
+        <h4 class="ft_link" style="margin-top:20px;">Quick Links</h4>
+        <ul class="q_link">
+          <li><a href="index.php">Home</a></li>
+          <li><a href="about.php">About Us</a></li>
+          <li><a href="services.php">Services</a></li>
+          <li><a href="work.php">Work</a></li>
+          <li><a href="ecosystem.php">Ecosystem</a></li>
+        </ul>
+      </div>
+      <div class="col-md-2 col-12">
+        <h4 class="ft_link">Support</h4>
+        <ul class="q_link">
+          <li><a href="contact.php">Let's Talk</a></li>
+          <li><a href="faq.php">FAQs</a></li>
+        </ul>
+      </div>
+      <div class="col-md-2 col-6">
+        <h4 class="ft_link">Contact Details</h4>
+        <p class="f_cnt">
+          <a href="https://www.google.com/maps?q=404,+Capstone+Building,+Kalgi+Cross+Road,+Ahmedabad" target="_blank" rel="noopener noreferrer" style="text-decoration:none;color:inherit;">
+            <i class="fas fa-map-marker-alt"></i>
+            404, Capstone Building, Kalgi Cross Road, Ahmedabad
+          </a>
+        </p>
+        <p class="f_cnt"><i class="fas fa-phone"></i> 92740-61063</p>
+        <p class="f_cnt">
+          <a href="https://mail.google.com/mail/?view=cm&fs=1&to=hello@uxpacific.com" target="_blank" rel="noopener noreferrer" style="text-decoration:none;color:inherit;">
+            <i class="fas fa-envelope"></i> hello@uxpacific.com
+          </a>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Footer Bottom Bar -->
+<footer class="footer">
+  <!-- Desktop -->
+  <div class="container pt-4 pb-3 d-none d-md-block" style="border-top: 1px solid rgb(245 245 245 / 40%)">
+    <div class="row">
+      <div class="col col-md-6">
+        <p style="color:#e0e0e0">© 2025 UXPacific. All rights reserved.</p>
+      </div>
+      <div class="col col-md-6 footer-policies mb-0 mt-0" style="text-align:right">
+        <a href="privacy-policy.php">Privacy Policy</a> |
+        <a href="cookies-privacy.php">Cookie Policy</a> |
+        <a href="term-condition.php">Terms &amp; Conditions</a>
+      </div>
+    </div>
+  </div>
+  <!-- Mobile -->
+  <div class="container pt-4 pb-3 d-block d-md-none" style="border-top: 1px solid rgb(245 245 245 / 40%)">
+    <div class="row align-items-center">
+      <div class="col-12 col-md-6 order-2 order-md-1 text-center text-md-start">
+        <p style="color:#e0e0e0">© 2025 UXPacific. All rights reserved.</p>
+      </div>
+      <div class="col-12 col-md-6 footer-policies mb-0 mt-0 order-1 order-md-2 text-center text-md-end d-flex justify-content-center justify-content-md-end">
+        <a href="privacy-policy.php">Privacy Policy</a> |
+        <a href="cookies-privacy.php">Cookie Policy</a> |
+        <a href="term-condition.php">Terms &amp; Conditions</a>
+      </div>
+    </div>
+  </div>
+</footer>
