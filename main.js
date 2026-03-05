@@ -279,16 +279,21 @@ document.addEventListener("DOMContentLoaded", () => {
     {
       title: "Case Study of Survey Pacific",
       desc: "We revamped the website UI/UX through deep heuristic evaluation and competitive benchmarking. The result? A streamlined, user-friendly experience tailored for a global audience.",
-      link: "#"
+      link: ""
     },
     {
       title: "UX Audit of CEDAR Himalaya",
-      desc: "Designing for Change! We audited their digital experience to align with their mission of sustainable mountain development.The recommendations improved content clarity, accessibility, and user trust across the platform.",
+      desc: "Designing for Change! We audited their digital experience to align with their mission of sustainable mountain development.The recommendations improved content clarity, accessibility, and user trust across the platform.",
       link: "#"
     },
     {
       title: "UX Audit of Distinct Buzz",
-      desc: "Audited for Impact! We conducted a full-scale UX audit to uncover usability gaps and friction in the user journey. Our insights led to smoother navigation, better mobile responsiveness, and higher engagement.",
+      desc: "Audited for Impact! We conducted a full-scale UX audit to uncover usability gaps and friction in the user journey. Our insights led to smoother navigation, better mobile responsiveness, and higher engagement.",
+      link: "#"
+    },
+    {
+      title: "UX Audit of Radhe Krishna",
+      desc: "Audited for Impact! We conducted a full-scale UX audit to uncover usability gaps and friction in the user journey. Our insights led to smoother navigation, better mobile responsiveness, and higher engagement.",
       link: "#"
     }
   ];
@@ -312,8 +317,10 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // Initialize first slide
-  updateSlide(currentIndex);
+  // Initialize first slide (only if elements exist on this page)
+  if (titleEl && descEl && previewImg && slides.length) {
+    updateSlide(currentIndex);
+  }
 });
 
 
@@ -403,13 +410,15 @@ document.addEventListener('DOMContentLoaded', function () {
 document.addEventListener('DOMContentLoaded', () => {
   // --- FORM AND FIELD SELECTION ---
   const form = document.getElementById('contactForm');
+  if (!form) return; // Not on contact page — bail out early
+
   const nameInput = document.getElementById('name');
   const emailInput = document.getElementById('email');
   const phoneInput = document.getElementById('phone');
   const industrySelect = document.getElementById('industry');
   const messageTextarea = document.getElementById('message');
   const termsCheckbox = document.getElementById('terms');
-  const submitButton = form.querySelector('.submit-btn');
+  const submitButton = form.querySelector('button[type="submit"]');
 
   // --- MODAL AND CELEBRATION HANDLING ---
   const modalOverlay = document.getElementById('modal-overlay');
@@ -462,13 +471,23 @@ document.addEventListener('DOMContentLoaded', () => {
   const originalBorderStyle = 'linear-gradient(to right, #ffffff 0%, #2e2e3e 100%) border-box';
   const errorBorderStyle = 'linear-gradient(to right, #ff5722, #d32f2f) border-box';
 
+  // Finds the nearest wrapping field container for error injection
+  const getFieldParent = (element) =>
+      element.closest('.contact-field') ||
+      element.closest('.form-group') ||
+      element.closest('.contact-row') ||
+      element.closest('.form-row') ||
+      element.parentElement;
+
   const setError = (element, message) => {
-      element.style.background = `linear-gradient(#121212, #121212) padding-box, ${errorBorderStyle}`;
-      const parent = element.closest('.form-group, .form-row');
-      // Remove existing error to avoid duplicates
+      if (!element) return;
+      if (element.type !== 'hidden') {
+          element.style.background = `linear-gradient(#121212, #121212) padding-box, ${errorBorderStyle}`;
+      }
+      const parent = getFieldParent(element);
+      if (!parent) return;
       const oldError = parent.querySelector('.error-message');
       if (oldError) oldError.remove();
-      // Add new error message
       const error = document.createElement('div');
       error.className = 'error-message';
       error.textContent = message;
@@ -479,12 +498,14 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   const setSuccess = (element) => {
-      element.style.background = `linear-gradient(#121212, #121212) padding-box, ${originalBorderStyle}`;
-      const parent = element.closest('.form-group, .form-row');
-      const error = parent.querySelector('.error-message');
-      if (error) {
-          error.remove();
+      if (!element) return;
+      if (element.type !== 'hidden') {
+          element.style.background = `linear-gradient(#121212, #121212) padding-box, ${originalBorderStyle}`;
       }
+      const parent = getFieldParent(element);
+      if (!parent) return;
+      const error = parent.querySelector('.error-message');
+      if (error) error.remove();
   };
   
   const setErrorCheckbox = (checkbox) => {
@@ -586,8 +607,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
       
       // --- If validation passes, proceed to submit ---
-      submitButton.disabled = true;
-      submitButton.textContent = 'Submitting...';
+      if (submitButton) { submitButton.disabled = true; submitButton.textContent = 'Sending...'; }
 
       const formData = {
           name: nameInput.value.trim(),
@@ -598,29 +618,29 @@ document.addEventListener('DOMContentLoaded', () => {
       };
 
       try {
-          const response = await fetch('https://formspree.io/f/REPLACE_WITH_YOUR_FORM_ID', {
+          const response = await fetch('send_mail.php', {
               method: 'POST',
               headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
               body: JSON.stringify(formData)
           });
 
-          if (response.ok) {
+          const result = await response.json();
+
+          if (response.ok && result.success) {
               // SUCCESS: Show modal and reset form
-              console.log('Form submitted successfully!');
               showModal();
               form.reset();
+              // Reset dropdown label
+              const btnText = document.querySelector('#dropdownBtn span');
+              if (btnText) btnText.textContent = 'Select your Industry';
+              const dropdownBtn = document.getElementById('dropdownBtn');
+              if (dropdownBtn) dropdownBtn.classList.remove('selected');
               // Clear validation styles on reset
               [nameInput, emailInput, phoneInput, industrySelect, messageTextarea].forEach(setSuccess);
               setSuccessCheckbox(termsCheckbox);
-          } else if (response.status === 409) {
-              // HANDLE DUPLICATE EMAIL
-              const errorData = await response.json();
-              setError(emailInput, errorData.message || 'This email is already registered.');
           } else {
-              // FAIL: Handle other server-side errors
-              const errorData = await response.json();
-              console.error('Submission failed:', errorData.message || 'Something went wrong on the server.');
-              alert('Submission failed. Please try again later.'); 
+              // FAIL: Show server error message
+              alert(result.message || 'Submission failed. Please try again later.');
           }
       } catch (error) {
           // FAIL: Handle network or other client-side errors
@@ -628,8 +648,7 @@ document.addEventListener('DOMContentLoaded', () => {
           alert('Could not connect to the server. Please check your connection and try again.');
       } finally {
           // Re-enable the button regardless of outcome
-          submitButton.disabled = false;
-          submitButton.textContent = 'Submit Now';
+          if (submitButton) { submitButton.disabled = false; submitButton.textContent = 'Send Message'; }
       }
   });
 });

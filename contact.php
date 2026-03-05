@@ -96,7 +96,7 @@ $currentPage  = 'contact';
             </div>
           </div>
 
-          <form class="contact-form-card" id="contactForm" action="https://formspree.io/f/REPLACE_WITH_YOUR_FORM_ID" method="post" novalidate>
+          <form class="contact-form-card" id="contactForm" novalidate>
             <div class="contact-row">
               <div class="contact-field"><label for="name">Name</label><input id="name" name="name" type="text" placeholder="Enter your name here" required minlength="2" maxlength="50" autocomplete="name"></div>
               <div class="contact-field"><label for="email">Email</label><input id="email" name="email" type="email" placeholder="Enter your email address" required autocomplete="email"></div>
@@ -137,7 +137,7 @@ $currentPage  = 'contact';
                 <span>I Agree to <a href="term-condition.php" class="contact-link">Terms &amp; Conditions</a> of UX Pacific</span>
               </label>
             </div>
-            <button type="submit" class="contact-submit-btn">Send Message</button>
+            <button type="submit" class="contact-submit-btn submit-btn">Send Message</button>
           </form>
         </div>
       </section>
