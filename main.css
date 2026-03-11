@@ -1991,7 +1991,7 @@ body {
     width: 100%;
     max-width: 418px;
     height: 148px;
-    margin-left: 20px !important;
+    margin-left: 35px !important;
     margin-right: auto !important;
   }
 
@@ -2001,7 +2001,7 @@ body {
 
 
   .images-row img {
-    width: 88px;
+    width: 80px;
     height: 118px;
     top: 61px;
     margin: 0px 5px;
@@ -4076,11 +4076,11 @@ body {
 }
 
 /* This is the main container for your images */
-.images-row img:nth-child(1) {
+/* .images-row img:nth-child(1) {
   --translateX: -80%;
   --rotation: -9.89deg;
   z-index: 2;
-}
+} */
 
 .images-row img:nth-child(2) {
   --translateX: -50%;
