@@ -114,6 +114,12 @@ $currentPage  = 'home';
       .service-pill-box { background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.1); border-radius:8px; padding:16px 20px; text-align:center; color:#e0e0e0; display:flex; align-items:center; justify-content:center; height:100%; min-height:80px; transition:all 0.3s ease; font-size:15px; font-weight:500; cursor:default; }
       .service-pill-box:hover { border-color:#a78bfa; background:rgba(167,139,250,0.05); color:#fff; transform:translateY(-2px); }
       .services-pill-container { max-width:1000px; margin:0 auto; padding:0 15px; }
+      @media (max-width:768px) {
+        .services-pill-container .row { align-items:stretch; }
+        .services-pill-container .col-6 { display:flex; }
+        .service-pill-box { width:100%; height:72px; min-height:unset; font-size:13px; padding:8px; border-radius:10px; }
+        .services-pill-container .col-6 .text-center { width:100%; height:72px; margin-top:0 !important; display:flex; align-items:center; justify-content:center; border:1px solid rgba(255,255,255,0.1); border-radius:10px; background:rgba(255,255,255,0.03); }
+      }
     </style>
     <div class="services-pill-container mb-5">
       <div class="row g-3">
@@ -124,7 +130,8 @@ $currentPage  = 'home';
         <div class="col-6 col-md-3"><div class="service-pill-box">Mobile, SaaS &amp; eCommerce UX</div></div>
         <div class="col-6 col-md-3"><div class="service-pill-box">Emerging Tech UX</div></div>
         <div class="col-6 col-md-3"><div class="service-pill-box">UX Content </div></div>
-        <div class="col-6 col-md-3"><div class="text-center mt-5"><a class="view-more" href="service.php"> View More &rarr; </a></div></div>
+        <div class="col-6 col-md-3 d-none d-md-block"><div class="text-center"><a class="view-more" href="service.php"> View More &rarr; </a></div></div>
+        <div class="col-6 d-md-none"><div class="service-pill-box">Brand &amp; Visual Design</div></div>
       </div>
     </div>
 

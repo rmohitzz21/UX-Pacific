@@ -8384,7 +8384,7 @@ body {
 
   /* Show mobile services slider */
   .services-section1 {
-    display: block !important;
+    display: inline !important;
   }
 
   .img1 {
