@@ -67,7 +67,10 @@ $currentPage  = 'service';
     <?php include 'includes/navbar.php'; ?>
 
     <section class="about-header">
-      <div class="gallery-container"><img src="img/bg_ani.gif" class="img1" alt="Abstract background animation" /></div>
+      <video class="header-bg-video" autoplay muted loop playsinline>
+        <source src="img/test.mp4" type="video/mp4">
+      </video>
+      <div class="header-bg-overlay"></div>
       <h1>Services</h1>
       <div class="innovation-badge-exact">
        We design user-focused digital solutions that combine strategy, creativity, and research.<br>

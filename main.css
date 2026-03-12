@@ -10755,3 +10755,148 @@ h5 {
     font-size: 11px !important;
   }
 }
+
+/* ================================================================
+   ABOUT-HEADER — VIDEO BACKGROUND (DESKTOP)
+   ================================================================ */
+.about-header {
+  position: relative !important;
+  overflow: hidden !important;
+}
+
+.header-bg-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.header-bg-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(10,10,20,0.52) 0%, rgba(8,8,18,0.75) 100%);
+  z-index: 1;
+}
+
+.about-header > *:not(.header-bg-video):not(.header-bg-overlay) {
+  position: relative;
+  z-index: 2;
+}
+
+/* ================================================================
+   ABOUT-HEADER — MOBILE REDESIGN (all inner pages)
+   Uses bg_ani.gif as background with dark overlay.
+   Overrides ALL previous conflicting about-header mobile rules.
+   ================================================================ */
+@media (max-width: 767.98px) {
+
+  /* Hide video on mobile — gif handles background */
+  .header-bg-video,
+  .header-bg-overlay {
+    display: none !important;
+  }
+
+  /* Full reset + gif background */
+  body[class] .about-header,
+  body .about-header,
+  .about-header {
+    position: relative !important;
+    width: 100% !important;
+    height: auto !important;
+    min-height: 180px !important;
+    padding: 52px 20px 44px !important;
+    margin: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center !important;
+    overflow: hidden !important;
+
+    /* gif background — covers full header */
+    background-image: url('img/bg_ani.gif') !important;
+    background-size: cover !important;
+    background-position: center center !important;
+    background-repeat: no-repeat !important;
+    background-color: #0a0a14 !important;
+
+    border-top: 2px solid rgba(140, 100, 255, 0.5) !important;
+    border-bottom: 1px solid rgba(80, 50, 160, 0.2) !important;
+    border-left: none !important;
+    border-right: none !important;
+    box-shadow: 0 4px 32px rgba(0,0,0,0.6) !important;
+    background-position-y: center !important;
+  }
+
+  /* Dark overlay using ::before so text stays readable */
+  .about-header::before {
+    content: '' !important;
+    position: absolute !important;
+    inset: 0 !important;
+    background: linear-gradient(
+      180deg,
+      rgba(8, 6, 20, 0.72) 0%,
+      rgba(10, 8, 24, 0.80) 100%
+    ) !important;
+    z-index: 0 !important;
+    pointer-events: none !important;
+  }
+
+  /* All children above the overlay */
+  .about-header > * {
+    position: relative !important;
+    z-index: 1 !important;
+  }
+
+  /* Page title */
+  body[class] .about-header h1,
+  body .about-header h1,
+  .about-header h1 {
+    font-size: 32px !important;
+    font-weight: 800 !important;
+    color: #ffffff !important;
+    letter-spacing: -0.02em !important;
+    line-height: 1.15 !important;
+    margin: 0 0 14px !important;
+    text-shadow: 0 2px 24px rgba(100, 60, 200, 0.6) !important;
+  }
+
+  /* Badge / description pill */
+  body[class] .innovation-badge-exact,
+  body .innovation-badge-exact,
+  .innovation-badge-exact {
+    display: inline-block !important;
+    width: auto !important;
+    max-width: 92% !important;
+    height: auto !important;
+    font-size: 12px !important;
+    font-weight: 400 !important;
+    line-height: 1.65 !important;
+    color: rgba(220, 210, 255, 0.9) !important;
+    padding: 10px 18px !important;
+    margin: 0 !important;
+    border-radius: 10px !important;
+    background: rgba(20, 10, 50, 0.55) !important;
+    border: 1px solid rgba(130, 90, 230, 0.4) !important;
+    backdrop-filter: blur(10px) !important;
+    -webkit-backdrop-filter: blur(10px) !important;
+    letter-spacing: 0 !important;
+    text-align: center !important;
+    white-space: normal !important;
+    word-break: break-word !important;
+  }
+
+  .innovation-badge-exact::after {
+    display: none !important;
+  }
+
+  .innovation-badge-exact span {
+    color: #c4a8ff !important;
+    font-weight: 600 !important;
+    font-style: normal !important;
+  }
+}
