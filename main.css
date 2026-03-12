@@ -947,7 +947,7 @@ nav>.container>a {
 
   .section-title span {
     font-family: "DM Sans", sans-serif;
-    font-size: 32px;
+    font-size: 22px;
     font-weight: 600;
     font-style: italic;
     line-height: 40px;
@@ -1995,15 +1995,54 @@ body {
   }
 
   .images-row {
-    width: 100%;
-    max-width: 418px;
-    height: 148px;
-    margin-left: auto !important;
-    margin-right: auto !important;
+    display: flex !important;
+    flex-direction: row !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    height: auto !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    gap: 10px !important;
+    padding: 16px 16px 24px !important;
+    top: 0 !important;
+    position: relative !important;
+    box-sizing: border-box !important;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    justify-content: flex-start !important;
+  }
+
+  .images-row::-webkit-scrollbar {
+    display: none;
+  }
+
+  .images-row img,
+  .images-row img.img1 {
+    width: 130px !important;
+    min-width: 130px !important;
+    height: 170px !important;
+    flex-shrink: 0 !important;
+    object-fit: cover !important;
+    border-radius: 12px !important;
+    border: 3px solid rgba(255, 255, 255, 0.75) !important;
+    position: relative !important;
+    top: 0 !important;
+    left: 0 !important;
+    transform: none !important;
+    z-index: auto !important;
+    cursor: pointer;
+  }
+
+  .images-row img.active {
+    transform: scale(1.03) !important;
+    top: 0 !important;
+    box-shadow: 0 6px 20px rgba(97, 71, 189, 0.4) !important;
   }
 
   .img1 {
-    left: 27px;
+    left: 0 !important;
   }
 
 
@@ -9971,6 +10010,306 @@ h5 {
     width: 130px;
     font-size: 13px;
     padding: 0 8px;
+  }
+}
+
+/* ================================================================
+   MOBILE FOOTER — CLEAN LAYOUT
+   ================================================================ */
+.mf-inner {
+  background: #0e0e0e;
+  padding: 32px 20px 24px;
+  box-sizing: border-box;
+}
+
+/* Brand block */
+.mf-brand {
+  text-align: center;
+  margin-bottom: 4px;
+}
+
+.mf-logo {
+  width: 130px;
+  height: auto;
+  display: block;
+  margin: 0 auto 10px;
+}
+
+.mf-tagline {
+  font-size: 12px;
+  color: #888;
+  margin: 0 0 16px;
+  letter-spacing: 0.02em;
+}
+
+.mf-social {
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+  margin-bottom: 4px;
+}
+
+.mf-social a img {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+  opacity: 0.85;
+  transition: opacity 0.2s;
+}
+
+.mf-social a:hover img { opacity: 1; }
+
+/* Divider */
+.mf-divider {
+  height: 1px;
+  background: rgba(255,255,255,0.08);
+  margin: 20px 0;
+}
+
+/* Links row */
+.mf-links-row {
+  display: flex;
+  gap: 0;
+  justify-content: space-between;
+}
+
+.mf-col {
+  flex: 1;
+}
+
+.mf-heading {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: #f5f5f5;
+  margin: 0 0 12px;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+.mf-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.mf-list li {
+  padding: 5px 0;
+}
+
+.mf-list li a {
+  font-size: 13px;
+  color: #b0b0b0;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.mf-list li a:hover { color: #fff; }
+
+/* Contact */
+.mf-contact { margin-top: 4px; }
+
+.mf-contact-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 13px;
+  color: #b0b0b0;
+  margin: 0 0 10px;
+  line-height: 1.5;
+}
+
+.mf-contact-item i {
+  color: #6147bd;
+  margin-top: 2px;
+  flex-shrink: 0;
+  width: 14px;
+}
+
+.mf-contact-item a {
+  color: #b0b0b0;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.mf-contact-item a:hover { color: #fff; }
+
+/* Bottom bar on mobile */
+@media (max-width: 768px) {
+  .footer .container.d-block {
+    padding: 16px 20px !important;
+  }
+
+  .footer .container.d-block p {
+    font-size: 12px !important;
+    color: #888 !important;
+    margin: 0 0 8px !important;
+    text-align: center !important;
+  }
+
+  .footer-policies {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+    gap: 6px 12px !important;
+    margin: 0 !important;
+  }
+
+  .footer-policies a {
+    font-size: 12px !important;
+    color: #888 !important;
+    margin: 0 !important;
+    text-decoration: none;
+  }
+
+  .footer-policies a:hover { color: #fff !important; }
+}
+
+/* ================================================================
+   FAQ SECTION — MOBILE RESPONSIVE FIX
+   ================================================================ */
+@media (max-width: 768px) {
+
+  .faq-section {
+    padding: 30px 16px 0 !important;
+    max-width: 100% !important;
+    overflow-x: hidden;
+  }
+
+  /* Reset the broken 3-col grid */
+  .faq-container {
+    display: block !important;
+  }
+
+  /* Stack column, centered, no overflow */
+  .faq-main-container {
+    display: flex !important;
+    flex-direction: column !important;
+    width: 100% !important;
+    padding: 0 !important;
+    gap: 24px !important;
+    box-sizing: border-box !important;
+  }
+
+  /* Right side (title + desc + link) — comes first, fully centered */
+  .faq-right {
+    order: 1 !important;
+    width: 100% !important;
+    flex: unset !important;
+    margin-left: 0 !important;
+    text-align: center !important;
+    margin-bottom: 0 !important;
+  }
+
+  .faq-right h2 {
+    font-size: 22px !important;
+    font-weight: 700 !important;
+    line-height: 1.35 !important;
+    text-align: center !important;
+    margin-bottom: 10px !important;
+  }
+
+  .faq-right p {
+    font-size: 13px !important;
+    line-height: 1.65 !important;
+    text-align: center !important;
+    color: #bbb !important;
+    margin-bottom: 16px !important;
+  }
+
+  /* View Details link — centered, no hardcoded margin */
+  .faq-link {
+    margin-left: 0 !important;
+    display: inline-block !important;
+    text-align: center !important;
+  }
+
+  /* Left side (accordion) — comes second, full width */
+  .faq-left {
+    order: 2 !important;
+    width: 100% !important;
+    flex: unset !important;
+    min-width: unset !important;
+    margin-left: 0 !important;
+  }
+
+  /* Accordion items — full width, readable */
+  .accordion-item {
+    width: 100% !important;
+    box-sizing: border-box !important;
+    margin-bottom: 10px !important;
+  }
+
+  .accordion-header {
+    padding: 14px 16px !important;
+  }
+
+  .accordion-header h3 {
+    font-size: 14px !important;
+    font-weight: 500 !important;
+    line-height: 1.4 !important;
+    margin: 0 !important;
+    padding-right: 8px !important;
+  }
+
+  .accordion-content p {
+    font-size: 13px !important;
+    line-height: 1.65 !important;
+    padding: 0 16px 16px !important;
+    color: #bbb !important;
+  }
+
+  .accordion-icon {
+    width: 24px !important;
+    height: 24px !important;
+    flex-shrink: 0 !important;
+  }
+}
+
+/* ================================================================
+   UNIFIED SECTION TITLE & SUBTITLE — MOBILE TYPOGRAPHY
+   All section headings match the same size, weight & line-height
+   ================================================================ */
+@media (max-width: 768px) {
+
+  /* ── Main section titles ── */
+  .ux-title,
+  .section-title h2,
+  .ecosystem h2,
+  .services-section1 h1,
+  .faq-right h2,
+  .faq-section h2,
+  center h2,
+  .reviews-section h2,
+  .cta-section h1 {
+    font-size: 22px !important;
+    font-weight: 700 !important;
+    line-height: 1.35 !important;
+    letter-spacing: -0.01em !important;
+  }
+
+  /* ── Section subtitles (the small label above the title) ── */
+  .ux-subtitle,
+  .services-section1 h5,
+  .ecosystem .subtitle,
+  h3.ux-subtitle {
+    font-size: 13px !important;
+    font-weight: 400 !important;
+    color: #aaa !important;
+    letter-spacing: 0.03em !important;
+    line-height: 1.4 !important;
+    margin-bottom: 6px !important;
+  }
+
+  /* ── Section description paragraphs ── */
+  .ux-description,
+  .ecosystem .description,
+  .section-title p,
+  .services-section1 .ux-description,
+  .reviews-section p {
+    font-size: 13px !important;
+    line-height: 1.65 !important;
+    color: #bbb !important;
   }
 }
 
