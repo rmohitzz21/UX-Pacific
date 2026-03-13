@@ -8807,14 +8807,6 @@ body {
 }
 
 
-/* Hide View More button on mobile */
-@media (max-width: 768px) {
-
-  #toggle-view-btn,
-  .view-more-btn {
-    display: none !important;
-  }
-}
 
 
 /* 📱 MOBILE — Contact Form Responsive */

@@ -182,8 +182,13 @@ $currentPage  = 'work';
           card.classList.add('card-reveal');
         }
 
+        function getLimit() {
+          return window.innerWidth <= 767 ? 2 : 4;
+        }
+
         function renderCards(animateAll) {
           const activeFilter = document.querySelector('.filter-btn.active')?.dataset.filter || 'all';
+          const limit = getLimit();
           const matching = [];
 
           workCards.forEach(card => {
@@ -198,7 +203,7 @@ $currentPage  = 'work';
           });
 
           matching.forEach((card, i) => {
-            if (i < 4 || expanded) {
+            if (i < limit || expanded) {
               const wasHidden = card.classList.contains('hidden-card');
               if (wasHidden || animateAll) revealCard(card, i * 60);
             } else {
@@ -209,11 +214,7 @@ $currentPage  = 'work';
           });
 
           if (viewMoreWrap && viewMoreBtn) {
-            viewMoreWrap.style.display = matching.length > 4 ? 'block' : 'none';
-            const textEl  = viewMoreBtn.querySelector('.btn-text');
-            const arrowEl = viewMoreBtn.querySelector('.btn-arrow-icon');
-            if (textEl)  textEl.textContent      = expanded ? 'View Less' : 'View More';
-            if (arrowEl) arrowEl.style.transform = expanded ? 'rotate(180deg)' : '';
+            viewMoreWrap.style.display = (!expanded && matching.length > limit) ? 'block' : 'none';
           }
         }
 
@@ -232,7 +233,7 @@ $currentPage  = 'work';
 
         if (viewMoreBtn) {
           viewMoreBtn.addEventListener('click', () => {
-            expanded = !expanded;
+            expanded = true;
             renderCards(false);
           });
         }
