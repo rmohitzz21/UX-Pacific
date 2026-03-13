@@ -3,7 +3,7 @@ $pageTitle    = 'Cookie Policy | UX Pacific';
 $pageDesc     = 'Learn how UX Pacific uses cookies and similar technologies to improve your browsing experience on our website.';
 $canonicalUrl = 'https://www.uxpacific.com/cookies-privacy.php';
 $ogTitle      = 'Cookie Policy | UX Pacific';
-$ogDesc       = 'Understand how UX Pacific uses cookies — what types we use, why, and how you can manage your cookie preferences.';
+$ogDesc       = 'Understand how UX Pacific uses cookies what types we use, why, and how you can manage your cookie preferences.';
 $ogUrl        = 'https://www.uxpacific.com/cookies-privacy.php';
 $currentPage  = 'cookies-privacy';
 ?>

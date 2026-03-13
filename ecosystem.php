@@ -1,6 +1,6 @@
 <?php
 $pageTitle    = 'Ecosystem | UX Pacific';
-$pageDesc     = 'Discover the UX Pacific ecosystem — a community-driven network of designers, mentors, collaborators, and tools shaping the future of UX design.';
+$pageDesc     = 'Discover the UX Pacific ecosystem  a community-driven network of designers, mentors, collaborators, and tools shaping the future of UX design.';
 $canonicalUrl = 'https://www.uxpacific.com/ecosystem.php';
 $ogTitle      = 'Ecosystem | UX Pacific';
 $ogDesc       = 'Join the UX Pacific ecosystem. Connect with a thriving community of UX professionals, access resources, and grow your design career.';

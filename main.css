@@ -8685,25 +8685,7 @@ body {
 
   /* ------------- Slider Container ------------- */
   .services-container1 {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 25px;
-    overflow-x: auto;
-    scroll-behavior: smooth;
-    margin-top: 40px !important;
-    padding-bottom: 20px;
-
-    /* Hide ugly scrollbar */
-    -ms-overflow-style: none;
-    /* IE & Edge */
-    scrollbar-width: none;
-    /* Firefox */
-  }
-
-  .services-container1::-webkit-scrollbar {
-    display: none;
-    /* Chrome & Safari */
+    display: none !important;
   }
 
   /* ------------- Card ------------- */

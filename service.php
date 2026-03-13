@@ -1,6 +1,6 @@
 <?php
 $pageTitle    = 'Services | UX Pacific';
-$pageDesc     = 'Explore UX Pacific\'s full range of design services — UI/UX design, UX audits, product design, user research, and more for startups and enterprises.';
+$pageDesc     = 'Explore UX Pacific\'s full range of design services  UI/UX design, UX audits, product design, user research, and more for startups and enterprises.';
 $canonicalUrl = 'https://www.uxpacific.com/services.php';
 $ogTitle      = 'Services | UX Pacific';
 $ogDesc       = 'From UX audits to full product design, UX Pacific offers tailored design services for every stage of your digital product journey.';

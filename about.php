@@ -1,6 +1,6 @@
 <?php
 $pageTitle    = 'About Us | UX Pacific';
-$pageDesc     = 'Learn about UX Pacific — our mission, team, and design philosophy. We craft purposeful digital experiences that connect people with technology.';
+$pageDesc     = 'Learn about UX Pacific  our mission, team, and design philosophy. We craft purposeful digital experiences that connect people with technology.';
 $canonicalUrl = 'https://www.uxpacific.com/about.php';
 $ogTitle      = 'About Us | UX Pacific';
 $ogDesc       = 'Meet the team behind UX Pacific. We are a passionate UX design studio committed to building human-centred digital products.';
@@ -85,11 +85,11 @@ $currentPage  = 'about';
     <div class="ab-story-section">
       <div class="ab-story-grid">
         <div class="ab-story-image">
-          <img src="img/Rectangle 5208.webp" alt="Our Story — UX Pacific team at work" loading="lazy" />
+          <img src="img/Rectangle 5208.webp" alt="Our Story  UX Pacific team at work" loading="lazy" />
         </div>
         <div class="ab-story-content">
           <h2 class="ab-title">Born from a Belief<br />in <em>Better Design</em></h2>
-          <p class="ab-story-text">UX Pacific was established on 1st May, 2025 with a clear vision — to create meaningful and impactful digital experiences. What started as a passion for design and strategy has grown into a mission to help brands build user-focused solutions that truly make a difference.</p>
+          <p class="ab-story-text">UX Pacific was established on 1st May, 2025 with a clear vision  to create meaningful and impactful digital experiences. What started as a passion for design and strategy has grown into a mission to help brands build user-focused solutions that truly make a difference.</p>
           <p class="ab-story-text">From day one, our goal has been simple: combine creativity, research, and empathy to design experiences that not only look beautiful but also solve real problems. We are known for delivering reliable work with unmatched precision, backed by robust design thinking and professional execution.</p>
         </div>
       </div>
@@ -132,11 +132,11 @@ $currentPage  = 'about';
           <p class="ab-story-text" style="max-width:560px;margin:16px auto 0;">The principles that guide every decision we make and every experience we design.</p>
         </div>
         <div class="ab-process-steps">
-          <div class="ab-process-step"><div class="ab-process-step__num">01</div><h4 class="ab-process-step__title">Purpose-First</h4><p class="ab-process-step__desc">Every design decision starts with a clear reason. We never design for decoration — we design for outcomes.</p></div>
+          <div class="ab-process-step"><div class="ab-process-step__num">01</div><h4 class="ab-process-step__title">Purpose-First</h4><p class="ab-process-step__desc">Every design decision starts with a clear reason. We never design for decoration  we design for outcomes.</p></div>
           <div class="ab-process-step"><div class="ab-process-step__num">02</div><h4 class="ab-process-step__title">Empathy Always</h4><p class="ab-process-step__desc">We put people at the centre of everything. Understanding users deeply is our most important design tool.</p></div>
           <div class="ab-process-step"><div class="ab-process-step__num">03</div><h4 class="ab-process-step__title">Research-Driven</h4><p class="ab-process-step__desc">Intuition is great. Data is better. We combine both to build experiences grounded in real-world insight.</p></div>
           <div class="ab-process-step"><div class="ab-process-step__num">04</div><h4 class="ab-process-step__title">Craft Obsessed</h4><p class="ab-process-step__desc">We sweat the details so our clients don't have to. Quality and precision are non-negotiable at every stage.</p></div>
-          <div class="ab-process-step"><div class="ab-process-step__num">05</div><h4 class="ab-process-step__title">Deliver Impact</h4><p class="ab-process-step__desc">We launch with confidence and measure what matters. Every solution is built to create measurable results — not just visual appeal.</p></div>
+          <div class="ab-process-step"><div class="ab-process-step__num">05</div><h4 class="ab-process-step__title">Deliver Impact</h4><p class="ab-process-step__desc">We launch with confidence and measure what matters. Every solution is built to create measurable results  not just visual appeal.</p></div>
         </div>
       </div>
     </section>

@@ -1,6 +1,6 @@
 <?php
 $pageTitle    = "Let's Talk | UX Pacific";
-$pageDesc     = "Get in touch with UX Pacific. Share your project idea, ask about our UX design services, or request a collaboration — we'd love to hear from you.";
+$pageDesc     = "Get in touch with UX Pacific. Share your project idea, ask about our UX design services, or request a collaboration  we'd love to hear from you.";
 $canonicalUrl = 'https://www.uxpacific.com/contact.php';
 $ogTitle      = "Let's Talk | UX Pacific";
 $ogDesc       = 'Reach out to UX Pacific for design services, collaborations, or any queries. Our team is ready to help.';

@@ -1,6 +1,6 @@
 <?php
 $pageTitle    = 'FAQ | UX Pacific';
-$pageDesc     = 'Find answers to frequently asked questions about UX Pacific — our services, process, tools, pricing, and more.';
+$pageDesc     = 'Find answers to frequently asked questions about UX Pacific  our services, process, tools, pricing, and more.';
 $canonicalUrl = 'https://www.uxpacific.com/faq.php';
 $ogTitle      = 'FAQ | UX Pacific';
 $ogDesc       = 'Got questions? We have answers. Explore the UX Pacific FAQ to learn about our UX design services, process, and how to get started.';
@@ -116,7 +116,7 @@ $currentPage  = 'faq';
           </h2>
           <div id="collapseSeven" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
             <div class="accordion-body f18">
-              We wish. For now, just your interfaces — sleek and easy on the eyes.
+              We wish. For now, just your interfaces  sleek and easy on the eyes.
             </div>
           </div>
         </div>
