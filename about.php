@@ -61,6 +61,85 @@ $currentPage  = 'about';
       }
       @media (max-width: 720px) { .ab-story-section { padding: 40px 16px; } .ab-mv-section { padding: 48px 16px; } }
       @media (max-width: 580px) { .ab-process-steps { grid-template-columns: 1fr; } .ab-process-section { padding: 48px 16px; } }
+
+      /* ── Mobile: vertical timeline layout ── */
+      @media (max-width: 580px) {
+        .ab-process-steps {
+          display: flex;
+          flex-direction: column;
+          gap: 0;
+          padding-left: 0;
+          margin-top: 36px;
+          position: relative;
+          align-items: center;
+        }
+        /* hide horizontal desktop line */
+        .ab-process-steps::before { display: none; }
+
+        /* each step: row with circle on left, title on right */
+        .ab-process-step {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          gap: 20px;
+          text-align: left;
+          position: relative;
+          padding-bottom: 0;
+          width: 240px;
+          /* scroll-in animation */
+          opacity: 0;
+          transform: translateY(24px);
+          transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+        .ab-process-step.ab-step-visible {
+          opacity: 1;
+          transform: translateY(0);
+        }
+
+        /* left column: circle + connector line */
+        .ab-process-step__num {
+          flex-shrink: 0;
+          width: 48px;
+          height: 48px;
+          font-size: 0.8rem;
+          position: relative;
+          z-index: 2;
+          margin-top: 0;
+        }
+
+        /* vertical connector line drawn downward via scaleY */
+        .ab-process-step:not(:last-child) .ab-process-step__num::after {
+          content: '';
+          position: absolute;
+          left: 50%;
+          top: 100%;
+          transform: translateX(-50%) scaleY(0);
+          transform-origin: top center;
+          width: 2px;
+          height: 56px;
+          background: linear-gradient(180deg, #a78bfa, rgba(97,71,189,0.2));
+          transition: transform 0.45s ease 0.3s;
+        }
+        .ab-process-step.ab-step-visible:not(:last-child) .ab-process-step__num::after {
+          transform: translateX(-50%) scaleY(1);
+        }
+
+        /* right column: title only, no desc */
+        .ab-process-step__title {
+          font-size: 1rem;
+          font-weight: 700;
+          padding-top: 0;
+          line-height: 1.3;
+        }
+        .ab-process-step__desc {
+          display: none;
+        }
+
+        /* spacing between steps = line height */
+        .ab-process-step {
+          min-height: 100px;
+        }
+      }
     </style>
   </head>
   <body class="about-page">
@@ -172,5 +251,20 @@ $currentPage  = 'about';
 
     <?php include 'includes/footer.php'; ?>
     <?php include 'includes/scripts.php'; ?>
+    <script>
+      (function () {
+        var steps = document.querySelectorAll('.ab-process-step');
+        if (!steps.length || !window.IntersectionObserver) return;
+        var obs = new IntersectionObserver(function (entries) {
+          entries.forEach(function (e, i) {
+            if (e.isIntersecting) {
+              e.target.classList.add('ab-step-visible');
+              obs.unobserve(e.target);
+            }
+          });
+        }, { threshold: 0.35 });
+        steps.forEach(function (s) { obs.observe(s); });
+      })();
+    </script>
   </body>
 </html>

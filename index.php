@@ -117,8 +117,36 @@ $currentPage  = 'home';
       @media (max-width:768px) {
         .services-pill-container .row { align-items:stretch; }
         .services-pill-container .col-6 { display:flex; }
-        .service-pill-box { width:100%; height:72px; min-height:unset; font-size:13px; padding:8px; border-radius:10px; }
-        .services-pill-container .col-6 .text-center { width:100%; height:72px; margin-top:0 !important; display:flex; align-items:center; justify-content:center; border:1px solid rgba(255,255,255,0.1); border-radius:10px; background:rgba(255,255,255,0.03); }
+        .service-pill-box {
+          width: 100%;
+          min-height: 72px;
+          height: 100%;
+          padding: 16px 10px;
+          font-size: 12px;
+          font-weight: 600;
+          line-height: 1.4;
+          border-radius: 14px;
+          background: linear-gradient(145deg, #16113a 0%, #0d0d1f 100%);
+          border: 1px solid rgba(124,95,230,0.2);
+          box-shadow: 0 2px 12px rgba(97,71,189,0.1);
+          color: #e8e0ff;
+          transition: border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+        .service-pill-box:hover {
+          border-color: #a78bfa;
+          box-shadow: 0 0 18px rgba(167,139,250,0.25);
+          transform: none;
+          background: linear-gradient(145deg, #16113a 0%, #0d0d1f 100%);
+          color: #fff;
+        }
+        .services-pill-container .col-6 .text-center {
+          width: 100%; min-height: 72px; height: 100%;
+          margin-top: 0 !important; display: flex;
+          align-items: center; justify-content: center;
+          border-radius: 14px;
+          background: linear-gradient(145deg, #16113a 0%, #0d0d1f 100%);
+          border: 1px solid rgba(124,95,230,0.2);
+        }
       }
     </style>
     <div class="services-pill-container mb-5">
