@@ -201,7 +201,7 @@ try {
 
     // Content
     $mail->isHTML(true);
-    $mail->Subject = "New Enquiry from {$name} – UX Pacific";
+    $mail->Subject = "New Enquiry from {$name}  UX Pacific";
     $mail->Body    = $htmlBody;
     $mail->AltBody = $plainBody;
 

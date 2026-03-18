@@ -12,11 +12,18 @@ $currentPage  = 'cookies-privacy';
   <head>
     <?php include 'includes/head.php'; ?>
     <style>
-      .cookies-page main { max-width:820px; margin:0 auto; padding:64px 16px 24px 16px; }
+      .cookies-page main { max-width: 1240px;
+            max-width: 1240px;
+    width: 100%;
+    margin: 10px auto;
+    padding: 20px 40px;
+    background: #1111;
+    border-radius: 8px;
+       }
       .cookie-section h2 { font-size:1.75rem; margin-bottom:16px; }
-      .cookie-section p, .cookie-section ul { font-size:1rem; line-height:1.6; }
+      .cookie-section p, .cookie-section ul { font-size:15px; line-height:1.3; }
       @media (max-width:600px) {
-        .cookies-page main { padding:32px 12px 16px 12px; }
+        /* .cookies-page main { padding:32px 12px 16px 12px; } */
         .cookie-section h2 { font-size:1.5rem; }
         .about-header h1 { font-size:2rem; margin-top:110px; }
         .section-divider { margin:24px 0; }
@@ -33,7 +40,7 @@ $currentPage  = 'cookies-privacy';
     </section>
 
     <main>
-      <div class="cookie-section mb-4 mt120">
+      <div class="cookie-section mb-4 mt50">
         <p>This Cookie Policy explains how UX Pacific uses cookies and similar technologies to improve your browsing experience.</p>
       </div>
       <hr class="section-divider" />
@@ -44,7 +51,7 @@ $currentPage  = 'cookies-privacy';
       </div>
       <hr class="section-divider" />
 
-      <div class="cookie-section mt-5 mb-5">
+      <div class="cookie-section mt-3 mb-3">
         <h2>2. Why We Use Cookies</h2>
         <p>We use cookies to:</p>
         <ul>

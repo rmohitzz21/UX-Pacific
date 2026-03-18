@@ -199,7 +199,7 @@ $currentPage  = 'home';
           <img id="mw-img" src="img/ux.webp" alt="Project" />
         </div>
         <div class="mw-info">
-          <h3 id="mw-title">Case Study of Survey Pacific</h3>
+          <h3 id="mw-title">Case Study of<br>Survey Pacific</h3>
           <p id="mw-desc">We revamped the website UI/UX through deep heuristic evaluation and competitive benchmarking.</p>
           <div class="mw-tags" id="mw-tags">
             <span>&#8226; Case Study</span><span>&#8226; Web</span>
@@ -210,10 +210,11 @@ $currentPage  = 'home';
     </div>
 
     <style>
+      
       .mw-slider { display:flex; align-items:center; justify-content:center; gap:10px; padding:0 6px; margin:0 auto; max-width:420px; }
       .mw-arrow { background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.15); color:#fff; font-size:28px; width:40px; height:40px; border-radius:50%; display:flex; align-items:center; justify-content:center; cursor:pointer; flex-shrink:0; transition:background 0.2s; line-height:1; padding:0; }
       .mw-arrow:hover { background:rgba(97,71,189,0.5); border-color:#6147bd; }
-      .mw-card { flex:1; border-radius:16px; overflow:hidden; background:#1a1a2e; box-shadow:0 8px 32px rgba(0,0,0,0.6); }
+      .mw-card { flex:1; border-radius:16px; overflow:hidden; background:#1a1a2e; box-shadow:0 8px 32px rgba(0,0,0,0.6); min-height:400px; }
       .mw-image { width:100%; aspect-ratio:4/3; overflow:hidden; }
       .mw-image img { width:100%; height:100%; object-fit:cover; display:block; transition:opacity 0.3s ease; }
       .mw-info { background:linear-gradient(135deg,#3b2a7e,#6147bd); padding:18px 16px 16px; }
@@ -225,10 +226,14 @@ $currentPage  = 'home';
 
     <script>
       (function(){
+        // Preload images to prevent layout shifts
+        var images = ['img/ux.webp', 'img/cedar.webp', 'img/dist.webp'];
+        images.forEach(function(src){ var img = new Image(); img.src = src; });
+
         var mwData = [
-          { img:'img/ux.webp',    title:'Case Study of Survey Pacific',  desc:'We revamped the website UI/UX through deep heuristic evaluation and competitive benchmarking.', tags:['Case Study','Web'] },
-          { img:'img/cedar.webp', title:'UX Audit of CEDAR Himalaya',    desc:'We audited their digital experience to align with their mission of sustainable mountain development.', tags:['UX Audit','Web'] },
-          { img:'img/dist.webp',  title:'UX Audit of Distinct Buzz',     desc:'We uncovered usability gaps and friction in the user journey leading to smoother navigation and higher engagement.', tags:['UX Audit','Web'] }
+          { img:'img/ux.webp',    title:'Case Study of' + '\n' + 'Survey Pacific',  desc:'We revamped the website UI/UX through deep heuristic evaluation and competitive benchmarking.', tags:['Case Study','Web'] },
+          { img:'img/cedar.webp', title:'UX Audit of' + '\n' + 'CEDAR Himalaya',    desc:'We audited their digital experience to align with their mission of sustainable mountain development.', tags:['UX Audit','Web'] },
+          { img:'img/dist.webp',  title:'UX Audit of' + '\n' + 'Distinct Buzz',     desc:'We uncovered usability gaps and friction in the user journey leading to smoother navigation.', tags:['UX Audit','Web'] }
         ];
         var idx = 0;
         function render(){
