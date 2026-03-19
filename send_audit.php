@@ -43,7 +43,7 @@ $urlEsc   = $h($url   ?: '—');
 $htmlBody = <<<HTML
 <!DOCTYPE html>
 <html lang="en">
-<head><meta charset="UTF-8"><title>UX Audit Request – UX Pacific</title></head>
+<head><meta charset="UTF-8"><title>UX Audit Request  UX Pacific</title></head>
 <body style="margin:0;padding:0;background:#0d0d1a;font-family:'Segoe UI',Arial,sans-serif;">
   <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#0d0d1a;padding:40px 16px;">
     <tr><td align="center">
@@ -125,7 +125,7 @@ try {
     $mail->addReplyTo($email, $name);
 
     $mail->isHTML(true);
-    $mail->Subject = "UX Audit Request from {$name} – UX Pacific";
+    $mail->Subject = "UX Audit Request from {$name} UX Pacific";
     $mail->Body    = $htmlBody;
     $mail->AltBody = $plainBody;
 
