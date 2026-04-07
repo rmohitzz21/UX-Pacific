@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(grep:*)",
+      "Bash(php:*)",
+      "Bash(composer:*)",
+      "Bash(for f:*)",
+      "Bash(do echo:*)",
+      "Read(//d/xampp/htdocs/UX_Pacific/**)",
+      "Bash(done)"
+    ]
+  }
+}

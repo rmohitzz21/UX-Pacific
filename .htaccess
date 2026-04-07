@@ -1,0 +1,19 @@
+Options -Indexes
+RewriteEngine On
+
+# Custom 404 page
+ErrorDocument 404 /404.php
+
+# ── 1. Redirect index.php / index to root ──
+RewriteCond %{THE_REQUEST} \s/+(?:UX_Pacific/)?index\.php[\s?] [NC]
+RewriteRule ^ / [R=301,L]
+
+# ── 2. Redirect .php URLs to clean URLs (301) ──
+RewriteCond %{THE_REQUEST} \s/+(.+?)\.php[\s?] [NC]
+RewriteRule ^ /%1 [R=301,L,NE]
+
+# ── 3. Internally serve clean URLs from .php files ──
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}.php -f
+RewriteRule ^(.+)$ $1.php [L,QSA]

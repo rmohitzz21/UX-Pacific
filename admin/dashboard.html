@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Dashboard | UX Pacific</title>
+    <meta name="robots" content="noindex, nofollow" />
+    <link rel="shortcut icon" href="../img/Final.png" type="image/x-icon" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="admin.css" />
+  </head>
+
+  <body class="dashboard-body">
+
+    <!-- ===================== SIDEBAR ===================== -->
+    <aside class="sidebar" id="sidebar" role="navigation" aria-label="Admin sidebar">
+      <div class="sidebar-header">
+        <img src="../img/LOGO.png" alt="UX Pacific Logo" class="sidebar-logo" />
+        <button class="sidebar-close d-lg-none" id="sidebarClose" aria-label="Close sidebar">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+
+      <nav class="sidebar-nav">
+        <ul class="sidebar-menu" role="menubar">
+          <li role="none">
+            <a href="#" class="sidebar-link active" data-page="overview" role="menuitem">
+              <i class="fas fa-th-large sidebar-icon" aria-hidden="true"></i>
+              <span>Dashboard</span>
+            </a>
+          </li>
+          <li role="none">
+            <a href="#" class="sidebar-link" data-page="services" role="menuitem">
+              <i class="fas fa-cogs sidebar-icon" aria-hidden="true"></i>
+              <span>Manage Services</span>
+            </a>
+          </li>
+          <li role="none">
+            <a href="#" class="sidebar-link" data-page="work" role="menuitem">
+              <i class="fas fa-briefcase sidebar-icon" aria-hidden="true"></i>
+              <span>Manage Work</span>
+            </a>
+          </li>
+          <li role="none">
+            <a href="#" class="sidebar-link" data-page="ecosystem" role="menuitem">
+              <i class="fas fa-network-wired sidebar-icon" aria-hidden="true"></i>
+              <span>Manage Ecosystem</span>
+            </a>
+          </li>
+          <li role="none">
+            <a href="#" class="sidebar-link" data-page="messages" role="menuitem">
+              <i class="fas fa-envelope sidebar-icon" aria-hidden="true"></i>
+              <span>Messages</span>
+              <span class="sidebar-badge" id="msgBadge">3</span>
+            </a>
+          </li>
+          <li role="none">
+            <a href="#" class="sidebar-link" data-page="seo" role="menuitem">
+              <i class="fas fa-search sidebar-icon" aria-hidden="true"></i>
+              <span>SEO Settings</span>
+            </a>
+          </li>
+          <li role="none">
+            <a href="#" class="sidebar-link" data-page="settings" role="menuitem">
+              <i class="fas fa-sliders-h sidebar-icon" aria-hidden="true"></i>
+              <span>General Settings</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <div class="sidebar-footer">
+        <button class="sidebar-logout" id="logoutBtn" aria-label="Log out">
+          <i class="fas fa-sign-out-alt sidebar-icon" aria-hidden="true"></i>
+          <span>Logout</span>
+        </button>
+      </div>
+    </aside>
+
+    <!-- Overlay (mobile) -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <!-- ===================== MAIN LAYOUT ===================== -->
+    <div class="main-layout">
+
+      <!-- TOP NAVBAR -->
+      <header class="topbar" role="banner">
+        <div class="topbar-left">
+          <button class="topbar-menu-btn d-lg-none" id="sidebarToggle" aria-label="Open sidebar" aria-expanded="false" aria-controls="sidebar">
+            <i class="fas fa-bars"></i>
+          </button>
+          <div class="topbar-breadcrumb">
+            <span id="breadcrumb-page">Dashboard</span>
+          </div>
+        </div>
+        <div class="topbar-right">
+          <button class="topbar-icon-btn" aria-label="Notifications">
+            <i class="fas fa-bell"></i>
+            <span class="topbar-notification-dot" aria-hidden="true"></span>
+          </button>
+          <div class="topbar-user" id="topbarUser">
+            <div class="topbar-avatar" aria-label="Admin user">A</div>
+            <div class="topbar-user-info d-none d-sm-block">
+              <p class="topbar-name">Admin</p>
+              <p class="topbar-role">Administrator</p>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <!-- PAGE CONTENT -->
+      <main class="content-area" id="contentArea" role="main">
+
+        <!-- ===== OVERVIEW PAGE ===== -->
+        <section class="page active" id="page-overview" aria-labelledby="overview-heading">
+          <div class="page-header">
+            <div>
+              <h1 class="page-title" id="overview-heading">Dashboard Overview</h1>
+              <p class="page-subtitle">Welcome back! Here's what's happening.</p>
+            </div>
+            <span class="page-date" id="currentDate"></span>
+          </div>
+
+          <!-- Stats Cards -->
+          <div class="stats-grid">
+            <article class="stat-card" aria-label="Total Services">
+              <div class="stat-icon stat-icon--purple">
+                <i class="fas fa-cogs" aria-hidden="true"></i>
+              </div>
+              <div class="stat-body">
+                <p class="stat-label">Total Services</p>
+                <p class="stat-value">8</p>
+                <p class="stat-change stat-change--up">
+                  <i class="fas fa-arrow-up" aria-hidden="true"></i> 2 this month
+                </p>
+              </div>
+            </article>
+
+            <article class="stat-card" aria-label="Total Projects">
+              <div class="stat-icon stat-icon--blue">
+                <i class="fas fa-briefcase" aria-hidden="true"></i>
+              </div>
+              <div class="stat-body">
+                <p class="stat-label">Total Projects</p>
+                <p class="stat-value">7</p>
+                <p class="stat-change stat-change--up">
+                  <i class="fas fa-arrow-up" aria-hidden="true"></i> 1 new case study
+                </p>
+              </div>
+            </article>
+
+            <article class="stat-card" aria-label="Total Messages">
+              <div class="stat-icon stat-icon--amber">
+                <i class="fas fa-envelope" aria-hidden="true"></i>
+              </div>
+              <div class="stat-body">
+                <p class="stat-label">Total Messages</p>
+                <p class="stat-value">24</p>
+                <p class="stat-change stat-change--up">
+                  <i class="fas fa-arrow-up" aria-hidden="true"></i> 3 unread
+                </p>
+              </div>
+            </article>
+
+            <article class="stat-card" aria-label="Website Status">
+              <div class="stat-icon stat-icon--green">
+                <i class="fas fa-globe" aria-hidden="true"></i>
+              </div>
+              <div class="stat-body">
+                <p class="stat-label">Website Status</p>
+                <p class="stat-value">Live</p>
+                <p class="stat-change stat-change--up">
+                  <i class="fas fa-check-circle" aria-hidden="true"></i> All systems operational
+                </p>
+              </div>
+            </article>
+          </div>
+
+          <!-- Recent Messages Table -->
+          <div class="table-card mt-4">
+            <div class="table-card-header">
+              <h2 class="table-card-title">Recent Messages</h2>
+              <button class="btn-text-link" data-page="messages">View all</button>
+            </div>
+            <div class="table-responsive">
+              <table class="admin-table" role="table" aria-label="Recent contact messages">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Industry</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="recentMsgBody">
+                  <!-- Populated by JS -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- ===== SERVICES PAGE ===== -->
+        <section class="page" id="page-services" aria-labelledby="services-heading">
+          <div class="page-header">
+            <div>
+              <h1 class="page-title" id="services-heading">Manage Services</h1>
+              <p class="page-subtitle">Add, edit, or remove service offerings.</p>
+            </div>
+            <button class="btn-primary-admin" id="addServiceBtn" data-bs-toggle="modal" data-bs-target="#serviceModal">
+              <i class="fas fa-plus" aria-hidden="true"></i> Add Service
+            </button>
+          </div>
+
+          <div class="table-card">
+            <div class="table-responsive">
+              <table class="admin-table" role="table" aria-label="Services management table">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Service Name</th>
+                    <th scope="col">Category</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="servicesTableBody">
+                  <!-- Populated by JS -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- ===== WORK PAGE ===== -->
+        <section class="page" id="page-work" aria-labelledby="work-heading">
+          <div class="page-header">
+            <div>
+              <h1 class="page-title" id="work-heading">Manage Work</h1>
+              <p class="page-subtitle">Manage portfolio projects and case studies.</p>
+            </div>
+            <button class="btn-primary-admin" id="addProjectBtn" data-bs-toggle="modal" data-bs-target="#projectModal">
+              <i class="fas fa-plus" aria-hidden="true"></i> Add Project
+            </button>
+          </div>
+
+          <div class="projects-admin-grid" id="projectsGrid">
+            <!-- Populated by JS -->
+          </div>
+        </section>
+
+        <!-- ===== ECOSYSTEM PAGE ===== -->
+        <section class="page" id="page-ecosystem" aria-labelledby="ecosystem-heading">
+          <div class="page-header">
+            <div>
+              <h1 class="page-title" id="ecosystem-heading">Manage Ecosystem</h1>
+              <p class="page-subtitle">Manage community partners, collaborators, and ecosystem content.</p>
+            </div>
+            <button class="btn-primary-admin" data-bs-toggle="modal" data-bs-target="#ecosystemModal">
+              <i class="fas fa-plus" aria-hidden="true"></i> Add Partner
+            </button>
+          </div>
+
+          <div class="table-card">
+            <div class="table-responsive">
+              <table class="admin-table" role="table" aria-label="Ecosystem partners table">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Partner / Member</th>
+                    <th scope="col">Type</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="ecosystemTableBody">
+                  <!-- Populated by JS -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- ===== MESSAGES PAGE ===== -->
+        <section class="page" id="page-messages" aria-labelledby="messages-heading">
+          <div class="page-header">
+            <div>
+              <h1 class="page-title" id="messages-heading">Messages</h1>
+              <p class="page-subtitle">Contact form submissions from your website.</p>
+            </div>
+          </div>
+
+          <div class="table-card">
+            <div class="table-card-header">
+              <div class="table-filters">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="unread">Unread</button>
+                <button class="filter-btn" data-filter="read">Read</button>
+              </div>
+              <input type="search" class="admin-search" placeholder="Search messages..." id="msgSearch" aria-label="Search messages" />
+            </div>
+            <div class="table-responsive">
+              <table class="admin-table" role="table" aria-label="All contact messages">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Industry</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="allMsgBody">
+                  <!-- Populated by JS -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- ===== SEO SETTINGS PAGE ===== -->
+        <section class="page" id="page-seo" aria-labelledby="seo-heading">
+          <div class="page-header">
+            <div>
+              <h1 class="page-title" id="seo-heading">SEO Settings</h1>
+              <p class="page-subtitle">Manage default meta tags and social sharing metadata.</p>
+            </div>
+          </div>
+
+          <div class="settings-grid">
+            <div class="settings-card">
+              <h2 class="settings-section-title">Default Meta Tags</h2>
+              <form class="settings-form" id="seoForm">
+                <div class="form-group">
+                  <label class="form-label" for="seoTitle">Default Title Tag</label>
+                  <input type="text" id="seoTitle" class="admin-input" value="UX Pacific | UI/UX Design Agency" maxlength="70" />
+                  <p class="form-hint">Recommended: 50–70 characters</p>
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="seoDesc">Default Meta Description</label>
+                  <textarea id="seoDesc" class="admin-input admin-textarea" rows="3" maxlength="160">UX Pacific is a leading UI/UX design agency delivering intuitive digital experiences, user research, and product design for global clients.</textarea>
+                  <p class="form-hint">Recommended: 150–160 characters</p>
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="seoKeywords">Focus Keywords</label>
+                  <input type="text" id="seoKeywords" class="admin-input" value="UX design, UI design, user research, product design, UX audit" />
+                  <p class="form-hint">Separate keywords with commas</p>
+                </div>
+              </form>
+            </div>
+
+            <div class="settings-card">
+              <h2 class="settings-section-title">Open Graph / Social</h2>
+              <form class="settings-form">
+                <div class="form-group">
+                  <label class="form-label" for="ogTitle">OG Title</label>
+                  <input type="text" id="ogTitle" class="admin-input" value="UX Pacific | UI/UX Design Agency" />
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="ogDesc">OG Description</label>
+                  <textarea id="ogDesc" class="admin-input admin-textarea" rows="3">Explore research-driven UI/UX design services from UX Pacific for startups and enterprises.</textarea>
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="ogImage">OG Image URL</label>
+                  <input type="url" id="ogImage" class="admin-input" value="https://www.uxpacific.com/img/LOGO.png" />
+                </div>
+              </form>
+            </div>
+          </div>
+
+          <div class="settings-actions">
+            <button class="btn-primary-admin" onclick="showToast('SEO settings saved successfully.')">
+              <i class="fas fa-save" aria-hidden="true"></i> Save SEO Settings
+            </button>
+          </div>
+        </section>
+
+        <!-- ===== GENERAL SETTINGS PAGE ===== -->
+        <section class="page" id="page-settings" aria-labelledby="settings-heading">
+          <div class="page-header">
+            <div>
+              <h1 class="page-title" id="settings-heading">General Settings</h1>
+              <p class="page-subtitle">Manage site-wide configuration, branding, and social links.</p>
+            </div>
+          </div>
+
+          <div class="settings-grid">
+            <!-- Branding -->
+            <div class="settings-card">
+              <h2 class="settings-section-title">Branding</h2>
+              <form class="settings-form">
+                <div class="form-group">
+                  <label class="form-label">Current Logo</label>
+                  <div class="logo-preview-box">
+                    <img src="../img/LOGO.png" alt="Current site logo" class="logo-preview-img" id="logoPreview" />
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="logoUpload">Upload New Logo</label>
+                  <input type="file" id="logoUpload" class="admin-input admin-file" accept="image/*" aria-describedby="logoHint" />
+                  <p class="form-hint" id="logoHint">Recommended: PNG or SVG, transparent background, max 500 KB</p>
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="siteName">Site Name</label>
+                  <input type="text" id="siteName" class="admin-input" value="UX Pacific" />
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="tagline">Tagline</label>
+                  <input type="text" id="tagline" class="admin-input" value="Start your UI/UX Journey" />
+                </div>
+              </form>
+            </div>
+
+            <!-- Social Links -->
+            <div class="settings-card">
+              <h2 class="settings-section-title">Social Links</h2>
+              <form class="settings-form">
+                <div class="form-group">
+                  <label class="form-label" for="linkedinUrl">
+                    <i class="fab fa-linkedin social-form-icon" aria-hidden="true"></i> LinkedIn URL
+                  </label>
+                  <input type="url" id="linkedinUrl" class="admin-input" value="https://www.linkedin.com/company/uxpacific/" />
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="behanceUrl">
+                    <i class="fab fa-behance social-form-icon" aria-hidden="true"></i> Behance URL
+                  </label>
+                  <input type="url" id="behanceUrl" class="admin-input" value="https://www.behance.net/uxpacific" />
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="instagramUrl">
+                    <i class="fab fa-instagram social-form-icon" aria-hidden="true"></i> Instagram URL
+                  </label>
+                  <input type="url" id="instagramUrl" class="admin-input" value="https://www.instagram.com/official_uxpacific/" />
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="contactEmail">Contact Email</label>
+                  <input type="email" id="contactEmail" class="admin-input" value="hello@uxpacific.com" />
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="contactPhone">Contact Phone</label>
+                  <input type="tel" id="contactPhone" class="admin-input" value="+91 92740-61063" />
+                </div>
+              </form>
+            </div>
+          </div>
+
+          <div class="settings-actions">
+            <button class="btn-primary-admin" onclick="showToast('General settings saved successfully.')">
+              <i class="fas fa-save" aria-hidden="true"></i> Save Settings
+            </button>
+          </div>
+        </section>
+
+      </main><!-- /content-area -->
+    </div><!-- /main-layout -->
+
+    <!-- ===================== MODALS ===================== -->
+
+    <!-- Service Modal -->
+    <div class="modal fade" id="serviceModal" tabindex="-1" aria-labelledby="serviceModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content admin-modal">
+          <div class="modal-header admin-modal-header">
+            <h2 class="modal-title" id="serviceModalLabel">Add Service</h2>
+            <button type="button" class="admin-modal-close" data-bs-dismiss="modal" aria-label="Close modal">
+              <i class="fas fa-times"></i>
+            </button>
+          </div>
+          <div class="modal-body admin-modal-body">
+            <form id="serviceForm" novalidate>
+              <input type="hidden" id="serviceId" />
+              <div class="form-group">
+                <label class="form-label" for="serviceName">Service Name <span class="required-star">*</span></label>
+                <input type="text" id="serviceName" class="admin-input" placeholder="e.g. UX Audit" required />
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="serviceCategory">Category <span class="required-star">*</span></label>
+                <select id="serviceCategory" class="admin-input admin-select" required>
+                  <option value="">Select category</option>
+                  <option value="Design">Design</option>
+                  <option value="Research">Research</option>
+                  <option value="Strategy">Strategy</option>
+                  <option value="Development">Development</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="serviceDesc">Description</label>
+                <textarea id="serviceDesc" class="admin-input admin-textarea" rows="3" placeholder="Brief description of the service..."></textarea>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="serviceStatus">Status</label>
+                <select id="serviceStatus" class="admin-input admin-select">
+                  <option value="Active">Active</option>
+                  <option value="Inactive">Inactive</option>
+                </select>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer admin-modal-footer">
+            <button type="button" class="btn-secondary-admin" data-bs-dismiss="modal">Cancel</button>
+            <button type="button" class="btn-primary-admin" id="saveServiceBtn">
+              <i class="fas fa-save" aria-hidden="true"></i> Save Service
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Project Modal -->
+    <div class="modal fade" id="projectModal" tabindex="-1" aria-labelledby="projectModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content admin-modal">
+          <div class="modal-header admin-modal-header">
+            <h2 class="modal-title" id="projectModalLabel">Add Project</h2>
+            <button type="button" class="admin-modal-close" data-bs-dismiss="modal" aria-label="Close modal">
+              <i class="fas fa-times"></i>
+            </button>
+          </div>
+          <div class="modal-body admin-modal-body">
+            <form id="projectForm" novalidate>
+              <input type="hidden" id="projectId" />
+              <div class="admin-form-row">
+                <div class="form-group">
+                  <label class="form-label" for="projectTitle">Project Title <span class="required-star">*</span></label>
+                  <input type="text" id="projectTitle" class="admin-input" placeholder="e.g. Distinct Buzz" required />
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="projectType">Type</label>
+                  <select id="projectType" class="admin-input admin-select">
+                    <option value="UX Audit">UX Audit</option>
+                    <option value="Case Study">Case Study</option>
+                    <option value="UI/UX Design">UI/UX Design</option>
+                    <option value="Product Design">Product Design</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="projectDesc">Description</label>
+                <textarea id="projectDesc" class="admin-input admin-textarea" rows="3" placeholder="Brief description of the project..."></textarea>
+              </div>
+              <div class="admin-form-row">
+                <div class="form-group">
+                  <label class="form-label" for="projectLink">Behance / Portfolio URL</label>
+                  <input type="url" id="projectLink" class="admin-input" placeholder="https://www.behance.net/..." />
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="projectImage">Image URL</label>
+                  <input type="url" id="projectImage" class="admin-input" placeholder="https://..." />
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer admin-modal-footer">
+            <button type="button" class="btn-secondary-admin" data-bs-dismiss="modal">Cancel</button>
+            <button type="button" class="btn-primary-admin" id="saveProjectBtn">
+              <i class="fas fa-save" aria-hidden="true"></i> Save Project
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Ecosystem Modal -->
+    <div class="modal fade" id="ecosystemModal" tabindex="-1" aria-labelledby="ecosystemModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content admin-modal">
+          <div class="modal-header admin-modal-header">
+            <h2 class="modal-title" id="ecosystemModalLabel">Add Partner</h2>
+            <button type="button" class="admin-modal-close" data-bs-dismiss="modal" aria-label="Close modal">
+              <i class="fas fa-times"></i>
+            </button>
+          </div>
+          <div class="modal-body admin-modal-body">
+            <form id="ecosystemForm" novalidate>
+              <div class="form-group">
+                <label class="form-label" for="partnerName">Partner / Member Name <span class="required-star">*</span></label>
+                <input type="text" id="partnerName" class="admin-input" placeholder="e.g. Survey Pacific" required />
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="partnerType">Type</label>
+                <select id="partnerType" class="admin-input admin-select">
+                  <option value="Client">Client</option>
+                  <option value="Mentor">Mentor</option>
+                  <option value="Collaborator">Collaborator</option>
+                  <option value="Community">Community</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="partnerUrl">Website URL</label>
+                <input type="url" id="partnerUrl" class="admin-input" placeholder="https://..." />
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer admin-modal-footer">
+            <button type="button" class="btn-secondary-admin" data-bs-dismiss="modal">Cancel</button>
+            <button type="button" class="btn-primary-admin" id="saveEcosystemBtn">
+              <i class="fas fa-save" aria-hidden="true"></i> Save Partner
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- View Message Modal -->
+    <div class="modal fade" id="viewMsgModal" tabindex="-1" aria-labelledby="viewMsgLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content admin-modal">
+          <div class="modal-header admin-modal-header">
+            <h2 class="modal-title" id="viewMsgLabel">View Message</h2>
+            <button type="button" class="admin-modal-close" data-bs-dismiss="modal" aria-label="Close modal">
+              <i class="fas fa-times"></i>
+            </button>
+          </div>
+          <div class="modal-body admin-modal-body" id="viewMsgContent">
+            <!-- Populated by JS -->
+          </div>
+          <div class="modal-footer admin-modal-footer">
+            <button type="button" class="btn-secondary-admin" data-bs-dismiss="modal">Close</button>
+            <a href="#" class="btn-primary-admin" id="replyBtn">
+              <i class="fas fa-reply" aria-hidden="true"></i> Reply via Email
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Delete Confirm Modal -->
+    <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered modal-sm">
+        <div class="modal-content admin-modal">
+          <div class="modal-header admin-modal-header">
+            <h2 class="modal-title" id="deleteModalLabel">Confirm Delete</h2>
+            <button type="button" class="admin-modal-close" data-bs-dismiss="modal" aria-label="Close modal">
+              <i class="fas fa-times"></i>
+            </button>
+          </div>
+          <div class="modal-body admin-modal-body">
+            <p>Are you sure you want to delete <strong id="deleteItemName"></strong>? This action cannot be undone.</p>
+          </div>
+          <div class="modal-footer admin-modal-footer">
+            <button type="button" class="btn-secondary-admin" data-bs-dismiss="modal">Cancel</button>
+            <button type="button" class="btn-danger-admin" id="confirmDeleteBtn">Delete</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div class="toast-container" role="status" aria-live="polite" aria-atomic="true">
+      <div class="admin-toast" id="adminToast">
+        <i class="fas fa-check-circle toast-icon" aria-hidden="true"></i>
+        <span id="toastMessage"></span>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="admin.js"></script>
+  </body>
+</html>

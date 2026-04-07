@@ -1,0 +1,95 @@
+
+.services-page {
+
+  /* ---------- NAV ACTIVE ---------- */
+  .navbar-nav .nav-link.active {
+    color: #ffffff;
+    text-decoration: underline;
+  }
+
+  .navbar-nav .nav-link:hover {
+    color: #ffffff;
+    text-decoration: none;
+  }
+
+  /* ---------- HEADER ---------- */
+  .about-header {
+    position: relative;
+    text-align: center;
+    width: 100%;
+    height: 277px;
+    background: #111;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  /* ---------- HEADER IMAGE / GIF ---------- */
+  .gallery-container  {
+    position: absolute;
+    top: -110px;
+    left: 0;
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+    z-index: 1;
+  }
+
+  .gallery-container img,
+  .img1 {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+    filter: brightness(0.55) blur(1.5px);
+  }
+
+  /* ---------- HEADER TEXT ---------- */
+  .about-header h1 {
+    position: relative;
+    z-index: 3;
+    font-family: 'DM Sans';
+    font-weight: 600;
+    font-size: 64px;
+    color: #f5f5f5;
+    margin-bottom: 18px;
+  }
+
+  .innovation-badge-exact {
+    position: relative;
+    z-index: 3;
+    font-family: 'Inter';
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 32px;
+    color: #e0e0e0;
+    text-align: center;
+  }
+
+  .innovation-badge-exact span {
+    color: #624ab2;
+  }
+
+  /* ---------- MOBILE OVERRIDES ---------- */
+  @media (max-width: 768px) {
+
+    .about-header {
+      height: 140px;
+      margin-bottom: 50px;
+    }
+
+    .about-header h1 {
+      font-size: 35px;
+    }
+
+    .gallery-container {
+      top: -40px;
+    }
+
+    .gallery-container img {
+      filter: brightness(0.6) blur(1px);
+    }
+  }
+}
