@@ -44,26 +44,20 @@
       <div class="navbar-icons-cta d-none d-lg-flex align-items-center gap-3">
         <!-- Shop Icon -->
         <a href="https://club.uxpacific.com/" target="_blank" rel="noopener noreferrer" class="nav-icon-link" aria-label="UXP Shop">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="9" cy="21" r="1"></circle>
-            <circle cx="20" cy="21" r="1"></circle>
-            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M7 4V3a1 1 0 0 1 1-1h8a1 1 0 0 1 1 1v1h2a1 1 0 0 1 1 1v2h1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h1V5a1 1 0 0 1 1-1h2zM9 4h6V3H9v1zm-2 5v1h14V9H7z"/>
           </svg>
         </a>
-        <!-- Academy Icon -->
+        <!-- Academy Icon (Graduation Cap) -->
         <a href="https://academy.uxpacific.com/" target="_blank" rel="noopener noreferrer" class="nav-icon-link" aria-label="UXP Academy">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M22 10v6m0 0l-8.5 4.75a2 2 0 0 1-1 .25H3a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9.5a2 2 0 0 1 1 .25L22 6m0 4v0"></path>
-            <path d="M2 12h20"></path>
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 1l11 6v2h-1v11a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V9H1V7l11-6zm0 3.34L3.74 8.5h16.52L12 4.34zM4 10v8h16v-8H4z"/>
           </svg>
         </a>
-        <!-- Community Icon -->
+        <!-- Community Icon (People) -->
         <a href="https://community.uxpacific.com/" target="_blank" rel="noopener noreferrer" class="nav-icon-link" aria-label="UXP Community">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-            <circle cx="9" cy="7" r="4"></circle>
-            <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
-            <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 12a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm0 1c2.67 0 8 1.34 8 4v3H4v-3c0-2.66 5.33-4 8-4zm-6-3a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5zm12 0a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5zM3 20v-2.5c0-1.93 3.36-3.5 7-3.5s7 1.57 7 3.5V20H3z"/>
           </svg>
         </a>
         <!-- Let's Talk CTA Button -->
