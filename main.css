@@ -2243,11 +2243,45 @@ body {
   font-weight: 500;
   transition: color 0.15s;
   font-size: 1.05rem;
-
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
 .navbar-nav .nav-link.active {
   color: #ebeaee;
+}
+
+/* ── Navbar Icons & CTA Container ── */
+.navbar-icons-cta {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-left: 24px;
+  padding-left: 24px;
+  border-left: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.nav-icon-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 6px;
+  background: rgba(97, 71, 189, 0.1);
+  color: #a3a3ac;
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+.nav-icon-link:hover {
+  background: rgba(97, 71, 189, 0.2);
+  color: #a78bfa;
+  transform: translateY(-2px);
+}
+
+.nav-icon-link svg {
+  stroke: currentColor;
 }
 
 .btn-gradient {
@@ -2333,6 +2367,17 @@ body {
     position: sticky;
     top: 0;
     z-index: 1000;
+  }
+
+  .navbar-icons-cta {
+    gap: 8px;
+    margin-left: 12px;
+    padding-left: 12px;
+  }
+
+  .nav-icon-link {
+    width: 36px;
+    height: 36px;
   }
 
   .about-header h1 {
