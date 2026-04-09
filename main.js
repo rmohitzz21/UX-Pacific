@@ -149,15 +149,38 @@ document.addEventListener("DOMContentLoaded", function () {
         clonedCards.removeAttribute("id");
         reviewsGrid.appendChild(clonedCards);
 
-        // Logic to pause animation ONLY on card hover
+        // Testimonial cards hover effects
         const allCards = document.querySelectorAll(".testimonial-card");
 
         allCards.forEach((card) => {
+          // Pause animation on hover
           card.addEventListener("mouseenter", () => {
             reviewsGrid.style.animationPlayState = "paused";
           });
           card.addEventListener("mouseleave", () => {
             reviewsGrid.style.animationPlayState = "running";
+          });
+
+          // Subtle 3D tilt effect
+          card.addEventListener("mousemove", (e) => {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            const centerX = rect.width / 2;
+            const centerY = rect.height / 2;
+            const rotateX = (y - centerY) / 25;
+            const rotateY = (centerX - x) / 25;
+            
+            card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-8px)`;
+          });
+
+          card.addEventListener("mouseleave", () => {
+            card.style.transform = 'translateY(0)';
+            card.style.transition = 'transform 0.4s ease';
+          });
+
+          card.addEventListener("mouseenter", () => {
+            card.style.transition = 'transform 0.15s ease';
           });
         });
     }

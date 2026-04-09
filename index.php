@@ -279,12 +279,197 @@ $currentPage  = 'home';
       <div class="reviews-grid-container">
         <div class="reviews-grid">
           <div class="review-card-set" id="original-cards">
-            <div class="testimonial-card" style="background-color:#312e81"><div class="card-header"><div class="stars"><svg fill="#ffd166" viewbox="0 0 24 24"><path d="M12 .587l3.668 7.431L24 9.748l-6 5.847L19.335 24 12 20.201 4.665 24 6 15.595 0 9.748l8.332-1.73L12 .587z"></path></svg><svg fill="#ffd166" viewbox="0 0 24 24"><path d="M12 .587l3.668 7.431L24 9.748l-6 5.847L19.335 24 12 20.201 4.665 24 6 15.595 0 9.748l8.332-1.73L12 .587z"></path></svg><svg fill="#ffd166" viewbox="0 0 24 24"><path d="M12 .587l3.668 7.431L24 9.748l-6 5.847L19.335 24 12 20.201 4.665 24 6 15.595 0 9.748l8.332-1.73L12 .587z"></path></svg><svg fill="#ffd166" viewbox="0 0 24 24"><path d="M12 .587l3.668 7.431L24 9.748l-6 5.847L19.335 24 12 20.201 4.665 24 6 15.595 0 9.748l8.332-1.73L12 .587z"></path></svg><svg fill="#ffd166" viewbox="0 0 24 24"><path d="M12 .587l3.668 7.431L24 9.748l-6 5.847L19.335 24 12 20.201 4.665 24 6 15.595 0 9.748l8.332-1.73L12 .587z"></path></svg></div><div class="pill">Project Experience</div></div><div class="quote">We appreciate the professionalism and clarity UX Pacific brought to the process and would gladly collaborate again.</div><div class="author"><div class="avatar"><img alt="Andrew Ajai Singh" src="img/Oval (1).png" /></div><div class="author-info"><div class="name">Andrew Ajai Singh</div><div class="title">Distinct Buzz</div></div></div></div>
-            <div class="testimonial-card" style="background-color:#4338ca"><div class="card-header"><div class="stars"><svg fill="#ffd166" viewbox="0 0 24 24"><path d="M12 .587l3.668 7.431L24 9.748l-6 5.847L19.335 24 12 20.201 4.665 24 6 15.595 0 9.748l8.332-1.73L12 .587z"></path></svg><svg fill="#ffd166" viewbox="0 0 24 24"><path d="M12 .587l3.668 7.431L24 9.748l-6 5.847L19.335 24 12 20.201 4.665 24 6 15.595 0 9.748l8.332-1.73L12 .587z"></path></svg><svg fill="#ffd166" viewbox="0 0 24 24"><path d="M12 .587l3.668 7.431L24 9.748l-6 5.847L19.335 24 12 20.201 4.665 24 6 15.595 0 9.748l8.332-1.73L12 .587z"></path></svg><svg fill="#ffd166" viewbox="0 0 24 24"><path d="M12 .587l3.668 7.431L24 9.748l-6 5.847L19.335 24 12 20.201 4.665 24 6 15.595 0 9.748l8.332-1.73L12 .587z"></path></svg><svg fill="#ffd166" viewbox="0 0 24 24"><path d="M12 .587l3.668 7.431L24 9.748l-6 5.847L19.335 24 12 20.201 4.665 24 6 15.595 0 9.748l8.332-1.73L12 .587z"></path></svg></div><div class="pill">Workshop Experience</div></div><div class="quote">Use engaging activities and mix up groups to boost interaction, cut distractions, and make the workshop more effective.</div><div class="author"><div class="avatar"><img alt="Dharmik Bhavsar" src="img/Oval (2).png" /></div><div class="author-info"><div class="name">Dharmik Bhavsar</div><div class="title">Student</div></div></div></div>
-            <div class="testimonial-card" style="background-color:#4f46e5"><div class="card-header"><div class="stars"><svg fill="#ffd166" viewbox="0 0 24 24"><path d="M12 .587l3.668 7.431L24 9.748l-6 5.847L19.335 24 12 20.201 4.665 24 6 15.595 0 9.748l8.332-1.73L12 .587z"></path></svg><svg fill="#ffd166" viewbox="0 0 24 24"><path d="M12 .587l3.668 7.431L24 9.748l-6 5.847L19.335 24 12 20.201 4.665 24 6 15.595 0 9.748l8.332-1.73L12 .587z"></path></svg><svg fill="#ffd166" viewbox="0 0 24 24"><path d="M12 .587l3.668 7.431L24 9.748l-6 5.847L19.335 24 12 20.201 4.665 24 6 15.595 0 9.748l8.332-1.73L12 .587z"></path></svg><svg fill="#ffd166" viewbox="0 0 24 24"><path d="M12 .587l3.668 7.431L24 9.748l-6 5.847L19.335 24 12 20.201 4.665 24 6 15.595 0 9.748l8.332-1.73L12 .587z"></path></svg><svg fill="#ffd166" viewbox="0 0 24 24"><path d="M12 .587l3.668 7.431L24 9.748l-6 5.847L19.335 24 12 20.201 4.665 24 6 15.595 0 9.748l8.332-1.73L12 .587z"></path></svg></div><div class="pill">Workshop Experience</div></div><div class="quote">Got to explore fresh and engaging activities throughout the session. They added a fun and creative touch to the overall learning experience!</div><div class="author"><div class="avatar"><img alt="Diya Mehta" src="./img/DMDM.png" /></div><div class="author-info"><div class="name">Diya Mehta</div><div class="title">Student</div></div></div></div>
-            <div class="testimonial-card" style="background-color:#312e81"><div class="card-header"><div class="stars"><svg fill="#ffd166" viewbox="0 0 24 24"><path d="M12 .587l3.668 7.431L24 9.748l-6 5.847L19.335 24 12 20.201 4.665 24 6 15.595 0 9.748l8.332-1.73L12 .587z"></path></svg><svg fill="#ffd166" viewbox="0 0 24 24"><path d="M12 .587l3.668 7.431L24 9.748l-6 5.847L19.335 24 12 20.201 4.665 24 6 15.595 0 9.748l8.332-1.73L12 .587z"></path></svg><svg fill="#ffd166" viewbox="0 0 24 24"><path d="M12 .587l3.668 7.431L24 9.748l-6 5.847L19.335 24 12 20.201 4.665 24 6 15.595 0 9.748l8.332-1.73L12 .587z"></path></svg><svg fill="#ffd166" viewbox="0 0 24 24"><path d="M12 .587l3.668 7.431L24 9.748l-6 5.847L19.335 24 12 20.201 4.665 24 6 15.595 0 9.748l8.332-1.73L12 .587z"></path></svg><svg fill="#ffd166" viewbox="0 0 24 24"><path d="M12 .587l3.668 7.431L24 9.748l-6 5.847L19.335 24 12 20.201 4.665 24 6 15.595 0 9.748l8.332-1.73L12 .587z"></path></svg></div><div class="pill">Project Experience</div></div><div class="quote">Working with UXPacific for the UX draft was an insightful experience. The team's approach was structured, detailed, and highly actionable.</div><div class="author"><div class="avatar"><img alt="Dr. Vishal Singh" src="img/Oval.png" /></div><div class="author-info"><div class="name">Dr. Vishal Singh</div><div class="title">CEDAR Himalaya</div></div></div></div>
-            <div class="testimonial-card" style="background-color:#312e81"><div class="card-header"><div class="stars"><svg fill="#ffd166" viewbox="0 0 24 24"><path d="M12 .587l3.668 7.431L24 9.748l-6 5.847L19.335 24 12 20.201 4.665 24 6 15.595 0 9.748l8.332-1.73L12 .587z"></path></svg><svg fill="#ffd166" viewbox="0 0 24 24"><path d="M12 .587l3.668 7.431L24 9.748l-6 5.847L19.335 24 12 20.201 4.665 24 6 15.595 0 9.748l8.332-1.73L12 .587z"></path></svg><svg fill="#ffd166" viewbox="0 0 24 24"><path d="M12 .587l3.668 7.431L24 9.748l-6 5.847L19.335 24 12 20.201 4.665 24 6 15.595 0 9.748l8.332-1.73L12 .587z"></path></svg><svg fill="#ffd166" viewbox="0 0 24 24"><path d="M12 .587l3.668 7.431L24 9.748l-6 5.847L19.335 24 12 20.201 4.665 24 6 15.595 0 9.748l8.332-1.73L12 .587z"></path></svg><svg fill="#ffd166" viewbox="0 0 24 24"><path d="M12 .587l3.668 7.431L24 9.748l-6 5.847L19.335 24 12 20.201 4.665 24 6 15.595 0 9.748l8.332-1.73L12 .587z"></path></svg></div><div class="pill">Workshop Experience</div></div><div class="quote">Loved the hands-on activities and feedback they really clarified the concepts. Great experience connecting with the team and participants!</div><div class="author"><div class="avatar"><img alt="Yugaan Parmar" src="img/YUGAAn.png" /></div><div class="author-info"><div class="name">Yugaan Parmar</div><div class="title">UI/UX &amp; Graphic Designer</div></div></div></div>
-            <div class="testimonial-card" style="background-color:#312e81"><div class="card-header"><div class="stars"><svg fill="#ffd166" viewbox="0 0 24 24"><path d="M12 .587l3.668 7.431L24 9.748l-6 5.847L19.335 24 12 20.201 4.665 24 6 15.595 0 9.748l8.332-1.73L12 .587z"></path></svg><svg fill="#ffd166" viewbox="0 0 24 24"><path d="M12 .587l3.668 7.431L24 9.748l-6 5.847L19.335 24 12 20.201 4.665 24 6 15.595 0 9.748l8.332-1.73L12 .587z"></path></svg><svg fill="#ffd166" viewbox="0 0 24 24"><path d="M12 .587l3.668 7.431L24 9.748l-6 5.847L19.335 24 12 20.201 4.665 24 6 15.595 0 9.748l8.332-1.73L12 .587z"></path></svg><svg fill="#ffd166" viewbox="0 0 24 24"><path d="M12 .587l3.668 7.431L24 9.748l-6 5.847L19.335 24 12 20.201 4.665 24 6 15.595 0 9.748l8.332-1.73L12 .587z"></path></svg><svg fill="#ffd166" viewbox="0 0 24 24"><path d="M12 .587l3.668 7.431L24 9.748l-6 5.847L19.335 24 12 20.201 4.665 24 6 15.595 0 9.748l8.332-1.73L12 .587z"></path></svg></div><div class="pill">Workshop Experience</div></div><div class="quote">Gained deeper knowledge, especially through the process of creating the hero and i understood how structure and design come together!</div><div class="author"><div class="avatar"><img alt="Devanshi Akhja" src="img/Devanshi.png" /></div><div class="author-info"><div class="name">Devanshi Akhja</div><div class="title">Student</div></div></div></div>
+            <!-- Card 1 -->
+            <div class="testimonial-card" data-tilt>
+              <div class="card-glow"></div>
+              <div class="quote-icon">
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M11 7H7C5.89543 7 5 7.89543 5 9V13C5 14.1046 5.89543 15 7 15H9C9 16.6569 7.65685 18 6 18V20C8.76142 20 11 17.7614 11 15V7Z" fill="rgba(255,255,255,0.15)"/>
+                  <path d="M21 7H17C15.8954 7 15 7.89543 15 9V13C15 14.1046 15.8954 15 17 15H19C19 16.6569 17.6569 18 16 18V20C18.7614 20 21 17.7614 21 15V7Z" fill="rgba(255,255,255,0.15)"/>
+                </svg>
+              </div>
+              <div class="card-header">
+                <div class="stars">
+                  <svg fill="#ffd166" viewBox="0 0 24 24"><path d="M12 .587l3.668 7.431L24 9.748l-6 5.847L19.335 24 12 20.201 4.665 24 6 15.595 0 9.748l8.332-1.73L12 .587z"/></svg>
+                  <svg fill="#ffd166" viewBox="0 0 24 24"><path d="M12 .587l3.668 7.431L24 9.748l-6 5.847L19.335 24 12 20.201 4.665 24 6 15.595 0 9.748l8.332-1.73L12 .587z"/></svg>
+                  <svg fill="#ffd166" viewBox="0 0 24 24"><path d="M12 .587l3.668 7.431L24 9.748l-6 5.847L19.335 24 12 20.201 4.665 24 6 15.595 0 9.748l8.332-1.73L12 .587z"/></svg>
+                  <svg fill="#ffd166" viewBox="0 0 24 24"><path d="M12 .587l3.668 7.431L24 9.748l-6 5.847L19.335 24 12 20.201 4.665 24 6 15.595 0 9.748l8.332-1.73L12 .587z"/></svg>
+                  <svg fill="#ffd166" viewBox="0 0 24 24"><path d="M12 .587l3.668 7.431L24 9.748l-6 5.847L19.335 24 12 20.201 4.665 24 6 15.595 0 9.748l8.332-1.73L12 .587z"/></svg>
+                </div>
+                <div class="pill">Project Experience</div>
+              </div>
+              <div class="quote">We appreciate the professionalism and clarity UX Pacific brought to the process and would gladly collaborate again.</div>
+              <div class="author">
+                <div class="avatar">
+                  <img alt="Andrew Ajai Singh" src="img/Oval (1).png" />
+                  <div class="avatar-ring"></div>
+                </div>
+                <div class="author-info">
+                  <div class="name">Andrew Ajai Singh</div>
+                  <div class="title">Distinct Buzz</div>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Card 2 -->
+            <div class="testimonial-card" data-tilt>
+              <div class="card-glow"></div>
+              <div class="quote-icon">
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M11 7H7C5.89543 7 5 7.89543 5 9V13C5 14.1046 5.89543 15 7 15H9C9 16.6569 7.65685 18 6 18V20C8.76142 20 11 17.7614 11 15V7Z" fill="rgba(255,255,255,0.15)"/>
+                  <path d="M21 7H17C15.8954 7 15 7.89543 15 9V13C15 14.1046 15.8954 15 17 15H19C19 16.6569 17.6569 18 16 18V20C18.7614 20 21 17.7614 21 15V7Z" fill="rgba(255,255,255,0.15)"/>
+                </svg>
+              </div>
+              <div class="card-header">
+                <div class="stars">
+                  <svg fill="#ffd166" viewBox="0 0 24 24"><path d="M12 .587l3.668 7.431L24 9.748l-6 5.847L19.335 24 12 20.201 4.665 24 6 15.595 0 9.748l8.332-1.73L12 .587z"/></svg>
+                  <svg fill="#ffd166" viewBox="0 0 24 24"><path d="M12 .587l3.668 7.431L24 9.748l-6 5.847L19.335 24 12 20.201 4.665 24 6 15.595 0 9.748l8.332-1.73L12 .587z"/></svg>
+                  <svg fill="#ffd166" viewBox="0 0 24 24"><path d="M12 .587l3.668 7.431L24 9.748l-6 5.847L19.335 24 12 20.201 4.665 24 6 15.595 0 9.748l8.332-1.73L12 .587z"/></svg>
+                  <svg fill="#ffd166" viewBox="0 0 24 24"><path d="M12 .587l3.668 7.431L24 9.748l-6 5.847L19.335 24 12 20.201 4.665 24 6 15.595 0 9.748l8.332-1.73L12 .587z"/></svg>
+                  <svg fill="#ffd166" viewBox="0 0 24 24"><path d="M12 .587l3.668 7.431L24 9.748l-6 5.847L19.335 24 12 20.201 4.665 24 6 15.595 0 9.748l8.332-1.73L12 .587z"/></svg>
+                </div>
+                <div class="pill">Workshop Experience</div>
+              </div>
+              <div class="quote">Use engaging activities and mix up groups to boost interaction, cut distractions, and make the workshop more effective.</div>
+              <div class="author">
+                <div class="avatar">
+                  <img alt="Dharmik Bhavsar" src="img/Oval (2).png" />
+                  <div class="avatar-ring"></div>
+                </div>
+                <div class="author-info">
+                  <div class="name">Dharmik Bhavsar</div>
+                  <div class="title">Student</div>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Card 3 -->
+            <div class="testimonial-card" data-tilt>
+              <div class="card-glow"></div>
+              <div class="quote-icon">
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M11 7H7C5.89543 7 5 7.89543 5 9V13C5 14.1046 5.89543 15 7 15H9C9 16.6569 7.65685 18 6 18V20C8.76142 20 11 17.7614 11 15V7Z" fill="rgba(255,255,255,0.15)"/>
+                  <path d="M21 7H17C15.8954 7 15 7.89543 15 9V13C15 14.1046 15.8954 15 17 15H19C19 16.6569 17.6569 18 16 18V20C18.7614 20 21 17.7614 21 15V7Z" fill="rgba(255,255,255,0.15)"/>
+                </svg>
+              </div>
+              <div class="card-header">
+                <div class="stars">
+                  <svg fill="#ffd166" viewBox="0 0 24 24"><path d="M12 .587l3.668 7.431L24 9.748l-6 5.847L19.335 24 12 20.201 4.665 24 6 15.595 0 9.748l8.332-1.73L12 .587z"/></svg>
+                  <svg fill="#ffd166" viewBox="0 0 24 24"><path d="M12 .587l3.668 7.431L24 9.748l-6 5.847L19.335 24 12 20.201 4.665 24 6 15.595 0 9.748l8.332-1.73L12 .587z"/></svg>
+                  <svg fill="#ffd166" viewBox="0 0 24 24"><path d="M12 .587l3.668 7.431L24 9.748l-6 5.847L19.335 24 12 20.201 4.665 24 6 15.595 0 9.748l8.332-1.73L12 .587z"/></svg>
+                  <svg fill="#ffd166" viewBox="0 0 24 24"><path d="M12 .587l3.668 7.431L24 9.748l-6 5.847L19.335 24 12 20.201 4.665 24 6 15.595 0 9.748l8.332-1.73L12 .587z"/></svg>
+                  <svg fill="#ffd166" viewBox="0 0 24 24"><path d="M12 .587l3.668 7.431L24 9.748l-6 5.847L19.335 24 12 20.201 4.665 24 6 15.595 0 9.748l8.332-1.73L12 .587z"/></svg>
+                </div>
+                <div class="pill">Workshop Experience</div>
+              </div>
+              <div class="quote">Got to explore fresh and engaging activities throughout the session. They added a fun and creative touch to the overall learning experience!</div>
+              <div class="author">
+                <div class="avatar">
+                  <img alt="Diya Mehta" src="./img/DMDM.png" />
+                  <div class="avatar-ring"></div>
+                </div>
+                <div class="author-info">
+                  <div class="name">Diya Mehta</div>
+                  <div class="title">Student</div>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Card 4 -->
+            <div class="testimonial-card" data-tilt>
+              <div class="card-glow"></div>
+              <div class="quote-icon">
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M11 7H7C5.89543 7 5 7.89543 5 9V13C5 14.1046 5.89543 15 7 15H9C9 16.6569 7.65685 18 6 18V20C8.76142 20 11 17.7614 11 15V7Z" fill="rgba(255,255,255,0.15)"/>
+                  <path d="M21 7H17C15.8954 7 15 7.89543 15 9V13C15 14.1046 15.8954 15 17 15H19C19 16.6569 17.6569 18 16 18V20C18.7614 20 21 17.7614 21 15V7Z" fill="rgba(255,255,255,0.15)"/>
+                </svg>
+              </div>
+              <div class="card-header">
+                <div class="stars">
+                  <svg fill="#ffd166" viewBox="0 0 24 24"><path d="M12 .587l3.668 7.431L24 9.748l-6 5.847L19.335 24 12 20.201 4.665 24 6 15.595 0 9.748l8.332-1.73L12 .587z"/></svg>
+                  <svg fill="#ffd166" viewBox="0 0 24 24"><path d="M12 .587l3.668 7.431L24 9.748l-6 5.847L19.335 24 12 20.201 4.665 24 6 15.595 0 9.748l8.332-1.73L12 .587z"/></svg>
+                  <svg fill="#ffd166" viewBox="0 0 24 24"><path d="M12 .587l3.668 7.431L24 9.748l-6 5.847L19.335 24 12 20.201 4.665 24 6 15.595 0 9.748l8.332-1.73L12 .587z"/></svg>
+                  <svg fill="#ffd166" viewBox="0 0 24 24"><path d="M12 .587l3.668 7.431L24 9.748l-6 5.847L19.335 24 12 20.201 4.665 24 6 15.595 0 9.748l8.332-1.73L12 .587z"/></svg>
+                  <svg fill="#ffd166" viewBox="0 0 24 24"><path d="M12 .587l3.668 7.431L24 9.748l-6 5.847L19.335 24 12 20.201 4.665 24 6 15.595 0 9.748l8.332-1.73L12 .587z"/></svg>
+                </div>
+                <div class="pill">Project Experience</div>
+              </div>
+              <div class="quote">Working with UXPacific for the UX draft was an insightful experience. The team's approach was structured, detailed, and highly actionable.</div>
+              <div class="author">
+                <div class="avatar">
+                  <img alt="Dr. Vishal Singh" src="img/Oval.png" />
+                  <div class="avatar-ring"></div>
+                </div>
+                <div class="author-info">
+                  <div class="name">Dr. Vishal Singh</div>
+                  <div class="title">CEDAR Himalaya</div>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Card 5 -->
+            <div class="testimonial-card" data-tilt>
+              <div class="card-glow"></div>
+              <div class="quote-icon">
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M11 7H7C5.89543 7 5 7.89543 5 9V13C5 14.1046 5.89543 15 7 15H9C9 16.6569 7.65685 18 6 18V20C8.76142 20 11 17.7614 11 15V7Z" fill="rgba(255,255,255,0.15)"/>
+                  <path d="M21 7H17C15.8954 7 15 7.89543 15 9V13C15 14.1046 15.8954 15 17 15H19C19 16.6569 17.6569 18 16 18V20C18.7614 20 21 17.7614 21 15V7Z" fill="rgba(255,255,255,0.15)"/>
+                </svg>
+              </div>
+              <div class="card-header">
+                <div class="stars">
+                  <svg fill="#ffd166" viewBox="0 0 24 24"><path d="M12 .587l3.668 7.431L24 9.748l-6 5.847L19.335 24 12 20.201 4.665 24 6 15.595 0 9.748l8.332-1.73L12 .587z"/></svg>
+                  <svg fill="#ffd166" viewBox="0 0 24 24"><path d="M12 .587l3.668 7.431L24 9.748l-6 5.847L19.335 24 12 20.201 4.665 24 6 15.595 0 9.748l8.332-1.73L12 .587z"/></svg>
+                  <svg fill="#ffd166" viewBox="0 0 24 24"><path d="M12 .587l3.668 7.431L24 9.748l-6 5.847L19.335 24 12 20.201 4.665 24 6 15.595 0 9.748l8.332-1.73L12 .587z"/></svg>
+                  <svg fill="#ffd166" viewBox="0 0 24 24"><path d="M12 .587l3.668 7.431L24 9.748l-6 5.847L19.335 24 12 20.201 4.665 24 6 15.595 0 9.748l8.332-1.73L12 .587z"/></svg>
+                  <svg fill="#ffd166" viewBox="0 0 24 24"><path d="M12 .587l3.668 7.431L24 9.748l-6 5.847L19.335 24 12 20.201 4.665 24 6 15.595 0 9.748l8.332-1.73L12 .587z"/></svg>
+                </div>
+                <div class="pill">Workshop Experience</div>
+              </div>
+              <div class="quote">Loved the hands-on activities and feedback they really clarified the concepts. Great experience connecting with the team and participants!</div>
+              <div class="author">
+                <div class="avatar">
+                  <img alt="Yugaan Parmar" src="img/YUGAAn.png" />
+                  <div class="avatar-ring"></div>
+                </div>
+                <div class="author-info">
+                  <div class="name">Yugaan Parmar</div>
+                  <div class="title">UI/UX &amp; Graphic Designer</div>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Card 6 -->
+            <div class="testimonial-card" data-tilt>
+              <div class="card-glow"></div>
+              <div class="quote-icon">
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M11 7H7C5.89543 7 5 7.89543 5 9V13C5 14.1046 5.89543 15 7 15H9C9 16.6569 7.65685 18 6 18V20C8.76142 20 11 17.7614 11 15V7Z" fill="rgba(255,255,255,0.15)"/>
+                  <path d="M21 7H17C15.8954 7 15 7.89543 15 9V13C15 14.1046 15.8954 15 17 15H19C19 16.6569 17.6569 18 16 18V20C18.7614 20 21 17.7614 21 15V7Z" fill="rgba(255,255,255,0.15)"/>
+                </svg>
+              </div>
+              <div class="card-header">
+                <div class="stars">
+                  <svg fill="#ffd166" viewBox="0 0 24 24"><path d="M12 .587l3.668 7.431L24 9.748l-6 5.847L19.335 24 12 20.201 4.665 24 6 15.595 0 9.748l8.332-1.73L12 .587z"/></svg>
+                  <svg fill="#ffd166" viewBox="0 0 24 24"><path d="M12 .587l3.668 7.431L24 9.748l-6 5.847L19.335 24 12 20.201 4.665 24 6 15.595 0 9.748l8.332-1.73L12 .587z"/></svg>
+                  <svg fill="#ffd166" viewBox="0 0 24 24"><path d="M12 .587l3.668 7.431L24 9.748l-6 5.847L19.335 24 12 20.201 4.665 24 6 15.595 0 9.748l8.332-1.73L12 .587z"/></svg>
+                  <svg fill="#ffd166" viewBox="0 0 24 24"><path d="M12 .587l3.668 7.431L24 9.748l-6 5.847L19.335 24 12 20.201 4.665 24 6 15.595 0 9.748l8.332-1.73L12 .587z"/></svg>
+                  <svg fill="#ffd166" viewBox="0 0 24 24"><path d="M12 .587l3.668 7.431L24 9.748l-6 5.847L19.335 24 12 20.201 4.665 24 6 15.595 0 9.748l8.332-1.73L12 .587z"/></svg>
+                </div>
+                <div class="pill">Workshop Experience</div>
+              </div>
+              <div class="quote">Gained deeper knowledge, especially through the process of creating the hero and i understood how structure and design come together!</div>
+              <div class="author">
+                <div class="avatar">
+                  <img alt="Devanshi Akhja" src="img/Devanshi.png" />
+                  <div class="avatar-ring"></div>
+                </div>
+                <div class="author-info">
+                  <div class="name">Devanshi Akhja</div>
+                  <div class="title">Student</div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>

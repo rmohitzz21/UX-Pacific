@@ -86,10 +86,14 @@
           <a href="https://www.instagram.com/official_uxpacific/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><img src="img/inst.png" alt="Instagram" /></a>
         </div>
         <div class="social-row">
-          <a href="https://www.facebook.com/uxpacific" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><img src="img/facebook.png" alt="Facebook" /></a>
+ <a href="https://medium.com/@uxpacific" target="_blank" rel="noopener noreferrer" aria-label="UX Pacific on Medium">
+              <img src="img/medium.png" alt="Medium" />
+            </a>
           <a href="https://www.pinterest.com/uxpacific" target="_blank" rel="noopener noreferrer" aria-label="Pinterest"><img src="img/pinterest.png" alt="Pinterest" /></a>
-          <a href="https://dribbble.com/uxpacific" target="_blank" rel="noopener noreferrer" aria-label="Dribbble"><img src="img/dribbble.png" alt="Dribbble" /></a>
-        </div>
+ <a href="https://dribbble.com/uxpacific" target="_blank" rel="noopener noreferrer" aria-label="UX Pacific on Dribbble">
+              <img src="img/dribble.png" alt="Dribbble" />
+            </a>
+                  </div>
       </div>
     </div>
 
