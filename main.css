@@ -2243,8 +2243,6 @@ body {
   font-weight: 500;
   transition: color 0.15s;
   font-size: 1.05rem;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
 }
 
 .navbar-nav .nav-link.active {
