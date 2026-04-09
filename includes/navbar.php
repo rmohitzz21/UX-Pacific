@@ -59,7 +59,7 @@
         </a>
         <!-- Let's Talk CTA Button -->
         <a href="<?= $b ?>/contact" class="cta-button nav-cta-btn" style="margin-left: 8px;">
-          LET'S TALK <span class="arrow"></span>
+          Let's talk <span class="arrow"></span>
         </a>
       </div>
       <!-- Mobile CTA -->
