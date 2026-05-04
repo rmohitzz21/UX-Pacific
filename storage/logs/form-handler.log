@@ -1,0 +1,28 @@
+[2026-04-20 10:28:54] ERROR: Form handler failure {"message":"Database configuration is incomplete."}
+[2026-04-20 10:29:17] ERROR: Form handler failure {"message":"Database configuration is incomplete."}
+[2026-04-20 10:32:27] ERROR: Form handler failure {"message":"Database configuration is incomplete."}
+[2026-04-20 10:32:28] ERROR: Form handler failure {"message":"Database configuration is incomplete."}
+[2026-04-20 10:32:29] ERROR: Form handler failure {"message":"Database configuration is incomplete."}
+[2026-04-20 10:36:35] ERROR: SMTP Error: Could not authenticate.
+[2026-04-20 10:37:09] ERROR: SMTP Error: Could not authenticate.
+[2026-04-20 10:42:03] ERROR: PHPMailer failure {"message":"SMTP Error: Could not authenticate."}
+[2026-04-20 10:52:33] ERROR: PHPMailer failure {"message":"SMTP Error: Could not authenticate."}
+[2026-04-20 10:52:34] ERROR: PHPMailer failure {"message":"SMTP Error: Could not authenticate."}
+[2026-04-20 10:53:37] INFO: Form submitted successfully {"form_type":"contact","email":"test.contact@example.com"}
+[2026-04-20 10:53:37] INFO: Form submitted successfully {"form_type":"ux_audit","email":"test.audit@example.com"}
+[2026-04-20 11:01:54] INFO: Form submitted successfully {"form_type":"contact","email":"rmohittt21@gmail.com"}
+[2026-04-20 11:05:22] INFO: Form submitted successfully {"form_type":"ux_audit","email":"rmohittt21@gmail.com"}
+[2026-04-30 11:43:52] INFO: Form submitted successfully {"form_type":"ux_audit","email":"rmohittt21@gmail.com"}
+[2026-04-30 11:44:24] INFO: Form submitted successfully {"form_type":"contact","email":"rmohittt21@gmail.com"}
+[2026-04-30 11:47:17] INFO: Form submitted successfully {"form_type":"contact","email":"rmohittt21@gmail.com"}
+[2026-04-30 12:28:58] INFO: Form submitted successfully {"form_type":"contact","email":"rmohittt21@gmail.com"}
+[2026-04-30 12:29:22] INFO: Form submitted successfully {"form_type":"ux_audit","email":"rmohittt21@gmail.com"}
+[2026-04-30 12:30:09] INFO: Form submitted successfully {"form_type":"contact","email":"rmohittt21@gmail.com"}
+[2026-04-30 12:30:52] INFO: Form submitted successfully {"form_type":"contact","email":"rmohittt21@gmail.com"}
+[2026-04-30 12:32:46] INFO: Form submitted successfully {"form_type":"ux_audit","email":"rmohittt21@gmail.com"}
+[2026-04-30 12:42:39] INFO: Form submitted successfully {"form_type":"contact","email":"rmohittt21@gmail.com"}
+[2026-05-01 06:57:57] INFO: Form submitted successfully {"form_type":"ux_audit","email":"rmohittt21@gmail.com"}
+[2026-05-01 06:58:53] INFO: Form submitted successfully {"form_type":"contact","email":"rmohittt21@gmail.com"}
+[2026-05-01 08:24:25] INFO: Form submitted successfully {"form_type":"contact","email":"rmohittt21@gmail.com"}
+[2026-05-01 08:25:04] INFO: Form submitted successfully {"form_type":"contact","email":"rmohittt21@gmail.com"}
+[2026-05-04 08:37:23] INFO: Form submitted successfully {"form_type":"contact","email":"rmohittt21@gmail.com"}

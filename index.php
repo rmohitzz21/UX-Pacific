@@ -1,12 +1,38 @@
 <?php
-$pageTitle    = 'Home | UX Pacific';
-$pageDesc     = 'UX Pacific is a leading UI/UX design agency delivering intuitive digital experiences, user research, and product design for global clients.';
+
+$pageTitle    = 'UI UX Design Agency | Web Design & Product Design | UX Pacific';
+
+$pageDesc     = 'UX Pacific is a leading UI UX design agency offering web design, mobile app UX, and product design services for startups and businesses worldwide.';
+
 $canonicalUrl = 'https://www.uxpacific.com/';
-$ogTitle      = 'Home | UX Pacific';
-$ogDesc       = 'UX Pacific creates exceptional digital experiences through research-driven UI/UX design. Explore our services, work, and ecosystem.';
+
+$ogTitle      = 'UI UX Design Agency | UX Pacific';
+
+$ogDesc       = 'UX Pacific delivers modern UI UX design, web design, and product design services to help businesses create high-converting digital experiences.';
+
 $ogUrl        = 'https://www.uxpacific.com/';
-$ldJson       = '{"@context":"https://schema.org","@type":"Organization","name":"UX Pacific","url":"https://www.uxpacific.com","logo":"https://www.uxpacific.com/img/LOGO.png","contactPoint":{"@type":"ContactPoint","telephone":"+91-92740-61063","contactType":"customer service","email":"hello@uxpacific.com"},"sameAs":["https://www.linkedin.com/company/uxpacific/","https://www.behance.net/uxpacific","https://www.instagram.com/official_uxpacific/"]}';
+
+$ldJson       = '{
+  "@context":"https://schema.org",
+  "@type":"Organization",
+  "name":"UX Pacific",
+  "url":"https://www.uxpacific.com",
+  "logo":"https://www.uxpacific.com/img/LOGO.png",
+  "contactPoint":{
+    "@type":"ContactPoint",
+    "telephone":"+91-92740-61063",
+    "contactType":"customer service",
+    "email":"hello@uxpacific.com"
+  },
+  "sameAs":[
+    "https://www.linkedin.com/company/uxpacific/",
+    "https://www.behance.net/uxpacific",
+    "https://www.instagram.com/official_uxpacific/"
+  ]
+}';
+
 $currentPage  = 'home';
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -31,7 +57,7 @@ $currentPage  = 'home';
         </h1>
         <p class="subtext">Designing Experiences, Not Just Interfaces</p>
         <br />
-        <a class="cta-button" href="#" data-bs-toggle="modal" data-bs-target="#auditModal" style="width:210px;height:42px;margin-top:0px;padding-left:27px;">
+        <a class="btn-primary" href="#" data-bs-toggle="modal" data-bs-target="#auditModal" style="width:210px;height:42px;margin-top:0px;padding-left:27px;">
           Book a UX Audit <span class="arrow"> </span>
         </a>
         <br /><br /><br /><br /><br />
@@ -105,10 +131,10 @@ $currentPage  = 'home';
       </div>
     </section>
 
-    <div class="section-title" style="margin-top: 50px">
+    <div class="section-title" style="margin-top: 175px">
       <h3 class="ux-subtitle">Our Services <span class="ux-line"> </span></h3>
       <h2>Design Solutions That Put <span> Users </span> First</h2>
-      <p class="ux-description">From sleek interfaces to seamless user flows, our portfolio reflects our commitment to crafting digital experiences that work beautifully.</p>
+      <p class="ux-description">From sleek interfaces to seamless user flows, our portfolio reflects our  commitment to crafting digital experiences that work beautifully.</p>
     </div>
     <style>
       .service-pill-box { background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.1); border-radius:8px; padding:16px 20px; text-align:center; color:#e0e0e0; display:flex; align-items:center; justify-content:center; height:100%; min-height:80px; transition:all 0.3s ease; font-size:15px; font-weight:500; cursor:default; }
@@ -164,7 +190,7 @@ $currentPage  = 'home';
     </div>
 
     <div class="section-title" style="margin-top: 120px">
-      <h3 class="ux-subtitle">Our Work <span class="ux-line"> </span></h3>
+      <h3 class="ux-subtitle">Our Project <span class="ux-line"> </span></h3>
       <center>
         <h2>A Glimpse Into Our <span> Design Thinking </span></h2>
         <p>From sleek interfaces to seamless user flows, our portfolio reflects our commitment to crafting digital experiences that work beautifully.</p>
@@ -176,7 +202,7 @@ $currentPage  = 'home';
       <div class="project-text">
         <h3 id="project-title">Case Study of Survey Pacific</h3>
         <p class="mb-0" id="project-desc">We revamped the website UI/UX through deep heuristic evaluation and competitive benchmarking.</p>
-        <a class="cta-button" href="/work" style="width:175px;height:42px;text-decoration:none;margin-top:25px;">View Details <span class="arrow"> </span></a>
+        <a class="btn-primary" href="/work" style="width:175px;height:42px;text-decoration:none;margin-top:25px;">View Details <span class="arrow"> </span></a>
       </div>
       <div class="project-slider">
         <div class="main-slide">
@@ -260,7 +286,7 @@ $currentPage  = 'home';
       <h2>Expand Your Experience With <span> UX Pacific </span></h2>
       <p class="description">Unlock exclusive networking and learning opportunities across our Ambassador Club and Academy. Take the next step in your UX career with a supportive community and hands-on resources.</p>
       <div class="cards">
-        <a href="https://club.uxpacific.com/" style="text-decoration:none" target="_blank">
+        <a href="https://shop.uxpacific.com/" style="text-decoration:none" target="_blank">
           <div class="card"><h1 class="text-white" style="font-size:1.7rem">UXP Shop</h1><span class="ux-line"> </span><p>Access premium UI kits, design systems, and templates crafted by industry experts.</p><span class="arrow"> </span></div>
         </a>
         <a href="https://academy.uxpacific.com/" style="text-decoration:none" target="_blank">
@@ -481,7 +507,7 @@ $currentPage  = 'home';
         <div class="cta-text">
           <h1>Start your <span> UI/UX </span> journey with <br /><span class="highlight"> UX Pacific Team </span></h1>
           <p class="mt-4 mb-4">Build your site effortlessly and showcase your work with confidence.<br />Ready to stand out? Get started today!</p>
-          <a class="cta-button" href="/contact">Get in touch <span class="arrow"> </span></a>
+          <a class="btn-primary" href="/contact">Get in touch <span class="arrow"> </span></a>
         </div>
         <div class="cta-blur-overlay"></div>
         <div class="cta-image"><img alt="UX Design" src="img/Rectangle 5192.webp" /></div>
@@ -539,7 +565,7 @@ $currentPage  = 'home';
     </div>
 
     <!-- UX Audit Modal -->
-    <div class="modal fade" id="auditModal" tabindex="-1" aria-hidden="true" style="backdrop-filter:blur(8px);background-color:rgba(0,0,0,0.6);" data-bs-backdrop="true">
+    <div class="modal fade" id="auditModal" tabindex="-1" aria-hidden="true" style="backdrop-filter:blur(8px);background-color:rgba(0,0,0,0.6);z-index:2200;" data-bs-backdrop="true">
       <div class="modal-dialog modal-dialog-centered" style="max-width:500px;">
         <div class="modal-content" style="background:rgba(17,17,17,0.95);border:1px solid #2e2e3e;border-radius:20px;overflow:hidden;box-shadow:0 24px 80px rgba(0,0,0,0.8);">
           <div class="modal-header border-0 pb-0 d-flex justify-content-between align-items-center" style="padding:24px 32px 0;">
@@ -548,7 +574,8 @@ $currentPage  = 'home';
           </div>
           <div class="modal-body" style="padding:24px 32px 36px;">
             <p style="color:#b2bad6;font-size:14px;margin-bottom:24px;">Fill out the details below and we will get back to you shortly.</p>
-            <form id="auditForm" class="contact-form" action="send_audit.php" method="post">
+            <form id="auditForm" class="contact-form" action="send" method="post">
+              <input type="hidden" name="form_type" value="ux_audit">
               <div class="contact-row d-flex flex-column" style="gap:16px;">
                 <div class="contact-field" style="display:flex;flex-direction:column;gap:6px;"><label for="auditName" style="font-size:15px;color:#b2bad6;">Name</label><input id="auditName" name="name" type="text" placeholder="Enter your name here" style="height:56px;width:100%;background:#151515;border:1px solid #2e2e3e;border-radius:6px;color:#eee;padding:16px 20px;font-size:1rem;outline:none;" onfocus="this.style.borderColor='#6147bd'" onblur="this.style.borderColor='#2e2e3e'"></div>
                 <div class="contact-field" style="display:flex;flex-direction:column;gap:6px;"><label for="auditEmail" style="font-size:15px;color:#b2bad6;">Email</label><input id="auditEmail" name="email" type="email" placeholder="Enter your email address" style="height:56px;width:100%;background:#151515;border:1px solid #2e2e3e;border-radius:6px;color:#eee;padding:16px 20px;font-size:1rem;outline:none;" onfocus="this.style.borderColor='#6147bd'" onblur="this.style.borderColor='#2e2e3e'"></div>
@@ -574,13 +601,14 @@ $currentPage  = 'home';
       errBox.style.display = 'none';
 
       var data = {
+        form_type: 'ux_audit',
         name:  document.getElementById('auditName').value,
         email: document.getElementById('auditEmail').value,
         phone: document.getElementById('auditPhone').value,
         url:   document.getElementById('auditUrl').value
       };
 
-      fetch('send_audit', {
+      fetch('send', {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify(data)
@@ -593,22 +621,44 @@ $currentPage  = 'home';
           if (auditModal) auditModal.hide();
           // Reset form
           document.getElementById('auditForm').reset();
-          // Show success popup
-          var popup = document.getElementById('auditSuccessPopup');
-          popup.style.display = 'flex';
+          // Show reusable success animation
+          if (window.UXPSuccessBox && typeof window.UXPSuccessBox.showSuccess === 'function') {
+            window.UXPSuccessBox.showSuccess({
+              title: 'Request Submitted!',
+              text: 'Your UX Audit request has been received. We will contact you shortly.',
+              timer: 3000
+            });
+          } else {
+            var popup = document.getElementById('auditSuccessPopup');
+            if (popup) popup.style.display = 'flex';
+          }
         } else {
-          errBox.textContent = res.message || 'Something went wrong. Please try again.';
+          var message = res.message || 'Something went wrong. Please try again.';
+          errBox.textContent = message;
           errBox.style.display = 'block';
+          if (window.UXPSuccessBox && typeof window.UXPSuccessBox.showError === 'function') {
+            window.UXPSuccessBox.showError(message);
+          }
         }
       })
       .catch(function() {
-        errBox.textContent = 'Network error. Please try again.';
+        var message = 'Network error. Please try again.';
+        errBox.textContent = message;
         errBox.style.display = 'block';
+        if (window.UXPSuccessBox && typeof window.UXPSuccessBox.showError === 'function') {
+          window.UXPSuccessBox.showError(message);
+        }
       })
       .finally(function() {
         btn.disabled = false;
         btn.textContent = 'Submit Request';
       });
+    });
+
+    // Keep audit modal/backdrop above sticky navbar
+    document.getElementById('auditModal').addEventListener('shown.bs.modal', function() {
+      var backdrop = document.querySelector('.modal-backdrop.show');
+      if (backdrop) backdrop.style.zIndex = '2190';
     });
 
     // Close success popup on backdrop click

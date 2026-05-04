@@ -184,7 +184,7 @@ $currentPage  = 'faq';
         <div class="cta-text">
           <h1>Start your <span>UI/UX</span> journey with <br><span class="highlight">UXPacific Team</span></h1>
           <p class="mt-4 mb-4">Build your site effortlessly and showcase your work with confidence.<br>Ready to stand out? Get started today!</p>
-          <a href="/contact" class="cta-button">Get in touch <span class="arrow"></span></a>
+          <a href="/contact" class="btn-primary">Get in touch <span class="arrow"></span></a>
         </div>
         <div class="cta-blur-overlay"></div>
         <div class="cta-image"><img src="img/Rectangle 5192.webp" alt="UX Design" /></div>

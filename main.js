@@ -428,6 +428,159 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 
+/* ===== REUSABLE SWEETALERT SUCCESS/ERROR BOX ===== */
+(() => {
+  const STYLE_ID = "uxp-sweetalert-success-box-theme";
+
+  function ensureTheme() {
+    if (document.getElementById(STYLE_ID)) return;
+
+    const style = document.createElement("style");
+    style.id = STYLE_ID;
+    style.textContent = `
+      .uxp-swal-popup {
+        border-radius: 18px !important;
+        border: 1px solid rgba(123, 97, 255, 0.28) !important;
+        background: linear-gradient(160deg, rgba(20, 20, 38, 0.96), rgba(8, 8, 22, 0.98)) !important;
+        color: #eef1ff !important;
+        box-shadow: 0 24px 56px rgba(5, 5, 18, 0.55) !important;
+        font-family: "Inter", system-ui, -apple-system, sans-serif !important;
+        backdrop-filter: blur(10px) !important;
+      }
+
+      .uxp-swal-title {
+        font-family: "Gabarito", "Inter", system-ui, sans-serif !important;
+        letter-spacing: -0.01em;
+        color: #ffffff !important;
+      }
+
+      .uxp-swal-text {
+        color: rgba(229, 234, 255, 0.86) !important;
+      }
+
+      .uxp-swal-confirm {
+        background: linear-gradient(135deg, #7b61ff, #6147bd) !important;
+        border: none !important;
+        border-radius: 10px !important;
+        font-weight: 600 !important;
+        box-shadow: 0 10px 22px rgba(97, 71, 189, 0.42) !important;
+        transition: transform 0.2s ease, box-shadow 0.2s ease !important;
+      }
+
+      .uxp-swal-confirm:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 14px 24px rgba(97, 71, 189, 0.5) !important;
+      }
+
+      .swal2-container.swal2-backdrop-show {
+        background: radial-gradient(circle at top, rgba(65, 41, 180, 0.35), rgba(0, 0, 0, 0.82)) !important;
+      }
+
+      .swal2-timer-progress-bar {
+        background: linear-gradient(90deg, #9f88ff, #7b61ff) !important;
+        transform-origin: right !important;
+        animation: none !important;
+        transform: scaleX(0);
+        height: 0.2rem !important;
+      }
+
+      .swal2-popup.swal2-show .swal2-timer-progress-bar {
+        animation: uxp-progress-fill linear forwards !important;
+      }
+
+      @keyframes uxp-progress-fill {
+        from { transform: scaleX(0); }
+        to { transform: scaleX(1); }
+      }
+
+      @keyframes uxp-popup-in {
+        0% { opacity: 0; transform: translateY(14px) scale(0.95); }
+        100% { opacity: 1; transform: translateY(0) scale(1); }
+      }
+
+      @keyframes uxp-popup-out {
+        0% { opacity: 1; transform: translateY(0) scale(1); }
+        100% { opacity: 0; transform: translateY(10px) scale(0.96); }
+      }
+
+      .uxp-swal-show {
+        animation: uxp-popup-in 0.26s cubic-bezier(0.2, 0.9, 0.22, 1) both !important;
+      }
+
+      .uxp-swal-hide {
+        animation: uxp-popup-out 0.2s ease both !important;
+      }
+    `;
+
+    document.head.appendChild(style);
+  }
+
+  function hasSwal() {
+    return typeof window.Swal !== "undefined";
+  }
+
+  function showSuccess(options = {}) {
+    const title = options.title || "Submitted Successfully!";
+    const text = options.text || "We'll contact you soon.";
+    const timer = Number(options.timer || 3000);
+
+    if (!hasSwal()) {
+      alert(`${title}\n${text}`);
+      return;
+    }
+
+    ensureTheme();
+    window.Swal.fire({
+      icon: options.icon || "success",
+      title,
+      text,
+      customClass: {
+        popup: "uxp-swal-popup",
+        title: "uxp-swal-title",
+        htmlContainer: "uxp-swal-text"
+      },
+      backdrop: true,
+      showConfirmButton: false,
+      timer,
+      timerProgressBar: true,
+      showClass: { popup: "uxp-swal-show" },
+      hideClass: { popup: "uxp-swal-hide" },
+      didOpen: () => {
+        const bar = document.querySelector(".swal2-timer-progress-bar");
+        if (bar) bar.style.animationDuration = `${timer}ms`;
+      }
+    });
+  }
+
+  function showError(message = "Something went wrong. Please try again.") {
+    if (!hasSwal()) {
+      alert(message);
+      return;
+    }
+
+    ensureTheme();
+    window.Swal.fire({
+      icon: "error",
+      title: "Submission Failed",
+      text: message,
+      customClass: {
+        popup: "uxp-swal-popup",
+        title: "uxp-swal-title",
+        htmlContainer: "uxp-swal-text",
+        confirmButton: "uxp-swal-confirm"
+      },
+      confirmButtonText: "Try Again",
+      showClass: { popup: "uxp-swal-show" },
+      hideClass: { popup: "uxp-swal-hide" }
+    });
+  }
+
+  window.UXPSuccessBox = {
+    showSuccess,
+    showError
+  };
+})();
+
 /* ===== CONTACT PAGE FUNCTIONALITY ===== */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -449,9 +602,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // --- MODAL AND CELEBRATION HANDLING ---
-  const modalOverlay = document.getElementById('modal-overlay');
-  const closeModalButton = document.querySelector('.close-modal');
+  // --- SUCCESS FEEDBACK HANDLING ---
 
   function celebrate() {
       if (typeof confetti !== 'function') return;
@@ -482,18 +633,16 @@ document.addEventListener('DOMContentLoaded', () => {
       }, 500);
   }
 
-  function showModal() {
-      modalOverlay.classList.add('show');
-      window.scrollTo(0, 0); // Scroll to top to see modal
-      celebrate(); // Trigger the cool celebration effect
-  }
-
-  function hideModal() {
-      modalOverlay.classList.remove('show');
-  }
-
-  if (closeModalButton) {
-      closeModalButton.addEventListener('click', hideModal);
+  function showSuccessToast() {
+      window.scrollTo(0, 0);
+      celebrate();
+      if (window.UXPSuccessBox && typeof window.UXPSuccessBox.showSuccess === 'function') {
+          window.UXPSuccessBox.showSuccess({
+              title: 'Message Sent!',
+              text: 'Thank you. We will contact you shortly.',
+              timer: 3000
+          });
+      }
   }
   
   // --- VALIDATION AND UI FEEDBACK ---
@@ -639,6 +788,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (submitButton) { submitButton.disabled = true; submitButton.textContent = 'Sending...'; }
 
       const formData = {
+          form_type: 'contact',
           name: nameInput.value.trim(),
           email: emailInput.value.trim(),
           phone: phoneInput.value.trim(),
@@ -647,7 +797,7 @@ document.addEventListener('DOMContentLoaded', () => {
       };
 
       try {
-          const response = await fetch('send_mail', {
+          const response = await fetch('send', {
               method: 'POST',
               headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
               body: JSON.stringify(formData)
@@ -656,8 +806,8 @@ document.addEventListener('DOMContentLoaded', () => {
           const result = await response.json();
 
           if (response.ok && result.success) {
-              // SUCCESS: Show modal and reset form
-              showModal();
+              // SUCCESS: Show animated popup and reset form
+              showSuccessToast();
               form.reset();
               // Reset dropdown label
               const btnText = document.querySelector('#dropdownBtn span');
@@ -669,12 +819,20 @@ document.addEventListener('DOMContentLoaded', () => {
               setSuccessCheckbox(termsCheckbox);
           } else {
               // FAIL: Show server error message
-              alert(result.message || 'Submission failed. Please try again later.');
+              if (window.UXPSuccessBox && typeof window.UXPSuccessBox.showError === 'function') {
+                  window.UXPSuccessBox.showError(result.message || 'Submission failed. Please try again later.');
+              } else {
+                  alert(result.message || 'Submission failed. Please try again later.');
+              }
           }
       } catch (error) {
           // FAIL: Handle network or other client-side errors
           console.error('Error connecting to the server:', error);
-          alert('Could not connect to the server. Please check your connection and try again.');
+          if (window.UXPSuccessBox && typeof window.UXPSuccessBox.showError === 'function') {
+              window.UXPSuccessBox.showError('Could not connect to the server. Please check your connection and try again.');
+          } else {
+              alert('Could not connect to the server. Please check your connection and try again.');
+          }
       } finally {
           // Re-enable the button regardless of outcome
           if (submitButton) { submitButton.disabled = false; submitButton.textContent = 'Send Message'; }
@@ -965,3 +1123,80 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
+// back to top button functionality
+document.addEventListener("DOMContentLoaded", function () {
+  // Inject styles dynamically to prevent caching issues and ensure z-index is high enough
+  const style = document.createElement("style");
+  style.innerHTML = `
+    .back-to-top {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background: #6147bd;
+      color: #fff;
+      border: none;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(20px);
+      transition: all 0.3s ease;
+      z-index: 99999;
+    }
+    .back-to-top.show {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+    .back-to-top:hover {
+      background: #6147bd;
+    }
+    .back-to-top svg {
+      fill: #fff;
+      width: 24px;
+      height: 24px;
+    }
+  `;
+  document.head.appendChild(style);
+
+  const backToTopBtn = document.createElement("button");
+  backToTopBtn.id = "backToTop";
+  backToTopBtn.className = "back-to-top";
+  backToTopBtn.setAttribute("aria-label", "Back to top");
+  backToTopBtn.innerHTML = '<img src="img/back.png" alt="Back to top" height="48" width="48">';
+  document.body.appendChild(backToTopBtn);
+
+  let activeScrollContainer = window;
+
+  // Use capturing phase to catch scrolls even if they happen inside a wrapper div
+  window.addEventListener("scroll", (e) => {
+    let scrollPos = window.scrollY || document.documentElement.scrollTop || document.body.scrollTop || 0;
+    
+    // Check if another element is acting as the main scrolling container
+    if (e.target instanceof Element && e.target.scrollHeight > window.innerHeight) {
+      scrollPos = Math.max(scrollPos, e.target.scrollTop);
+      activeScrollContainer = e.target;
+    }
+
+    if (scrollPos > 200) {
+      backToTopBtn.classList.add("show");
+    } else {
+      backToTopBtn.classList.remove("show");
+    }
+  }, true);
+
+  backToTopBtn.addEventListener("click", () => {
+    // Scroll window
+    window.scrollTo({ top: 0, behavior: "smooth" });
+    
+    // Scroll active container if it's not the window
+    if (activeScrollContainer && activeScrollContainer !== window) {
+      activeScrollContainer.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  });
+});

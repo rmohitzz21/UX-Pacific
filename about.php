@@ -20,9 +20,9 @@ $currentPage  = 'about';
       .ab-story-image::after { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(124,95,230,0.15) 0%, transparent 100%); pointer-events: none; }
       .ab-story-content { display: flex; flex-direction: column; gap: 24px; }
       .ab-label { display: inline-block; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: #a78bfa; }
-      .ab-title { font-family: 'Inter', sans-serif; font-size: clamp(1.75rem, 4vw, 2.75rem); font-weight: 700; letter-spacing: -0.02em; line-height: 1.25; color: #ffffff; margin: 0; }
-      .ab-title em { font-style: normal; background: linear-gradient(135deg, #6147bd 0%, #a78bfa 50%, #c084fc 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-      .ab-story-text { color: #8888b0; line-height: 1.7; font-size: 1rem; margin: 0; }
+      .ab-title { font-family: 'Inter', sans-serif; font-size: 40px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.25; color: #ffffff; margin: 0; }
+      .ab-title em { font-style: normal; background: #6147bd; -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+      .ab-story-text { color: #cccccc; line-height: 1.7; font-size: 1rem; margin: 0; }
       .ab-cta-btn { display: inline-flex; align-items: center; gap: 8px; font-size: 0.9375rem; font-weight: 600; color: #ffffff !important; background: linear-gradient(90deg, #6147bd, #a78bfa); padding: 14px 28px; border-radius: 9999px; text-decoration: none !important; width: fit-content; transition: box-shadow 0.3s ease, transform 0.3s ease; }
       .ab-cta-btn:hover { box-shadow: 0 4px 24px rgba(124,95,230,0.45); transform: translateY(-2px); }
       /* ── Mission / Vision ── */
@@ -35,8 +35,8 @@ $currentPage  = 'about';
       .ab-mv-card:hover img { filter: brightness(0.45); transform: scale(1.03); }
       .ab-mv-card__body { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: flex-end; padding: clamp(1.5rem, 3vw, 2.5rem); background: linear-gradient(to top, rgba(7,7,26,0.9) 0%, transparent 60%); }
       .ab-mv-card__label { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: #a78bfa; margin-bottom: 12px; }
-      .ab-mv-card__title { font-family: 'Inter', sans-serif; font-size: clamp(1.75rem, 3.5vw, 2.5rem); font-weight: 800; color: #ffffff; margin-bottom: 12px; line-height: 1.1; }
-      .ab-mv-card__text { font-size: 0.875rem; color: rgba(255,255,255,0.7); line-height: 1.7; margin: 0; }
+      .ab-mv-card__title { font-family: 'Inter', sans-serif; font-size: 28px; font-weight: 600; color: #ffffff; margin-bottom: 12px; line-height: 1.1; }
+      .ab-mv-card__text { font-size: 0.875rem; color: #cccccc; line-height: 1.7; margin: 0; }
       .ab-mv-card__chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
       .ab-mv-chip { font-size: 0.75rem; font-weight: 500; color: #a78bfa; background: rgba(124,95,230,0.2); border: 1px solid rgba(124,95,230,0.3); padding: 4px 12px; border-radius: 9999px; backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); }
       /* ── Core Values ── */
@@ -49,10 +49,10 @@ $currentPage  = 'about';
       .ab-process-steps { display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px; position: relative; margin-top: 48px; }
       .ab-process-steps::before { content: ''; position: absolute; top: 28px; left: 10%; right: 10%; height: 1px; background: linear-gradient(90deg, #6147bd, #a78bfa); opacity: 0.3; pointer-events: none; }
       .ab-process-step { display: flex; flex-direction: column; align-items: center; gap: 16px; text-align: center; }
-      .ab-process-step__num { width: 56px; height: 56px; border-radius: 50%; background: #14143a; border: 2px solid rgba(124,95,230,0.35); display: flex; align-items: center; justify-content: center; font-family: 'Inter', sans-serif; font-size: 0.875rem; font-weight: 800; color: #a78bfa; position: relative; z-index: 1; transition: all 250ms ease; flex-shrink: 0; }
+      .ab-process-step__num { width: 56px; height: 56px; border-radius: 50%; background: #6147bd; border: 2px solid rgba(124,95,230,0.35); display: flex; align-items: center; justify-content: center; font-family: 'Inter', sans-serif; font-size: 0.875rem; font-weight: 800; color: #a78bfa; position: relative; z-index: 1; transition: all 250ms ease; flex-shrink: 0; }
       .ab-process-step:hover .ab-process-step__num { background: linear-gradient(90deg, #6147bd, #a78bfa); border-color: transparent; color: #ffffff; box-shadow: 0 0 30px rgba(124,95,230,0.25); }
-      .ab-process-step__title { font-family: 'Inter', sans-serif; font-size: 0.875rem; font-weight: 600; color: #ffffff; }
-      .ab-process-step__desc { font-size: 0.75rem; color: #8888b0; line-height: 1.7; }
+      .ab-process-step__title { font-family: 'Inter', sans-serif; font-size: 16px; font-weight: 600; color: #ffffff; }
+      .ab-process-step__desc { font-size: 14px; color: #cccccc; line-height: 1.7; }
       @media (max-width: 900px) {
         .ab-story-grid { grid-template-columns: 1fr; }
         .ab-mv-grid { grid-template-columns: 1fr; }
@@ -167,7 +167,7 @@ $currentPage  = 'about';
           <img src="img/aboutus.webp" alt="Our Story  UX Pacific team at work" loading="lazy" />
         </div>
         <div class="ab-story-content">
-          <h2 class="ab-title">Born from a Belief<br />in <em>Better Design</em></h2>
+          <h2 class="ab-title">Born from a Belief in<br /> <em>Better Design</em></h2>
           <p class="ab-story-text">UX Pacific was established on 1st May, 2025 with a clear vision  to create meaningful and impactful digital experiences. What started as a passion for design and strategy has grown into a mission to help brands build user-focused solutions that truly make a difference.</p>
           <p class="ab-story-text">From day one, our goal has been simple: combine creativity, research, and empathy to design experiences that not only look beautiful but also solve real problems. We are known for delivering reliable work with unmatched precision, backed by robust design thinking and professional execution.</p>
         </div>
@@ -242,7 +242,7 @@ $currentPage  = 'about';
         <div class="cta-text">
           <h1>Start your <span>UI/UX</span> journey with <br><span class="highlight">UX Pacific Team</span></h1>
           <p class="mt-4 mb-4">Build your site effortlessly and showcase your work with confidence.<br> Ready to stand out? Get started today!</p>
-          <a href="/contact" class="cta-button">Get in touch <span class="arrow"></span></a>
+          <a href="/contact" class="btn-primary">Get in touch <span class="arrow"></span></a>
         </div>
         <div class="cta-blur-overlay"></div>
         <div class="cta-image"><img src="img/Rectangle 5192.webp" alt="UX Design" /></div>

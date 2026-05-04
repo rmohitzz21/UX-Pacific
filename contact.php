@@ -1,8 +1,8 @@
 <?php
-$pageTitle    = "Let's Talk | UX Pacific";
+$pageTitle    = "Let's Connect | UX Pacific";
 $pageDesc     = "Get in touch with UX Pacific. Share your project idea, ask about our UX design services, or request a collaboration  we'd love to hear from you.";
 $canonicalUrl = 'https://www.uxpacific.com/contact.php';
-$ogTitle      = "Let's Talk | UX Pacific";
+$ogTitle      = "Let's Connect | UX Pacific";
 $ogDesc       = 'Reach out to UX Pacific for design services, collaborations, or any queries. Our team is ready to help.';
 $ogUrl        = 'https://www.uxpacific.com/contact.php';
 $currentPage  = 'contact';
@@ -16,8 +16,8 @@ $currentPage  = 'contact';
       .contact-grid { display:flex; flex-direction:column; gap:32px; }
       .contact-info-section { flex:1; display:flex; flex-direction:column; gap:25px; }
       .contact-info-title { font-size:clamp(1.75rem,5vw,45px); font-weight:700; color:#fff; margin-bottom:0px; line-height:1.1; letter-spacing:-0.02em; }
-      .contact-info-title span { color:#a78bfa; }
-      .contact-info-desc { font-size:14px; color:rgba(148,163,184,0.85); line-height:1.6; }
+      .contact-info-title span { color:#6147bd; }
+      .contact-info-desc { font-size:14px; color:#cccccc; line-height:1.6; }
       .contact-info-list { display:flex; flex-direction:column; gap:24px; margin-top:10px; }
       .contact-info-item { display:flex; align-items:flex-start; gap:16px; }
       .contact-info-item .icon-box { width:44px; height:44px; background:#17153a; border-radius:12px; display:flex; align-items:center; justify-content:center; flex-shrink:0; color:#a78bfa; font-size:1.1rem; }
@@ -96,7 +96,7 @@ $currentPage  = 'contact';
         <source src="img/test.mp4" type="video/mp4">
       </video>
       <div class="header-bg-overlay"></div>
-      <h1>Let's Talk</h1>
+      <h1>Let's Connect</h1>
       <div class="innovation-badge-exact">
         <span class="badge-desktop">Connect with <span>Us</span> for a <span>Better Future</span></span>
         <span class="badge-mobile">Let's <span>Build</span> Together</span>
@@ -133,7 +133,8 @@ $currentPage  = 'contact';
             </div>
           </div>
 
-          <form class="contact-form-card" id="contactForm" novalidate>
+          <form class="contact-form-card" id="contactForm" action="send" method="post" novalidate>
+            <input type="hidden" name="form_type" value="contact">
             <div class="contact-row">
               <div class="contact-field"><label for="name">Name</label><input id="name" name="name" type="text" placeholder="Enter your name here" required minlength="2" maxlength="50" autocomplete="name"></div>
               <div class="contact-field"><label for="email">Email</label><input id="email" name="email" type="email" placeholder="Enter your email address" required autocomplete="email"></div>
@@ -174,7 +175,7 @@ $currentPage  = 'contact';
                 <span>I Agree to <a href="/term-condition" class="contact-link">Terms &amp; Conditions</a> of UX Pacific</span>
               </label>
             </div>
-            <button type="submit" class="contact-submit-btn submit-btn">Send Message</button>
+            <button type="submit" class="btn-primary">Send Message</button>
           </form>
         </div>
       </section>

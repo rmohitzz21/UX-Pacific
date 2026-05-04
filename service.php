@@ -176,7 +176,7 @@ $currentPage  = 'service';
         <div class="cta-text">
           <h1>Start your <span>UI/UX</span> journey with <br><span class="highlight">UX Pacific Team</span></h1>
           <p class="mt-4 mb-4">Build your site effortlessly and showcase your work with confidence.<br> Ready to stand out? Get started today!</p>
-          <a href="/contact" class="cta-button">Get in touch <span class="arrow"></span></a>
+          <a href="/contact" class="btn-primary">Get in touch <span class="arrow"></span></a>
         </div>
         <div class="cta-blur-overlay"></div>
         <div class="cta-image"><img src="img/Rectangle 5192.webp" alt="UX Design" /></div>
@@ -185,7 +185,7 @@ $currentPage  = 'service';
 
     <?php include 'includes/footer.php'; ?>
     <?php include 'includes/scripts.php'; ?>
-    <div class="offcanvas offcanvas-end" tabindex="-1" id="serviceOffcanvas" aria-labelledby="serviceOffcanvasLabel" style="width:650px;background-color:#111111;color:#fff;max-width:100vw;border-left:1px solid #2e2e3e;">
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="serviceOffcanvas" aria-labelledby="serviceOffcanvasLabel" style="width:650px;background-color:#111111;color:#fff;max-width:100vw;border-left:1px solid #2e2e3e;margin-top:150px;">
       <div class="offcanvas-header pb-0 border-0" style="padding:24px 32px;">
         <div class="d-flex w-100 justify-content-between align-items-start">
           <div id="oc-icon" style="width:48px;height:48px;background:rgba(255,255,255,0.05);border:1px solid #2e2e3e;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px;color:#fff;"><i class="fas fa-palette"></i></div>
@@ -226,8 +226,8 @@ $currentPage  = 'service';
       .ux-card:hover { transform:translateY(-4px); box-shadow:0 10px 15px -3px rgba(0,0,0,0.5),0 4px 6px -2px rgba(0,0,0,0.3); border-color:#a78bfa; }
       .ux-card-icon { width:48px; height:48px; background:rgba(255,255,255,0.05); border:1px solid #2e2e3e; border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:20px; color:#fff; margin-bottom:24px; }
       .ux-card-title { font-size:18px; font-weight:600; margin-bottom:12px; color:#fff; }
-      .ux-card-desc { font-size:14px; color:#b2bad6; margin-bottom:24px; flex-grow:1; line-height:1.5; }
-      .ux-card-link { font-size:14px; color:#a78bfa; font-weight:500; }
+      .ux-card-desc { font-size:14px; color:#cccccc; margin-bottom:24px; flex-grow:1; line-height:1.5; }
+      .ux-card-link { font-size:14px; color:#6147bd; font-weight:500; }
       .ux-card:hover .ux-card-link { color:#d8b4fe; }
       .oc-step { background:rgba(255,255,255,0.05); border:1px solid #2e2e3e; border-radius:8px; padding:12px 16px; margin-bottom:8px; display:flex; align-items:center; font-size:14px; color:#e0e0e0; }
       .oc-step-num { color:#a78bfa; margin-right:16px; font-size:13px; font-weight:600; }
