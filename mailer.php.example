@@ -1,0 +1,22 @@
+<?php
+/**
+ * SMTP Mailer Configuration Template
+ *
+ * Preferred: set SMTP_* variables in `.env` (see .env.example). This file overrides .env when present.
+ *
+ * INSTRUCTIONS:
+ * 1. Copy this file to `mailer.php`
+ * 2. Fill in your real SMTP credentials OR rely on .env only and keep this file minimal
+ * 3. NEVER commit mailer.php to version control
+ */
+return [
+    'smtp_host'   => 'smtp.example.com',      // Your SMTP server
+    'smtp_port'   => 587,                      // 587 for TLS, 465 for SSL
+    'smtp_secure' => 'tls',                    // 'tls' or 'ssl'
+    'smtp_user'   => 'your-email@example.com', // SMTP username
+    'smtp_pass'   => '',                       // SMTP password - NEVER commit real passwords
+    'from_email'  => 'noreply@example.com',    // From address
+    'from_name'   => 'UX Pacific',             // From name
+    'to_email'    => 'hello@example.com',      // Recipient for form submissions
+    'to_name'     => 'UX Pacific Team',        // Recipient name
+];

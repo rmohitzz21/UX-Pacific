@@ -25,9 +25,16 @@
 <meta name="twitter:title" content="<?= htmlspecialchars($ogTitle ?? $pageTitle); ?>">
 <meta name="twitter:description" content="<?= htmlspecialchars($ogDesc ?? $pageDesc); ?>">
 <meta name="twitter:image" content="https://www.uxpacific.com/img/LOGO.png">
+<meta name="p:domain_verify" content="cead6e216e4572e79f4591f818674d75"/>
 
 <?php if (!empty($ldJson)): ?>
+<?php
+  // Validate that ldJson is actually valid JSON before outputting
+  $ldJsonDecoded = json_decode($ldJson);
+  if (json_last_error() === JSON_ERROR_NONE && $ldJsonDecoded !== null):
+?>
 <script type="application/ld+json"><?= $ldJson; ?></script>
+<?php endif; ?>
 <?php endif; ?>
 
 <link rel="icon" href="<?= $favicon ?? 'img/Final.png'; ?>" />

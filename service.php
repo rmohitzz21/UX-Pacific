@@ -1,4 +1,6 @@
 <?php
+require_once __DIR__ . '/includes/cms_repository.php';
+
 $pageTitle    = 'Services | UX Pacific';
 $pageDesc     = 'Explore UX Pacific\'s full range of design services  UI/UX design, UX audits, product design, user research, and more for startups and enterprises.';
 $canonicalUrl = 'https://www.uxpacific.com/services.php';
@@ -6,6 +8,65 @@ $ogTitle      = 'Services | UX Pacific';
 $ogDesc       = 'From UX audits to full product design, UX Pacific offers tailored design services for every stage of your digital product journey.';
 $ogUrl        = 'https://www.uxpacific.com/services.php';
 $currentPage  = 'service';
+
+$publishedServices = get_published_services();
+
+function service_decode_list($value): array
+{
+  if (is_array($value)) {
+    return array_values(array_filter(array_map(static fn($v) => trim((string) $v), $value), static fn($v) => $v !== ''));
+  }
+  if (is_string($value) && trim($value) !== '') {
+    $decoded = json_decode($value, true);
+    if (is_array($decoded)) {
+      return array_values(array_filter(array_map(static fn($v) => trim((string) $v), $decoded), static fn($v) => $v !== ''));
+    }
+  }
+  return [];
+}
+
+function service_icon_url(string $icon): string
+{
+  $icon = trim($icon);
+  if ($icon === '') {
+    return '';
+  }
+
+  if (preg_match('#^https?://#i', $icon)) {
+    return $icon;
+  }
+
+  // Uploaded image or absolute site path — same rules as projects/logos
+  if (
+    strpos($icon, 'uploads/') !== false
+    || strpos($icon, '/uploads/') !== false
+    || (isset($icon[0]) && $icon[0] === '/')
+    || preg_match('#\.(png|jpe?g|webp|gif)(\?|$)#i', $icon)
+  ) {
+    return uxp_normalize_stored_media_url($icon);
+  }
+
+  // Font Awesome class (e.g. fa-palette) — do not prefix with site path
+  return $icon;
+}
+
+$servicesDataDynamic = [];
+foreach ($publishedServices as $service) {
+  $title = trim((string) ($service['title'] ?? 'Service'));
+  $shortDesc = trim((string) ($service['short_desc'] ?? ''));
+  $iconName = trim((string) ($service['icon_name'] ?? ''));
+  $servicesDataDynamic[] = [
+    'id' => (int) ($service['id'] ?? 0),
+    'title' => $title,
+    'desc' => $shortDesc,
+    'icon' => $iconName !== '' ? service_icon_url($iconName) : 'fa-palette',
+    'fullDesc' => $shortDesc,
+    'solves' => service_decode_list($service['what_it_solves'] ?? null),
+    'steps' => service_decode_list($service['how_we_work'] ?? null),
+    'changes' => service_decode_list($service['what_changes'] ?? null),
+    'deliverables' => service_decode_list($service['deliverables'] ?? null),
+  ];
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -235,40 +296,42 @@ $currentPage  = 'service';
     </style>
 
    <script>
-const servicesData = [
+const servicesData = <?= json_encode($servicesDataDynamic, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) ?>;
 
-{ id:1, title:"UX Research & Testing", desc:"Turning user insights into exceptional digital experiences", icon:"fa-search", fullDesc:"At UXPACIFIC, our UX Research & Testing services help organizations make confident, data-driven design decisions by uncovering real user behaviors, motivations, and expectations.", solves:["Unclear understanding of user needs","High product failure risk","Low usability and poor engagement","Inefficient user journeys","Low conversion rates","Design decisions based on assumptions","Difficulty achieving product-market fit"], steps:["Research Planning & Objectives Definition","Participant Recruitment & Screening","Data Collection (Interviews, Surveys, Testing)","Behavior Analysis & Insight Synthesis","Reporting & Strategic Recommendations","Design Validation & Optimization"], changes:["Data-driven product decisions","Improved usability and accessibility","Higher customer satisfaction","Faster product-market fit","Reduced development risks","Increased conversions and engagement","Clear understanding of user behavior"], deliverables:["Research Strategy Plan","User Personas","Usability Testing Reports","UX Insight Dashboards","Design Recommendations","Recorded Testing Sessions","Stakeholder Presentation Decks"] },
+function normalizeIconValue(value) {
+  const icon = (value || '').toString().trim();
+  return icon ? icon : 'fa-palette';
+}
 
-{ id:2, title:"UI Design & Prototyping", desc:"Designing beautiful, intuitive & high-performance digital interfaces", icon:"fa-palette", fullDesc:"At UXPACIFIC, we create visually compelling and highly intuitive UI Design & Prototyping solutions that blend creativity with usability and conversion optimization.", solves:["Poor visual consistency across platforms","Low user engagement and retention","Unclear navigation and interface confusion","Slow product validation cycles","Design-development communication gaps","Lack of scalable UI systems","Weak brand experience in digital products"], steps:["Understanding Business Goals & Users","UX Flow & Wireframe Creation","Visual Style Exploration","High-Fidelity UI Design","Interactive Prototyping","Client Feedback & Iteration","Developer Handoff & Support"], changes:["Stronger first impressions","Improved usability and engagement","Higher conversion rates","Faster product validation","Better collaboration between design and development","Consistent and scalable visual systems","Enhanced brand credibility"], deliverables:["High-Fidelity UI Screens","Interactive Clickable Prototypes","Responsive UI Layouts","UI Style Guide","Design System Components","Developer Handoff Files","Animations & Micro-interaction Assets"] },
+function isImageIcon(value) {
+  const icon = normalizeIconValue(value).toLowerCase();
+  return icon.includes('/') || icon.endsWith('.png') || icon.endsWith('.jpg') || icon.endsWith('.jpeg') || icon.endsWith('.webp') || icon.endsWith('.gif');
+}
 
-{ id:3, title:"Design Systems & Accessibility", desc:"Building scalable, consistent & inclusive digital experiences", icon:"fa-layer-group", fullDesc:"At UXPACIFIC, we create robust Design Systems and Accessibility frameworks that help organizations scale digital products with consistency and inclusivity.", solves:["Inconsistent UI across products and platforms","Slow design and development workflows","Lack of reusable components and standards","Accessibility compliance challenges","Poor cross-team collaboration","Scaling issues in growing digital ecosystems","High maintenance cost of fragmented UI systems"], steps:["Audit & Accessibility Assessment","Design System Architecture Definition","Component & Token Creation","Figma Component System Development","Accessibility Integration (WCAG Standards)","Documentation & Usage Guidelines","Team Training & Enablement","Governance Setup & Version Control","Continuous Improvement & Compliance Monitoring"], changes:["Faster product development cycles","Consistent user experiences across platforms","Reduced design and development costs","Improved collaboration between design and engineering teams","Accessible and inclusive digital products","Scalable UI systems for long-term growth","Stronger brand consistency","Simplified maintenance and updates"], deliverables:["Full Design System Library","Reusable UI Component Framework","Design Tokens & Variables","Accessibility Compliance Report","Documentation Portal & Usage Guidelines","Figma Component System","Governance & Version Control Model","Design QA Reports","Training Sessions & Adoption Support"] },
-
-{ id:4, title:"UX Content & Microinteractions", desc:"Enhancing digital experiences through meaningful words and delightful interactions", icon:"fa-comment-dots", fullDesc:"At UXPACIFIC, we craft impactful UX content and microinteractions that transform digital products into intuitive and emotionally connected experiences.", solves:["Confusing interface messaging","Poor onboarding and user guidance","Low engagement and retention","Lack of feedback during user actions","Inconsistent product tone and voice","Weak emotional connection with users"], steps:["Content Audit & UX Evaluation","User Flow & Communication Analysis","UX Writing Strategy Development","Microinteraction Design Planning","Implementation & Interactive Prototyping","Testing & Refinement","Engagement Optimization"], changes:["Improved user comprehension","Reduced friction and confusion","Higher engagement and retention","Stronger brand personality","Better task completion rates","Increased conversions through clear messaging"], deliverables:["UX Content Guidelines","Interface Copywriting","Onboarding Content Flows","Microinteraction Prototypes","Motion UX Elements","Content Optimization Reports"] },
-
-{ id:5, title:"UX Analytics & Optimization", desc:"Turning user data into high-performance digital experiences", icon:"fa-chart-line", fullDesc:"At UXPACIFIC, we provide advanced UX Analytics & Optimization services that help organizations continuously improve digital products using real user data.", solves:["Low conversion rates and engagement","High user drop-offs in funnels","Limited visibility into user behavior","Inefficient user journeys","Unclear UX performance metrics","Design decisions based on assumptions","Difficulty measuring ROI of UX improvements"], steps:["UX Data Collection & Analytics Setup","User Behavior & Funnel Analysis","Friction Point Identification","Optimization Strategy Creation","A/B Testing & Experimentation","Continuous Monitoring & Performance Tracking","Iteration & Improvement Implementation"], changes:["Higher conversion rates","Reduced user friction and drop-offs","Improved engagement and satisfaction","Data-driven decision making","Better ROI from digital products","Continuous experience improvement","Clear performance visibility"], deliverables:["UX Analytics Dashboard","Conversion Optimization Reports","Heatmap Insights","UX Improvement Roadmap","A/B Testing Results","Performance Monitoring Reports"] },
-
-{ id:6, title:"Software Development", desc:"Building scalable, secure & high-performance digital solutions", icon:"fa-code", fullDesc:"At UXPACIFIC, we provide end-to-end Software Development services that transform ideas into reliable, scalable, and high-performing digital products.", solves:["Outdated software systems","Scalability and performance challenges","Disconnected platforms","Slow development cycles","Security issues","Weak technical architecture"], steps:["Requirement Analysis","System Architecture Design","Frontend & Backend Development","API Integrations","Testing & QA","Deployment","Maintenance"], changes:["Improved performance","Secure applications","Scalable infrastructure","Faster operations","Reduced inefficiencies","Future-ready systems"], deliverables:["Custom Applications","SaaS Solutions","API Development","Database Architecture","DevOps Setup","QA Reports","Technical Documentation"] },
-
-{ id:7, title:"Mobile, SaaS & eCommerce UX", desc:"Designing high-performance digital experiences that drive growth across platforms", icon:"fa-mobile-screen", fullDesc:"At UXPACIFIC, we design scalable and conversion-focused UX solutions tailored for mobile applications, SaaS platforms, and eCommerce products.", solves:["Low user adoption","High churn","Cart abandonment","Poor navigation","Complex workflows","Inconsistent cross-platform UX"], steps:["User Research","Journey Mapping","IA & User Flows","Wireframing","UI Design","Prototyping","Optimization"], changes:["Improved adoption","Higher retention","Reduced churn","Better conversions","Faster task completion","Consistent experiences"], deliverables:["UX Strategy","User Flow Diagrams","Wireframes","High-Fidelity Designs","Prototypes","Usability Reports"] },
-
-{ id:8, title:"UX Design & Strategy", desc:"Driving digital success through human-centered experiences", icon:"fa-lightbulb", fullDesc:"We align user behavior, business goals, and technology to create seamless and scalable digital strategies.", solves:["Unclear product vision","Low adoption","Disconnected journeys","Poor IA","Business misalignment","Product-market fit issues"], steps:["Discovery","UX Audit","Strategy Definition","Journey Mapping","Wireframes","Validation","Optimization"], changes:["Clear roadmap","Higher satisfaction","Better retention","Stronger alignment","Faster growth","Scalable foundation"], deliverables:["UX Strategy Roadmap","UX Audit Report","Journey Maps","IA Diagrams","Workshop Outputs","UX Deck","Wireframes"] },
-
-{ id:9, title:"Branding & Graphics", desc:"Creating impactful visual identities and compelling brand experiences", icon:"fa-pen-nib", fullDesc:"We craft strategic branding solutions that build strong, consistent, and memorable identities.", solves:["Inconsistent branding","Weak recognition","Unclear messaging","Poor marketing visuals","Disconnected design language"], steps:["Brand Discovery","Strategy","Concept Development","Logo Design","Style System","Guidelines","Implementation"], changes:["Stronger recognition","Consistent identity","Better engagement","Professional presence","Higher trust"], deliverables:["Logo System","Color & Typography","Brand Guide","Marketing Assets","Presentation Templates","Iconography"] },
-
-{ id:10, title:"Emerging Tech UX", desc:"Designing the future of digital experiences through innovation", icon:"fa-robot", fullDesc:"We design intuitive UX solutions for AI, AR/VR, IoT, and Web3 technologies.", solves:["Low tech adoption","Complex interfaces","Lack of trust in AI","High learning curve","Disconnected smart systems"], steps:["Tech Research","Behavior Analysis","UX Mapping","Prototype","Testing","Iteration","Optimization"], changes:["Higher adoption","Reduced complexity","Improved trust","Future-ready products","Competitive advantage"], deliverables:["Emerging Tech UX Strategy","AI Interface Design","AR/VR Prototypes","Voice UX Flows","IoT Dashboards","Web3 Frameworks"] },
-
-{ id:11, title:"Live Design Sessions & Events", desc:"Real-time collaboration, learning, and design innovation", icon:"fa-users", fullDesc:"Interactive UX workshops and live design problem-solving sessions.", solves:["Slow UX cycles","Low collaboration","Unclear direction","Delayed decisions"], steps:["Planning","Onboarding","Live Collaboration","Prototyping","Feedback","Documentation"], changes:["Immediate insights","Faster innovation","Better teamwork","Actionable results"], deliverables:["Workshop Reports","Prototypes","UX Outputs","Session Recordings","Learning Materials"] },
-
-{ id:12, title:"Full-Service UX Retainers", desc:"Your dedicated UX partner for continuous product growth", icon:"fa-handshake", fullDesc:"Ongoing access to a multidisciplinary UX team for continuous optimization.", solves:["Fragmented workflows","Slow releases","Lack of in-house UX","Scaling challenges"], steps:["Assessment","Team Allocation","Monthly Planning","Sprints","Testing","Reporting"], changes:["Consistent improvement","Faster iterations","Lower costs","Scalable support"], deliverables:["Monthly UX Roadmap","Continuous Design Updates","Prototypes","UX Dashboards","Growth Recommendations"] }
-
-];
+function renderIconHtml(value, title) {
+  const icon = normalizeIconValue(value);
+  if (isImageIcon(icon)) {
+    return `<img src="${icon}" alt="${title || 'Service icon'}" style="width:26px;height:26px;object-fit:contain;">`;
+  }
+  return `<i class="fas ${icon}"></i>`;
+}
 
 function renderServiceCards() {
   const container = document.getElementById('services-grid-container');
+  if (!servicesData.length) {
+    container.innerHTML = `
+      <div class="col-12 col-md-8 col-lg-6">
+        <div class="ux-card" style="cursor:default;">
+          <div class="ux-card-title">Services coming soon</div>
+          <div class="ux-card-desc">No published services found yet. Add and publish services from the admin panel.</div>
+        </div>
+      </div>`;
+    return;
+  }
   container.innerHTML = servicesData.map(s => `
     <div class="col-12 col-md-6 col-lg-4">
       <div class="ux-card" onclick="openService(${s.id})" data-bs-toggle="offcanvas" data-bs-target="#serviceOffcanvas">
-        <div class="ux-card-icon"><i class="fas ${s.icon}"></i></div>
+        <div class="ux-card-icon">${renderIconHtml(s.icon, s.title)}</div>
         <div class="ux-card-title">${s.title}</div>
         <div class="ux-card-desc">${s.desc}</div>
         <div class="ux-card-link">Explore Service →</div>
@@ -280,13 +343,13 @@ function renderServiceCards() {
 function openService(id) {
   const s = servicesData.find(x => x.id === id);
   if (!s) return;
-  document.getElementById('oc-icon').innerHTML = `<i class="fas ${s.icon}"></i>`;
+  document.getElementById('oc-icon').innerHTML = renderIconHtml(s.icon, s.title);
   document.getElementById('oc-title').textContent = s.title;
-  document.getElementById('oc-desc').textContent = s.fullDesc;
-  document.getElementById('oc-solves').innerHTML = s.solves.map(x => { const short = x.split(' ').slice(0,4).join(' '); return `<div class="col-6"><div style="background:rgba(255,255,255,0.05);border-radius:6px;padding:8px 12px;font-size:13px;">✓ ${short}</div></div>`; }).join('');
-  document.getElementById('oc-steps').innerHTML = s.steps.map((x,i)=>`<div class="oc-step"><span class="oc-step-num">${String(i+1).padStart(2,'0')}</span>${x}</div>`).join('');
-  document.getElementById('oc-changes').innerHTML = s.changes.map(x => `<div class="col-6"><div style="background:rgba(167,139,250,0.1);border-radius:6px;padding:8px 12px;font-size:13px;color:#c4b5fd;">→ ${x}</div></div>`).join('');
-  document.getElementById('oc-deliverables').innerHTML = s.deliverables.map(x => `<li>• ${x}</li>`).join('');
+  document.getElementById('oc-desc').textContent = s.fullDesc || s.desc || '';
+  document.getElementById('oc-solves').innerHTML = (s.solves || []).map(x => `<div class="col-6"><div style="background:rgba(255,255,255,0.05);border-radius:6px;padding:8px 12px;font-size:13px;">✓ ${x}</div></div>`).join('');
+  document.getElementById('oc-steps').innerHTML = (s.steps || []).map((x,i)=>`<div class="oc-step"><span class="oc-step-num">${String(i+1).padStart(2,'0')}</span>${x}</div>`).join('');
+  document.getElementById('oc-changes').innerHTML = (s.changes || []).map(x => `<div class="col-6"><div style="background:rgba(167,139,250,0.1);border-radius:6px;padding:8px 12px;font-size:13px;color:#c4b5fd;">→ ${x}</div></div>`).join('');
+  document.getElementById('oc-deliverables').innerHTML = (s.deliverables || []).map(x => `<li>• ${x}</li>`).join('');
 }
 
 document.addEventListener('DOMContentLoaded', renderServiceCards);

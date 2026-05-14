@@ -4,7 +4,7 @@ return array(
     'smtp_port'    => 587,
     'smtp_secure'  => 'tls',
     'smtp_user'    => 'Hello@uxpacific.com',
-    'smtp_pass'    => 'kigiriwhtbzkflfu',
+    'smtp_pass'    => 'gaopienmralpztvd',
     'from_email'   => 'Hello@uxpacific.com',
     'from_name'    => 'UX Pacific',
     'to_email'     => 'Hello@uxpacific.com',

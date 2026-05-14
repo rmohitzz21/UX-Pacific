@@ -1,0 +1,164 @@
+-- UX Pacific admin schema bootstrap
+
+CREATE TABLE IF NOT EXISTS admin_users (
+  id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(150) NOT NULL,
+  email VARCHAR(255) NOT NULL UNIQUE,
+  password_hash VARCHAR(255) NOT NULL,
+  role ENUM('super_admin','editor') NOT NULL DEFAULT 'editor',
+  is_active TINYINT(1) NOT NULL DEFAULT 1,
+  last_login_at TIMESTAMP NULL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS admin_sessions (
+  id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+  admin_user_id INT UNSIGNED NOT NULL,
+  session_token VARCHAR(255) NOT NULL UNIQUE,
+  ip_address VARCHAR(45) NULL,
+  user_agent VARCHAR(500) NULL,
+  expires_at TIMESTAMP NOT NULL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  FOREIGN KEY (admin_user_id) REFERENCES admin_users(id) ON DELETE CASCADE
+);
+
+CREATE TABLE IF NOT EXISTS login_attempts (
+  id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+  email VARCHAR(255) NOT NULL,
+  ip_address VARCHAR(45) NOT NULL,
+  success TINYINT(1) NOT NULL DEFAULT 0,
+  attempted_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  KEY idx_uxp_login_email (email, success, attempted_at),
+  KEY idx_uxp_login_ip (ip_address, success, attempted_at)
+);
+
+CREATE TABLE IF NOT EXISTS projects (
+  id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+  title VARCHAR(255) NOT NULL,
+  slug VARCHAR(255) NOT NULL UNIQUE,
+  description TEXT NOT NULL,
+  thumbnail_url VARCHAR(500) NULL,
+  external_link VARCHAR(500) NULL,
+  link_label VARCHAR(50) DEFAULT 'View Details',
+  tags JSON NULL,
+  filter_group ENUM('all','selected_work','case_studies','articles') DEFAULT 'all',
+  is_featured TINYINT(1) NOT NULL DEFAULT 0,
+  status ENUM('published','draft','archived') DEFAULT 'draft',
+  sort_order INT UNSIGNED NOT NULL DEFAULT 0,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS services (
+  id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+  title VARCHAR(255) NOT NULL,
+  slug VARCHAR(255) NOT NULL UNIQUE,
+  short_desc VARCHAR(500) NOT NULL,
+  what_it_solves TEXT NULL,
+  how_we_work TEXT NULL,
+  what_changes TEXT NULL,
+  deliverables JSON NULL,
+  icon_name VARCHAR(100) NULL,
+  status ENUM('published','draft') DEFAULT 'published',
+  sort_order INT UNSIGNED NOT NULL DEFAULT 0,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS contacts (
+  id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(150) NOT NULL,
+  email VARCHAR(255) NOT NULL,
+  phone VARCHAR(20) NULL,
+  service_interest VARCHAR(100) NULL,
+  message TEXT NOT NULL,
+  status ENUM('new','read','awaiting_reply','replied') DEFAULT 'new',
+  admin_note TEXT NULL,
+  ip_address VARCHAR(45) NULL,
+  user_agent VARCHAR(500) NULL,
+  submitted_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  replied_at TIMESTAMP NULL
+);
+
+CREATE TABLE IF NOT EXISTS home_settings (
+  id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+  setting_key VARCHAR(100) NOT NULL UNIQUE,
+  setting_value LONGTEXT NOT NULL,
+  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS team_members (
+  id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(150) NOT NULL,
+  role VARCHAR(150) NOT NULL,
+  bio TEXT NULL,
+  photo_url VARCHAR(500) NULL,
+  linkedin_url VARCHAR(500) NULL,
+  sort_order INT UNSIGNED NOT NULL DEFAULT 0,
+  is_visible TINYINT(1) NOT NULL DEFAULT 1,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS faqs (
+  id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+  question VARCHAR(500) NOT NULL,
+  answer TEXT NOT NULL,
+  category VARCHAR(100) DEFAULT 'General',
+  sort_order INT UNSIGNED NOT NULL DEFAULT 0,
+  is_visible TINYINT(1) NOT NULL DEFAULT 1,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS testimonials (
+  id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+  client_name VARCHAR(150) NOT NULL,
+  client_company VARCHAR(150) NULL,
+  client_role VARCHAR(150) NULL,
+  badge_label VARCHAR(120) NULL,
+  photo_url VARCHAR(500) NULL,
+  quote TEXT NOT NULL,
+  rating TINYINT(1) DEFAULT 5,
+  is_visible TINYINT(1) NOT NULL DEFAULT 1,
+  sort_order INT UNSIGNED NOT NULL DEFAULT 0,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS client_logos (
+  id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(100) NOT NULL,
+  logo_url VARCHAR(500) NOT NULL,
+  website_url VARCHAR(500) NULL,
+  sort_order INT UNSIGNED NOT NULL DEFAULT 0,
+  is_visible TINYINT(1) NOT NULL DEFAULT 1,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS seo_meta (
+  id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+  page_key VARCHAR(100) NOT NULL UNIQUE,
+  meta_title VARCHAR(255) NOT NULL,
+  meta_description VARCHAR(500) NOT NULL,
+  og_image_url VARCHAR(500) NULL,
+  og_title VARCHAR(255) NULL,
+  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS audit_logs (
+  id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+  admin_user_id INT UNSIGNED NULL,
+  action VARCHAR(100) NOT NULL,
+  model_type VARCHAR(100) NULL,
+  model_id INT UNSIGNED NULL,
+  description TEXT NULL,
+  ip_address VARCHAR(45) NULL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS form_submission_attempts (
+  id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+  ip_address VARCHAR(45) NOT NULL,
+  attempted_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  KEY idx_uxp_form_rate (ip_address, attempted_at)
+);
+

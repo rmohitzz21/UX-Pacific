@@ -26,3 +26,54 @@
 [2026-05-01 08:24:25] INFO: Form submitted successfully {"form_type":"contact","email":"rmohittt21@gmail.com"}
 [2026-05-01 08:25:04] INFO: Form submitted successfully {"form_type":"contact","email":"rmohittt21@gmail.com"}
 [2026-05-04 08:37:23] INFO: Form submitted successfully {"form_type":"contact","email":"rmohittt21@gmail.com"}
+[2026-05-09 07:16:10] ERROR: PHPMailer failure {"message":"SMTP Error: Could not authenticate."}
+[2026-05-09 07:17:53] ERROR: PHPMailer failure {"message":"SMTP Error: Could not authenticate."}
+[2026-05-09 07:37:11] ERROR: Admin notification email failed {"message":"SMTP Error: Could not authenticate.","form_type":"contact","visitor_email":"hello@uxpacific.com"}
+[2026-05-09 07:37:14] ERROR: User confirmation email failed {"message":"SMTP Error: Could not authenticate.","form_type":"contact","visitor_email":"hello@uxpacific.com"}
+[2026-05-09 07:37:14] INFO: Contact form processed {"form_type":"contact","email":"hello@uxpacific.com","email_admin_sent":false,"email_user_sent":false}
+[2026-05-09 07:37:53] ERROR: Admin notification email failed {"message":"SMTP Error: Could not authenticate.","form_type":"contact","visitor_email":"rmohittt21@gmail.com"}
+[2026-05-09 07:37:56] ERROR: User confirmation email failed {"message":"SMTP Error: Could not authenticate.","form_type":"contact","visitor_email":"rmohittt21@gmail.com"}
+[2026-05-09 07:37:56] INFO: Contact form processed {"form_type":"contact","email":"rmohittt21@gmail.com","email_admin_sent":false,"email_user_sent":false}
+[2026-05-09 09:45:40] ERROR: User confirmation email failed {"message":"SMTP Error: Could not authenticate.","form_type":"contact","visitor_email":"rmohit21264@gmail.com"}
+[2026-05-09 09:45:43] ERROR: User confirmation email failed (fallback) {"message":"SMTP Error: Could not authenticate.","form_type":"contact","visitor_email":"rmohit21264@gmail.com"}
+[2026-05-09 09:45:46] ERROR: Admin notification email failed (fallback) {"message":"SMTP Error: Could not authenticate.","form_type":"contact","visitor_email":"rmohit21264@gmail.com"}
+[2026-05-09 09:45:46] INFO: Contact form processed {"form_type":"contact","email":"rmohit21264@gmail.com","email_admin_sent":false,"email_user_sent":false}
+[2026-05-09 09:51:46] ERROR: PHPMailer failure {"message":"SMTP Error: Could not authenticate."}
+[2026-05-09 09:55:33] ERROR: Admin notification email failed {"message":"SMTP Error: Could not authenticate.","form_type":"contact","visitor_email":"rmohit21264@gmail.com"}
+[2026-05-09 09:55:36] ERROR: User confirmation email failed {"message":"SMTP Error: Could not authenticate.","form_type":"contact","visitor_email":"rmohit21264@gmail.com"}
+[2026-05-09 09:55:36] INFO: Contact form processed {"form_type":"contact","email":"rmohit21264@gmail.com","db_saved":true,"email_admin_sent":false,"email_user_sent":false}
+[2026-05-09 09:56:41] ERROR: Admin notification email failed {"message":"SMTP Error: Could not authenticate.","form_type":"ux_audit","visitor_email":"rmohit21264@gmail.com"}
+[2026-05-09 09:56:44] ERROR: User confirmation email failed {"message":"SMTP Error: Could not authenticate.","form_type":"ux_audit","visitor_email":"rmohit21264@gmail.com"}
+[2026-05-09 09:56:44] ERROR: All emails failed (ux_audit) {"email":"rmohit21264@gmail.com"}
+[2026-05-09 09:56:54] ERROR: Admin notification email failed {"message":"SMTP Error: Could not authenticate.","form_type":"ux_audit","visitor_email":"rmohit21264@gmail.com"}
+[2026-05-09 09:56:57] ERROR: User confirmation email failed {"message":"SMTP Error: Could not authenticate.","form_type":"ux_audit","visitor_email":"rmohit21264@gmail.com"}
+[2026-05-09 09:56:57] ERROR: All emails failed (ux_audit) {"email":"rmohit21264@gmail.com"}
+[2026-05-09 09:56:59] ERROR: Admin notification email failed {"message":"SMTP Error: Could not authenticate.","form_type":"ux_audit","visitor_email":"rmohit21264@gmail.com"}
+[2026-05-09 09:57:02] ERROR: User confirmation email failed {"message":"SMTP Error: Could not authenticate.","form_type":"ux_audit","visitor_email":"rmohit21264@gmail.com"}
+[2026-05-09 09:57:02] ERROR: All emails failed (ux_audit) {"email":"rmohit21264@gmail.com"}
+[2026-05-09 09:58:01] ERROR: Admin notification email failed {"message":"SMTP Error: Could not authenticate.","form_type":"contact","visitor_email":"hello@uxpacific.com"}
+[2026-05-09 09:58:04] ERROR: User confirmation email failed {"message":"SMTP Error: Could not authenticate.","form_type":"contact","visitor_email":"hello@uxpacific.com"}
+[2026-05-09 09:58:04] INFO: Contact form processed {"form_type":"contact","email":"hello@uxpacific.com","db_saved":true,"email_admin_sent":false,"email_user_sent":false}
+[2026-05-09 10:12:43] ERROR: Admin notification email failed {"message":"SMTP Error: Could not authenticate.","form_type":"contact","visitor_email":"hello@uxpacific.com"}
+[2026-05-09 10:12:46] ERROR: User confirmation email failed {"message":"SMTP Error: Could not authenticate.","form_type":"contact","visitor_email":"hello@uxpacific.com"}
+[2026-05-09 10:12:46] INFO: Contact form processed {"form_type":"contact","email":"hello@uxpacific.com","db_saved":true,"email_admin_sent":false,"email_user_sent":false}
+[2026-05-09 10:26:18] ERROR: Admin notification email failed {"message":"SMTP Error: Could not authenticate.","form_type":"ux_audit","visitor_email":"rmohit21264@gmail.com"}
+[2026-05-09 10:26:21] ERROR: User confirmation email failed {"message":"SMTP Error: Could not authenticate.","form_type":"ux_audit","visitor_email":"rmohit21264@gmail.com"}
+[2026-05-09 10:26:21] ERROR: All emails failed (ux_audit) {"email":"rmohit21264@gmail.com"}
+[2026-05-09 10:26:52] ERROR: Admin notification email failed {"message":"SMTP Error: Could not authenticate.","form_type":"contact","visitor_email":"rmohit21264@gmail.com"}
+[2026-05-09 10:26:55] ERROR: User confirmation email failed {"message":"SMTP Error: Could not authenticate.","form_type":"contact","visitor_email":"rmohit21264@gmail.com"}
+[2026-05-09 10:26:55] INFO: Contact form processed {"form_type":"contact","email":"rmohit21264@gmail.com","db_saved":true,"email_admin_sent":false,"email_user_sent":false}
+[2026-05-09 10:34:18] ERROR: Admin notification email failed {"message":"SMTP Error: Could not authenticate.","form_type":"contact","visitor_email":"rmohit21264@gmail.com"}
+[2026-05-09 10:34:21] ERROR: User confirmation email failed {"message":"SMTP Error: Could not authenticate.","form_type":"contact","visitor_email":"rmohit21264@gmail.com"}
+[2026-05-09 10:34:21] INFO: Contact form processed {"form_type":"contact","email":"rmohit21264@gmail.com","db_saved":true,"email_admin_sent":false,"email_user_sent":false}
+[2026-05-09 13:20:54] ERROR: Admin notification email failed {"message":"SMTP Error: Could not authenticate.","form_type":"ux_audit","visitor_email":"rmohit21264@gmail.com"}
+[2026-05-09 13:20:56] ERROR: User confirmation email failed {"message":"SMTP Error: Could not authenticate.","form_type":"ux_audit","visitor_email":"rmohit21264@gmail.com"}
+[2026-05-09 13:20:56] ERROR: All emails failed (ux_audit) {"email":"rmohit21264@gmail.com"}
+[2026-05-11 07:05:41] ERROR: Admin notification email failed {"message":"SMTP Error: Could not authenticate.","form_type":"contact","visitor_email":"rmohittt21@gmail.com"}
+[2026-05-11 07:05:46] ERROR: User confirmation email failed {"message":"SMTP Error: Could not authenticate.","form_type":"contact","visitor_email":"rmohittt21@gmail.com"}
+[2026-05-11 07:05:46] INFO: Contact form processed {"form_type":"contact","email":"rmohittt21@gmail.com","db_saved":true,"email_admin_sent":false,"email_user_sent":false}
+[2026-05-11 07:12:46] INFO: Contact form processed {"form_type":"contact","email":"rmohit21264@gmail.com","db_saved":true,"email_admin_sent":true,"email_user_sent":true}
+[2026-05-11 07:14:50] INFO: UX audit form submitted {"form_type":"ux_audit","email":"rmohit21264@gmail.com","email_admin_sent":true,"email_user_sent":true}
+[2026-05-13 13:12:30] INFO: Contact form processed {"form_type":"contact","email":"devang@gmail.com","db_saved":true,"email_admin_sent":true,"email_user_sent":true}
+[2026-05-13 17:46:21] WARNING: form_submission_attempts unavailable 
+[2026-05-13 17:46:32] INFO: Contact form processed {"form_type":"contact","email":"rmohittt21@gmail.com","db_saved":true,"email_admin_sent":true,"email_user_sent":true}

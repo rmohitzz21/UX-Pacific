@@ -180,3 +180,6 @@
 - **CMS Capability**: Highly capable of migration to Next.js, Webflow, or WordPress given the clean separation of `main.css`, components, and the `servicesData` JSON structure.
 - **Localization**: UI layout accommodates multi-line text well, making it scalable for i18n mapping if needed in the future.
 - **Performance Requirements**: Optimized WebP imagery and asynchronous script handling to mitigate the load overhead from Canvas scripts and animations. Highly reliant on keeping CSS/JS minified for mobile LCP.
+
+
+            

@@ -1,0 +1,4 @@
+# Block web access to CLI utilities if this directory is under the document root.
+<IfModule mod_authz_core.c>
+    Require all denied
+</IfModule>

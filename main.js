@@ -138,52 +138,162 @@ if (slider) {
 }
 
 
-// JavaScript for the seamless review slider loop and hover pause
+// Home reviews: load visible testimonials from public API, match existing card markup, then marquee + tilt
 document.addEventListener("DOMContentLoaded", function () {
-    const reviewsGrid = document.querySelector(".reviews-grid");
-    if (reviewsGrid) {
-        const originalCards = document.getElementById("original-cards");
+  const reviewsGrid = document.querySelector(".reviews-section .reviews-grid");
+  if (!reviewsGrid) return;
 
-        // Clone the original set of cards to create the seamless effect
-        const clonedCards = originalCards.cloneNode(true);
-        clonedCards.removeAttribute("id");
-        reviewsGrid.appendChild(clonedCards);
+  const apiUrl = reviewsGrid.getAttribute("data-testimonials-api");
+  const originalCards = document.getElementById("original-cards");
+  if (!originalCards || !apiUrl) return;
 
-        // Testimonial cards hover effects
-        const allCards = document.querySelectorAll(".testimonial-card");
+  const QUOTE_ICON_SVG =
+    // '<svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">' +
+    '<path d="M11 7H7C5.89543 7 5 7.89543 5 9V13C5 14.1046 5.89543 15 7 15H9C9 16.6569 7.65685 18 6 18V20C8.76142 20 11 17.7614 11 15V7Z" fill="rgba(255,255,255,0.15)"/>' +
+    '<path d="M21 7H17C15.8954 7 15 7.89543 15 9V13C15 14.1046 15.8954 15 17 15H19C19 16.6569 17.6569 18 16 18V20C18.7614 20 21 17.7614 21 15V7Z" fill="rgba(255,255,255,0.15)"/>' +
+    "</svg>";
 
-        allCards.forEach((card) => {
-          // Pause animation on hover
-          card.addEventListener("mouseenter", () => {
-            reviewsGrid.style.animationPlayState = "paused";
-          });
-          card.addEventListener("mouseleave", () => {
-            reviewsGrid.style.animationPlayState = "running";
-          });
+  const STAR_SVG =
+    '<svg fill="#ffd166" viewBox="0 0 24 24"><path d="M12 .587l3.668 7.431L24 9.748l-6 5.847L19.335 24 12 20.201 4.665 24 6 15.595 0 9.748l8.332-1.73L12 .587z"/></svg>';
 
-          // Subtle 3D tilt effect
-          card.addEventListener("mousemove", (e) => {
-            const rect = card.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top;
-            const centerX = rect.width / 2;
-            const centerY = rect.height / 2;
-            const rotateX = (y - centerY) / 25;
-            const rotateY = (centerX - x) / 25;
-            
-            card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-8px)`;
-          });
+  function escapeHtml(text) {
+    if (text == null) return "";
+    const d = document.createElement("div");
+    d.textContent = String(text);
+    return d.innerHTML;
+  }
 
-          card.addEventListener("mouseleave", () => {
-            card.style.transform = 'translateY(0)';
-            card.style.transition = 'transform 0.4s ease';
-          });
+  function escapeAttr(text) {
+    return String(text)
+      .replace(/&/g, "&amp;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#39;")
+      .replace(/</g, "&lt;");
+  }
 
-          card.addEventListener("mouseenter", () => {
-            card.style.transition = 'transform 0.15s ease';
-          });
-        });
-    }
+  function buildStars(rating) {
+    let n = parseInt(String(rating), 10);
+    if (Number.isNaN(n)) n = 5;
+    n = Math.max(1, Math.min(5, n));
+    return STAR_SVG.repeat(n);
+  }
+
+  function buildTestimonialCard(item) {
+    const name = item.client_name || "";
+    const photo = item.photo_url || "img/Oval.png";
+    const alt = escapeAttr(name);
+    return (
+      '<div class="testimonial-card" data-tilt>' +
+      '<div class="card-glow"></div>' +
+      '<div class="quote-icon">' +
+      QUOTE_ICON_SVG +
+      "</div>" +
+      '<div class="card-header">' +
+      '<div class="stars">' +
+      buildStars(item.rating) +
+      "</div>" +
+      '<div class="pill">' +
+      escapeHtml(item.badge_label || "Review") +
+      "</div>" +
+      "</div>" +
+      '<div class="quote">' +
+      escapeHtml(item.quote) +
+      "</div>" +
+      '<div class="author">' +
+      '<div class="avatar">' +
+      '<img alt="' +
+      alt +
+      '" src="' +
+      escapeAttr(photo) +
+      '" loading="lazy" />' +
+      '<div class="avatar-ring"></div>' +
+      "</div>" +
+      '<div class="author-info">' +
+      '<div class="name">' +
+      escapeHtml(name) +
+      "</div>" +
+      '<div class="title">' +
+      escapeHtml(item.subtitle || "") +
+      "</div>" +
+      "</div>" +
+      "</div>" +
+      "</div>"
+    );
+  }
+
+  function removeMarqueeClone() {
+    reviewsGrid.querySelectorAll(".review-card-set").forEach((el) => {
+      if (el.id !== "original-cards") el.remove();
+    });
+  }
+
+  function bindTestimonialInteractions() {
+    const allCards = reviewsGrid.querySelectorAll(".testimonial-card");
+    allCards.forEach((card) => {
+      card.addEventListener("mouseenter", () => {
+        reviewsGrid.style.animationPlayState = "paused";
+      });
+      card.addEventListener("mouseleave", () => {
+        reviewsGrid.style.animationPlayState = "running";
+      });
+
+      card.addEventListener("mousemove", (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+        const rotateX = (y - centerY) / 25;
+        const rotateY = (centerX - x) / 25;
+        card.style.transform =
+          "perspective(1000px) rotateX(" +
+          rotateX +
+          "deg) rotateY(" +
+          rotateY +
+          "deg) translateY(-8px)";
+      });
+
+      card.addEventListener("mouseleave", () => {
+        card.style.transform = "translateY(0)";
+        card.style.transition = "transform 0.4s ease";
+      });
+
+      card.addEventListener("mouseenter", () => {
+        card.style.transition = "transform 0.15s ease";
+      });
+    });
+  }
+
+  function setupMarqueeFromOriginal() {
+    removeMarqueeClone();
+    const clonedCards = originalCards.cloneNode(true);
+    clonedCards.removeAttribute("id");
+    reviewsGrid.appendChild(clonedCards);
+    bindTestimonialInteractions();
+  }
+
+  fetch(apiUrl, { credentials: "same-origin" })
+    .then((res) => {
+      if (!res.ok) throw new Error("Bad response");
+      return res.json();
+    })
+    .then((items) => {
+      if (!Array.isArray(items) || items.length === 0) {
+        reviewsGrid.classList.add("reviews-grid--empty");
+        originalCards.innerHTML = "";
+        originalCards.setAttribute("aria-busy", "false");
+        return;
+      }
+      reviewsGrid.classList.remove("reviews-grid--empty");
+      originalCards.innerHTML = items.map(buildTestimonialCard).join("");
+      originalCards.setAttribute("aria-busy", "false");
+      setupMarqueeFromOriginal();
+    })
+    .catch(() => {
+      reviewsGrid.classList.add("reviews-grid--empty");
+      originalCards.innerHTML = "";
+      originalCards.setAttribute("aria-busy", "false");
+    });
 });
 
 
@@ -298,52 +408,25 @@ document.addEventListener("DOMContentLoaded", () => {
   const descEl = document.getElementById("project-desc");
   const previewImg = document.getElementById("preview-img");
 
-  const projectData = [
-    {
-      title: "Case Study of Survey Pacific",
-      desc: "We revamped the website UI/UX through deep heuristic evaluation and competitive benchmarking. The result? A streamlined, user-friendly experience tailored for a global audience.",
-      link: ""
-    },
-    {
-      title: "UX Audit of CEDAR Himalaya",
-      desc: "Designing for Change! We audited their digital experience to align with their mission of sustainable mountain development.The recommendations improved content clarity, accessibility, and user trust across the platform.",
-      link: "#"
-    },
-    {
-      title: "UX Audit of Distinct Buzz",
-      desc: "Audited for Impact! We conducted a full-scale UX audit to uncover usability gaps and friction in the user journey. Our insights led to smoother navigation, better mobile responsiveness, and higher engagement.",
-      link: "#"
-    },
-    {
-      title: "UX Audit of Radhe Krishna",
-      desc: "Audited for Impact! We conducted a full-scale UX audit to uncover usability gaps and friction in the user journey. Our insights led to smoother navigation, better mobile responsiveness, and higher engagement.",
-      link: "#"
-    }
-  ];
+  // Project data is now set dynamically from PHP in index.php inline script
+  // This code skips if projectData is already handled by the inline script
+  if (typeof projectData !== 'undefined' && projectData.length > 0) return;
+
+  // Fallback: just handle basic slide switching without text updates
+  if (!nextBtn || !slides.length) return;
 
   let currentIndex = 0;
 
-  function updateSlide(index) {
+  nextBtn.addEventListener("click", () => {
+    currentIndex = (currentIndex + 1) % slides.length;
     slides.forEach((img, idx) => {
-      img.classList.toggle("active", idx === index);
+      img.classList.toggle("active", idx === currentIndex);
     });
-    titleEl.textContent = projectData[index].title;
-    descEl.textContent = projectData[index].desc;
-    const nextIndex = (index + 1) % slides.length;
-    previewImg.src = slides[nextIndex].src;
-  }
-
-  if (nextBtn) {
-    nextBtn.addEventListener("click", () => {
-      currentIndex = (currentIndex + 1) % slides.length;
-      updateSlide(currentIndex);
-    });
-  }
-
-  // Initialize first slide (only if elements exist on this page)
-  if (titleEl && descEl && previewImg && slides.length) {
-    updateSlide(currentIndex);
-  }
+    if (previewImg && slides.length > 1) {
+      const nextIndex = (currentIndex + 1) % slides.length;
+      previewImg.src = slides[nextIndex].src;
+    }
+  });
 });
 
 
@@ -595,6 +678,11 @@ document.addEventListener('DOMContentLoaded', () => {
   const messageTextarea = document.getElementById('message');
   const termsCheckbox = document.getElementById('terms');
   const submitButton = form.querySelector('button[type="submit"]');
+  const hpField = document.getElementById('company_website');
+  const startedField = document.getElementById('form_started_at');
+  if (startedField && !startedField.value) {
+    startedField.value = String(Date.now());
+  }
 
   if (termsCheckbox) {
     termsCheckbox.addEventListener('change', () => {
@@ -794,6 +882,9 @@ document.addEventListener('DOMContentLoaded', () => {
           phone: phoneInput.value.trim(),
           industry: industrySelect.value,
           message: messageTextarea.value.trim(),
+          terms: !!(termsCheckbox && termsCheckbox.checked),
+          company_website: hpField ? hpField.value.trim() : '',
+          form_started_at: startedField ? parseInt(startedField.value, 10) || 0 : 0,
       };
 
       try {

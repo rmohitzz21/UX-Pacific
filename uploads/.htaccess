@@ -1,0 +1,35 @@
+# ==================================================
+# UX Pacific - Upload Directory Security
+# ==================================================
+
+# Disable directory listing
+Options -Indexes
+
+# Disable PHP execution in this directory
+<FilesMatch "\.(php|php3|php4|php5|php7|phtml|pl|py|cgi|shtml|sh|bash)$">
+    Require all denied
+</FilesMatch>
+
+# Alternative method: disable PHP engine entirely
+<IfModule mod_php.c>
+    php_flag engine off
+</IfModule>
+
+<IfModule mod_php7.c>
+    php_flag engine off
+</IfModule>
+
+<IfModule mod_php8.c>
+    php_flag engine off
+</IfModule>
+
+# Only allow specific file types
+# Only allow specific image types in /uploads (no SVG — stored SVG can execute as markup in some contexts)
+<FilesMatch "\.(?i:jpe?g|png|gif|webp|ico)$">
+    Require all granted
+</FilesMatch>
+
+# Deny access to any .htaccess file
+<Files ".htaccess">
+    Require all denied
+</Files>

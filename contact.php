@@ -135,6 +135,8 @@ $currentPage  = 'contact';
 
           <form class="contact-form-card" id="contactForm" action="send" method="post" novalidate>
             <input type="hidden" name="form_type" value="contact">
+            <input type="text" name="company_website" id="company_website" value="" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-10000px;top:auto;width:1px;height:1px;overflow:hidden;">
+            <input type="hidden" name="form_started_at" id="form_started_at" value="">
             <div class="contact-row">
               <div class="contact-field"><label for="name">Name</label><input id="name" name="name" type="text" placeholder="Enter your name here" required minlength="2" maxlength="50" autocomplete="name"></div>
               <div class="contact-field"><label for="email">Email</label><input id="email" name="email" type="email" placeholder="Enter your email address" required autocomplete="email"></div>
@@ -201,6 +203,8 @@ $currentPage  = 'contact';
           });
         });
         document.addEventListener('click', (e) => { if (!dropdown.contains(e.target)) { dropdown.classList.remove('open'); } });
+
+        // Submission is handled in main.js (single source of truth).
       });
     </script>
   </body>

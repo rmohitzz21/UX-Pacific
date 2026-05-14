@@ -1,4 +1,6 @@
 <?php
+require_once __DIR__ . '/includes/cms_repository.php';
+
 $pageTitle    = 'Ecosystem | UX Pacific';
 $pageDesc     = 'Discover the UX Pacific ecosystem  a community-driven network of designers, mentors, collaborators, and tools shaping the future of UX design.';
 $canonicalUrl = 'https://www.uxpacific.com/ecosystem.php';
@@ -6,6 +8,22 @@ $ogTitle      = 'Ecosystem | UX Pacific';
 $ogDesc       = 'Join the UX Pacific ecosystem. Connect with a thriving community of UX professionals, access resources, and grow your design career.';
 $ogUrl        = 'https://www.uxpacific.com/ecosystem.php';
 $currentPage  = 'ecosystem';
+
+$ecosystemItems = get_published_ecosystem();
+
+/** Normalize logo paths from admin uploads (preserve root-relative URLs). */
+function ecosystem_logo_url(?string $url): string
+{
+    $url = trim((string) $url);
+    if ($url === '') {
+        return '';
+    }
+    if (preg_match('#^https?://#i', $url)) {
+        return $url;
+    }
+
+    return uxp_normalize_stored_media_url($url);
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -97,6 +115,20 @@ $currentPage  = 'ecosystem';
         .eco-acc-header { padding: 16px !important; font-size: 1.05rem !important; }
         .eco-acc-body { padding: 0 16px 16px !important; }
 
+        .eco-logo-placeholder {
+          width: 40px;
+          height: 40px;
+          border-radius: 8px;
+          background: rgba(255,255,255,0.12);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 14px;
+          font-weight: 700;
+          color: rgba(255,255,255,0.9);
+          letter-spacing: 0.02em;
+        }
+
         /* Prevent hover icon size change on mobile tap */
         .service-card:nth-child(1):hover .service-icon img,
         .service-card:nth-child(2):hover .service-icon img,
@@ -125,30 +157,56 @@ $currentPage  = 'ecosystem';
     <h2 class="ux-title" style="margin-top: 50px;">Expand Your Experience With <span class="highlight"> UX Pacific </span></h2>
 
     <div class="services">
-      <div class="service-card" onclick="window.open('#','_blank')" style="cursor:pointer;">
-        <div class="service-icon"><img alt="UI" src="img/shop1.png" /></div>
+      <?php
+      $ecoRows = !empty($ecosystemItems)
+          ? $ecosystemItems
+          : [
+              ['partner_name' => 'UX Pacific Shop', 'details' => 'Access premium UI kits, design systems, and templates crafted by industry experts to speed up your workflow and elevate your final products.', 'website_url' => '#', 'logo_url' => 'img/shop1.png'],
+              ['partner_name' => 'UX Academy', 'details' => 'Level up your skills with our hands-on workshops, courses, and mentorship programs specifically tailored and designed for future design leaders.', 'website_url' => 'https://academy.uxpacific.com/', 'logo_url' => 'img/acedmy.png'],
+              ['partner_name' => 'UX Community', 'details' => 'Be part of a thriving network where ideas turn into reality. Join our broader UX Pacific ecosystem community to connect and grow.', 'website_url' => 'https://community.uxpacific.com/', 'logo_url' => 'img/community.png'],
+          ];
+
+      foreach ($ecoRows as $eco):
+          $name = htmlspecialchars($eco['partner_name'] ?? 'Partner', ENT_QUOTES, 'UTF-8');
+          $details = htmlspecialchars($eco['details'] ?? '', ENT_QUOTES, 'UTF-8');
+          $rawUrl = trim((string) ($eco['website_url'] ?? ''));
+          $hasUrl = $rawUrl !== '' && $rawUrl !== '#';
+          $openUrl = $hasUrl ? $rawUrl : '';
+          $logoResolved = ecosystem_logo_url($eco['logo_url'] ?? '');
+          $initials = '';
+          $pn = (string) ($eco['partner_name'] ?? '');
+          if ($pn !== '') {
+              $parts = preg_split('/\s+/u', $pn, -1, PREG_SPLIT_NO_EMPTY);
+              if ($parts && count($parts) >= 2) {
+                  $initials = mb_strtoupper(mb_substr($parts[0], 0, 1) . mb_substr($parts[count($parts) - 1], 0, 1));
+              } else {
+                  $initials = mb_strtoupper(mb_substr($pn, 0, 2));
+              }
+          }
+          $onclick = $hasUrl
+              ? ' onclick=\'window.open(' . json_encode($openUrl, JSON_UNESCAPED_SLASHES | JSON_HEX_TAG | JSON_HEX_AMP) . ', "_blank")\''
+              : '';
+          $cursorStyle = $hasUrl ? 'cursor:pointer;' : 'cursor:default;';
+      ?>
+      <div class="service-card"<?= $onclick ?> style="<?= $cursorStyle ?>">
+        <div class="service-icon">
+          <?php if ($logoResolved !== ''): ?>
+            <img alt="<?= $name ?>" src="<?= htmlspecialchars($logoResolved, ENT_QUOTES, 'UTF-8') ?>" />
+          <?php else: ?>
+            <span class="eco-logo-placeholder"><?= htmlspecialchars($initials ?: '?', ENT_QUOTES, 'UTF-8') ?></span>
+          <?php endif; ?>
+        </div>
         <div class="service-card-content">
-          <h3>UX Pacific Shop</h3>
-          <p>Access premium UI kits, design systems, and templates crafted by industry experts to speed up your workflow and elevate your final products.</p>
-          <a href="#" target="_blank" style="text-decoration:none;color:#6366f1;font-weight:500;">View Details &rarr;</a>
+          <h3><?= $name ?></h3>
+          <p><?= $details ?></p>
+          <?php if ($hasUrl): ?>
+            <a href="<?= htmlspecialchars($openUrl, ENT_QUOTES, 'UTF-8') ?>" target="_blank" rel="noopener noreferrer" style="text-decoration:none;color:#6366f1;font-weight:500;">View Details &rarr;</a>
+          <?php else: ?>
+            <span style="color:rgba(255,255,255,0.35);font-size:0.95rem;">Link coming soon</span>
+          <?php endif; ?>
         </div>
       </div>
-      <div class="service-card" onclick="window.open('https://academy.uxpacific.com/','_blank')" style="cursor:pointer;">
-        <div class="service-icon"><img alt="Audit" src="img/acedmy.png" /></div>
-        <div class="service-card-content">
-          <h3>UX Academy</h3>
-          <p>Level up your skills with our hands-on workshops, courses, and mentorship programs specifically tailored and designed for future design leaders.</p>
-          <a href="https://academy.uxpacific.com/" target="_blank" style="text-decoration:none;color:#6366f1;font-weight:500;">View Details &rarr;</a>
-        </div>
-      </div>
-      <div class="service-card" onclick="window.open('https://community.uxpacific.com/','_blank')" style="cursor:pointer;">
-        <div class="service-icon"><img alt="Strategy" src="img/community.png" /></div>
-        <div class="service-card-content">
-          <h3>UX Community</h3>
-          <p>Be part of a thriving network where ideas turn into reality. Join our broader UX Pacific ecosystem community to connect and grow.</p>
-          <a href="https://community.uxpacific.com/" target="_blank" style="text-decoration:none;color:#6366f1;font-weight:500;">View Details &rarr;</a>
-        </div>
-      </div>
+      <?php endforeach; ?>
     </div>
 
     <?php include 'includes/footer.php'; ?>

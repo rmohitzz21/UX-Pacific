@@ -1,0 +1,70 @@
+# ==================================================
+# UX Pacific - Production-Ready .gitignore
+# ==================================================
+
+# ─── Secrets & Configuration (NEVER commit these) ───
+mailer.php
+# Legacy paths (ignored if present so they are never committed)
+includes/db_credentials.php
+includes/db.local.php
+.env
+.env.*
+*.env
+
+# ─── Logs ───
+storage/logs/*.log
+storage/logs/*
+*.log
+
+# ─── Uploads (user content, not code) ───
+uploads/*
+!uploads/.htaccess
+storage/uploads/*
+!storage/uploads/.htaccess
+
+# ─── IDE / Editor ───
+.idea/
+.vscode/
+*.sublime-*
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# ─── Dependencies ───
+/vendor/
+node_modules/
+/frontend/node_modules/
+
+# ─── Build artifacts ───
+/frontend/dist/
+*.map
+
+# ─── PHP / Cache ───
+*.cache
+.php_cs.cache
+.phpunit.result.cache
+
+# ─── OS Files ───
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# ─── Backup files ───
+*.bak
+*.backup
+*.sql
+!database/schema_admin.sql
+!database/PRODUCTION_SQL_PATCHES.sql
+
+# ─── Dev/Test files that must NOT be deployed ───
+# (These should be deleted from production, not just gitignored)
+# admin/api/test_crud.php
+# admin/api/test_upload.php
+# admin/api/setup_db.php
+# admin/api/seed_db.php

@@ -1,4 +1,24 @@
 <?php
+require_once __DIR__ . '/includes/cms_repository.php';
+
+// Home project slider: featured published projects only
+$featuredProjects = get_published_projects('all', true);
+
+// Ecosystem section: visible partners from admin, or same defaults as ecosystem.php
+$ecosystemHomeItems = get_published_ecosystem();
+
+// Helper: admin images use root-relative paths; do not strip leading "/" (breaks subdirectory installs).
+function home_image_url(?string $url): string {
+  $url = trim((string) $url);
+  if ($url === '') {
+    return uxp_normalize_stored_media_url('img/ux.webp');
+  }
+  if (preg_match('#^https?://#i', $url)) {
+    return $url;
+  }
+
+  return uxp_normalize_stored_media_url($url);
+}
 
 $pageTitle    = 'UI UX Design Agency | Web Design & Product Design | UX Pacific';
 
@@ -197,104 +217,592 @@ $currentPage  = 'home';
       </center>
     </div>
 
-    <!-- Desktop Work Section -->
-    <div class="project-container d-none d-md-flex">
-      <div class="project-text">
-        <h3 id="project-title">Case Study of Survey Pacific</h3>
-        <p class="mb-0" id="project-desc">We revamped the website UI/UX through deep heuristic evaluation and competitive benchmarking.</p>
-        <a class="btn-primary" href="/work" style="width:175px;height:42px;text-decoration:none;margin-top:25px;">View Details <span class="arrow"> </span></a>
+    <?php
+      $uxpProjResolveTag = static function (array $project): string {
+        $tags = [];
+        if (!empty($project['tags'])) {
+          $tags = is_string($project['tags']) ? (json_decode($project['tags'], true) ?: []) : $project['tags'];
+        }
+        if (!empty($tags)) {
+          return (string) $tags[0];
+        }
+        $group = $project['filter_group'] ?? 'all';
+        return $group === 'case_studies' ? 'Case Study' : ($group === 'articles' ? 'Article' : 'Project');
+      };
+      $uxpProjPlainDesc = static function (array $project): string {
+        $raw = strip_tags((string) ($project['description'] ?? ''));
+        if (function_exists('mb_strlen') && mb_strlen($raw) > 170) {
+          return rtrim(mb_substr($raw, 0, 167)) . '...';
+        }
+        if (strlen($raw) > 170) {
+          return rtrim(substr($raw, 0, 167)) . '...';
+        }
+        return $raw;
+      };
+      $uxpProjSliderItems = [];
+      if (!empty($featuredProjects)) {
+        foreach ($featuredProjects as $project) {
+          $rawLink = trim((string) ($project['external_link'] ?? ''));
+          $uxpProjSliderItems[] = [
+            'title' => (string) ($project['title'] ?? 'Project'),
+            'description' => $uxpProjPlainDesc($project),
+            'image' => home_image_url($project['thumbnail_url'] ?? ''),
+            'category' => $uxpProjResolveTag($project),
+            'href' => $rawLink !== '' ? $rawLink : '/work',
+            'external' => $rawLink !== '' && (bool) preg_match('#^https?://#i', $rawLink),
+          ];
+        }
+      } else {
+        $uxpProjSliderItems[] = [
+          'title' => 'Coming Soon',
+          'description' => 'Exciting projects are on the way. Check back soon!',
+          'image' => 'img/ux.webp',
+          'category' => 'Project',
+          'href' => '/work',
+          'external' => false,
+        ];
+      }
+    ?>
+    <section
+      class="uxp-proj-slider"
+      id="uxp-proj-slider"
+      aria-label="Featured projects"
+      data-uxp-proj-count="<?= count($uxpProjSliderItems) ?>"
+    >
+      <div class="uxp-proj-slider__viewport" id="uxp-proj-slider-viewport">
+        <div class="uxp-proj-slider__track">
+          <?php foreach ($uxpProjSliderItems as $uxpIndex => $uxpItem) :
+            $uxpTitleEsc = htmlspecialchars($uxpItem['title'], ENT_QUOTES, 'UTF-8');
+            $uxpDescEsc = htmlspecialchars($uxpItem['description'], ENT_QUOTES, 'UTF-8');
+            $uxpCatEsc = htmlspecialchars($uxpItem['category'], ENT_QUOTES, 'UTF-8');
+            $uxpHrefEsc = htmlspecialchars($uxpItem['href'], ENT_QUOTES, 'UTF-8');
+            $uxpImgSrc = htmlspecialchars($uxpItem['image'], ENT_QUOTES, 'UTF-8');
+            ?>
+          <article class="uxp-proj-card">
+            <div class="uxp-proj-card__media">
+              <img
+                src="<?= $uxpImgSrc ?>"
+                alt="<?= $uxpTitleEsc ?>"
+                class="uxp-proj-card__img"
+                loading="<?= $uxpIndex < 2 ? 'eager' : 'lazy' ?>"
+                decoding="async"
+              />
+              <div class="uxp-proj-card__media-gradient" aria-hidden="true"></div>
+              <span class="uxp-proj-card__badge"><?= $uxpCatEsc ?></span>
+            </div>
+            <div class="uxp-proj-card__inner">
+              <div class="uxp-proj-card__main">
+                <h3 class="uxp-proj-card__title"><?= $uxpTitleEsc ?></h3>
+                <p class="uxp-proj-card__desc"><?= $uxpDescEsc ?></p>
+              </div>
+              <div class="uxp-proj-card__cta">
+                <a
+                  class="uxp-proj-card__btn"
+                  href="<?= $uxpHrefEsc ?>"
+                  <?php if (!empty($uxpItem['external'])): ?>target="_blank" rel="noopener noreferrer" <?php endif; ?>
+                >View Project</a>
+               
+              </div>
+            </div>
+          </article>
+          <?php endforeach; ?>
+        </div>
       </div>
-      <div class="project-slider">
-        <div class="main-slide">
-          <img alt="Project 1" class="active" height="362px" src="img/ux.webp" />
-          <img alt="Project 2" height="362px" src="img/cedar.webp" />
-          <img alt="Project 3" height="362px" src="img/dist.webp" />
-          <div class="next-btn"></div>
-        </div>
-        <div class="preview-slide" style="width: 300px">
-          <img alt="Preview" id="preview-img" src="img/dist.webp" />
-        </div>
-      </div>
-    </div>
-
-    <!-- Mobile Work Card Slider -->
-    <div class="mw-slider d-md-none">
-      <button class="mw-arrow mw-prev" aria-label="Previous project">&#8249;</button>
-      <div class="mw-card">
-        <div class="mw-image">
-          <img id="mw-img" src="img/ux.webp" alt="Project" />
-        </div>
-        <div class="mw-info">
-          <h3 id="mw-title">Case Study of<br>Survey Pacific</h3>
-          <p id="mw-desc">We revamped the website UI/UX through deep heuristic evaluation and competitive benchmarking.</p>
-          <div class="mw-tags" id="mw-tags">
-            <span>&#8226; Case Study</span><span>&#8226; Web</span>
-          </div>
-        </div>
-      </div>
-      <button class="mw-arrow mw-next" aria-label="Next project">&#8250;</button>
-    </div>
+      <button
+        type="button"
+        class="uxp-proj-slider__arrow uxp-proj-slider__arrow--prev"
+        aria-controls="uxp-proj-slider-viewport"
+        aria-label="Show previous projects"
+      >
+        <span class="uxp-proj-slider__chev" aria-hidden="true">&#8249;</span>
+      </button>
+      <button
+        type="button"
+        class="uxp-proj-slider__arrow uxp-proj-slider__arrow--next"
+        aria-controls="uxp-proj-slider-viewport"
+        aria-label="Show next projects"
+      >
+        <span class="uxp-proj-slider__chev" aria-hidden="true">&#8250;</span>
+      </button>
+    </section>
 
     <style>
-      
-      .mw-slider { display:flex; align-items:center; justify-content:center; gap:10px; padding:0 6px; margin:0 auto; max-width:420px; }
-      .mw-arrow { background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.15); color:#fff; font-size:28px; width:40px; height:40px; border-radius:50%; display:flex; align-items:center; justify-content:center; cursor:pointer; flex-shrink:0; transition:background 0.2s; line-height:1; padding:0; }
-      .mw-arrow:hover { background:rgba(97,71,189,0.5); border-color:#6147bd; }
-      .mw-card { flex:1; border-radius:16px; overflow:hidden; background:#1a1a2e; box-shadow:0 8px 32px rgba(0,0,0,0.6); min-height:400px; }
-      .mw-image { width:100%; aspect-ratio:4/3; overflow:hidden; }
-      .mw-image img { width:100%; height:100%; object-fit:cover; display:block; transition:opacity 0.3s ease; }
-      .mw-info { background:linear-gradient(135deg,#3b2a7e,#6147bd); padding:18px 16px 16px; }
-      .mw-info h3 { color:#fff; font-size:17px; font-weight:700; margin:0 0 8px; line-height:1.3; }
-      .mw-info p { color:rgba(255,255,255,0.82); font-size:12.5px; line-height:1.6; margin:0 0 12px; }
-      .mw-tags { display:flex; gap:12px; flex-wrap:wrap; }
-      .mw-tags span { color:rgba(255,255,255,0.75); font-size:12px; font-style:italic; }
+      /* === UX Pacific — project cards slider (scoped; brand #6147bd) === */
+      .uxp-proj-slider {
+        --uxp-proj-brand: #6147bd;
+        --uxp-proj-brand-rgb: 97, 71, 189;
+        position: relative;
+        max-width: 73rem;
+        margin: 0 auto 2.75rem;
+        padding: clamp(1.25rem, 3vw, 2rem) clamp(10px, 2vw, 18px);
+        isolation: isolate;
+      }
+      .uxp-proj-slider__viewport {
+        position: relative;
+        z-index: 0;
+        overflow-x: auto;
+        overflow-y: hidden;
+        scroll-behavior: smooth;
+        -webkit-overflow-scrolling: touch;
+        scroll-snap-type: x proximity;
+        overscroll-behavior-x: contain;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+        padding: 1.5rem 0 2rem;
+        margin: 0 clamp(44px, 5vw, 56px);
+        cursor: grab;
+        scroll-padding-inline: max(0.75rem, calc(50% - min(160px, calc((100vw - 5.5rem) / 2))));
+      }
+      .uxp-proj-slider__viewport:active {
+        cursor: grabbing;
+      }
+      .uxp-proj-slider__viewport::-webkit-scrollbar {
+        display: none;
+        width: 0;
+        height: 0;
+      }
+      .uxp-proj-slider__track {
+        display: flex;
+        flex-direction: row;
+        gap: 1.5rem;
+        width: max-content;
+        min-height: 1px;
+        padding-inline: 0.35rem;
+      }
+      .uxp-proj-card {
+        flex: 0 0 min(320px, calc(100vw - 5.5rem));
+        width: min(320px, calc(100vw - 5.5rem));
+        min-height: 0;
+        scroll-snap-align: center;
+        border-radius: 1.5rem;
+        border: 1px solid rgba(168, 168, 196, 0.22);
+        background: rgba(12, 12, 28, 0.45);
+        backdrop-filter: blur(14px);
+        -webkit-backdrop-filter: blur(14px);
+        box-shadow: 0 22px 56px rgba(32, 24, 72, 0.45);
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        transition: border-color 0.45s ease, box-shadow 0.45s ease, transform 0.35s ease;
+      }
+      .uxp-proj-card:hover,
+      .uxp-proj-card:focus-within {
+        border-color: rgba(var(--uxp-proj-brand-rgb), 0.55);
+        box-shadow: 0 28px 72px rgba(var(--uxp-proj-brand-rgb), 0.22), 0 0 0 1px rgba(var(--uxp-proj-brand-rgb), 0.12);
+        transform: translateY(-8px);
+      }
+      .uxp-proj-card__media {
+        position: relative;
+        flex-shrink: 0;
+        height: 12rem;
+        overflow: hidden;
+        background: #17172f;
+      }
+      .uxp-proj-card__img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        transform: scale(1);
+        transition: transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+      }
+      .uxp-proj-card:hover .uxp-proj-card__img,
+      .uxp-proj-card:focus-within .uxp-proj-card__img {
+        transform: scale(1.1);
+      }
+      .uxp-proj-card__media-gradient {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(to top, rgba(8, 8, 20, 0.92) 0%, rgba(8, 8, 20, 0.22) 50%, transparent 100%);
+        pointer-events: none;
+        opacity: 0.65;
+        transition: opacity 0.35s ease;
+        z-index: 1;
+      }
+      .uxp-proj-card:hover .uxp-proj-card__media-gradient,
+      .uxp-proj-card:focus-within .uxp-proj-card__media-gradient {
+        opacity: 0.42;
+      }
+      .uxp-proj-card__badge {
+        position: absolute;
+        top: 1rem;
+        left: 1rem;
+        z-index: 4;
+        padding: 0.2rem 0.75rem;
+        font-size: 0.7rem;
+        font-weight: 600;
+        letter-spacing: 0.02em;
+        color: #fff;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.12);
+        border: 1px solid rgba(255, 255, 255, 0.14);
+        backdrop-filter: blur(10px);
+      }
+      .uxp-proj-card__inner {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 1.35rem 1.4rem 1.25rem;
+        min-height: 12.5rem;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+      }
+      .uxp-proj-card__main {
+        display: flex;
+        flex-direction: column;
+        gap: 0.65rem;
+        flex-shrink: 0;
+        min-height: 0;
+      }
+      .uxp-proj-card__cta {
+        flex-shrink: 0;
+        margin-top: auto;
+        padding-top: 1rem;
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0.65rem;
+      }
+      .uxp-proj-card__title {
+        margin: 0;
+        font-size: 1.2rem;
+        font-weight: 700;
+        line-height: 1.22;
+        color: #f4f4ff;
+        letter-spacing: -0.02em;
+        transition: color 0.3s ease;
+      }
+      .uxp-proj-card:hover .uxp-proj-card__title,
+      .uxp-proj-card:focus-within .uxp-proj-card__title {
+        color: #d4c7ff;
+      }
+      .uxp-proj-card__desc {
+        margin: 0;
+        font-size: 0.8125rem;
+        line-height: 1.58;
+        color: rgba(200, 200, 220, 0.88);
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+      }
+      .uxp-proj-card__details {
+        display: block;
+        width: 100%;
+        text-align: center;
+        font-size: 0.8125rem;
+        font-weight: 600;
+        letter-spacing: 0.04em;
+        text-decoration: none;
+        color: rgba(200, 190, 255, 0.92);
+        padding: 0.35rem 0;
+        border: none;
+        background: transparent;
+        transition: color 0.2s ease, letter-spacing 0.2s ease;
+      }
+      .uxp-proj-card__details:hover {
+        color: #e8e0ff;
+      }
+      .uxp-proj-card__btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        min-height: 2.4rem;
+        padding: 0 1rem;
+        border-radius: 999px;
+        font-size: 0.8125rem;
+        font-weight: 600;
+        text-decoration: none;
+        color: #fff;
+        background: linear-gradient(90deg, #4f3dac, var(--uxp-proj-brand));
+        border: 1px solid rgba(183, 158, 255, 0.38);
+        transition: filter 0.2s ease, transform 0.15s ease;
+      }
+      .uxp-proj-card__btn:hover {
+        filter: brightness(1.08);
+        color: #fff;
+      }
+      .uxp-proj-card__btn:active {
+        transform: scale(0.98);
+      }
+      .uxp-proj-slider__arrow {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 30;
+        width: 3rem;
+        height: 3rem;
+        border-radius: 50%;
+        border: 1px solid rgba(255, 255, 255, 0.16);
+        background: rgba(14, 14, 28, 0.72);
+        color: #fff;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 8px 28px rgba(0, 0, 0, 0.35);
+        transition: background 0.22s ease, border-color 0.22s ease, opacity 0.28s ease, transform 0.15s ease;
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        pointer-events: auto;
+        touch-action: manipulation;
+        -webkit-tap-highlight-color: transparent;
+      }
+      .uxp-proj-slider__arrow:hover:not([aria-disabled='true']) {
+        background: rgba(var(--uxp-proj-brand-rgb), 0.55);
+        border-color: rgba(167, 139, 250, 0.8);
+      }
+      .uxp-proj-slider__arrow:active:not([aria-disabled='true']) {
+        transform: translateY(-50%) scale(0.94);
+      }
+      .uxp-proj-slider__arrow[aria-disabled='true'] {
+        opacity: 0.32;
+        cursor: default;
+      }
+      .uxp-proj-slider__arrow--prev {
+        left: 3px;
+      }
+      .uxp-proj-slider__arrow--next {
+        right: clamp(4px, 1.2vw, 10px);
+      }
+      .uxp-proj-slider__chev {
+        font-size: 1.5rem;
+        line-height: 1;
+        font-weight: 300;
+      }
+      @media (min-width: 768px) and (hover: hover) {
+        .uxp-proj-slider .uxp-proj-slider__arrow:not([aria-disabled='true']) {
+          opacity: 0;
+        }
+        .uxp-proj-slider:hover .uxp-proj-slider__arrow:not([aria-disabled='true']) {
+          opacity: 1;
+        }
+        .uxp-proj-slider .uxp-proj-slider__arrow[aria-disabled='true'] {
+          opacity: 0.2;
+        }
+      }
+      @media (min-width: 768px) {
+        .uxp-proj-card {
+          flex: 0 0 320px;
+          width: 320px;
+          scroll-snap-align: start;
+        }
+        .uxp-proj-slider__viewport {
+          margin: 0 clamp(48px, 4.5vw, 58px);
+          scroll-padding-inline: 0.75rem;
+        }
+      }
+      @media (max-width: 767.98px) {
+        .uxp-proj-slider__viewport {
+          margin: 0 2.75rem;
+        }
+        .uxp-proj-slider .uxp-proj-slider__arrow {
+          opacity: 1;
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .uxp-proj-slider__viewport {
+          scroll-behavior: auto;
+        }
+        .uxp-proj-card,
+        .uxp-proj-card__img,
+        .uxp-proj-card__media-gradient {
+          transition: none !important;
+        }
+        .uxp-proj-card:hover,
+        .uxp-proj-card:focus-within {
+          transform: none;
+        }
+        .uxp-proj-card:hover .uxp-proj-card__img,
+        .uxp-proj-card:focus-within .uxp-proj-card__img {
+          transform: none;
+        }
+      }
     </style>
 
     <script>
-      (function(){
-        // Preload images to prevent layout shifts
-        var images = ['img/ux.webp', 'img/cedar.webp', 'img/dist.webp'];
-        images.forEach(function(src){ var img = new Image(); img.src = src; });
-
-        var mwData = [
-          { img:'img/ux.webp',    title:'Case Study of' + '\n' + 'Survey Pacific',  desc:'We revamped the website UI/UX through deep heuristic evaluation and competitive benchmarking.', tags:['Case Study','Web'] },
-          { img:'img/cedar.webp', title:'UX Audit of' + '\n' + 'CEDAR Himalaya',    desc:'We audited their digital experience to align with their mission of sustainable mountain development.', tags:['UX Audit','Web'] },
-          { img:'img/dist.webp',  title:'UX Audit of' + '\n' + 'Distinct Buzz',     desc:'We uncovered usability gaps and friction in the user journey leading to smoother navigation.', tags:['UX Audit','Web'] }
-        ];
-        var idx = 0;
-        function render(){
-          var d = mwData[idx];
-          var img = document.getElementById('mw-img');
-          img.style.opacity = '0';
-          setTimeout(function(){ img.src = d.img; img.style.opacity = '1'; }, 180);
-          document.getElementById('mw-title').textContent = d.title;
-          document.getElementById('mw-desc').textContent  = d.desc;
-          document.getElementById('mw-tags').innerHTML    = d.tags.map(function(t){ return '<span>&#8226; '+t+'</span>'; }).join('');
+      (function () {
+        <?php
+        $uxpJsProjectPayload = !empty($featuredProjects)
+          ? array_map(static function ($p) {
+            $tags = [];
+            if (!empty($p['tags'])) {
+              $tags = is_string($p['tags']) ? (json_decode($p['tags'], true) ?: []) : $p['tags'];
+            }
+            if (empty($tags)) {
+              $filterGroup = $p['filter_group'] ?? 'all';
+              $tags = [$filterGroup === 'case_studies' ? 'Case Study' : ($filterGroup === 'articles' ? 'Article' : 'Project'), 'Web'];
+            }
+            return [
+              'title' => $p['title'] ?? 'Project',
+              'desc' => $p['description'] ?? '',
+              'img' => home_image_url($p['thumbnail_url'] ?? ''),
+              'tags' => $tags,
+              'link' => $p['external_link'] ?? '',
+            ];
+          }, $featuredProjects)
+          : [['title' => 'Coming Soon', 'desc' => 'Exciting projects are on the way.', 'img' => 'img/ux.webp', 'tags' => ['Project'], 'link' => '']];
+        ?>
+        window.projectData = <?= json_encode($uxpJsProjectPayload, JSON_UNESCAPED_SLASHES | JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS) ?>;
+        if (Array.isArray(window.projectData)) {
+          window.projectData.forEach(function (p) {
+            if (p && p.img) { var im = new Image(); im.src = p.img; }
+          });
         }
-        document.addEventListener('DOMContentLoaded', function(){
-          var prev = document.querySelector('.mw-prev');
-          var next = document.querySelector('.mw-next');
-          if(!prev) return;
-          prev.addEventListener('click', function(){ idx = (idx - 1 + mwData.length) % mwData.length; render(); });
-          next.addEventListener('click', function(){ idx = (idx + 1) % mwData.length; render(); });
-        });
+      })();
+
+      (function () {
+        'use strict';
+        function initUxpProjSlider() {
+          var root = document.getElementById('uxp-proj-slider');
+          if (!root) return;
+          var viewport = root.querySelector('.uxp-proj-slider__viewport');
+          var track = root.querySelector('.uxp-proj-slider__track');
+          var btnPrev = root.querySelector('.uxp-proj-slider__arrow--prev');
+          var btnNext = root.querySelector('.uxp-proj-slider__arrow--next');
+          if (!viewport || !track || !btnPrev || !btnNext) return;
+
+          function getCards() {
+            return track.querySelectorAll('.uxp-proj-card');
+          }
+
+          function maxScroll() {
+            return Math.max(0, viewport.scrollWidth - viewport.clientWidth);
+          }
+
+          function isMobileSnapCenter() {
+            return window.matchMedia('(max-width: 767.98px)').matches;
+          }
+
+          /** ScrollLeft that aligns card `index` (same math as scrollToCardIndex). */
+          function idealScrollLeftForIndex(index) {
+            var cards = getCards();
+            var card = cards[index];
+            if (!card) return 0;
+            var max = maxScroll();
+            var raw;
+            if (isMobileSnapCenter()) {
+              raw =
+                card.offsetLeft -
+                (viewport.clientWidth - card.offsetWidth) / 2;
+            } else {
+              raw = card.offsetLeft;
+            }
+            return Math.max(0, Math.min(max, Math.round(raw)));
+          }
+
+          /** Active slide = index whose ideal scroll is closest to current scrollLeft. */
+          function getActiveIndex() {
+            var cards = getCards();
+            if (!cards.length) return 0;
+            var cur = viewport.scrollLeft;
+            var best = 0;
+            var bestDiff = Infinity;
+            for (var i = 0; i < cards.length; i++) {
+              var ideal = idealScrollLeftForIndex(i);
+              var d = Math.abs(cur - ideal);
+              if (d < bestDiff) {
+                bestDiff = d;
+                best = i;
+              }
+            }
+            return best;
+          }
+
+          function scrollToCardIndex(index) {
+            viewport.scrollTo({
+              left: idealScrollLeftForIndex(index),
+              behavior: 'smooth',
+            });
+          }
+
+          function updateArrows() {
+            var cards = getCards();
+            if (!cards.length) {
+              btnPrev.setAttribute('aria-disabled', 'true');
+              btnNext.setAttribute('aria-disabled', 'true');
+              return;
+            }
+            var max = maxScroll();
+            if (max <= 0) {
+              btnPrev.setAttribute('aria-disabled', 'true');
+              btnNext.setAttribute('aria-disabled', 'true');
+              return;
+            }
+            var i = getActiveIndex();
+            var last = cards.length - 1;
+            btnPrev.setAttribute('aria-disabled', i <= 0 ? 'true' : 'false');
+            btnNext.setAttribute('aria-disabled', i >= last ? 'true' : 'false');
+          }
+
+          btnPrev.addEventListener('click', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+            var cards = getCards();
+            if (!cards.length) return;
+            var i = getActiveIndex();
+            if (i <= 0) return;
+            scrollToCardIndex(i - 1);
+          });
+          btnNext.addEventListener('click', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+            var cards = getCards();
+            if (!cards.length) return;
+            var i = getActiveIndex();
+            if (i >= cards.length - 1) return;
+            scrollToCardIndex(i + 1);
+          });
+
+          viewport.addEventListener('scroll', updateArrows, { passive: true });
+          viewport.addEventListener('scrollend', updateArrows);
+          window.addEventListener('resize', function () {
+            window.requestAnimationFrame(updateArrows);
+          });
+          updateArrows();
+        }
+
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', initUxpProjSlider);
+        } else {
+          initUxpProjSlider();
+        }
       })();
     </script>
 
+    <?php
+    $ecoHomeDefaults = [
+      ['partner_name' => 'UXP Shop', 'details' => 'Access premium UI kits, design systems, and templates crafted by industry experts.', 'website_url' => 'https://shop.uxpacific.com/'],
+      ['partner_name' => 'UXP Academy', 'details' => 'Advance your skills through curated booklets and hands-on learning experiences through our workshops.', 'website_url' => 'https://academy.uxpacific.com/'],
+      ['partner_name' => 'UXP Community', 'details' => 'Be part of a thriving network where ideas turn into reality. Join our community to connect and grow.', 'website_url' => 'https://community.uxpacific.com/'],
+    ];
+    $ecoHomeRows = !empty($ecosystemHomeItems) ? $ecosystemHomeItems : $ecoHomeDefaults;
+    ?>
     <section class="ecosystem" id="ecosystem" style="margin-top: 100px">
       <h3 class="ux-subtitle">Our Ecosystem <span class="ux-line"> </span></h3>
       <h2>Expand Your Experience With <span> UX Pacific </span></h2>
       <p class="description">Unlock exclusive networking and learning opportunities across our Ambassador Club and Academy. Take the next step in your UX career with a supportive community and hands-on resources.</p>
-      <div class="cards">
-        <a href="https://shop.uxpacific.com/" style="text-decoration:none" target="_blank">
-          <div class="card"><h1 class="text-white" style="font-size:1.7rem">UXP Shop</h1><span class="ux-line"> </span><p>Access premium UI kits, design systems, and templates crafted by industry experts.</p><span class="arrow"> </span></div>
-        </a>
-        <a href="https://academy.uxpacific.com/" style="text-decoration:none" target="_blank">
-          <div class="card"><h1 class="text-white" style="font-size:1.7rem">UXP Academy</h1><span class="ux-line"> </span><p>Advance your skills through curated booklets and hands-on learning experiences through our workshops.</p><span class="arrow"> </span></div>
-        </a>
-        <a href="https://community.uxpacific.com/" style="text-decoration:none" target="_blank">
-          <div class="card"><h1 class="text-white" style="font-size:1.7rem">UXP Community</h1><span class="ux-line"> </span><p>Be part of a thriving network where ideas turn into reality. Join our community to connect and grow.</p><span class="arrow"> </span></div>
-        </a>
+      <div class="cards ecosystem-cards">
+        <?php foreach ($ecoHomeRows as $eco) :
+          $ecoTitle = htmlspecialchars($eco['partner_name'] ?? 'Partner', ENT_QUOTES, 'UTF-8');
+          $ecoText = htmlspecialchars($eco['details'] ?? '', ENT_QUOTES, 'UTF-8');
+          $rawEcoUrl = trim((string) ($eco['website_url'] ?? ''));
+          $ecoHasUrl = $rawEcoUrl !== '' && $rawEcoUrl !== '#';
+          $ecoHref = $ecoHasUrl ? htmlspecialchars($rawEcoUrl, ENT_QUOTES, 'UTF-8') : '';
+          ?>
+        <div class="eco-home-wrap">
+          <?php if ($ecoHasUrl) : ?>
+          <a href="<?= $ecoHref ?>" class="eco-home-hit" target="_blank" rel="noopener noreferrer" style="text-decoration:none">
+            <div class="card"><h1 class="text-white" style="font-size:1.7rem"><?= $ecoTitle ?></h1><span class="ux-line"> </span><p><?= $ecoText ?></p><span class="arrow"> </span></div>
+          </a>
+          <?php else : ?>
+          <div class="eco-home-hit eco-home-hit--static">
+            <div class="card"><h1 class="text-white" style="font-size:1.7rem"><?= $ecoTitle ?></h1><span class="ux-line"> </span><p><?= $ecoText ?></p><span class="arrow"> </span></div>
+          </div>
+          <?php endif; ?>
+        </div>
+        <?php endforeach; ?>
       </div>
     </section>
 
@@ -303,200 +811,15 @@ $currentPage  = 'home';
       <h2>Feedback That Fuels <span> Growth </span></h2>
       <p>Explore experiences from our clients and workshop participants. Each review offers valuable insight into how we support growth, learning, and meaningful results across every project and event.</p>
       <div class="reviews-grid-container">
-        <div class="reviews-grid">
-          <div class="review-card-set" id="original-cards">
-            <!-- Card 1 -->
-            <div class="testimonial-card" data-tilt>
-              <div class="card-glow"></div>
-              <div class="quote-icon">
-                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M11 7H7C5.89543 7 5 7.89543 5 9V13C5 14.1046 5.89543 15 7 15H9C9 16.6569 7.65685 18 6 18V20C8.76142 20 11 17.7614 11 15V7Z" fill="rgba(255,255,255,0.15)"/>
-                  <path d="M21 7H17C15.8954 7 15 7.89543 15 9V13C15 14.1046 15.8954 15 17 15H19C19 16.6569 17.6569 18 16 18V20C18.7614 20 21 17.7614 21 15V7Z" fill="rgba(255,255,255,0.15)"/>
-                </svg>
-              </div>
-              <div class="card-header">
-                <div class="stars">
-                  <svg fill="#ffd166" viewBox="0 0 24 24"><path d="M12 .587l3.668 7.431L24 9.748l-6 5.847L19.335 24 12 20.201 4.665 24 6 15.595 0 9.748l8.332-1.73L12 .587z"/></svg>
-                  <svg fill="#ffd166" viewBox="0 0 24 24"><path d="M12 .587l3.668 7.431L24 9.748l-6 5.847L19.335 24 12 20.201 4.665 24 6 15.595 0 9.748l8.332-1.73L12 .587z"/></svg>
-                  <svg fill="#ffd166" viewBox="0 0 24 24"><path d="M12 .587l3.668 7.431L24 9.748l-6 5.847L19.335 24 12 20.201 4.665 24 6 15.595 0 9.748l8.332-1.73L12 .587z"/></svg>
-                  <svg fill="#ffd166" viewBox="0 0 24 24"><path d="M12 .587l3.668 7.431L24 9.748l-6 5.847L19.335 24 12 20.201 4.665 24 6 15.595 0 9.748l8.332-1.73L12 .587z"/></svg>
-                  <svg fill="#ffd166" viewBox="0 0 24 24"><path d="M12 .587l3.668 7.431L24 9.748l-6 5.847L19.335 24 12 20.201 4.665 24 6 15.595 0 9.748l8.332-1.73L12 .587z"/></svg>
-                </div>
-                <div class="pill">Project Experience</div>
-              </div>
-              <div class="quote">We appreciate the professionalism and clarity UX Pacific brought to the process and would gladly collaborate again.</div>
-              <div class="author">
-                <div class="avatar">
-                  <img alt="Andrew Ajai Singh" src="img/Oval (1).png" />
-                  <div class="avatar-ring"></div>
-                </div>
-                <div class="author-info">
-                  <div class="name">Andrew Ajai Singh</div>
-                  <div class="title">Distinct Buzz</div>
-                </div>
-              </div>
-            </div>
-            
-            <!-- Card 2 -->
-            <div class="testimonial-card" data-tilt>
-              <div class="card-glow"></div>
-              <div class="quote-icon">
-                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M11 7H7C5.89543 7 5 7.89543 5 9V13C5 14.1046 5.89543 15 7 15H9C9 16.6569 7.65685 18 6 18V20C8.76142 20 11 17.7614 11 15V7Z" fill="rgba(255,255,255,0.15)"/>
-                  <path d="M21 7H17C15.8954 7 15 7.89543 15 9V13C15 14.1046 15.8954 15 17 15H19C19 16.6569 17.6569 18 16 18V20C18.7614 20 21 17.7614 21 15V7Z" fill="rgba(255,255,255,0.15)"/>
-                </svg>
-              </div>
-              <div class="card-header">
-                <div class="stars">
-                  <svg fill="#ffd166" viewBox="0 0 24 24"><path d="M12 .587l3.668 7.431L24 9.748l-6 5.847L19.335 24 12 20.201 4.665 24 6 15.595 0 9.748l8.332-1.73L12 .587z"/></svg>
-                  <svg fill="#ffd166" viewBox="0 0 24 24"><path d="M12 .587l3.668 7.431L24 9.748l-6 5.847L19.335 24 12 20.201 4.665 24 6 15.595 0 9.748l8.332-1.73L12 .587z"/></svg>
-                  <svg fill="#ffd166" viewBox="0 0 24 24"><path d="M12 .587l3.668 7.431L24 9.748l-6 5.847L19.335 24 12 20.201 4.665 24 6 15.595 0 9.748l8.332-1.73L12 .587z"/></svg>
-                  <svg fill="#ffd166" viewBox="0 0 24 24"><path d="M12 .587l3.668 7.431L24 9.748l-6 5.847L19.335 24 12 20.201 4.665 24 6 15.595 0 9.748l8.332-1.73L12 .587z"/></svg>
-                  <svg fill="#ffd166" viewBox="0 0 24 24"><path d="M12 .587l3.668 7.431L24 9.748l-6 5.847L19.335 24 12 20.201 4.665 24 6 15.595 0 9.748l8.332-1.73L12 .587z"/></svg>
-                </div>
-                <div class="pill">Workshop Experience</div>
-              </div>
-              <div class="quote">Use engaging activities and mix up groups to boost interaction, cut distractions, and make the workshop more effective.</div>
-              <div class="author">
-                <div class="avatar">
-                  <img alt="Dharmik Bhavsar" src="img/Oval (2).png" />
-                  <div class="avatar-ring"></div>
-                </div>
-                <div class="author-info">
-                  <div class="name">Dharmik Bhavsar</div>
-                  <div class="title">Student</div>
-                </div>
-              </div>
-            </div>
-            
-            <!-- Card 3 -->
-            <div class="testimonial-card" data-tilt>
-              <div class="card-glow"></div>
-              <div class="quote-icon">
-                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M11 7H7C5.89543 7 5 7.89543 5 9V13C5 14.1046 5.89543 15 7 15H9C9 16.6569 7.65685 18 6 18V20C8.76142 20 11 17.7614 11 15V7Z" fill="rgba(255,255,255,0.15)"/>
-                  <path d="M21 7H17C15.8954 7 15 7.89543 15 9V13C15 14.1046 15.8954 15 17 15H19C19 16.6569 17.6569 18 16 18V20C18.7614 20 21 17.7614 21 15V7Z" fill="rgba(255,255,255,0.15)"/>
-                </svg>
-              </div>
-              <div class="card-header">
-                <div class="stars">
-                  <svg fill="#ffd166" viewBox="0 0 24 24"><path d="M12 .587l3.668 7.431L24 9.748l-6 5.847L19.335 24 12 20.201 4.665 24 6 15.595 0 9.748l8.332-1.73L12 .587z"/></svg>
-                  <svg fill="#ffd166" viewBox="0 0 24 24"><path d="M12 .587l3.668 7.431L24 9.748l-6 5.847L19.335 24 12 20.201 4.665 24 6 15.595 0 9.748l8.332-1.73L12 .587z"/></svg>
-                  <svg fill="#ffd166" viewBox="0 0 24 24"><path d="M12 .587l3.668 7.431L24 9.748l-6 5.847L19.335 24 12 20.201 4.665 24 6 15.595 0 9.748l8.332-1.73L12 .587z"/></svg>
-                  <svg fill="#ffd166" viewBox="0 0 24 24"><path d="M12 .587l3.668 7.431L24 9.748l-6 5.847L19.335 24 12 20.201 4.665 24 6 15.595 0 9.748l8.332-1.73L12 .587z"/></svg>
-                  <svg fill="#ffd166" viewBox="0 0 24 24"><path d="M12 .587l3.668 7.431L24 9.748l-6 5.847L19.335 24 12 20.201 4.665 24 6 15.595 0 9.748l8.332-1.73L12 .587z"/></svg>
-                </div>
-                <div class="pill">Workshop Experience</div>
-              </div>
-              <div class="quote">Got to explore fresh and engaging activities throughout the session. They added a fun and creative touch to the overall learning experience!</div>
-              <div class="author">
-                <div class="avatar">
-                  <img alt="Diya Mehta" src="./img/DMDM.png" />
-                  <div class="avatar-ring"></div>
-                </div>
-                <div class="author-info">
-                  <div class="name">Diya Mehta</div>
-                  <div class="title">Student</div>
-                </div>
-              </div>
-            </div>
-            
-            <!-- Card 4 -->
-            <div class="testimonial-card" data-tilt>
-              <div class="card-glow"></div>
-              <div class="quote-icon">
-                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M11 7H7C5.89543 7 5 7.89543 5 9V13C5 14.1046 5.89543 15 7 15H9C9 16.6569 7.65685 18 6 18V20C8.76142 20 11 17.7614 11 15V7Z" fill="rgba(255,255,255,0.15)"/>
-                  <path d="M21 7H17C15.8954 7 15 7.89543 15 9V13C15 14.1046 15.8954 15 17 15H19C19 16.6569 17.6569 18 16 18V20C18.7614 20 21 17.7614 21 15V7Z" fill="rgba(255,255,255,0.15)"/>
-                </svg>
-              </div>
-              <div class="card-header">
-                <div class="stars">
-                  <svg fill="#ffd166" viewBox="0 0 24 24"><path d="M12 .587l3.668 7.431L24 9.748l-6 5.847L19.335 24 12 20.201 4.665 24 6 15.595 0 9.748l8.332-1.73L12 .587z"/></svg>
-                  <svg fill="#ffd166" viewBox="0 0 24 24"><path d="M12 .587l3.668 7.431L24 9.748l-6 5.847L19.335 24 12 20.201 4.665 24 6 15.595 0 9.748l8.332-1.73L12 .587z"/></svg>
-                  <svg fill="#ffd166" viewBox="0 0 24 24"><path d="M12 .587l3.668 7.431L24 9.748l-6 5.847L19.335 24 12 20.201 4.665 24 6 15.595 0 9.748l8.332-1.73L12 .587z"/></svg>
-                  <svg fill="#ffd166" viewBox="0 0 24 24"><path d="M12 .587l3.668 7.431L24 9.748l-6 5.847L19.335 24 12 20.201 4.665 24 6 15.595 0 9.748l8.332-1.73L12 .587z"/></svg>
-                  <svg fill="#ffd166" viewBox="0 0 24 24"><path d="M12 .587l3.668 7.431L24 9.748l-6 5.847L19.335 24 12 20.201 4.665 24 6 15.595 0 9.748l8.332-1.73L12 .587z"/></svg>
-                </div>
-                <div class="pill">Project Experience</div>
-              </div>
-              <div class="quote">Working with UXPacific for the UX draft was an insightful experience. The team's approach was structured, detailed, and highly actionable.</div>
-              <div class="author">
-                <div class="avatar">
-                  <img alt="Dr. Vishal Singh" src="img/Oval.png" />
-                  <div class="avatar-ring"></div>
-                </div>
-                <div class="author-info">
-                  <div class="name">Dr. Vishal Singh</div>
-                  <div class="title">CEDAR Himalaya</div>
-                </div>
-              </div>
-            </div>
-            
-            <!-- Card 5 -->
-            <div class="testimonial-card" data-tilt>
-              <div class="card-glow"></div>
-              <div class="quote-icon">
-                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M11 7H7C5.89543 7 5 7.89543 5 9V13C5 14.1046 5.89543 15 7 15H9C9 16.6569 7.65685 18 6 18V20C8.76142 20 11 17.7614 11 15V7Z" fill="rgba(255,255,255,0.15)"/>
-                  <path d="M21 7H17C15.8954 7 15 7.89543 15 9V13C15 14.1046 15.8954 15 17 15H19C19 16.6569 17.6569 18 16 18V20C18.7614 20 21 17.7614 21 15V7Z" fill="rgba(255,255,255,0.15)"/>
-                </svg>
-              </div>
-              <div class="card-header">
-                <div class="stars">
-                  <svg fill="#ffd166" viewBox="0 0 24 24"><path d="M12 .587l3.668 7.431L24 9.748l-6 5.847L19.335 24 12 20.201 4.665 24 6 15.595 0 9.748l8.332-1.73L12 .587z"/></svg>
-                  <svg fill="#ffd166" viewBox="0 0 24 24"><path d="M12 .587l3.668 7.431L24 9.748l-6 5.847L19.335 24 12 20.201 4.665 24 6 15.595 0 9.748l8.332-1.73L12 .587z"/></svg>
-                  <svg fill="#ffd166" viewBox="0 0 24 24"><path d="M12 .587l3.668 7.431L24 9.748l-6 5.847L19.335 24 12 20.201 4.665 24 6 15.595 0 9.748l8.332-1.73L12 .587z"/></svg>
-                  <svg fill="#ffd166" viewBox="0 0 24 24"><path d="M12 .587l3.668 7.431L24 9.748l-6 5.847L19.335 24 12 20.201 4.665 24 6 15.595 0 9.748l8.332-1.73L12 .587z"/></svg>
-                  <svg fill="#ffd166" viewBox="0 0 24 24"><path d="M12 .587l3.668 7.431L24 9.748l-6 5.847L19.335 24 12 20.201 4.665 24 6 15.595 0 9.748l8.332-1.73L12 .587z"/></svg>
-                </div>
-                <div class="pill">Workshop Experience</div>
-              </div>
-              <div class="quote">Loved the hands-on activities and feedback they really clarified the concepts. Great experience connecting with the team and participants!</div>
-              <div class="author">
-                <div class="avatar">
-                  <img alt="Yugaan Parmar" src="img/YUGAAn.png" />
-                  <div class="avatar-ring"></div>
-                </div>
-                <div class="author-info">
-                  <div class="name">Yugaan Parmar</div>
-                  <div class="title">UI/UX &amp; Graphic Designer</div>
-                </div>
-              </div>
-            </div>
-            
-            <!-- Card 6 -->
-            <div class="testimonial-card" data-tilt>
-              <div class="card-glow"></div>
-              <div class="quote-icon">
-                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M11 7H7C5.89543 7 5 7.89543 5 9V13C5 14.1046 5.89543 15 7 15H9C9 16.6569 7.65685 18 6 18V20C8.76142 20 11 17.7614 11 15V7Z" fill="rgba(255,255,255,0.15)"/>
-                  <path d="M21 7H17C15.8954 7 15 7.89543 15 9V13C15 14.1046 15.8954 15 17 15H19C19 16.6569 17.6569 18 16 18V20C18.7614 20 21 17.7614 21 15V7Z" fill="rgba(255,255,255,0.15)"/>
-                </svg>
-              </div>
-              <div class="card-header">
-                <div class="stars">
-                  <svg fill="#ffd166" viewBox="0 0 24 24"><path d="M12 .587l3.668 7.431L24 9.748l-6 5.847L19.335 24 12 20.201 4.665 24 6 15.595 0 9.748l8.332-1.73L12 .587z"/></svg>
-                  <svg fill="#ffd166" viewBox="0 0 24 24"><path d="M12 .587l3.668 7.431L24 9.748l-6 5.847L19.335 24 12 20.201 4.665 24 6 15.595 0 9.748l8.332-1.73L12 .587z"/></svg>
-                  <svg fill="#ffd166" viewBox="0 0 24 24"><path d="M12 .587l3.668 7.431L24 9.748l-6 5.847L19.335 24 12 20.201 4.665 24 6 15.595 0 9.748l8.332-1.73L12 .587z"/></svg>
-                  <svg fill="#ffd166" viewBox="0 0 24 24"><path d="M12 .587l3.668 7.431L24 9.748l-6 5.847L19.335 24 12 20.201 4.665 24 6 15.595 0 9.748l8.332-1.73L12 .587z"/></svg>
-                  <svg fill="#ffd166" viewBox="0 0 24 24"><path d="M12 .587l3.668 7.431L24 9.748l-6 5.847L19.335 24 12 20.201 4.665 24 6 15.595 0 9.748l8.332-1.73L12 .587z"/></svg>
-                </div>
-                <div class="pill">Workshop Experience</div>
-              </div>
-              <div class="quote">Gained deeper knowledge, especially through the process of creating the hero and i understood how structure and design come together!</div>
-              <div class="author">
-                <div class="avatar">
-                  <img alt="Devanshi Akhja" src="img/Devanshi.png" />
-                  <div class="avatar-ring"></div>
-                </div>
-                <div class="author-info">
-                  <div class="name">Devanshi Akhja</div>
-                  <div class="title">Student</div>
-                </div>
-              </div>
-            </div>
-          </div>
+        <?php
+        // BASE_URL from includes/config.php (loaded via includes/head.php)
+        $uxpTestimonialsApi = rtrim((string) BASE_URL, '/') . '/api/testimonials.php';
+        ?>
+        <div
+          class="reviews-grid"
+          data-testimonials-api="<?= htmlspecialchars($uxpTestimonialsApi, ENT_QUOTES, 'UTF-8') ?>"
+        >
+          <div class="review-card-set" id="original-cards" aria-busy="true"></div>
         </div>
       </div>
     </section>
@@ -576,6 +899,8 @@ $currentPage  = 'home';
             <p style="color:#b2bad6;font-size:14px;margin-bottom:24px;">Fill out the details below and we will get back to you shortly.</p>
             <form id="auditForm" class="contact-form" action="send" method="post">
               <input type="hidden" name="form_type" value="ux_audit">
+              <input type="text" name="company_website" id="audit_company_website" value="" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-10000px;top:auto;width:1px;height:1px;overflow:hidden;">
+              <input type="hidden" name="form_started_at" id="audit_form_started_at" value="">
               <div class="contact-row d-flex flex-column" style="gap:16px;">
                 <div class="contact-field" style="display:flex;flex-direction:column;gap:6px;"><label for="auditName" style="font-size:15px;color:#b2bad6;">Name</label><input id="auditName" name="name" type="text" placeholder="Enter your name here" style="height:56px;width:100%;background:#151515;border:1px solid #2e2e3e;border-radius:6px;color:#eee;padding:16px 20px;font-size:1rem;outline:none;" onfocus="this.style.borderColor='#6147bd'" onblur="this.style.borderColor='#2e2e3e'"></div>
                 <div class="contact-field" style="display:flex;flex-direction:column;gap:6px;"><label for="auditEmail" style="font-size:15px;color:#b2bad6;">Email</label><input id="auditEmail" name="email" type="email" placeholder="Enter your email address" style="height:56px;width:100%;background:#151515;border:1px solid #2e2e3e;border-radius:6px;color:#eee;padding:16px 20px;font-size:1rem;outline:none;" onfocus="this.style.borderColor='#6147bd'" onblur="this.style.borderColor='#2e2e3e'"></div>
@@ -596,16 +921,72 @@ $currentPage  = 'home';
       e.preventDefault();
       var btn = document.getElementById('auditSubmitBtn');
       var errBox = document.getElementById('auditError');
+      
+      // Get field values
+      var nameVal = document.getElementById('auditName').value.trim();
+      var emailVal = document.getElementById('auditEmail').value.trim();
+      var phoneVal = document.getElementById('auditPhone').value.trim();
+      var urlVal = document.getElementById('auditUrl').value.trim();
+      
+      // Clear previous errors
+      errBox.style.display = 'none';
+      document.querySelectorAll('#auditForm .field-error').forEach(function(el) { el.remove(); });
+      document.querySelectorAll('#auditForm input').forEach(function(el) { el.style.borderColor = '#2e2e3e'; });
+      
+      // Validation
+      var errors = [];
+      var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      var urlRegex = /^(https?:\/\/)?([\w\-]+\.)+[\w\-]+(\/[\w\-._~:/?#[\]@!$&'()*+,;=]*)?$/i;
+      
+      if (nameVal === '') {
+        errors.push({ field: 'auditName', msg: 'Name is required' });
+      } else if (nameVal.length < 2) {
+        errors.push({ field: 'auditName', msg: 'Name must be at least 2 characters' });
+      }
+      
+      if (emailVal === '') {
+        errors.push({ field: 'auditEmail', msg: 'Email is required' });
+      } else if (!emailRegex.test(emailVal)) {
+        errors.push({ field: 'auditEmail', msg: 'Please enter a valid email address' });
+      }
+      
+      if (phoneVal !== '' && !/^[\d\s\-+()]{7,20}$/.test(phoneVal)) {
+        errors.push({ field: 'auditPhone', msg: 'Please enter a valid phone number' });
+      }
+      
+      if (urlVal === '') {
+        errors.push({ field: 'auditUrl', msg: 'Website URL is required for UX Audit' });
+      } else if (!urlRegex.test(urlVal)) {
+        errors.push({ field: 'auditUrl', msg: 'Please enter a valid website URL' });
+      }
+      
+      // Show validation errors
+      if (errors.length > 0) {
+        errors.forEach(function(err) {
+          var input = document.getElementById(err.field);
+          input.style.borderColor = '#f87171';
+          var errEl = document.createElement('div');
+          errEl.className = 'field-error';
+          errEl.style.cssText = 'color:#f87171;font-size:12px;margin-top:4px;';
+          errEl.textContent = err.msg;
+          input.parentNode.appendChild(errEl);
+        });
+        document.getElementById(errors[0].field).focus();
+        return;
+      }
+      
+      // Submit form
       btn.disabled = true;
       btn.textContent = 'Sending…';
-      errBox.style.display = 'none';
 
       var data = {
         form_type: 'ux_audit',
-        name:  document.getElementById('auditName').value,
-        email: document.getElementById('auditEmail').value,
-        phone: document.getElementById('auditPhone').value,
-        url:   document.getElementById('auditUrl').value
+        name: nameVal,
+        email: emailVal,
+        phone: phoneVal,
+        url: urlVal,
+        company_website: (document.getElementById('audit_company_website') || {}).value || '',
+        form_started_at: parseInt((document.getElementById('audit_form_started_at') || {}).value || '0', 10) || 0
       };
 
       fetch('send', {
@@ -659,6 +1040,10 @@ $currentPage  = 'home';
     document.getElementById('auditModal').addEventListener('shown.bs.modal', function() {
       var backdrop = document.querySelector('.modal-backdrop.show');
       if (backdrop) backdrop.style.zIndex = '2190';
+      var fs = document.getElementById('audit_form_started_at');
+      if (fs) fs.value = String(Date.now());
+      var hp = document.getElementById('audit_company_website');
+      if (hp) hp.value = '';
     });
 
     // Close success popup on backdrop click

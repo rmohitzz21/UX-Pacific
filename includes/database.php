@@ -2,43 +2,81 @@
 
 declare(strict_types=1);
 
+require_once __DIR__ . '/database_config.php';
+
 /**
- * Database bootstrap. Returns null when credentials are missing or connection fails.
- * Used by CMS helpers and optional form submission storage.
+ * One MySQL connection factory — same DSN/options for public CMS, admin API, and admin login.
+ *
+ * @param array{host:string,port:string,database:string,username:string,password:string,charset?:string} $cfg
+ *
+ * @throws PDOException on driver errors (e.g. 1045 access denied)
+ */
+function uxp_pdo_new(array $cfg): PDO
+{
+    $charset = (string) ($cfg['charset'] ?? 'utf8mb4');
+    $dsn = sprintf(
+        'mysql:host=%s;port=%s;dbname=%s;charset=%s',
+        $cfg['host'],
+        $cfg['port'],
+        $cfg['database'],
+        $charset
+    );
+
+    return new PDO($dsn, $cfg['username'], $cfg['password'], [
+        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+        PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+        PDO::ATTR_EMULATE_PREPARES => false,
+    ]);
+}
+
+/**
+ * Shared PDO for CMS and optional form persistence. Returns null if not configured or connection fails.
  */
 function uxp_db(): ?PDO
 {
     static $pdo = null;
-    static $attempted = false;
-    if ($attempted) {
+    static $failed = false;
+    if ($pdo instanceof PDO) {
         return $pdo;
     }
-    $attempted = true;
-    $credPath = __DIR__ . '/db_credentials.php';
-    if (!is_readable($credPath)) {
+    if ($failed) {
         return null;
     }
-    /** @var mixed $cfg */
-    $cfg = require $credPath;
-    if (!is_array($cfg)) {
+
+    $cfg = uxp_db_credentials();
+    if ($cfg === null || ($cfg['database'] ?? '') === '') {
+          $failed = true;
+
         return null;
     }
-    $host = (string) ($cfg['host'] ?? '127.0.0.1');
-    $port = (string) ($cfg['port'] ?? '3306');
-    $name = (string) ($cfg['database'] ?? '');
-    $user = (string) ($cfg['username'] ?? '');
-    $pass = (string) ($cfg['password'] ?? '');
-    if ($name === '') {
-        return null;
-    }
-    $dsn = 'mysql:host=' . $host . ';port=' . $port . ';dbname=' . $name . ';charset=utf8mb4';
+
     try {
-        $pdo = new PDO($dsn, $user, $pass, [
-            PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-            PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-        ]);
-    } catch (Throwable) {
+        $pdo = uxp_pdo_new($cfg);
+
+        return $pdo;
+    } catch (Throwable $e) {
+        $failed = true;
         $pdo = null;
+        if (function_exists('uxp_env_raw') && uxp_env_raw('UXP_LOG_DB_ERRORS') === '1') {
+            $code = $e instanceof PDOException ? (string) $e->getCode() : (string) $e->getCode();
+            $state = $e instanceof PDOException && isset($e->errorInfo[0]) ? (string) $e->errorInfo[0] : '';
+            error_log('[uxp_db] PDO connection failed. code=' . $code . ' sqlstate=' . $state);
+        }
+
+        return null;
+    }
+}
+
+/**
+ * Same connection as uxp_db(); throws if the database is unavailable (demo-style API).
+ *
+ * @throws RuntimeException
+ */
+function getDB(): PDO
+{
+    $pdo = uxp_db();
+    if (!$pdo instanceof PDO) {
+        throw new RuntimeException('Database connection failed. Check the project root .env file (see .env.example).');
     }
 
     return $pdo;
