@@ -228,7 +228,7 @@ DB_HOST=localhost              ✅ Correct for live server
 DB_PORT=3306                  ✅ Standard MySQL port
 DB_NAME=survevap_ux_admin     ✅ Correct database name
 DB_USER=survevap_ux_admin     ⚠️ NEEDS VERIFICATION
-DB_PASS="UXPacific#2025"      ✅ Correct password format (quotes for #)
+DB_PASS="rotated#password#from#cpanel"      ✅ Correct password format (quotes for #)
 DB_CHARSET=utf8mb4            ✅ Correct encoding
 ```
 
@@ -319,7 +319,7 @@ print_r($creds);
 //   [port] => 3306
 //   [database] => survevap_ux_admin
 //   [username] => survevap_ux_admin  ← VERIFY THIS MATCHES ACTUAL MYSQL USER
-//   [password] => UXPacific#2025
+//   [password] => (never print the real password)
 //   [charset] => utf8mb4
 // )
 ```
@@ -392,7 +392,7 @@ WHERE Host = 'localhost' OR Host = '%';
 
 -- CREATE NEW USER (recommended approach)
 DROP USER IF EXISTS 'ux_admin'@'localhost';
-CREATE USER 'ux_admin'@'localhost' IDENTIFIED BY 'UXPacific#2025';
+CREATE USER 'ux_admin'@'localhost' IDENTIFIED BY 'ROTATED_STRONG_PASSWORD_HERE';
 GRANT ALL PRIVILEGES ON survevap_ux_admin.* TO 'ux_admin'@'localhost';
 FLUSH PRIVILEGES;
 
@@ -445,7 +445,7 @@ SELECT id, name, email, role FROM survevap_ux_admin.admin_users;
    - Server Host: `162.241.116.85` (or your server IP)
    - Port: `3306`
    - Username: `ux_admin`
-   - Password: `UXPacific#2025`
+   - Password: use the rotated password from cPanel only
    - Database: `survevap_ux_admin`
 4. Test Connection (should succeed)
 5. Finish
@@ -456,7 +456,7 @@ DB_HOST=localhost
 DB_PORT=3306
 DB_NAME=survevap_ux_admin
 DB_USER=ux_admin                  ← CHANGED from survevap_ux_admin
-DB_PASS="UXPacific#2025"          ← Keep as is
+DB_PASS="rotated#password#from#cpanel"          ← Use the new rotated value from cPanel
 DB_CHARSET=utf8mb4
 ```
 

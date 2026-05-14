@@ -47,7 +47,7 @@ RewriteRule ^ - [F,L]
 # </IfModule>
 
 # ─── Block sensitive files ───
-<FilesMatch "(^\.env|^\.git|composer\.json|composer\.lock|package\.json|package-lock\.json|\.md$)">
+<FilesMatch "(^\.env|^\.git|composer\.json|composer\.lock|package\.json|package-lock\.json|\.md$|\.sql$|\.log$|\.bak$|\.backup$)">
     Require all denied
 </FilesMatch>
 

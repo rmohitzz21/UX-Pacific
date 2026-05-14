@@ -132,7 +132,10 @@ $out = [
     'db_name' => null,
     'db_user_masked' => null,
     'db_pass_present' => false,
+    'db_pass_length' => 0,
     'db_pass_contains_hash' => false,
+    'db_pass_hash_is_quoted' => null,
+    'db_pass_warning' => null,
     'db_charset' => 'utf8mb4',
     'db_connection' => 'not_attempted',
     'db_error_code' => null,
@@ -156,12 +159,19 @@ if (!is_array($cfg)) {
 }
 
 $pass = (string) ($cfg['password'] ?? '');
+$passMetaKey = uxp_is_local_dev_request() && uxp_env_db('DB_PASS_LOCAL', '') !== '' ? 'DB_PASS_LOCAL' : 'DB_PASS';
+$passMeta = uxp_dotenv_value_meta($passMetaKey);
 $out['db_host_effective'] = (string) $cfg['host'];
 $out['db_port'] = (string) ($cfg['port'] ?? '3306');
 $out['db_name'] = (string) $cfg['database'];
 $out['db_user_masked'] = $maskDbUser((string) $cfg['username']);
 $out['db_pass_present'] = $pass !== '';
+$out['db_pass_length'] = strlen($pass);
 $out['db_pass_contains_hash'] = str_contains($pass, '#');
+$out['db_pass_hash_is_quoted'] = $out['db_pass_contains_hash'] && isset($passMeta['quoted']) ? (bool) $passMeta['quoted'] : null;
+$out['db_pass_warning'] = !empty($passMeta['unquoted_hash'])
+    ? 'DB_PASS contains # but is not quoted in .env. Use DB_PASS="actual#password" to avoid truncation on other dotenv parsers/tools.'
+    : null;
 $out['db_charset'] = (string) ($cfg['charset'] ?? 'utf8mb4');
 
 if (!extension_loaded('pdo') || !extension_loaded('pdo_mysql')) {
@@ -312,7 +322,9 @@ try {
         $out['failure'] = 'unknown';
     }
     if ($out['db_pass_contains_hash']) {
-        $out['hint_1045'] = 'If password contains # ensure the value is wrapped in double quotes in .env (e.g. DB_PASS="...").';
+        $out['hint_1045'] = !empty($passMeta['unquoted_hash'])
+            ? 'DB_PASS contains # and is not quoted in .env. Change it to DB_PASS="..." and retry.'
+            : 'DB_PASS contains # and appears quoted or came from the process environment. If 1045 remains, verify exact cPanel DB_USER/DB_PASS and privileges.';
     }
 }
 

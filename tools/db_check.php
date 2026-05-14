@@ -46,7 +46,14 @@ echo 'Effective DB_PORT: ' . ($cfg['port'] ?? '3306') . "\n";
 echo 'Effective DB_NAME: ' . $cfg['database'] . "\n";
 echo 'Effective DB_USER (masked): ' . $mask((string) $cfg['username']) . "\n";
 echo 'DB_PASS present: ' . (((string) ($cfg['password'] ?? '')) !== '' ? 'yes' : 'no') . "\n";
-echo 'DB_PASS contains #: ' . (str_contains((string) ($cfg['password'] ?? ''), '#') ? 'yes' : 'no') . "\n";
+$pass = (string) ($cfg['password'] ?? '');
+$passMetaKey = uxp_is_local_dev_request() && uxp_env_db('DB_PASS_LOCAL', '') !== '' ? 'DB_PASS_LOCAL' : 'DB_PASS';
+$passMeta = uxp_dotenv_value_meta($passMetaKey);
+echo 'DB_PASS length: ' . strlen($pass) . "\n";
+echo 'DB_PASS contains #: ' . (str_contains($pass, '#') ? 'yes' : 'no') . "\n";
+if (!empty($passMeta['unquoted_hash'])) {
+    echo "DB_PASS warning: contains # but is not quoted in .env; use DB_PASS=\"actual#password\".\n";
+}
 
 if (!extension_loaded('pdo') || !extension_loaded('pdo_mysql')) {
     echo "Connection: failed (pdo or pdo_mysql missing)\n";

@@ -46,6 +46,69 @@ function uxp_dotenv_candidate_paths(): array
     return array_values(array_unique($paths));
 }
 
+/**
+ * Parse a .env value safely:
+ * - DB_PASS="abc#123" keeps the #.
+ * - DB_PASS=abc # comment strips the comment.
+ * - DB_PASS=abc#123 is accepted for backwards compatibility, but diagnostics warn to quote it.
+ *
+ * @return array{value:string, quoted:bool, quote:string, contains_hash:bool, unquoted_hash:bool}
+ */
+function uxp_parse_dotenv_value(string $raw): array
+{
+    $raw = trim($raw);
+    $quoted = false;
+    $quote = '';
+    $value = '';
+
+    if ($raw !== '' && ($raw[0] === '"' || $raw[0] === "'")) {
+        $quoted = true;
+        $quote = $raw[0];
+        $escaped = false;
+        $len = strlen($raw);
+
+        for ($i = 1; $i < $len; $i++) {
+            $ch = $raw[$i];
+            if ($escaped) {
+                $value .= ($ch === $quote || $ch === '\\') ? $ch : '\\' . $ch;
+                $escaped = false;
+                continue;
+            }
+            if ($ch === '\\') {
+                $escaped = true;
+                continue;
+            }
+            if ($ch === $quote) {
+                break;
+            }
+            $value .= $ch;
+        }
+        if ($escaped) {
+            $value .= '\\';
+        }
+    } else {
+        $len = strlen($raw);
+        $end = $len;
+        for ($i = 0; $i < $len; $i++) {
+            if ($raw[$i] === '#' && ($i === 0 || ctype_space($raw[$i - 1]))) {
+                $end = $i;
+                break;
+            }
+        }
+        $value = trim(substr($raw, 0, $end));
+    }
+
+    $containsHash = strpos($value, '#') !== false;
+
+    return [
+        'value' => $value,
+        'quoted' => $quoted,
+        'quote' => $quote,
+        'contains_hash' => $containsHash,
+        'unquoted_hash' => !$quoted && $containsHash,
+    ];
+}
+
 function uxp_load_dotenv(string $path): void
 {
     static $loaded = [];
@@ -73,22 +136,16 @@ function uxp_load_dotenv(string $path): void
         if ($name === '' || !preg_match('/^[A-Za-z_][A-Za-z0-9_]*$/', $name)) {
             continue;
         }
-        $value = trim($value);
-        if ($value !== '' && ($value[0] === '"' || $value[0] === "'")) {
-            $q = $value[0];
-            $len = strlen($value);
-            if ($len >= 2 && $value[$len - 1] === $q) {
-                $value = substr($value, 1, -1);
-                $value = str_replace(['\\' . $q, '\\\\'], [$q, '\\'], $value);
-            }
-        } else {
-            $hashPos = strpos($value, ' #');
-            if ($hashPos !== false) {
-                $value = trim(substr($value, 0, $hashPos));
-            }
-        }
-        $_ENV[$name] = $value;
-        putenv($name . '=' . $value);
+        $parsed = uxp_parse_dotenv_value($value);
+        $_ENV[$name] = $parsed['value'];
+        $GLOBALS['UXP_DOTENV_VALUE_META'][$name] = [
+            'quoted' => $parsed['quoted'],
+            'quote' => $parsed['quote'],
+            'contains_hash' => $parsed['contains_hash'],
+            'unquoted_hash' => $parsed['unquoted_hash'],
+            'length' => strlen($parsed['value']),
+        ];
+        putenv($name . '=' . $parsed['value']);
     }
 }
 
@@ -138,6 +195,19 @@ function uxp_env_raw(string $name, string $default = ''): string
     }
 
     return $default;
+}
+
+/**
+ * Metadata from the loaded .env assignment, used only for masked diagnostics.
+ *
+ * @return array{quoted?:bool,quote?:string,contains_hash?:bool,unquoted_hash?:bool,length?:int}
+ */
+function uxp_dotenv_value_meta(string $name): array
+{
+    uxp_boot_database_config();
+    $meta = $GLOBALS['UXP_DOTENV_VALUE_META'][$name] ?? [];
+
+    return is_array($meta) ? $meta : [];
 }
 
 /**
