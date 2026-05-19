@@ -20,7 +20,7 @@ function home_image_url(?string $url): string {
   return uxp_normalize_stored_media_url($url);
 }
 
-$pageTitle    = 'UI UX Design Agency | Web Design & Product Design | UX Pacific';
+$pageTitle    = 'UX Pacific';
 
 $pageDesc     = 'UX Pacific is a leading UI UX design agency offering web design, mobile app UX, and product design services for startups and businesses worldwide.';
 
@@ -843,7 +843,7 @@ $currentPage  = 'home';
           <div class="faq-left">
             <div class="accordion accordion-flush col-lg-12 mx-auto" id="faqAccordion">
               <div class="accordion-item" style="border-radius: 8px">
-                <div class="accordion-header"><h3>What services does UXPacific offer?</h3><div class="accordion-icon"><span> </span></div></div>
+                <div class="accordion-header"><h3>What services does UX Pacific offer?</h3><div class="accordion-icon"><span> </span></div></div>
                 <div class="accordion-content"><p>We specialize in UI/UX design, UX audits, design systems, landing pages, and strategy consulting. Whether you're launching an MVP or scaling an enterprise platform, we craft human-first digital experiences that perform.</p></div>
               </div>
               <div class="accordion-item" style="border-radius: 8px">

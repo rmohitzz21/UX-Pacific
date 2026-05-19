@@ -37,7 +37,7 @@
 <?php endif; ?>
 <?php endif; ?>
 
-<link rel="icon" href="<?= $favicon ?? 'img/Final.png'; ?>" />
+<link rel="icon" href="<?= $favicon ?? 'img/Workbook.png'; ?>" />
 
 <link rel="preload" href="main.css" as="style">
 

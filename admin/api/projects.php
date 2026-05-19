@@ -219,32 +219,23 @@ switch ($method) {
         break;
 
     case 'POST':
-        $data = json_decode(file_get_contents('php://input'), true);
+        $data = apiJsonBody();
 
-        if (!is_array($data) || !isset($data['title']) || trim((string) $data['title']) === '') {
-            apiError('Title is required.', 400);
-        }
-
-        $title = trim((string) $data['title']);
+        $title = apiRequiredString($data, 'title', 'Title', 255);
         $slugRaw = isset($data['slug']) ? trim((string) $data['slug']) : '';
-        $slug = $slugRaw !== ''
-            ? strtolower(preg_replace('/[^a-z0-9-]+/i', '-', $slugRaw))
-            : strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $title), '-'));
+        $slug = apiSlug($slugRaw, $title);
         $slug = uxp_projects_unique_slug($pdo, $slug);
 
-        $description = trim((string) ($data['description'] ?? ''));
-        $thumbnail_url = isset($data['thumbnail_url']) ? trim((string) $data['thumbnail_url']) : '';
-        $thumbnail_url = $thumbnail_url === '' ? null : $thumbnail_url;
-
-        $external_link = isset($data['external_link']) ? trim((string) $data['external_link']) : '';
-        $external_link = $external_link === '' ? null : $external_link;
+        $description = apiTrimString($data['description'] ?? '', 10000);
+        $thumbnail_url = apiStoredMediaUrl(apiOptionalString($data, 'thumbnail_url', 500), 'Thumbnail image');
+        $external_link = apiOptionalHttpUrl(apiOptionalString($data, 'external_link', 500), 'External link');
 
         $link_label = uxp_projects_sanitize_link_label($data['link_label'] ?? 'View Details');
         $tags = uxp_projects_tags_json($data['tags'] ?? null);
         $filter_group = uxp_projects_sanitize_filter_group($pdo, $data['filter_group'] ?? 'all');
-        $is_featured = !empty($data['is_featured']) ? 1 : 0;
+        $is_featured = apiBooleanInt($data['is_featured'] ?? 0, 0);
         $status = uxp_projects_sanitize_status($pdo, $data['status'] ?? 'draft');
-        $sort_order = (int) ($data['sort_order'] ?? 0);
+        $sort_order = apiIntInRange($data['sort_order'] ?? 0, 0, 0, 100000);
 
         try {
             $stmt = $pdo->prepare('INSERT INTO projects (title, slug, description, thumbnail_url, external_link, link_label, tags, filter_group, is_featured, status, sort_order) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)');
@@ -274,9 +265,9 @@ switch ($method) {
 
     case 'PUT':
     case 'PATCH':
-        $data = json_decode(file_get_contents('php://input'), true);
+        $data = apiJsonBody();
 
-        if (!is_array($data) || !isset($data['id'])) {
+        if (!isset($data['id'])) {
             apiError('Project ID is required.', 400);
         }
 
@@ -298,13 +289,11 @@ switch ($method) {
 
         if (isset($data['title'])) {
             $updates[] = 'title = ?';
-            $params[] = trim((string) $data['title']);
+            $params[] = apiRequiredString($data, 'title', 'Title', 255);
         }
         if (array_key_exists('slug', $data)) {
             $slugRaw = trim((string) $data['slug']);
-            $slug = $slugRaw !== ''
-                ? strtolower(preg_replace('/[^a-z0-9-]+/i', '-', $slugRaw))
-                : null;
+            $slug = $slugRaw !== '' ? apiSlug($slugRaw, 'project') : null;
             if ($slug !== null && $slug !== '') {
                 $slug = uxp_projects_unique_slug($pdo, $slug, $id);
                 $updates[] = 'slug = ?';
@@ -313,17 +302,15 @@ switch ($method) {
         }
         if (array_key_exists('description', $data)) {
             $updates[] = 'description = ?';
-            $params[] = trim((string) $data['description']);
+            $params[] = apiTrimString($data['description'], 10000);
         }
         if (array_key_exists('thumbnail_url', $data)) {
-            $t = trim((string) $data['thumbnail_url']);
             $updates[] = 'thumbnail_url = ?';
-            $params[] = $t === '' ? null : $t;
+            $params[] = apiStoredMediaUrl(apiOptionalString($data, 'thumbnail_url', 500), 'Thumbnail image');
         }
         if (array_key_exists('external_link', $data)) {
-            $e = trim((string) $data['external_link']);
             $updates[] = 'external_link = ?';
-            $params[] = $e === '' ? null : $e;
+            $params[] = apiOptionalHttpUrl(apiOptionalString($data, 'external_link', 500), 'External link');
         }
         if (array_key_exists('link_label', $data)) {
             $updates[] = 'link_label = ?';
@@ -339,7 +326,7 @@ switch ($method) {
         }
         if (array_key_exists('sort_order', $data)) {
             $updates[] = 'sort_order = ?';
-            $params[] = (int) $data['sort_order'];
+            $params[] = apiIntInRange($data['sort_order'], 0, 0, 100000);
         }
 
         if (isset($data['tags'])) {
@@ -348,7 +335,7 @@ switch ($method) {
         }
         if (isset($data['is_featured'])) {
             $updates[] = 'is_featured = ?';
-            $params[] = !empty($data['is_featured']) ? 1 : 0;
+            $params[] = apiBooleanInt($data['is_featured'], 0);
         }
 
         if ($updates === []) {
@@ -396,6 +383,7 @@ switch ($method) {
 
     case 'DELETE':
         $data = json_decode(file_get_contents('php://input'), true);
+        $data = is_array($data) ? $data : [];
         $id = $data['id'] ?? $_GET['id'] ?? null;
 
         if (!$id) {

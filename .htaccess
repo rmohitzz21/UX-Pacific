@@ -5,11 +5,13 @@
 Options -Indexes
 RewriteEngine On
 
-# Block dangerous admin scripts from non-local clients (defense in depth; PHP production_guard also applies).
-RewriteCond %{REQUEST_URI} admin/api/(setup_db|seed_db|test_crud|test_upload)\.php [NC]
-RewriteCond %{REMOTE_ADDR} !^127\.0\.0\.1$
-RewriteCond %{REMOTE_ADDR} !^::1$
-RewriteRule ^ - [F,L]
+# Block dangerous development/maintenance endpoints if they are accidentally uploaded.
+RewriteRule ^admin/api/(setup_db|seed_db|test_crud|test_upload)\.php$ - [F,L,NC]
+
+# Block runtime/private files and dependency internals from web access.
+RewriteRule ^vendor/ - [F,L,NC]
+RewriteRule ^storage/logs/ - [F,L,NC]
+RewriteRule ^(mailer\.php|test|temp\.html|empty_files\.py|clear_files\.bat)$ - [F,L,NC]
 
 # ─── Security Headers ───
 <IfModule mod_headers.c>
@@ -64,6 +66,8 @@ RewriteCond %{THE_REQUEST} \s/+(?:UX_Pacific/)?index\.php[\s?] [NC]
 RewriteRule ^ / [R=301,L]
 
 # ─── 2. Redirect .php URLs to clean URLs (301) ───
+# Admin panel: POST + 301 becomes GET (sign-out, forms, API mutations break).
+RewriteCond %{THE_REQUEST} !admin/ [NC]
 RewriteCond %{THE_REQUEST} \s/+(.+?)\.php[\s?] [NC]
 RewriteRule ^ /%1 [R=301,L,NE]
 

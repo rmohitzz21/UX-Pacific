@@ -13,6 +13,6 @@ $ogDesc  = $ogDesc ?? $pageDesc;
 $ogUrl   = $ogUrl ?? $canonicalUrl;
 
 // Favicon default
-$favicon = $favicon ?? 'img/Final.png';
+$favicon = $favicon ?? 'img/fav.png';
 
 ?>

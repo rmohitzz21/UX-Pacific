@@ -8,17 +8,12 @@ header('Content-Type: application/json; charset=UTF-8');
 $method = strtoupper((string) ($_SERVER['REQUEST_METHOD'] ?? 'GET'));
 $action = isset($_GET['action']) ? (string) $_GET['action'] : '';
 
-// Logout: POST only (CSRF + session). GET is disabled to avoid CSRF / prefetch abuse.
+// Logout: use admin/logout.php (form POST). This endpoint is legacy JSON only.
 if ($action === 'logout') {
-    if ($method === 'GET' || $method === 'HEAD') {
-        http_response_code(405);
-        echo json_encode(['error' => 'Logout requires POST with header X-CSRF-Token.']);
-        exit;
-    }
-
     if ($method !== 'POST') {
         http_response_code(405);
-        echo json_encode(['error' => 'Method not allowed.']);
+        header('Allow: POST');
+        echo json_encode(['error' => 'Use POST to admin/logout.php to sign out.']);
         exit;
     }
 

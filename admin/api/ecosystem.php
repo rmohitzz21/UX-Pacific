@@ -33,6 +33,21 @@ function uxp_ecosystem_shape_row(array $row): array
     return $row;
 }
 
+/**
+ * @return array<string, mixed>
+ */
+function uxp_ecosystem_payload(array $data): array
+{
+    return [
+        'partner_name' => apiRequiredString($data, 'partner_name', 'Partner name', 150),
+        'details' => apiOptionalString($data, 'details', 5000),
+        'website_url' => apiOptionalHttpUrl(apiOptionalString($data, 'website_url', 500), 'Website URL'),
+        'logo_url' => apiStoredMediaUrl(apiOptionalString($data, 'logo_url', 500), 'Logo image'),
+        'is_visible' => apiBooleanInt($data['is_visible'] ?? 1, 1),
+        'sort_order' => apiIntInRange($data['sort_order'] ?? 0, 0, 0, 100000),
+    ];
+}
+
 switch ($method) {
     case 'GET':
         try {
@@ -49,20 +64,18 @@ switch ($method) {
         break;
 
     case 'POST':
-        $data = json_decode(file_get_contents('php://input'), true);
-        if (!$data) {
-            apiError('Invalid JSON data.', 400);
-        }
+        $data = apiJsonBody();
+        $payload = uxp_ecosystem_payload($data);
 
         $sql = "INSERT INTO ecosystem (partner_name, details, website_url, logo_url, is_visible, sort_order) 
                 VALUES (?, ?, ?, ?, ?, ?)";
         $params = [
-            trim($data['partner_name'] ?? ''),
-            $data['details'] ?? null,
-            $data['website_url'] ?? null,
-            $data['logo_url'] ?? null,
-            (int)($data['is_visible'] ?? 1),
-            (int)($data['sort_order'] ?? 0)
+            $payload['partner_name'],
+            $payload['details'],
+            $payload['website_url'],
+            $payload['logo_url'],
+            $payload['is_visible'],
+            $payload['sort_order'],
         ];
         
         try {
@@ -72,15 +85,19 @@ switch ($method) {
             
             $stmt = $pdo->prepare("SELECT * FROM ecosystem WHERE id = ?");
             $stmt->execute([$id]);
+            $row = $stmt->fetch(PDO::FETCH_ASSOC);
+            if (!$row) {
+                apiError('Ecosystem partner not found after create.', 500);
+            }
             
-            apiSuccess(['success' => true, 'ecosystem' => $stmt->fetch(PDO::FETCH_ASSOC)], 201);
+            apiSuccess(['success' => true, 'ecosystem' => uxp_ecosystem_shape_row($row)], 201);
         } catch (PDOException $e) {
             apiError('Failed to create ecosystem partner.', 500, $e);
         }
         break;
 
     case 'PUT':
-        $data = json_decode(file_get_contents('php://input'), true);
+        $data = apiJsonBody();
         $id = $data['id'] ?? null;
         if (!$id) {
             apiError('Ecosystem partner ID is required.', 400);
@@ -91,9 +108,21 @@ switch ($method) {
         $params = [];
         
         foreach ($fields as $field) {
-            if (isset($data[$field])) {
+            if (array_key_exists($field, $data)) {
                 $updates[] = "$field = ?";
-                $params[] = $data[$field];
+                if ($field === 'partner_name') {
+                    $params[] = apiRequiredString($data, $field, 'Partner name', 150);
+                } elseif ($field === 'details') {
+                    $params[] = apiOptionalString($data, $field, 5000);
+                } elseif ($field === 'website_url') {
+                    $params[] = apiOptionalHttpUrl(apiOptionalString($data, $field, 500), 'Website URL');
+                } elseif ($field === 'logo_url') {
+                    $params[] = apiStoredMediaUrl(apiOptionalString($data, $field, 500), 'Logo image');
+                } elseif ($field === 'is_visible') {
+                    $params[] = apiBooleanInt($data[$field], 1);
+                } else {
+                    $params[] = apiIntInRange($data[$field], 0, 0, 100000);
+                }
             }
         }
         
@@ -124,6 +153,7 @@ switch ($method) {
 
     case 'DELETE':
         $data = json_decode(file_get_contents('php://input'), true);
+        $data = is_array($data) ? $data : [];
         $id = $data['id'] ?? $_GET['id'] ?? null;
         if (!$id) {
             apiError('Ecosystem partner ID is required.', 400);

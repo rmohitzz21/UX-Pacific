@@ -46,6 +46,23 @@ function contactsOrderColumn(PDO $pdo): string
     return 'id';
 }
 
+/**
+ * @return array<string, mixed>
+ */
+function contactsInputData(): array
+{
+    $raw = file_get_contents('php://input');
+    $data = json_decode($raw === false ? '' : $raw, true);
+    if (is_array($data)) {
+        return $data;
+    }
+    if (!empty($_POST)) {
+        return $_POST;
+    }
+
+    apiError('Invalid data provided.', 400);
+}
+
 switch ($method) {
     case 'GET':
         try {
@@ -59,23 +76,24 @@ switch ($method) {
         break;
 
     case 'POST':
-        $data = json_decode(file_get_contents('php://input'), true);
-        if (!$data && !empty($_POST)) {
-            $data = $_POST;
-        }
-        
-        if (!$data) {
-            apiError('Invalid data provided.', 400);
-        }
+        $data = contactsInputData();
 
         $columns = ['name', 'email', 'phone'];
+        $email = apiRequiredString($data, 'email', 'Email', 255);
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            apiError('Email must be valid.', 400);
+        }
         $params = [
-            trim($data['name'] ?? ''),
-            trim($data['email'] ?? ''),
-            $data['phone'] ?? null
+            apiRequiredString($data, 'name', 'Name', 150),
+            $email,
+            apiOptionalString($data, 'phone', 50)
         ];
 
-        $interest = $data['service_interest'] ?? ($data['industry'] ?? null);
+        $interest = apiOptionalString(
+            ['interest' => $data['service_interest'] ?? ($data['industry'] ?? null)],
+            'interest',
+            150
+        );
         if (contactsHasColumn($pdo, 'industry')) {
             $columns[] = 'industry';
             $params[] = $interest;
@@ -87,7 +105,7 @@ switch ($method) {
 
         $columns = array_merge($columns, ['message', 'ip_address', 'user_agent']);
         $params = array_merge($params, [
-            $data['message'] ?? '',
+            apiRequiredString($data, 'message', 'Message', 5000),
             $_SERVER['REMOTE_ADDR'] ?? null,
             substr($_SERVER['HTTP_USER_AGENT'] ?? '', 0, 500)
         ]);
@@ -110,7 +128,7 @@ switch ($method) {
         break;
 
     case 'PUT':
-        $data = json_decode(file_get_contents('php://input'), true);
+        $data = apiJsonBody();
         $id = $data['id'] ?? null;
         if (!$id) {
             apiError('Contact ID is required.', 400);
@@ -121,9 +139,13 @@ switch ($method) {
         $params = [];
         
         foreach ($fields as $field) {
-            if (isset($data[$field])) {
+            if (array_key_exists($field, $data)) {
                 $updates[] = "$field = ?";
-                $params[] = $data[$field];
+                if ($field === 'status') {
+                    $params[] = apiEnum($data[$field], ['new', 'read', 'awaiting_reply', 'replied'], 'new');
+                } else {
+                    $params[] = apiOptionalString($data, $field, 5000);
+                }
             }
         }
         
@@ -158,6 +180,7 @@ switch ($method) {
 
     case 'DELETE':
         $data = json_decode(file_get_contents('php://input'), true);
+        $data = is_array($data) ? $data : [];
         $id = $data['id'] ?? $_GET['id'] ?? null;
         if (!$id) {
             apiError('Contact ID is required.', 400);

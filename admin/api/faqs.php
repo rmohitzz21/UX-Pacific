@@ -18,6 +18,20 @@ header('Content-Type: application/json');
 
 $method = $_SERVER['REQUEST_METHOD'];
 
+/**
+ * @return array<string, mixed>
+ */
+function uxp_faq_payload(array $data): array
+{
+    return [
+        'question' => apiRequiredString($data, 'question', 'Question', 500),
+        'answer' => apiRequiredString($data, 'answer', 'Answer', 5000),
+        'category' => apiOptionalString($data, 'category', 100) ?? 'General',
+        'is_visible' => apiBooleanInt($data['is_visible'] ?? 1, 1),
+        'sort_order' => apiIntInRange($data['sort_order'] ?? 0, 0, 0, 100000),
+    ];
+}
+
 switch ($method) {
     case 'GET':
         try {
@@ -30,18 +44,16 @@ switch ($method) {
         break;
 
     case 'POST':
-        $data = json_decode(file_get_contents('php://input'), true);
-        if (!$data || empty(trim($data['question'] ?? '')) || empty(trim($data['answer'] ?? ''))) {
-            apiError('Question and answer are required.', 400);
-        }
+        $data = apiJsonBody();
+        $payload = uxp_faq_payload($data);
 
         $sql = "INSERT INTO faqs (question, answer, category, is_visible, sort_order) VALUES (?, ?, ?, ?, ?)";
         $params = [
-            trim($data['question']),
-            trim($data['answer']),
-            $data['category'] ?? 'General',
-            (int)($data['is_visible'] ?? 1),
-            (int)($data['sort_order'] ?? 0)
+            $payload['question'],
+            $payload['answer'],
+            $payload['category'],
+            $payload['is_visible'],
+            $payload['sort_order'],
         ];
         
         try {
@@ -59,7 +71,7 @@ switch ($method) {
         break;
 
     case 'PUT':
-        $data = json_decode(file_get_contents('php://input'), true);
+        $data = apiJsonBody();
         $id = $data['id'] ?? null;
         if (!$id) {
             apiError('FAQ ID is required.', 400);
@@ -70,9 +82,19 @@ switch ($method) {
         $params = [];
         
         foreach ($fields as $field) {
-            if (isset($data[$field])) {
+            if (array_key_exists($field, $data)) {
                 $updates[] = "$field = ?";
-                $params[] = $data[$field];
+                if ($field === 'question') {
+                    $params[] = apiRequiredString($data, $field, 'Question', 500);
+                } elseif ($field === 'answer') {
+                    $params[] = apiRequiredString($data, $field, 'Answer', 5000);
+                } elseif ($field === 'category') {
+                    $params[] = apiOptionalString($data, $field, 100) ?? 'General';
+                } elseif ($field === 'is_visible') {
+                    $params[] = apiBooleanInt($data[$field], 1);
+                } else {
+                    $params[] = apiIntInRange($data[$field], 0, 0, 100000);
+                }
             }
         }
         
@@ -103,6 +125,7 @@ switch ($method) {
 
     case 'DELETE':
         $data = json_decode(file_get_contents('php://input'), true);
+        $data = is_array($data) ? $data : [];
         $id = $data['id'] ?? $_GET['id'] ?? null;
         if (!$id) {
             apiError('FAQ ID is required.', 400);

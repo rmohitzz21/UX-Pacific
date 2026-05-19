@@ -1,5 +1,6 @@
 <?php // FILE: admin/includes/layout.php
 require_once __DIR__ . '/auth.php';
+require_once __DIR__ . '/../../includes/paths.php';
 requireAdminAuth('page');
 $base_url = str_contains($_SERVER['SCRIPT_NAME'], '/pages/') ? '../' : '';
 $adminUser = $_SESSION['admin_user'] ?? ['name' => 'Admin', 'role' => 'admin'];
@@ -37,8 +38,8 @@ $adminUser = $_SESSION['admin_user'] ?? ['name' => 'Admin', 'role' => 'admin'];
   <!-- LEFT -->
   <aside class="w-60 bg-[#111111] flex flex-col h-screen flex-shrink-0 z-20">
     <div class="px-6 py-5 border-b border-zinc-800 flex items-baseline">
-      <span class="text-white font-semibold text-sm">UX Pacific</span>
-      <span class="text-zinc-500 text-xs ml-2">Admin</span>
+      <img src="<?= uxp_root_relative_url('img/LOGO.png') ?>" alt="UX Pacific Logo" style="height: 20px; width: auto; display: block;">
+      <!-- <span class="text-zinc-500 text-xs ml-2">Admin</span> -->
     </div>
 
     <nav class="flex-1 px-3 py-4 overflow-y-auto space-y-0.5 custom-scrollbar">
@@ -71,22 +72,31 @@ $adminUser = $_SESSION['admin_user'] ?? ['name' => 'Admin', 'role' => 'admin'];
       <?php endforeach; ?>
     </nav>
 
-    <div class="border-t border-zinc-800 px-4 py-4 flex-shrink-0">
-      <div class="text-xs text-zinc-400 font-medium"><?= htmlspecialchars((string) ($adminUser['name'] ?? 'Admin')) ?></div>
-      <div class="text-xs text-zinc-600 mb-2"><?= htmlspecialchars((string) ($adminUser['role'] ?? 'admin')) ?></div>
-      <button type="button" id="uxp-admin-logout" class="text-xs text-zinc-500 hover:text-red-400 transition-colors bg-transparent border-0 p-0 cursor-pointer">Sign out</button>
-      <script>
-        document.getElementById('uxp-admin-logout')?.addEventListener('click', function () {
-          if (typeof window.uxpAdminFetch !== 'function') {
-            window.location.href = <?= json_encode($base_url . 'index.php', JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT) ?>;
-            return;
-          }
-          window.uxpAdminFetch(<?= json_encode($base_url . 'api/auth.php?action=logout', JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT) ?>, { method: 'POST' })
-            .finally(function () {
-              window.location.href = <?= json_encode($base_url . 'index.php', JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT) ?>;
-            });
-        });
-      </script>
+    <?php
+    $adminDisplayName = (string) ($adminUser['name'] ?? 'Admin');
+    $adminNameTrimmed = trim($adminDisplayName);
+    $adminInitial = strtoupper(($adminNameTrimmed !== '' ? $adminNameTrimmed : 'A')[0] ?? 'A');
+    ?>
+    <div class="border-t border-zinc-800 px-3 py-4 flex-shrink-0 space-y-3">
+      <div class="flex items-center gap-3 px-1 min-w-0">
+        <div class="w-9 h-9 rounded-full bg-zinc-800 border border-zinc-700 flex items-center justify-center text-sm font-semibold text-zinc-300 flex-shrink-0" aria-hidden="true"><?= htmlspecialchars($adminInitial) ?></div>
+        <div class="min-w-0 flex-1">
+          <div class="text-sm font-medium text-zinc-200 truncate"><?= htmlspecialchars($adminDisplayName) ?></div>
+          <div class="text-xs text-zinc-500 capitalize truncate"><?= htmlspecialchars((string) ($adminUser['role'] ?? 'admin')) ?></div>
+        </div>
+      </div>
+      <form method="POST" action="<?= htmlspecialchars(adminUrl('logout.php')) ?>" class="block">
+        <input type="hidden" name="csrf_token" value="<?= htmlspecialchars(adminCsrfToken()) ?>">
+        <button
+          type="submit"
+          class="w-full flex items-center justify-center gap-2 rounded-lg border border-zinc-700/80 bg-zinc-900/60 px-3 py-2.5 text-sm font-medium text-zinc-300 hover:border-red-900/50 hover:bg-red-950/40 hover:text-red-300 focus:outline-none focus:ring-2 focus:ring-red-500/30 transition-colors"
+        >
+          <svg class="w-4 h-4 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+          </svg>
+          Sign out
+        </button>
+      </form>
     </div>
   </aside>
 

@@ -64,8 +64,9 @@ Thumbs.db
 !database/PRODUCTION_SQL_PATCHES.sql
 
 # ─── Dev/Test files that must NOT be deployed ───
-# (These should be deleted from production, not just gitignored)
-# admin/api/test_crud.php
-# admin/api/test_upload.php
-# admin/api/setup_db.php
-# admin/api/seed_db.php
+# (These should be kept out of production, not just hidden by git)
+admin/api/test_crud.php
+admin/api/test_upload.php
+admin/api/test_image.jpg
+admin/api/setup_db.php
+admin/api/seed_db.php

@@ -33,6 +33,20 @@ function uxp_client_logo_shape_row(array $row): array
     return $row;
 }
 
+/**
+ * @return array<string, mixed>
+ */
+function uxp_client_logo_payload(array $data): array
+{
+    return [
+        'name' => apiRequiredString($data, 'name', 'Client name', 100),
+        'logo_url' => apiStoredMediaUrl(apiRequiredString($data, 'logo_url', 'Logo image', 500), 'Logo image'),
+        'website_url' => apiOptionalHttpUrl(apiOptionalString($data, 'website_url', 500), 'Website URL'),
+        'sort_order' => apiIntInRange($data['sort_order'] ?? 0, 0, 0, 100000),
+        'is_visible' => apiBooleanInt($data['is_visible'] ?? 1, 1),
+    ];
+}
+
 switch ($method) {
     case 'GET':
         try {
@@ -49,28 +63,16 @@ switch ($method) {
         break;
 
     case 'POST':
-        $data = json_decode(file_get_contents('php://input'), true);
-        if (!$data) {
-            apiError('Invalid JSON data.', 400);
-        }
-        
-        $name = trim((string)($data['name'] ?? ''));
-        $logoUrl = trim((string)($data['logo_url'] ?? ''));
-        
-        if ($name === '' || $logoUrl === '') {
-            apiError('Client name and logo image are required.', 400);
-        }
-        
-        $website = trim((string)($data['website_url'] ?? ''));
-        $website = $website === '' ? null : $website;
+        $data = apiJsonBody();
+        $payload = uxp_client_logo_payload($data);
         
         $sql = 'INSERT INTO client_logos (name, logo_url, website_url, sort_order, is_visible) VALUES (?, ?, ?, ?, ?)';
         $params = [
-            $name,
-            $logoUrl,
-            $website,
-            (int)($data['sort_order'] ?? 0),
-            (int)($data['is_visible'] ?? 1),
+            $payload['name'],
+            $payload['logo_url'],
+            $payload['website_url'],
+            $payload['sort_order'],
+            $payload['is_visible'],
         ];
         
         try {
@@ -92,7 +94,7 @@ switch ($method) {
         break;
 
     case 'PUT':
-        $data = json_decode(file_get_contents('php://input'), true);
+        $data = apiJsonBody();
         $id = $data['id'] ?? null;
         if (!$id) {
             apiError('Client logo ID is required.', 400);
@@ -105,11 +107,16 @@ switch ($method) {
         foreach ($fields as $field) {
             if (array_key_exists($field, $data)) {
                 $updates[] = "$field = ?";
-                if ($field === 'website_url') {
-                    $v = trim((string)$data[$field]);
-                    $params[] = $v === '' ? null : $v;
-                } elseif ($field === 'sort_order' || $field === 'is_visible') {
-                    $params[] = (int)$data[$field];
+                if ($field === 'name') {
+                    $params[] = apiRequiredString($data, $field, 'Client name', 100);
+                } elseif ($field === 'logo_url') {
+                    $params[] = apiStoredMediaUrl(apiRequiredString($data, $field, 'Logo image', 500), 'Logo image');
+                } elseif ($field === 'website_url') {
+                    $params[] = apiOptionalHttpUrl(apiOptionalString($data, $field, 500), 'Website URL');
+                } elseif ($field === 'sort_order') {
+                    $params[] = apiIntInRange($data[$field], 0, 0, 100000);
+                } elseif ($field === 'is_visible') {
+                    $params[] = apiBooleanInt($data[$field], 1);
                 } else {
                     $params[] = $data[$field];
                 }
@@ -143,6 +150,7 @@ switch ($method) {
 
     case 'DELETE':
         $data = json_decode(file_get_contents('php://input'), true);
+        $data = is_array($data) ? $data : [];
         $id = $data['id'] ?? $_GET['id'] ?? null;
         if (!$id) {
             apiError('Client logo ID is required.', 400);
