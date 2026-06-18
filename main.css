@@ -2611,11 +2611,15 @@ body {
   /* border: 1.1px solid #32334b; */
   /* padding: 1.25rem 1.3rem 1.3rem; */
   margin-bottom: 1.5rem;
+  flex: 1;
+  overflow: hidden;
 }
 
 .process-img {
   width: 100%;
   max-width: 630px;
+  max-height: 460px;
+  object-fit: cover;
   filter: brightness(0.94) grayscale(30%);
   border-radius: 1rem;
   margin: auto;
@@ -4935,11 +4939,15 @@ body {
     /* border: 1.1px solid #32334b; */
     /* padding: 1.25rem 1.3rem 1.3rem; */
     margin-bottom: 1.5rem;
+    flex: 1;
+    overflow: hidden;
   }
 
   .process-img {
     width: 100%;
     max-width: 630px;
+    max-height: 460px;
+    object-fit: cover;
     filter: brightness(0.94) grayscale(30%);
     border-radius: 1rem;
     margin: auto;
@@ -5831,6 +5839,8 @@ body {
 
   .process-img {
     width: 100%;
+    max-height: 460px;
+    object-fit: cover;
     height: auto;
     animation: slideshow 8s infinite;
   }

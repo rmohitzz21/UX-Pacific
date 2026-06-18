@@ -1,5 +1,6 @@
 <?php // FILE: admin/index.php
 require_once __DIR__ . '/includes/auth.php';
+require_once __DIR__ . '/includes/meta.php';
 
 if (adminIsAuthenticated()) {
     header('Location: ' . adminUrl('dashboard.php'));
@@ -32,12 +33,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login | UX Pacific Admin</title>
+    <title><?= htmlspecialchars(adminDocumentTitle('Sign In')) ?></title>
+    <link rel="icon" type="image/png" href="<?= htmlspecialchars(adminFaviconHref()) ?>">
     <meta name="robots" content="noindex, nofollow">
     <script src="https://cdn.tailwindcss.com"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3/dist/cdn.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/admin.css">
+    
 </head>
 <body class="h-full bg-gradient-to-br from-[#111111] via-[#1a1133] to-[#6147bd] flex items-center justify-center font-sans">
     <div class="bg-[#111111]/40 backdrop-blur-md border border-white/10 rounded-2xl shadow-2xl p-10 w-full max-w-md mx-4">

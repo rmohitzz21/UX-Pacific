@@ -1,5 +1,5 @@
 <?php
-$page_title = 'Client logos';
+$page_title = 'Client Logos';
 $active_nav = 'client_logos';
 require_once '../includes/layout.php';
 ?>

@@ -7,7 +7,12 @@
       "Bash(for f:*)",
       "Bash(do echo:*)",
       "Read(//d/xampp/htdocs/UX_Pacific/**)",
-      "Bash(done)"
+      "Bash(done)",
+      "WebFetch(domain:shop.uxpacific.com)",
+      "Bash(Get-ChildItem -Recurse -Filter \"signup.php\" \"C:\\\\xampp\\\\htdocs\")",
+      "Bash(Select-Object FullName)",
+      "Bash(curl *)",
+      "Bash(python3 *)"
     ]
   }
 }

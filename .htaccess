@@ -8,6 +8,10 @@ RewriteEngine On
 # Block dangerous development/maintenance endpoints if they are accidentally uploaded.
 RewriteRule ^admin/api/(setup_db|seed_db|test_crud|test_upload)\.php$ - [F,L,NC]
 
+# Block dev/build scripts from web access.
+RewriteRule ^(generate-sitemap|generate-hub-pages|inject-loc-sections)\.php$ - [F,L,NC]
+RewriteRule ^(inject-loc-sections\.ps1|verify-links\.ps1|broken-links-report\.csv|inject-loc-sections\.log)$ - [F,L,NC]
+
 # Block runtime/private files and dependency internals from web access.
 RewriteRule ^vendor/ - [F,L,NC]
 RewriteRule ^storage/logs/ - [F,L,NC]
@@ -33,20 +37,29 @@ RewriteRule ^(mailer\.php|test|temp\.html|empty_files\.py|clear_files\.bat)$ - [
     # Remove PHP version header
     Header always unset X-Powered-By
     
-    # No caching for API responses (admin)
-    <FilesMatch "\.(php)$">
+    # No caching for admin/API endpoints only
+    <FilesMatch "^admin/">
         Header set Cache-Control "no-store, no-cache, must-revalidate, max-age=0"
+    </FilesMatch>
+    # Location pages and public pages: allow 1-hour browser cache
+    <FilesMatch "^ui-ux-design-agency-in-.*\.php$">
+        Header set Cache-Control "public, max-age=3600, s-maxage=86400"
     </FilesMatch>
 </IfModule>
 
-# ─── Force HTTPS (uncomment on production with SSL) ───
-# RewriteCond %{HTTPS} !=on
-# RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+# ─── Force HTTPS (production only — skips localhost) ───
+RewriteCond %{HTTPS} !=on
+RewriteCond %{HTTP_HOST} !^localhost [NC]
+RewriteCond %{HTTP_HOST} !^127\.0\.0\.1
+RewriteCond %{HTTP_HOST} !^::1
+RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
-# ─── HSTS (uncomment after confirming HTTPS works) ───
-# <IfModule mod_headers.c>
-#     Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"
-# </IfModule>
+# ─── HSTS (production only) ───
+<IfModule mod_headers.c>
+    <If "%{HTTP_HOST} != 'localhost'">
+        Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"
+    </If>
+</IfModule>
 
 # ─── Block sensitive files ───
 <FilesMatch "(^\.env|^\.git|composer\.json|composer\.lock|package\.json|package-lock\.json|\.md$|\.sql$|\.log$|\.bak$|\.backup$)">

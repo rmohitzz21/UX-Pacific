@@ -305,3 +305,58 @@ function adminLoginClearFailures(PDO $pdo, string $email, string $ip): void
     }
 }
 
+/**
+ * Change password for the currently logged-in admin user.
+ *
+ * @return array{success: bool, error?: string}
+ */
+function adminChangePassword(int $userId, string $currentPassword, string $newPassword, string $confirmPassword): array
+{
+    if ($userId < 1) {
+        return ['success' => false, 'error' => 'Not authenticated.'];
+    }
+
+    if ($currentPassword === '' || $newPassword === '' || $confirmPassword === '') {
+        return ['success' => false, 'error' => 'All password fields are required.'];
+    }
+
+    if ($newPassword !== $confirmPassword) {
+        return ['success' => false, 'error' => 'New password and confirmation do not match.'];
+    }
+
+    if (strlen($newPassword) < 8) {
+        return ['success' => false, 'error' => 'New password must be at least 8 characters.'];
+    }
+
+    if ($currentPassword === $newPassword) {
+        return ['success' => false, 'error' => 'New password must be different from your current password.'];
+    }
+
+    try {
+        $pdo = adminAuthPdo();
+        $stmt = $pdo->prepare('SELECT id, password_hash, is_active FROM admin_users WHERE id = ? LIMIT 1');
+        $stmt->execute([$userId]);
+        $user = $stmt->fetch();
+
+        if (!$user || (int) $user['is_active'] !== 1) {
+            return ['success' => false, 'error' => 'Account not found or inactive.'];
+        }
+
+        if (!password_verify($currentPassword, (string) $user['password_hash'])) {
+            return ['success' => false, 'error' => 'Current password is incorrect.'];
+        }
+
+        $hash = password_hash($newPassword, PASSWORD_DEFAULT);
+        $up = $pdo->prepare('UPDATE admin_users SET password_hash = ?, updated_at = NOW() WHERE id = ?');
+        $up->execute([$hash, $userId]);
+
+        error_log('[UX Pacific admin] password changed user_id=' . $userId);
+
+        return ['success' => true];
+    } catch (Throwable $e) {
+        error_log('[UX Pacific admin change password] ' . $e::class . ': ' . $e->getMessage());
+
+        return ['success' => false, 'error' => 'Could not update password. Please try again.'];
+    }
+}
+

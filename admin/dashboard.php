@@ -157,6 +157,7 @@ require_once 'includes/layout.php';
             <div class="space-y-2">
                 <a href="pages/projects.php" class="block w-full text-center bg-white text-zinc-900 font-medium rounded-lg px-4 py-2 text-sm hover:bg-zinc-200 transition">+ Add Project</a>
                 <a href="pages/contacts.php" class="block w-full text-center border border-white/20 text-white bg-transparent hover:bg-white/10 rounded-lg px-4 py-2 text-sm transition">View Contacts</a>
+                <a href="pages/change-password.php" class="block w-full text-center border border-white/20 text-white bg-transparent hover:bg-white/10 rounded-lg px-4 py-2 text-sm transition">Change Password</a>
                 <button class="block w-full text-center border border-white/20 text-white bg-transparent hover:bg-white/10 rounded-lg px-4 py-2 text-sm transition opacity-50 cursor-not-allowed" title="Coming soon">Edit Homepage</button>
             </div>
         </div>

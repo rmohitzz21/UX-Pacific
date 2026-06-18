@@ -222,7 +222,7 @@ $currentPage  = 'about';
 
     <div class="container">
       <div class="process-section">
-        <div class="process-card"><img src="img/process.gif" alt="Process Illustration" class="process-img"></div>
+        <div class="process-card"><video src="img/processs.mp4"  alt="Process Illustration" class="process-img" autoplay muted loop ></video></div>
         <div class="process-content">
           <div class="process-title">Our Proven Process</div>
           <ul class="process-list">

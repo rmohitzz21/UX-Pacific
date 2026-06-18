@@ -26,6 +26,8 @@
 <meta name="twitter:description" content="<?= htmlspecialchars($ogDesc ?? $pageDesc); ?>">
 <meta name="twitter:image" content="https://www.uxpacific.com/img/LOGO.png">
 <meta name="p:domain_verify" content="cead6e216e4572e79f4591f818674d75"/>
+  <meta name="google-site-verification" content="eBDfCy1a9pilJTyIDnbpUeBgP9apI8hdROPMMvqeqXU" />
+
 
 <?php if (!empty($ldJson)): ?>
 <?php
