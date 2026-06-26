@@ -7,7 +7,21 @@
 <title><?= htmlspecialchars($pageTitle ?? 'UX Pacific'); ?></title>
 
 <meta name="description" content="<?= htmlspecialchars($pageDesc ?? ''); ?>" />
+<?php if (!empty($metaKeywords)): ?>
+<meta name="keywords" content="<?= htmlspecialchars($metaKeywords); ?>" />
+<?php endif; ?>
+<?php if (!empty($metaAuthor)): ?>
+<meta name="author" content="<?= htmlspecialchars($metaAuthor); ?>" />
+<?php endif; ?>
 <meta name="robots" content="<?= htmlspecialchars($metaRobots ?? 'index, follow'); ?>" />
+<?php if (!empty($themeColor)): ?>
+<meta name="theme-color" content="<?= htmlspecialchars($themeColor); ?>" />
+<?php endif; ?>
+<?php if (!empty($geoRegion)): ?>
+<meta http-equiv="content-language" content="<?= htmlspecialchars($contentLanguage ?? 'en'); ?>" />
+<meta name="geo.region" content="<?= htmlspecialchars($geoRegion); ?>" />
+<meta name="geo.country" content="<?= htmlspecialchars($geoCountry ?? ''); ?>" />
+<?php endif; ?>
 <?php if (!empty($canonicalUrl)): ?>
 <link rel="canonical" href="<?= htmlspecialchars($canonicalUrl); ?>" />
 <?php endif; ?>
@@ -17,14 +31,17 @@
 <meta property="og:description" content="<?= htmlspecialchars($ogDesc ?? $pageDesc); ?>" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="<?= htmlspecialchars($ogUrl ?? $canonicalUrl); ?>" />
-<meta property="og:image" content="https://www.uxpacific.com/img/LOGO.png" />
+<meta property="og:image" content="<?= htmlspecialchars($ogImage ?? 'https://www.uxpacific.com/img/LOGO.png'); ?>" />
 <meta property="og:site_name" content="UX Pacific" />
+<?php if (!empty($ogLocale)): ?>
+<meta property="og:locale" content="<?= htmlspecialchars($ogLocale); ?>" />
+<?php endif; ?>
 
 <!-- Twitter -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="<?= htmlspecialchars($ogTitle ?? $pageTitle); ?>">
 <meta name="twitter:description" content="<?= htmlspecialchars($ogDesc ?? $pageDesc); ?>">
-<meta name="twitter:image" content="https://www.uxpacific.com/img/LOGO.png">
+<meta name="twitter:image" content="<?= htmlspecialchars($ogImage ?? 'https://www.uxpacific.com/img/LOGO.png'); ?>">
 <meta name="p:domain_verify" content="cead6e216e4572e79f4591f818674d75"/>
   <meta name="google-site-verification" content="eBDfCy1a9pilJTyIDnbpUeBgP9apI8hdROPMMvqeqXU" />
 
@@ -46,7 +63,9 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet" />
-
+<link rel="dns-prefetch" href="https://cdn.jsdelivr.net" />
+<link rel="dns-prefetch" href="https://cdnjs.cloudflare.com" />
+<link rel="preconnect" href="https://cdn.jsdelivr.net" />
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
 <link rel="stylesheet" href="main.css" />
