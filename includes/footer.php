@@ -2,7 +2,7 @@
 <div class="desktop-only-footer">
   <div class="container footer-inner">
     <div class="row" style="margin-top: 100px;">
-      <div class="col-md-5">
+      <div class="col-md-4">
         <div class="footer-logo">
           <a href="<?= BASE_URL ?>/">
             <img src="img/LOGO.png" width="200" alt="UX Pacific Logo" />
@@ -41,13 +41,22 @@
           <li><a href="<?= BASE_URL ?>/service">Services</a></li>
           <li><a href="<?= BASE_URL ?>/work">Work</a></li>
           <li><a href="<?= BASE_URL ?>/ecosystem">Ecosystem</a></li>
+          <li><a href="<?= BASE_URL ?>/site-index">All Locations</a></li>
         </ul>
       </div>
-      <div class="col-md-2 col-3">
-        <h4 class="ft_link">Support</h4>
+      <div class="col-md-3">
+        <h4 class="ft_link">Top Locations</h4>
         <ul class="q_link">
-          <li><a href="<?= BASE_URL ?>/contact">Let's Talk</a></li>
-          <li><a href="<?= BASE_URL ?>/faq">FAQs</a></li>
+          <li><a href="<?= BASE_URL ?>/ui-ux-design-agency-in-united-kingdom">United Kingdom</a></li>
+          <li><a href="<?= BASE_URL ?>/ui-ux-design-agency-in-united-states">United States</a></li>
+          <li><a href="<?= BASE_URL ?>/ui-ux-design-agency-in-australia">Australia</a></li>
+          <li><a href="<?= BASE_URL ?>/ui-ux-design-agency-in-canada">Canada</a></li>
+          <li><a href="<?= BASE_URL ?>/ui-ux-design-agency-in-india">India</a></li>
+          <li><a href="<?= BASE_URL ?>/ui-ux-design-agency-in-germany">Germany</a></li>
+          <li><a href="<?= BASE_URL ?>/ui-ux-design-agency-in-singapore">Singapore</a></li>
+          <li><a href="<?= BASE_URL ?>/ui-ux-design-agency-in-united-arab-emirates">UAE</a></li>
+          <li><a href="<?= BASE_URL ?>/ui-ux-design-agency-in-new-zealand">New Zealand</a></li>
+          <li><a href="<?= BASE_URL ?>/ui-ux-design-agency-in-south-africa">South Africa</a></li>
         </ul>
       </div>
       <div class="col-md-3">
@@ -109,6 +118,7 @@
           <li><a href="<?= BASE_URL ?>/service">Services</a></li>
           <li><a href="<?= BASE_URL ?>/work">Work</a></li>
           <li><a href="<?= BASE_URL ?>/ecosystem">Ecosystem</a></li>
+          <li><a href="<?= BASE_URL ?>/site-index">All Locations</a></li>
         </ul>
       </div>
       <div class="mf-col">
@@ -116,6 +126,32 @@
         <ul class="mf-list">
           <li><a href="<?= BASE_URL ?>/contact">Let's Talk</a></li>
           <li><a href="<?= BASE_URL ?>/faq">FAQs</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="mf-divider"></div>
+
+    <!-- Top Locations -->
+    <div class="mf-links-row">
+      <div class="mf-col">
+        <h4 class="mf-heading">Top Locations</h4>
+        <ul class="mf-list">
+          <li><a href="<?= BASE_URL ?>/ui-ux-design-agency-in-united-kingdom">United Kingdom</a></li>
+          <li><a href="<?= BASE_URL ?>/ui-ux-design-agency-in-united-states">United States</a></li>
+          <li><a href="<?= BASE_URL ?>/ui-ux-design-agency-in-australia">Australia</a></li>
+          <li><a href="<?= BASE_URL ?>/ui-ux-design-agency-in-canada">Canada</a></li>
+          <li><a href="<?= BASE_URL ?>/ui-ux-design-agency-in-india">India</a></li>
+        </ul>
+      </div>
+      <div class="mf-col">
+        <h4 class="mf-heading">&nbsp;</h4>
+        <ul class="mf-list">
+          <li><a href="<?= BASE_URL ?>/ui-ux-design-agency-in-germany">Germany</a></li>
+          <li><a href="<?= BASE_URL ?>/ui-ux-design-agency-in-singapore">Singapore</a></li>
+          <li><a href="<?= BASE_URL ?>/ui-ux-design-agency-in-united-arab-emirates">UAE</a></li>
+          <li><a href="<?= BASE_URL ?>/ui-ux-design-agency-in-new-zealand">New Zealand</a></li>
+          <li><a href="<?= BASE_URL ?>/ui-ux-design-agency-in-south-africa">South Africa</a></li>
         </ul>
       </div>
     </div>
@@ -145,7 +181,7 @@
   <div class="container pt-4 pb-3 d-none d-md-block" style="border-top: 1px solid rgb(245 245 245 / 40%)">
     <div class="row">
       <div class="col col-md-6">
-        <p style="color:#e0e0e0">© 2026 UXPacific. All rights reserved.</p>
+        <a href="<?= BASE_URL ?>/site-index" class="footer-copyright-link">© 2026 UXPacific. All rights reserved.</a>
       </div>
       <div class="col col-md-6 footer-policies mb-0 mt-0" style="text-align:right">
         <a href="<?= BASE_URL ?>/privacy-policy">Privacy Policy</a> |
@@ -158,7 +194,7 @@
   <div class="container pt-4 pb-3 d-block d-md-none" style="border-top: 1px solid rgb(245 245 245 / 40%)">
     <div class="row align-items-center">
       <div class="col-12 col-md-6 order-2 order-md-1 text-center text-md-start">
-        <p style="color:#e0e0e0">© 2026 UXPacific. All rights reserved.</p>
+        <a href="<?= BASE_URL ?>/site-index" class="footer-copyright-link">© 2026 UXPacific. All rights reserved.</a>
       </div>
       <div class="col-12 col-md-6 footer-policies mb-0 mt-0 order-1 order-md-2 text-center text-md-end d-flex justify-content-center justify-content-md-end">
         <a href="<?= BASE_URL ?>/privacy-policy">Privacy Policy</a> |

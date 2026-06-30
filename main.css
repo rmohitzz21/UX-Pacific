@@ -2263,6 +2263,138 @@ body {
   color: #fff;
 }
 
+.footer-copyright-link {
+  color: #e0e0e0;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.footer-copyright-link:hover,
+.footer-copyright-link:focus-visible {
+  color: #fff;
+  text-decoration: underline;
+  outline: none;
+}
+
+.site-index-page {
+  background: #111111;
+}
+
+.site-index-main {
+  min-height: 60vh;
+}
+
+.site-index-intro {
+  padding: 48px 0 24px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.site-index-intro h1 {
+  margin: 0 0 12px;
+  color: #fff;
+  font-size: clamp(1.75rem, 3vw, 2.4rem);
+  font-weight: 600;
+}
+
+.site-index-lead {
+  margin: 0 0 24px;
+  color: #b5b5b5;
+  font-size: 1rem;
+  max-width: 720px;
+}
+
+.site-index-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.site-index-search {
+  flex: 1 1 280px;
+  max-width: 520px;
+  background: #0e0e0e;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 10px;
+  color: #fff;
+  padding: 12px 14px;
+  font-size: 0.95rem;
+}
+
+.site-index-search:focus {
+  outline: 2px solid #6147bd;
+  outline-offset: 1px;
+}
+
+.site-index-count {
+  color: #9a9a9a;
+  font-size: 0.9rem;
+  white-space: nowrap;
+}
+
+.site-index-directory {
+  padding: 32px 0 80px;
+}
+
+.site-index-grid {
+  column-width: 220px;
+  column-gap: 40px;
+}
+
+.site-index-group {
+  break-inside: avoid;
+  margin-bottom: 28px;
+}
+
+.site-index-letter {
+  margin: 0 0 12px;
+  color: #fff;
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+.site-index-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.site-index-item {
+  margin: 0 0 8px;
+}
+
+.site-index-item a {
+  color: #c8c8c8;
+  text-decoration: none;
+  font-size: 0.92rem;
+  line-height: 1.4;
+  transition: color 0.2s ease;
+}
+
+.site-index-item a:hover,
+.site-index-item a:focus-visible {
+  color: #fff;
+  text-decoration: underline;
+}
+
+.site-index-empty {
+  color: #b0b0b0;
+  padding: 24px 0;
+  text-align: center;
+}
+
+@media (max-width: 767px) {
+  .site-index-intro {
+    padding-top: 32px;
+  }
+
+  .site-index-grid {
+    column-width: 160px;
+    column-gap: 24px;
+  }
+}
+
 .footer-content {
   padding-top: 50px !important;
 }

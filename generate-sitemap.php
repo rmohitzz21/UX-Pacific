@@ -29,6 +29,8 @@ $rootDir = __DIR__;
 $today   = date('Y-m-d');
 $start   = microtime(true);
 
+require_once $rootDir . '/includes/location_pages.php';
+
 echo "UX Pacific — Sitemap Generator\n";
 echo str_repeat('─', 42) . "\n\n";
 
@@ -92,6 +94,7 @@ $rawCore = [
     ['path' => '/work',      'pri' => '0.8', 'freq' => 'monthly'],
     ['path' => '/contact',   'pri' => '0.8', 'freq' => 'monthly'],
     ['path' => '/faq',       'pri' => '0.7', 'freq' => 'monthly'],
+    ['path' => '/site-index', 'pri' => '0.8', 'freq' => 'weekly'],
     ['path' => '/blog',      'pri' => '0.7', 'freq' => 'weekly'],
     ['path' => '/pricing',   'pri' => '0.7', 'freq' => 'monthly'],
     ['path' => '/careers',   'pri' => '0.6', 'freq' => 'monthly'],
@@ -163,6 +166,10 @@ foreach ($written as $sf) {
 }
 $idx .= '</sitemapindex>';
 file_put_contents($rootDir . '/sitemap.xml', $idx);
+
+// ── Write footer location index JSON ─────────────────────────────────────────
+$indexCount = uxp_write_location_pages_index($rootDir);
+echo "  ✓ data/location-pages.json — $indexCount pages\n";
 
 // ── Summary ───────────────────────────────────────────────────────────────────
 $elapsed = round(microtime(true) - $start, 1);
